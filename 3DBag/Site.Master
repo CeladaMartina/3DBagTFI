@@ -62,7 +62,7 @@
                             <a class="nav-link" href="#">Comercial</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Registrarse</a>
+                            <a class="nav-link" href="Registrarse.aspx">Registrarse</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="Login.aspx">Ingresar</a>
