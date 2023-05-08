@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="_3DBag.Formulario_web11" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="_3DBag.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -30,16 +30,16 @@
                              <div class="col">
                                  <label>Nick</label>
                                  <div class="form-group">
-                                     <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" placeholder="Nick"></asp:TextBox>
+                                     <asp:TextBox ID="txtNick" CssClass="form-control" runat="server" placeholder="Nick"></asp:TextBox>
                                  </div>
                                  <br />
                                  <label>Contraseña</label>
                                  <div class="form-group">
-                                     <asp:TextBox ID="TextBox2" CssClass="form-control" runat="server" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                     <asp:TextBox ID="txtContraseña" CssClass="form-control" runat="server" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
                                  </div>
                                  <br />
                                  <div class="form-group">
-                                     <asp:Button ID="Button1" runat="server" Text="Login" CssClass="btn btn-success btn-block btn-lg" />
+                                     <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success btn-block btn-lg"  OnClick="logguear"/>
                                  </div>
                                  <div class="form-group">
                                      <input class="btn btn-info btn-block btn-lg" id="button2" type="button" value="Registrarse" />

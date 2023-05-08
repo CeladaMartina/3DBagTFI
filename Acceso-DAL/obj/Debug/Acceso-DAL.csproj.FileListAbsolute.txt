@@ -4,3 +4,6 @@ C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\o
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Debug\Acceso-DAL.csproj.CoreCompileInputs.cache
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Debug\Acceso-DAL.dll
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Debug\Acceso-DAL.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\bin\Debug\Propiedades-BE.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\bin\Debug\Propiedades-BE.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Debug\Acceso-DAL.csproj.CopyComplete

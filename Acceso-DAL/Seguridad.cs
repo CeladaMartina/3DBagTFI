@@ -195,5 +195,52 @@ namespace Acceso_DAL
             return System.Text.ASCIIEncoding.ASCII.GetString(des);
         }
         #endregion
+
+        #region Bitacora
+
+        public List<Propiedades_BE.Bitacora> Listar()
+        {
+            List<Propiedades_BE.Bitacora> ListarBitacora = new List<Propiedades_BE.Bitacora>();
+            DataTable Tabla = Acceso.Leer("ListarBitacora", null);
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                Propiedades_BE.Bitacora B = new Propiedades_BE.Bitacora();
+                B.NickUs = Desencriptar(R["Nick"].ToString());
+                B.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
+                B.Descripcion = Desencriptar(R["Descripcion"].ToString());
+                B.Criticidad = R["Criticidad"].ToString();
+                ListarBitacora.Add(B);
+            }
+            return ListarBitacora;
+        }
+
+        public void CargarBitacora(int IdUsuario, DateTime Fecha, string Descripcion, string Criticidad, int DVH)
+        {
+            int o = 0;
+
+            try
+            {
+                SqlParameter[] P = new SqlParameter[5];
+                P[0] = new SqlParameter("@IdUsuario", IdUsuario);
+                P[1] = new SqlParameter("@Fecha", Fecha.Ticks);
+                P[2] = new SqlParameter("@Descripcion", EncriptarAES(Descripcion));
+                P[3] = new SqlParameter("@Criticidad", Criticidad);
+                P[4] = new SqlParameter("@DVH", DVH);
+                Acceso.Escribir("CargarBitacora", P);
+                //long DV = CalcularDVH("select * from Bitacora where Fecha = '" + Fecha + "'", "Bitacora");
+                //EjecutarConsulta("Update Bitacora set DVH = " + DV + "where Fecha = '" + Fecha + "'");
+                //ActualizarDVV("Bitacora", SumaDVV("Bitacora"));
+
+                o = 1;
+            }
+            catch (Exception)
+            {
+                o = -1;
+                throw;
+            }
+        }
+
+        #endregion
     }
 }

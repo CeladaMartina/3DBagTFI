@@ -10,6 +10,8 @@ namespace Negocio_BLL
     public class Usuario
     {
         Acceso_DAL.Usuario Mapper = new Acceso_DAL.Usuario();
+        Propiedades_BE.Usuario UsuarioTemp = new Propiedades_BE.Usuario();
+        Seguridad Seguridad = new Seguridad();
         public void GenerarConexion(string usuario, string basedatos)
         {
             string Conexion = "";
@@ -25,5 +27,69 @@ namespace Negocio_BLL
         {
             return Mapper.GetConexion();
         }
+
+        #region Seguridad
+
+        public string VerificarIntegridadUsuario(int GlobalIdUsuario)
+        {
+            return Mapper.VerificarIntegridadUsuario(GlobalIdUsuario);
+        }
+
+        public bool VerificarEstado(string Nick)
+        {
+            return Mapper.VerificarEstados(Nick);
+        }
+
+        public int VerificarContador(string Nick)
+        {
+            return Mapper.VerificarContador(Nick);
+        }
+
+        public void EjecutarConsulta(string Consulta)
+        {
+            Mapper.EjecutarConsulta(Consulta);
+        }
+
+        public void BloquearUsuario(string Nick)
+        {
+            Mapper.BloquearUsuario(Nick);
+        }
+
+        public void ReiniciarIntentos(string Nick)
+        {
+            Mapper.ReiniciarIntentos(Nick);
+        }
+
+        public int VerificarUsuarioContraseña(string Nick, string Contraseña, int Integridad)
+        {
+            return Mapper.VerificarUsuarioContraseña(Nick, Contraseña, Integridad);
+        }
+
+        public List<string> NickUsuario()
+        {
+            return Mapper.NickUsuario();
+        }
+
+        public int SeleccionarIDNick(string Nick)
+        {
+            return Mapper.SeleccionarIDNick(Nick);
+        }
+
+        public void Desbloquear(string Nick)
+        {
+            Mapper.Desbloquear(Nick);
+        }
+
+        public bool VerificarNickMail(string Nick, string Mail)
+        {
+            return Mapper.VerificarNickMail(Nick, Mail);
+        }
+
+        public void RecalcularDVH()
+        {
+            Mapper.RecalcularDVH();
+        }
+
+        #endregion
     }
 }

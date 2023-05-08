@@ -11,34 +11,34 @@ namespace _3DBag
 {
 
 
-    public partial class Formulario_web11
+    public partial class Login
     {
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtNick.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtNick;
 
         /// <summary>
-        /// Control TextBox2.
+        /// Control txtContraseña.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtContraseña;
 
         /// <summary>
-        /// Control Button1.
+        /// Control btnLogin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnLogin;
     }
 }

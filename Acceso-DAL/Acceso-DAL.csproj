@@ -47,5 +47,11 @@
     <Compile Include="Seguridad.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Propiedades-BE\Propiedades-BE.csproj">
+      <Project>{0bd595c9-13e4-4d24-9da3-31dff4687ab2}</Project>
+      <Name>Propiedades-BE</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
