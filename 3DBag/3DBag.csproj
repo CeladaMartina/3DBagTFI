@@ -209,6 +209,10 @@
       <Project>{20e4b2c3-6343-4d17-9647-84c44d6182e6}</Project>
       <Name>Negocio-BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Propiedades-BE\Propiedades-BE.csproj">
+      <Project>{0bd595c9-13e4-4d24-9da3-31dff4687ab2}</Project>
+      <Name>Propiedades-BE</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

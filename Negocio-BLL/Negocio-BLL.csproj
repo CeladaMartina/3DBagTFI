@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Seguridad.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,6 +49,10 @@
     <ProjectReference Include="..\Acceso-DAL\Acceso-DAL.csproj">
       <Project>{c1e00f67-be97-41ce-8aef-4412eb667af6}</Project>
       <Name>Acceso-DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Propiedades-BE\Propiedades-BE.csproj">
+      <Project>{0bd595c9-13e4-4d24-9da3-31dff4687ab2}</Project>
+      <Name>Propiedades-BE</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
