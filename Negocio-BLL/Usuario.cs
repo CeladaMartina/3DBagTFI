@@ -9,9 +9,11 @@ namespace Negocio_BLL
 {
     public class Usuario
     {
-        Acceso_DAL.Usuario Mapper = new Acceso_DAL.Usuario();
+        Acceso_DAL.Usuario Mapper = new Acceso_DAL.Usuario();        
         Propiedades_BE.Usuario UsuarioTemp = new Propiedades_BE.Usuario();
         Seguridad Seguridad = new Seguridad();
+
+        #region Seguridad
         public void GenerarConexion(string usuario, string basedatos)
         {
             string Conexion = "";
@@ -28,7 +30,7 @@ namespace Negocio_BLL
             return Mapper.GetConexion();
         }
 
-        #region Seguridad
+        
 
         public string VerificarIntegridadUsuario(int GlobalIdUsuario)
         {
@@ -65,6 +67,15 @@ namespace Negocio_BLL
             return Mapper.VerificarUsuarioContraseña(Nick, Contraseña, Integridad);
         }
 
+        public void RecalcularDVH()
+        {
+            Mapper.RecalcularDVH();
+        }
+
+        #endregion
+
+        #region usuario
+
         public List<string> NickUsuario()
         {
             return Mapper.NickUsuario();
@@ -85,13 +96,6 @@ namespace Negocio_BLL
             return Mapper.VerificarNickMail(Nick, Mail);
         }
 
-        public void RecalcularDVH()
-        {
-            Mapper.RecalcularDVH();
-        }
-
-        #endregion
-
         public void LogIn(Propiedades_BE.Usuario U)
         {
             (new Acceso_DAL.Permisos()).FillUserComponents(U);
@@ -102,5 +106,31 @@ namespace Negocio_BLL
         {
             Propiedades_BE.SingletonLogin.GetInstance.LogOut();
         }
+
+        public int AltaUsuario(string Nick, string Contraseña, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
+        {
+            UsuarioTemp.IdUsuario = SeleccionarIDNick(Nick);
+            UsuarioTemp.Nick = Seguridad.EncriptarAES(Nick);
+            UsuarioTemp.Contraseña = Seguridad.EncriptarMD5(Contraseña);
+            UsuarioTemp.Nombre = Nombre;
+            UsuarioTemp.Mail = Mail;
+            UsuarioTemp.Estado = Estado;
+            UsuarioTemp.Contador = 0;
+            UsuarioTemp.Idioma = Idioma;
+            UsuarioTemp.DVH = DVH;
+
+            int i = Mapper.AltaUsuario(UsuarioTemp);
+            long Dv = Seguridad.CalcularDVH("select * From Usuario where Nick = '" + UsuarioTemp.Nick + "'", "Usuario");
+            EjecutarConsulta("Update Usuario set DVH = " + Dv + " where Nick = '" + UsuarioTemp.Nick + "'");
+            Seguridad.ActualizarDVV("Usuario", Seguridad.SumaDVV("Usuario"));
+
+            return i;
+        }        
+        #endregion
+
+
+
+
+
     }
 }

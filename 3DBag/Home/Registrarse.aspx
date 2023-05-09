@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="_3DBag.Formulario_web12" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registrarse.aspx.cs" Inherits="_3DBag.Registrarse" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -79,9 +79,9 @@
                                  <label>Idioma</label>
                                  <div class="form-group">
                                      <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server">
-                                         <asp:ListItem Text="Select" Value="Select"></asp:ListItem>
-                                         <asp:ListItem Text="Ingles" Value="Ingles"></asp:ListItem>
-                                         <asp:ListItem Text="Español" Value="Español"></asp:ListItem>
+                                         <asp:ListItem ID="0"  Text="Select" Value="Select"></asp:ListItem>
+                                         <asp:ListItem ID="1" Text="Ingles" Value="Ingles"></asp:ListItem>
+                                         <asp:ListItem ID="2" Text="Español" Value="Español"></asp:ListItem>
                                      </asp:DropDownList>
                                  </div>
                              </div>
@@ -89,32 +89,11 @@
                          <div class="row">
                              <div class="col">
                                  <center>
-                                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse" CssClass="btn btn-success btn-block btn-lg" />
+                                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse" CssClass="btn btn-success btn-block btn-lg" OnClick="Registrar" />
                                  </center>
                              </div>
                          </div>
-
-
-
-
-
-
-
-
-                         <%--<div class="row">
-                             <div class="col">
-                                 
-                                 <br />
-                                 
-                                 <br />
-                                 <div class="form-group">
-                                     <asp:Button ID="Button1" runat="server" Text="Login" CssClass="btn btn-success btn-block btn-lg" />
-                                 </div>
-                                 <div class="form-group">
-                                     <input class="btn btn-info btn-block btn-lg" id="button2" type="button" value="Registrarse" />
-                                 </div>
-                             </div>
-                         </div>--%>
+                          <asp:Label ID="lblError" runat="server" Text="Label" CssClass="alert alert-danger" Visible="false"></asp:Label>
                      </div>
                  </div>             
                 <a href="Home/Home.aspx">

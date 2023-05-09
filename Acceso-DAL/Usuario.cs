@@ -366,5 +366,22 @@ namespace Acceso_DAL
             }
             return NickUs;
         }
+
+        public int AltaUsuario(Propiedades_BE.Usuario U)
+        {
+            int fa = 0;
+            SqlParameter[] P = new SqlParameter[9];
+            P[0] = new SqlParameter("@IdUsuario", U.IdUsuario);
+            P[1] = new SqlParameter("@Nick", U.Nick);
+            P[2] = new SqlParameter("@Contraseña", U.Contraseña);
+            P[3] = new SqlParameter("@Nombre", U.Nombre);
+            P[4] = new SqlParameter("@Mail", U.Mail);
+            P[5] = new SqlParameter("@Estado", U.Estado);
+            P[6] = new SqlParameter("@Contador", U.Contador);
+            P[7] = new SqlParameter("@Idioma", U.Idioma);
+            P[8] = new SqlParameter("@DVH", U.DVH);
+            fa = Acceso.Escribir("AltaUsuario", P);
+            return fa;
+        }
     }
 }
