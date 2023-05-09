@@ -16,13 +16,33 @@ namespace _3DBag
 
         private static Login _instancia;
 
-       private ContentPlaceHolder contentPlace;
+        private ContentPlaceHolder contentPlace;
       
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
         }
 
+        #region boton
+
+        public void logguear(object sender, EventArgs e)
+        {
+            try
+            {
+                Usuario.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
+                Propiedades_BE.SingletonLogin.SetIdUsuario(Usuario);
+                GestorUsuario.LogIn(Usuario);
+                VerificarIntegridadGeneral();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }       
+
+        #endregion
+
+        #region metodos
         public void VerificarIntegridadGeneral()
         {
             string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
@@ -31,18 +51,22 @@ namespace _3DBag
 
             if (ProblemaDefinitivo == "")
             {
-                //sistema correcto
+                lblError.Visible = true;
+                lblError.Text = "Sistema Correcto.";
+                lblError.CssClass = "alert alert-success";
                 Propiedades_BE.SingletonLogin.SumarIntegridadGeneral(0);
             }
             else
             {
-                //error administrador
+                lblError.Visible = true;
+                lblError.Text = "Error -> Contacte al administrador.";
+                lblError.CssClass = "alert alert-warning";
                 Propiedades_BE.SingletonLogin.SumarIntegridadGeneral(1);
             }
 
             if(Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
             {
-                //Login();
+                LogIn();
             }
             else
             {
@@ -52,12 +76,13 @@ namespace _3DBag
                 }
                 else
                 {
-                    //Falla de integridad: No tiene los permisos necesarios
+                    lblError.Visible = true;
+                    lblError.Text = "Falla de integridad: No tiene los permisos necesarios.";                    
                 }
             }
         }
 
-        public void logguear(object sender, EventArgs e)
+        void LogIn()
         {
             if (Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
             {
@@ -72,11 +97,8 @@ namespace _3DBag
                         {
                             GestorUsuario.LogIn(Usuario);
                             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
-                                                        
-                            Response.Redirect("Home.aspx");
-                            //this.Hide();
-                            //menu.Show();
 
+                            Response.Redirect("Home.aspx");
                         }
                         catch (Exception EX)
                         {
@@ -85,21 +107,25 @@ namespace _3DBag
                     }
                     else
                     {
-                        //MessageBox.Show("El usuario se encuentra bloqueado");
+                        lblError.Visible = true;
+                        lblError.Text = "El usuario se encuentra bloqueado.";
                     }
                 }
                 else if (GestorUsuario.VerificarEstado(txtNick.Text) == true)
                 {
-                    //MessageBox.Show("No se puede acceder, usuario bloqueado");
+                    lblError.Visible = true;
+                    lblError.Text = "No se puede acceder, usuario bloqueado.";
                 }
                 else if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
                 {
-                    //MessageBox.Show("Usuarios y/o contraseña incorrectos");
+                    lblError.Visible = true;
+                    lblError.Text = "Usuarios y/o contraseña incorrectos.";
                     Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
                 }
                 else if (GestorUsuario.VerificarContador(txtNick.Text) >= 3)
                 {
-                    //MessageBox.Show("El usuario se encuentra bloqueado");
+                    lblError.Visible = true;
+                    lblError.Text = "El usuario se encuentra bloqueado.";
                     Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Bloqueo de usuario", "Alta", 0);
                     GestorUsuario.BloquearUsuario(txtNick.Text);
                 }
@@ -112,24 +138,24 @@ namespace _3DBag
                     {
                         if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
                         {
-                            //MessageBox.Show("Ingreso correctamente. Error de integridad en la base de datos");
+
+                            lblError.Visible = true;
+                            lblError.Text = "Ingreso correctamente. Error de integridad en la base de datos.";
+                            lblError.CssClass = "alert alert-success";
 
                             GestorUsuario.LogIn(Usuario);
 
                             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogIn. Falla de integridad", "Alta", 0);
 
-                            Menu M = new Menu();
-                            //this.Hide();
-                            //M.Show();
+                            Response.Redirect("Home.aspx");
                         }
                     }
                 }
             }
         }
+        #endregion
 
-        public void MetodoPrueba(object sender, EventArgs e)
-        {
-            
-        }
+
+
     }
 }

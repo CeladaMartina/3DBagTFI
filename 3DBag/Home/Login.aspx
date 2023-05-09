@@ -44,6 +44,8 @@
                                  <div class="form-group">
                                      <input class="btn btn-info btn-block btn-lg" id="button2" type="button" value="Registrarse" />
                                  </div>
+                                 <br />
+                                 <asp:Label ID="lblError" runat="server" Text="Label" CssClass="alert alert-danger" Visible="false"></asp:Label>
                              </div>
                          </div>
                      </div>
