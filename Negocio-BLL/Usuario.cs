@@ -91,5 +91,16 @@ namespace Negocio_BLL
         }
 
         #endregion
+
+        public void LogIn(Propiedades_BE.Usuario U)
+        {
+            (new Acceso_DAL.Permisos()).FillUserComponents(U);
+            Propiedades_BE.SingletonLogin.GetInstance.LogIn(U);
+        }
+
+        public void LogOut()
+        {
+            Propiedades_BE.SingletonLogin.GetInstance.LogOut();
+        }
     }
 }

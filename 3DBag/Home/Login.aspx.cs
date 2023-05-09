@@ -57,85 +57,74 @@ namespace _3DBag
             }
         }
 
-        //void Login()
-        //{
-        //    if (Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
-        //    {
-
-        //        if (GestorUsuario.VerificarUsuarioContraseña(, txtcontraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
-        //        {
-        //            if (GestorUsuario.VerificarEstado(txtnick.Text) == false)
-        //            {
-        //                GestorUsuario.ReiniciarIntentos(txtnick.Text);
-
-        //                try
-        //                {
-        //                    GestorUsuario.LogIn(Usuario);
-        //                    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogIn.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
-
-        //                    Menu menu = new Menu();
-        //                    //this.Hide();
-        //                    //menu.Show();
-
-        //                }
-        //                catch (Exception EX)
-        //                {
-        //                    //MessageBox.Show(EX.Message);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                //MessageBox.Show("El usuario se encuentra bloqueado");
-        //            }
-        //        }
-        //        else if (GestorUsuario.VerificarEstado(txtnick.Text) == true)
-        //        {
-        //            //MessageBox.Show("No se puede acceder, usuario bloqueado");
-        //        }
-        //        else if (GestorUsuario.VerificarContador(txtnick.Text) < 3)
-        //        {
-        //            //MessageBox.Show("Usuarios y/o contraseña incorrectos");
-        //            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogIn.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
-        //        }
-        //        else if (GestorUsuario.VerificarContador(txtnick.Text) >= 3)
-        //        {
-        //            //MessageBox.Show("El usuario se encuentra bloqueado");
-        //            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogIn.GlobalIdUsuario, DateTime.Now, "Bloqueo de usuario", "Alta", 0);
-        //            GestorUsuario.BloquearUsuario(txtnick.Text);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (GestorUsuario.VerificarUsuarioContraseña(txtnick.Text, txtcontraseña.Text, Propiedades_BE.SingletonLogIn.GlobalIntegridad) == 1)
-        //        {
-        //            if (GestorUsuario.VerificarEstado(txtnick.Text) == false)
-        //            {
-        //                if (GestorUsuario.VerificarContador(txtnick.Text) < 3)
-        //                {
-        //                    //MessageBox.Show("Ingreso correctamente. Error de integridad en la base de datos");
-
-        //                    GestorUsuario.LogIn(Usuario);
-
-        //                    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogIn.GlobalIdUsuario, DateTime.Now, "LogIn. Falla de integridad", "Alta", 0);
-
-        //                    Menu M = new Menu();
-        //                    //this.Hide();
-        //                    //M.Show();
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
         public void logguear(object sender, EventArgs e)
-        {            
-            string txt;           
-
-            if(contentPlace != null)
+        {
+            if (Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
             {
-                txt = txtNick.Text;
-                var resultado = txt;
-            }           
+
+                if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
+                {
+                    if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
+                    {
+                        GestorUsuario.ReiniciarIntentos(txtNick.Text);
+
+                        try
+                        {
+                            GestorUsuario.LogIn(Usuario);
+                            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
+                                                        
+                            Response.Redirect("Home.aspx");
+                            //this.Hide();
+                            //menu.Show();
+
+                        }
+                        catch (Exception EX)
+                        {
+                            //MessageBox.Show(EX.Message);
+                        }
+                    }
+                    else
+                    {
+                        //MessageBox.Show("El usuario se encuentra bloqueado");
+                    }
+                }
+                else if (GestorUsuario.VerificarEstado(txtNick.Text) == true)
+                {
+                    //MessageBox.Show("No se puede acceder, usuario bloqueado");
+                }
+                else if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
+                {
+                    //MessageBox.Show("Usuarios y/o contraseña incorrectos");
+                    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
+                }
+                else if (GestorUsuario.VerificarContador(txtNick.Text) >= 3)
+                {
+                    //MessageBox.Show("El usuario se encuentra bloqueado");
+                    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Bloqueo de usuario", "Alta", 0);
+                    GestorUsuario.BloquearUsuario(txtNick.Text);
+                }
+            }
+            else
+            {
+                if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
+                {
+                    if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
+                    {
+                        if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
+                        {
+                            //MessageBox.Show("Ingreso correctamente. Error de integridad en la base de datos");
+
+                            GestorUsuario.LogIn(Usuario);
+
+                            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogIn. Falla de integridad", "Alta", 0);
+
+                            Menu M = new Menu();
+                            //this.Hide();
+                            //M.Show();
+                        }
+                    }
+                }
+            }
         }
 
         public void MetodoPrueba(object sender, EventArgs e)

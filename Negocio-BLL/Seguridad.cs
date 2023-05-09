@@ -76,5 +76,9 @@ namespace Negocio_BLL
         }
         #endregion
 
+        public void CargarBitacora(int IdUsuario, DateTime Fecha, string Descripcion, string Criticidad, int DVH)
+        {
+            Mapper.CargarBitacora(IdUsuario, Fecha, Descripcion, Criticidad, DVH);
+        }
     }
 }

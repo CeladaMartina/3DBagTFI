@@ -19,7 +19,7 @@ namespace _3DBag
         public void Conectar()
         {
             SqlConnection Conexion = new SqlConnection();
-            GestorUsuario.GenerarConexion("GASGANO", "BD3dbag");
+            GestorUsuario.GenerarConexion("GASGANO", "Diploma_Empresa");
             Conexion.ConnectionString = GestorUsuario.GetConexion();
             Conexion.Open();
         }
