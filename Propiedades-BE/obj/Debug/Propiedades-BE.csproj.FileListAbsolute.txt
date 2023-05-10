@@ -1,6 +1,5 @@
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Propiedades-BE\bin\Debug\Propiedades-BE.dll
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Propiedades-BE\bin\Debug\Propiedades-BE.pdb
-C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Propiedades-BE\obj\Debug\Propiedades-BE.csproj.AssemblyReference.cache
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Propiedades-BE\obj\Debug\Propiedades-BE.csproj.CoreCompileInputs.cache
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Propiedades-BE\obj\Debug\Propiedades-BE.dll
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Propiedades-BE\obj\Debug\Propiedades-BE.pdb

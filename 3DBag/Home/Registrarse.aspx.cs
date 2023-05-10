@@ -30,8 +30,12 @@ namespace _3DBag
             {
                 try
                 {
-                    AltaUsuario(txtNick.Text, txtPassword.Text, txtNombre.Text, txtEmail.Text, false, 0, DropDownList1.SelectedValue, 0);
+                    AltaUsuario(txtNick.Text, txtPassword.Text, txtNombre.Text, txtEmail.Text, false, 0,DropDownList1.SelectedValue, 0);
                     AltaCliente(IdUsuario, txtNombre.Text, txtApellido.Text, Seguridad.EncriptarAES(txtDNI.Text), txtEmail.Text, int.Parse(txtTelefono.Text), DateTime.Parse(txtFecha.Text));
+                    LimpiarTxt();
+                    IdUsuario = -1;
+                    lblError.Visible = true;
+                    lblError.Text = "Registrado exitosamente.";
                 }
                 catch (Exception ex)
                 {
@@ -63,15 +67,15 @@ namespace _3DBag
         {
             GestorCliente.Alta(IdCliente, nombre, apellido, dni, email, telefono, fechaNac);
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Cliente", "Media", 0);
-            LimpiarTxt();
-            IdUsuario = -1;
+            //LimpiarTxt();
+            //IdUsuario = -1;
         }
         void AltaUsuario(string nick, string contraseña, string nombre, string email, bool Estado, int contador, string idioma, int dvh)
         {
             GestorUsuario.AltaUsuario(nick, contraseña, nombre, email, Estado, contador, idioma, dvh);
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Usuario", "Alta", 0);
-            LimpiarTxt();
-            IdUsuario = -1;
+            //LimpiarTxt();
+            //IdUsuario = -1;
         }
 
         void LimpiarTxt()

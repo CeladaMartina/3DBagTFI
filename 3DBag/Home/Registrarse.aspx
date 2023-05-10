@@ -79,9 +79,9 @@
                                  <label>Idioma</label>
                                  <div class="form-group">
                                      <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server">
-                                         <asp:ListItem ID="0"  Text="Select" Value="Select"></asp:ListItem>
-                                         <asp:ListItem ID="1" Text="Ingles" Value="Ingles"></asp:ListItem>
-                                         <asp:ListItem ID="2" Text="Español" Value="Español"></asp:ListItem>
+                                         <asp:ListItem  Text="Select" Value="Select"></asp:ListItem>
+                                         <asp:ListItem Text="Ingles" Value="Ingles"></asp:ListItem>
+                                         <asp:ListItem Text="Español" Value="Español"></asp:ListItem>
                                      </asp:DropDownList>
                                  </div>
                              </div>
