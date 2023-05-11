@@ -113,6 +113,8 @@
     <Content Include="css\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Usuarios\IndexUsuarios.aspx" />
+    <Content Include="Navegacion\Administracion.aspx" />
     <Content Include="Home\Registrarse.aspx" />
     <Content Include="Home\Login.aspx" />
     <Content Include="Home\Home.aspx" />
@@ -164,6 +166,20 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Usuarios\IndexUsuarios.aspx.cs">
+      <DependentUpon>IndexUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\IndexUsuarios.aspx.designer.cs">
+      <DependentUpon>IndexUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Navegacion\Administracion.aspx.cs">
+      <DependentUpon>Administracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Navegacion\Administracion.aspx.designer.cs">
+      <DependentUpon>Administracion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\Registrarse.aspx.cs">
       <DependentUpon>Registrarse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
