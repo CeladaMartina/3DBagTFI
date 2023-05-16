@@ -14,13 +14,26 @@ namespace _3DBag
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
-            ListarUsuarios();
+            if (!IsPostBack)
+            {
+                ListarUsuarios();
+            }
+           
         }
         void ListarUsuarios()
         {
-            gridUsuarios.DataSource = null;
-            gridUsuarios.DataSource = GestorUsuario.Listar();
-            gridUsuarios.DataBind(); 
+            try
+            {
+                gridUsuarios.DataSource = null;
+                gridUsuarios.DataSource = GestorUsuario.Listar();
+                gridUsuarios.DataBind();
+
+            }
+            catch(Exception ex)
+            {
+                Response.Write(ex);
+            }
+           
         }
 
 

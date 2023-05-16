@@ -7,13 +7,22 @@
         <a class="nav-link" href="">Nuevo Usuario</a>
         <br />
         <div class="form-group">
-            <asp:GridView ID="gridUsuarios" runat="server" AutoGenerateColumns="false">
+            <asp:GridView ID="gridUsuarios" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="Nick" HeaderText="Nick"/>
                     <asp:BoundField DataField="Mail" HeaderText="Mail"/>
                     <asp:BoundField DataField="Contraseña" HeaderText="Contraseña"/>
-                    <asp:BoundField DataField="Nombre" HeaderText="Nombre"/>                    
-                </Columns>
+                    <asp:BoundField DataField="Nombre" HeaderText="Nombre"/> 
+                    <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar" >
+                    <ControlStyle BackColor="#6699FF" />
+                    </asp:ButtonField>
+                    <asp:ButtonField ButtonType="Button" CommandName="select" Text="Ver">
+                    <ControlStyle BackColor="Lime" />
+                    </asp:ButtonField>
+                    <asp:ButtonField ButtonType="Button" CommandName="borrar" Text="Borrar">
+                    <ControlStyle BackColor="#CC3300" />
+                    </asp:ButtonField>
+                </Columns>                
             </asp:GridView>
         </div>
 
