@@ -7,11 +7,30 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Formulario_web12 : System.Web.UI.Page
+    public partial class IndexUsuarios : System.Web.UI.Page
     {
+        private ContentPlaceHolder contentPlace;
+        Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+            ListarUsuarios();
         }
+        void ListarUsuarios()
+        {
+            gridUsuarios.DataSource = null;
+            gridUsuarios.DataSource = GestorUsuario.Listar();
+            gridUsuarios.DataBind(); 
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }

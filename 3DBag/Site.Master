@@ -53,7 +53,7 @@
                             <a class="nav-link" href="Home.aspx">Inicio</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Administración</a>
+                            <a class="nav-link" href="Navegacion/Administracion.aspx">Administración</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Seguridad</a>

@@ -125,10 +125,16 @@ namespace Negocio_BLL
             Seguridad.ActualizarDVV("Usuario", Seguridad.SumaDVV("Usuario"));
 
             return i;
-        }        
+        }
         #endregion
 
-
+        #region ABML
+        public List<Propiedades_BE.Usuario> Listar()
+        {
+            List<Propiedades_BE.Usuario> Lista = Mapper.Listar();
+            return Lista;
+        }
+        #endregion
 
 
 
