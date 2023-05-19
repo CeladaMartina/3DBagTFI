@@ -10,9 +10,9 @@
             <asp:GridView ID="gridUsuarios" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="Nick" HeaderText="Nick"/>
-                    <asp:BoundField DataField="Mail" HeaderText="Mail"/>
-                    <asp:BoundField DataField="Contraseña" HeaderText="Contraseña"/>
                     <asp:BoundField DataField="Nombre" HeaderText="Nombre"/> 
+                    <asp:BoundField DataField="Mail" HeaderText="Mail"/>                    
+                    <asp:BoundField DataField="NombreIdioma" HeaderText="Idioma"/>
                     <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar" >
                     <ControlStyle BackColor="#6699FF" />
                     </asp:ButtonField>

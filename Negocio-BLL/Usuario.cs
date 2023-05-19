@@ -107,6 +107,16 @@ namespace Negocio_BLL
             Propiedades_BE.SingletonLogin.GetInstance.LogOut();
         }
 
+        
+        #endregion
+
+        #region ABML
+        public List<Propiedades_BE.Usuario> Listar()
+        {
+            List<Propiedades_BE.Usuario> Lista = Mapper.Listar();
+            return Lista;
+        }
+
         public int AltaUsuario(string Nick, string Contraseña, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
         {
             UsuarioTemp.IdUsuario = SeleccionarIDNick(Nick);
@@ -126,13 +136,20 @@ namespace Negocio_BLL
 
             return i;
         }
-        #endregion
 
-        #region ABML
-        public List<Propiedades_BE.Usuario> Listar()
+        public int Modificar(string Nick, string Nombre, string Mail)
         {
-            List<Propiedades_BE.Usuario> Lista = Mapper.Listar();
-            return Lista;
+            UsuarioTemp.Nick = Seguridad.EncriptarAES(Nick);
+            UsuarioTemp.Nombre = Nombre;
+            UsuarioTemp.Mail = Mail;
+
+
+            int i = Mapper.Modificar(UsuarioTemp);
+            long Dv = Seguridad.CalcularDVH("select * From Usuario where Nick = '" + UsuarioTemp.Nick + "'", "Usuario");
+            EjecutarConsulta("Update Usuario set DVH = " + Dv + " where Nick = '" + UsuarioTemp.Nick + "'");
+            Seguridad.ActualizarDVV("Usuario", Seguridad.SumaDVV("Usuario"));
+
+            return i;
         }
         #endregion
 
