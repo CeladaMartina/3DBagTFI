@@ -394,26 +394,31 @@ namespace Acceso_DAL
             return NickUs;
         }
 
-        public List<string> NickIdUsuario(string Nick)
+        public List<Propiedades_BE.Usuario> consultarNick(string Nick)
         {
-            List<string> NickUs = new List<string>();
-            using (Acceso.Conexion)
-            {
-                Acceso.AbrirConexion();
-                string QueryNick = "select * from Usuario where Nick = '" + Seguridad.EncriptarAES(Nick) + "'";
+            List<Propiedades_BE.Usuario> NickUs = new List<Propiedades_BE.Usuario>();
+            Acceso.AbrirConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
 
-                using (SqlCommand Cmd = new SqlCommand(QueryNick, Acceso.Conexion))
-                {
-                    using (SqlDataReader Lector = Cmd.ExecuteReader())
-                    {
-                        while (Lector.Read())
-                        {
-                            NickUs.Add(Lector.ToString());
-                        }
-                    }
-                }
-                Acceso.CerrarConexion();
+            cmd.CommandText = "select * from Usuario where Nick = '" + Seguridad.EncriptarAES(Nick) + "'";
+            
+            cmd.Connection = Acceso.Conexion;
+            SqlDataReader lector = cmd.ExecuteReader();
+
+            while (lector.Read())
+            {
+                Propiedades_BE.Usuario U = new Propiedades_BE.Usuario();
+                U.Nick = Seguridad.Desencriptar(lector["Nick"].ToString());
+                U.Nombre = lector["Nombre"].ToString();
+                U.Mail = lector["Mail"].ToString();
+                U.Estado = bool.Parse(lector["Estado"].ToString());
+                U.IdIdioma = int.Parse(lector["IdIdioma"].ToString());
+                U.BajaLogica = bool.Parse(lector["BajaLogica"].ToString());
+                NickUs.Add(U);
             }
+            lector.Close();
+            Acceso.CerrarConexion();
             return NickUs;
         }
 

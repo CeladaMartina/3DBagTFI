@@ -27,8 +27,8 @@ namespace _3DBag
 
         void TraerUsuario()
         {
-            List<string> x = GestorUsuario.NickIdUsuario(nick);
-            Label1.Text = x[0];
+            List<Propiedades_BE.Usuario> x = GestorUsuario.consultarNick(nick);
+            Label1.Text = x[0].Nick;
         }
     }
 }

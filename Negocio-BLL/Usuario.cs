@@ -111,9 +111,9 @@ namespace Negocio_BLL
         #endregion
 
         #region ABML
-        public List<string> NickIdUsuario(string Nick)
+        public List<Propiedades_BE.Usuario> consultarNick(string Nick)
         {
-            return Mapper.NickIdUsuario(Nick);
+            return Mapper.consultarNick(Nick);
         }
 
         public List<Propiedades_BE.Usuario> Listar()
