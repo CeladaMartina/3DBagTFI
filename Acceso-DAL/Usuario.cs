@@ -344,6 +344,33 @@ namespace Acceso_DAL
             return Id;
         }
 
+        public int SeleccionarNick(string Nick)
+        {
+            int Id = 0;
+            using (Acceso.Conexion)
+            {
+                Acceso.AbrirConexion();
+                string QueryID = "select * from Usuario where Nick = '" + Seguridad.EncriptarAES(Nick) + "'";
+
+                using (SqlCommand Cmd = new SqlCommand(QueryID, Acceso.Conexion))
+                {
+                    using (SqlDataReader Lector = Cmd.ExecuteReader())
+                    {
+                        if (Lector.Read())
+                        {
+                            Id = Lector.GetInt32(0);
+                        }
+                        else
+                        {
+                            Id = -1;
+                        }
+                    }
+                }
+                Acceso.CerrarConexion();
+            }
+            return Id;
+        }
+
         public List<string> NickUsuario()
         {
             List<string> NickUs = new List<string>();
@@ -359,6 +386,29 @@ namespace Acceso_DAL
                         while (Lector.Read())
                         {
                             NickUs.Add(Seguridad.Desencriptar(Lector.GetString(0).ToString()));
+                        }
+                    }
+                }
+                Acceso.CerrarConexion();
+            }
+            return NickUs;
+        }
+
+        public List<string> NickIdUsuario(string Nick)
+        {
+            List<string> NickUs = new List<string>();
+            using (Acceso.Conexion)
+            {
+                Acceso.AbrirConexion();
+                string QueryNick = "select * from Usuario where Nick = '" + Seguridad.EncriptarAES(Nick) + "'";
+
+                using (SqlCommand Cmd = new SqlCommand(QueryNick, Acceso.Conexion))
+                {
+                    using (SqlDataReader Lector = Cmd.ExecuteReader())
+                    {
+                        while (Lector.Read())
+                        {
+                            NickUs.Add(Lector.ToString());
                         }
                     }
                 }

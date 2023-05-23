@@ -107,10 +107,15 @@ namespace Negocio_BLL
             Propiedades_BE.SingletonLogin.GetInstance.LogOut();
         }
 
-        
+
         #endregion
 
         #region ABML
+        public List<string> NickIdUsuario(string Nick)
+        {
+            return Mapper.NickIdUsuario(Nick);
+        }
+
         public List<Propiedades_BE.Usuario> Listar()
         {
             List<Propiedades_BE.Usuario> Lista = Mapper.Listar();
@@ -137,11 +142,12 @@ namespace Negocio_BLL
             return i;
         }
 
-        public int Modificar(string Nick, string Nombre, string Mail)
+        public int Modificar(string Nick, string Nombre, string Mail, string idioma)
         {
             UsuarioTemp.Nick = Seguridad.EncriptarAES(Nick);
             UsuarioTemp.Nombre = Nombre;
             UsuarioTemp.Mail = Mail;
+            UsuarioTemp.Idioma = idioma;
 
 
             int i = Mapper.Modificar(UsuarioTemp);

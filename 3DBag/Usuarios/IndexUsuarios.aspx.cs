@@ -36,28 +36,23 @@ namespace _3DBag
            
         }
 
-        protected void gridUsuarios_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gridUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //string nick = ((TextBox)gridUsuarios.Rows[e.RowIndex].Cells)
-            gridUsuarios.EditIndex = e.NewEditIndex;
-            ListarUsuarios();
+            if(e.CommandName == "editar")
+            {
+                int crow;
+                crow = Convert.ToInt32(e.CommandArgument.ToString());
+                string v = gridUsuarios.Rows[crow].Cells[0].Text;
+
+
+                //enviamos el nick del usuario
+                Response.Redirect("Edit.aspx?usuario="+ v);
+
+                
+            }
         }
 
-        protected void gridUsuarios_RowUpdating(object sender, GridViewEditEventArgs e)
-        {
-            string nick = gridUsuarios.DataKeys[0].Value.ToString();
-            string nombre = gridUsuarios.DataKeys[1].Value.ToString();
-            string mail = gridUsuarios.DataKeys[2].Value.ToString();          
-            string idioma = gridUsuarios.DataKeys[3].Value.ToString();
 
-            Modificar(nick, nombre, mail, idioma);
-        }
-
-        void Modificar(string nick, string nombre, string mail, string idioma)
-        {
-            GestorUsuario.Modificar(nick, nombre, mail, idioma);
-
-        }
 
 
 
