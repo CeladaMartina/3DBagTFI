@@ -27,8 +27,37 @@ namespace _3DBag
 
         void TraerUsuario()
         {
-            List<Propiedades_BE.Usuario> x = GestorUsuario.consultarNick(nick);
-            Label1.Text = x[0].Nick;
+            List<Propiedades_BE.Usuario> usuario = GestorUsuario.consultarNick(nick);
+            txtNick.Text = usuario[0].Nick;
+            txtNombre.Text = usuario[0].Nombre;
+            txtMail.Text = usuario[0].Mail;
+
+            if(Convert.ToString(usuario[0].Estado) == "true")
+            {
+                rdbBloqueado.Checked = true;
+            }
+            else
+            {
+                rdbBloqueado.Checked = false;
+            }
+
+            if(Convert.ToString(usuario[0].IdIdioma) == "1")
+            {
+                txtIdioma.Text = "Español";
+            }
+            else
+            {
+                txtIdioma.Text = "Ingles";
+            }            
+
+            if (Convert.ToString(usuario[0].BajaLogica) == "true")
+            {
+                rdbBaja.Checked = true;
+            }
+            else
+            {
+                rdbBaja.Checked = false;
+            }
         }
     }
 }
