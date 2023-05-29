@@ -80,5 +80,14 @@ namespace Negocio_BLL
         {
             Mapper.CargarBitacora(IdUsuario, Fecha, Descripcion, Criticidad, DVH);
         }
+
+        #region backuprestore
+
+        public string GenerarBackUp(string Nombre, string Ruta)
+        {
+            return Mapper.GenerarBackup(Nombre, Ruta);
+        }
+
+        #endregion
     }
 }

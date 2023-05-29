@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Acceso_DAL
 {
@@ -19,6 +20,8 @@ namespace Acceso_DAL
         {
             Acceso.EjecutarConsulta(Consulta);
         }
+
+
 
         #region DigitoVerificador
 
@@ -241,6 +244,59 @@ namespace Acceso_DAL
             }
         }
 
+        #endregion
+
+        #region backuprestore
+
+        public SqlConnection ConexionBack = new SqlConnection();
+
+        public string Ejecutar(string query, SqlParameter[] parameter = null)
+        {
+            ConexionBack.ConnectionString = Acceso.GlobalConexion;
+            string vConn = Acceso.GlobalConexion;
+            //if (conn == "M")
+            //{
+            //    vConn = Conexion.ConnectionString;
+            //}
+            Acceso.Conexion = new SqlConnection(vConn);
+
+            //Conexion = new SqlConnection(vConn);
+            SqlCommand cmd = new SqlCommand();
+            if (parameter != null)
+            {
+                for (int i = 0; i < parameter.Length; i++)
+                {
+                    cmd.Parameters.Add(parameter[i]);
+                }
+            }
+            try
+            {
+                Acceso.AbrirConexion();
+                cmd.Connection = Acceso.Conexion;
+                cmd.CommandText = query;
+                int res = Convert.ToInt16(cmd.ExecuteScalar());
+                Acceso.CerrarConexion();
+                Acceso.Conexion.Dispose();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
+            }
+
+            return "ok";
+
+        }
+        public string GenerarBackup(string Nombre, string ruta)
+        {
+            string query = "USE MASTER; BACKUP DATABASE [BD3dbag] TO DISK = N'" + ruta + "\\" + Nombre + ".bak' WITH NOFORMAT,NOINIT,NAME = N'" + Nombre + "', SKIP,NOREWIND,NOUNLOAD,STATS = 10 ";
+            return Ejecutar(query, null);
+        }
+
+        public string Restaurar(string ruta)
+        {
+            string query = "USE MASTER; ALTER DATABASE [Diploma_Empresa] SET Single_User WITH Rollback Immediate; RESTORE DATABASE [Diploma_Empresa] FROM  DISK = '" + ruta + "' WITH REPLACE; ALTER DATABASE [Diploma_Empresa] SET Multi_User";
+            return Ejecutar(query, null);
+        }
         #endregion
     }
 }
