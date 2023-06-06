@@ -33,6 +33,15 @@ namespace _3DBag
         protected global::System.Web.UI.HtmlControls.HtmlForm BannerForm;
 
         /// <summary>
+        /// Control DropDownListIdioma.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListIdioma;
+
+        /// <summary>
         /// Control ContentPlaceHolder1.
         /// </summary>
         /// <remarks>

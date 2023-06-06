@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace _3DBag
 {
-    public partial class Backup : System.Web.UI.Page
+    public partial class Backup : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
@@ -60,6 +60,18 @@ namespace _3DBag
                 lblResultado.CssClass = "alert alert-warning";
             }
         }
+
+        #region traduccion
+        public void Update (ISubject Subject)
+        {
+            lblRuta.Text = Subject.TraducirObserver(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            //lblRuta.Text = CambiarIdioma
+        }
+        #endregion
 
 
 

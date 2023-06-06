@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using System.Text;
 
 namespace _3DBag
@@ -17,6 +18,16 @@ namespace _3DBag
         private static Login _instancia;
 
         private ContentPlaceHolder contentPlace;
+
+        public static Login ObtenerInstancia()
+        {
+            if (_instancia == null)
+            {
+                _instancia = new Login();
+            }
+            //_instancia.BringToFront();
+            return _instancia;
+        }
       
         protected void Page_Load(object sender, EventArgs e)
         {
