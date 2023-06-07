@@ -41,7 +41,7 @@
         <div>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#">
-                    <img src="Images/logo.png" width="50" height="50" />
+                    <%--<img src="Images/logo.png" width="50" height="50" />--%>
                     3D - Bag
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle  navigation">
@@ -50,22 +50,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="Home.aspx">Inicio</a>
+                            <a class="nav-link" href="../Home/Home.aspx">Inicio</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="Navegacion/Administracion.aspx">Administración</a>
+                            <a class="nav-link" href="../Navegacion/Administracion.aspx">Administración</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="Seguridad/Index.aspx">Seguridad</a>
+                            <a class="nav-link" href="../Seguridad/Index.aspx">Seguridad</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Comercial</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="Registrarse.aspx">Registrarse</a>
+                            <a class="nav-link" href="../Home/Registrarse.aspx">Registrarse</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="Login.aspx">Ingresar</a>
+                            <a class="nav-link" href="../Home/Login.aspx">Ingresar</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">

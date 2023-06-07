@@ -6,7 +6,7 @@
         <h1>Sistema de Administración</h1>
         <br />
         <div>
-            <a class="nav-link" href="Usuarios/IndexUsuarios.aspx">Gestion de Usuarios.</a>
+            <a class="nav-link" href="../Usuarios/IndexUsuarios.aspx">Gestion de Usuarios.</a>
             <br />
             <a class="nav-link" href="Home.aspx">Gestion de Familias.</a>
             <br />
