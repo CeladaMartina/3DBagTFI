@@ -109,6 +109,7 @@ namespace _3DBag
                             GestorUsuario.LogIn(Usuario);
                             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
 
+                            //ocultar boton Ingresar
                             Response.Redirect("Home.aspx");
                         }
                         catch (Exception EX)

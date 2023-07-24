@@ -65,7 +65,7 @@
                             <a class="nav-link" href="../Home/Registrarse.aspx">Registrarse</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="../Home/Login.aspx">Ingresar</a>
+                            <a id="btnIngresar" class="nav-link" href="../Home/Login.aspx">Ingresar</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
