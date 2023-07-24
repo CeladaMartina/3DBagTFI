@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using System.Text;
+using System.Web.Security;
 
 namespace _3DBag
 {
@@ -116,7 +117,7 @@ namespace _3DBag
                             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
 
                             //ocultar boton Ingresar
-                            Response.Redirect("Home.aspx");
+                            FormsAuthentication.RedirectFromLoginPage(txtNick.Text, false);                            
                         }
                         catch (Exception EX)
                         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Propiedades_BE;
 
 namespace _3DBag
 {
@@ -18,6 +19,13 @@ namespace _3DBag
         public static Dictionary<string, string> DiccionarioTraduccionGlobal;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if(Session["UserSession"] != null)
+                {
+                    Usuario objUsuario = (Usuario)(Session["UserSession"]);
+                }
+            }
             //DropDownListIdioma.DataSource = GestorIdioma.NombreIdioma();
             //DropDownListIdioma.DataBind();
             //DropDownListIdioma.Items.Insert(0, new ListItem("Idioma", "0"));
