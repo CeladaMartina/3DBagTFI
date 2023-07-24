@@ -19,19 +19,25 @@ namespace _3DBag
 
         private ContentPlaceHolder contentPlace;
 
+        //singletonLogin
         public static Login ObtenerInstancia()
         {
             if (_instancia == null)
             {
                 _instancia = new Login();
-            }
-            //_instancia.BringToFront();
+            }           
+            
             return _instancia;
         }
       
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+            if (!Page.IsPostBack)
+            {
+                Session["UserSession"] = null;
+            }
+
+            contentPlace = (ContentPlaceHolder)Master.FindControl("LoginUser");
         }
 
         #region boton

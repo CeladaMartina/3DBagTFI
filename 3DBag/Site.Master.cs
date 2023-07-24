@@ -18,9 +18,9 @@ namespace _3DBag
         public static Dictionary<string, string> DiccionarioTraduccionGlobal;
         protected void Page_Load(object sender, EventArgs e)
         {
-            DropDownListIdioma.DataSource = GestorIdioma.NombreIdioma();
-            DropDownListIdioma.DataBind();
-            DropDownListIdioma.Items.Insert(0, new ListItem("Idioma", "0"));
+            //DropDownListIdioma.DataSource = GestorIdioma.NombreIdioma();
+            //DropDownListIdioma.DataBind();
+            //DropDownListIdioma.Items.Insert(0, new ListItem("Idioma", "0"));
         }
 
         #region Metodos
@@ -74,20 +74,20 @@ namespace _3DBag
 
         protected void ddlIdioma_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                DiccionarioTraduccionGlobal = new Dictionary<string, string>();
-                foreach (var item in GestorTraduccion.ListarTraduccionDicionario(DropDownListIdioma.SelectedItem.ToString()))
-                {
-                    DiccionarioTraduccionGlobal.Add(item.Original, item.Traducido);
-                }
-                this.NotificarCambio();
-                //Traducir();
-            }
-            catch (Exception)
-            {
-                //MessageBox.Show(TraducirGlobal("Error") ?? "Error");
-            }
+            //try
+            //{
+            //    DiccionarioTraduccionGlobal = new Dictionary<string, string>();
+            //    foreach (var item in GestorTraduccion.ListarTraduccionDicionario(DropDownListIdioma.SelectedItem.ToString()))
+            //    {
+            //        DiccionarioTraduccionGlobal.Add(item.Original, item.Traducido);
+            //    }
+            //    this.NotificarCambio();
+            //    //Traducir();
+            //}
+            //catch (Exception)
+            //{
+            //    //MessageBox.Show(TraducirGlobal("Error") ?? "Error");
+            //}
         }
     }
 }
