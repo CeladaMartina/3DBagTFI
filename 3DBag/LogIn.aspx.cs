@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
-using System.Text;
-using System.Web.Security;
 
 namespace _3DBag
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class LogIn : System.Web.UI.Page
     {
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
@@ -18,7 +16,7 @@ namespace _3DBag
 
         private static Login _instancia;
 
-        private ContentPlaceHolder contentPlace;
+        //private ContentPlaceHolder contentPlace;
 
         //singletonLogin
         public static Login ObtenerInstancia()
@@ -26,11 +24,11 @@ namespace _3DBag
             if (_instancia == null)
             {
                 _instancia = new Login();
-            }           
-            
+            }
+
             return _instancia;
         }
-      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -38,7 +36,7 @@ namespace _3DBag
                 Session["UserSession"] = null;
             }
 
-            contentPlace = (ContentPlaceHolder)Master.FindControl("LoginUser");
+            //contentPlace = (ContentPlaceHolder)Master.FindControl("LoginUser");
         }
 
         #region boton
@@ -52,11 +50,11 @@ namespace _3DBag
                 GestorUsuario.LogIn(Usuario);
                 VerificarIntegridadGeneral();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
-        }       
+        }
 
         #endregion
 
@@ -82,9 +80,9 @@ namespace _3DBag
                 Propiedades_BE.SingletonLogin.SumarIntegridadGeneral(1);
             }
 
-            if(Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
+            if (Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
             {
-                LogIn();
+                Login();
             }
             else
             {
@@ -95,12 +93,12 @@ namespace _3DBag
                 else
                 {
                     lblError.Visible = true;
-                    lblError.Text = "Falla de integridad: No tiene los permisos necesarios.";                    
+                    lblError.Text = "Falla de integridad: No tiene los permisos necesarios.";
                 }
             }
         }
 
-        void LogIn()
+        void Login()
         {
             if (Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
             {
@@ -116,9 +114,8 @@ namespace _3DBag
                             GestorUsuario.LogIn(Usuario);
                             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
 
-                            //guarda la sesion del usuario, para comprobarlo en las otras paginas
-                            HttpContext.Current.Session["UserSession"] = Usuario;                            
-                            Response.Redirect("/Home/Home.aspx", false);                                                   
+                            //ocultar boton Ingresar
+                            FormsAuthentication.RedirectFromLoginPage(txtNick.Text, false);
                         }
                         catch (Exception EX)
                         {
@@ -172,10 +169,7 @@ namespace _3DBag
                     }
                 }
             }
-        }
-        #endregion
-
-
-
+        }        
+        #endregion        
     }
 }
