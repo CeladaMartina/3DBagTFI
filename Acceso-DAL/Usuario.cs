@@ -409,6 +409,7 @@ namespace Acceso_DAL
             while (lector.Read())
             {
                 Propiedades_BE.Usuario U = new Propiedades_BE.Usuario();
+                U.IdUsuario = int.Parse(lector["IdUsuario"].ToString());
                 U.Nick = Seguridad.Desencriptar(lector["Nick"].ToString());
                 U.Nombre = lector["Nombre"].ToString();
                 U.Mail = lector["Mail"].ToString();
@@ -452,6 +453,16 @@ namespace Acceso_DAL
             P[6] = new SqlParameter("@Idioma", U.Idioma);
             P[7] = new SqlParameter("@DVH", U.DVH);
             fa = Acceso.Escribir("ModificarUsuario", P);
+            return fa;
+        }
+
+        public int Baja(Propiedades_BE.Usuario U)
+        {
+            int fa = 0;
+            SqlParameter[] P = new SqlParameter[2];
+            P[0] = new SqlParameter("@IdUsuario", U.IdUsuario);
+            P[1] = new SqlParameter("@DVH", U.DVH);
+            fa = Acceso.Escribir("BajaUsuario", P);
             return fa;
         }
     }

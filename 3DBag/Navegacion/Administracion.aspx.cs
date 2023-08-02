@@ -13,10 +13,14 @@ namespace _3DBag
         protected void Page_Load(object sender, EventArgs e)
         {
             //si el usuario no esta logueado, lleva a la pagina de login
-            if ((Usuario)(Session["UserSession"]) == null)
+            if (!Page.IsPostBack)
             {
-                Response.Redirect("/Home/Login.aspx");
+                if ((Usuario)(Session["UserSession"]) == null)
+                {
+                    Response.Redirect("/Home/Login.aspx");
+                }
             }
+                
         }
     }
 }

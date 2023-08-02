@@ -24,6 +24,7 @@
                                 <label>Nick</label>
                                 <div class="form-group">
                                     <asp:TextBox ID="txtNick" CssClass="form-control" runat="server" placeholder="Nick"></asp:TextBox>
+                                    <asp:TextBox ID="txtIdUsuario" runat="server" Visible="false"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -57,6 +58,10 @@
                                 </div>
                             </div>
                         </div>
+                        <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-success btn-block btn-lg" OnClick="ModificarUsuario" />
+                        <br />
+                        <br />
+                        <a href="../Usuarios/IndexUsuarios.aspx"><< Volver</a>
                     </div>
                 </div>
             </div>

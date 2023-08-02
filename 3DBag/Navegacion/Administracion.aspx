@@ -8,9 +8,9 @@
         <div>
             <a class="nav-link" href="../Usuarios/IndexUsuarios.aspx">Gestion de Usuarios.</a>
             <br />
-            <a class="nav-link" href="Home.aspx">Gestion de Familias.</a>
+            <a class="nav-link" href="../Home/Home.aspx">Gestion de Familias.</a>
             <br />
-            <a class="nav-link" href="Home.aspx">Gestion de Patentes.</a>
+            <a class="nav-link" href="../Home/Home.aspx">Gestion de Patentes.</a>
         </div>
     </div>
 </asp:Content>

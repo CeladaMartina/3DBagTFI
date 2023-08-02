@@ -28,9 +28,7 @@ namespace Negocio_BLL
         public string GetConexion()
         {
             return Mapper.GetConexion();
-        }
-
-        
+        }        
 
         public string VerificarIntegridadUsuario(int GlobalIdUsuario)
         {
@@ -110,7 +108,7 @@ namespace Negocio_BLL
 
         #endregion
 
-        #region ABML
+        #region ABML Usuario
         public List<Propiedades_BE.Usuario> consultarNick(string Nick)
         {
             return Mapper.consultarNick(Nick);
@@ -142,17 +140,34 @@ namespace Negocio_BLL
             return i;
         }
 
-        public int Modificar(string Nick, string Nombre, string Mail, string idioma)
+        public int Modificar(int IdUsuario, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
         {
+            UsuarioTemp.IdUsuario = IdUsuario;
             UsuarioTemp.Nick = Seguridad.EncriptarAES(Nick);
             UsuarioTemp.Nombre = Nombre;
             UsuarioTemp.Mail = Mail;
-            UsuarioTemp.Idioma = idioma;
+            UsuarioTemp.Estado = Estado;
+            UsuarioTemp.Contador = Contador;
+            UsuarioTemp.Idioma = Idioma;
+            UsuarioTemp.DVH = DVH;
 
 
             int i = Mapper.Modificar(UsuarioTemp);
             long Dv = Seguridad.CalcularDVH("select * From Usuario where Nick = '" + UsuarioTemp.Nick + "'", "Usuario");
             EjecutarConsulta("Update Usuario set DVH = " + Dv + " where Nick = '" + UsuarioTemp.Nick + "'");
+            Seguridad.ActualizarDVV("Usuario", Seguridad.SumaDVV("Usuario"));
+
+            return i;
+        }
+
+        public int Baja(int IdUsuario, int DVH)
+        {
+            UsuarioTemp.IdUsuario = IdUsuario;
+            UsuarioTemp.DVH = DVH;
+
+            int i = Mapper.Baja(UsuarioTemp);
+            long Dv = Seguridad.CalcularDVH("select * From Usuario where IdUsuario = '" + UsuarioTemp.IdUsuario + "'", "Usuario");
+            EjecutarConsulta("Update Usuario set DVH = " + Dv + " where IdUsuario = '" + UsuarioTemp.IdUsuario + "'");
             Seguridad.ActualizarDVV("Usuario", Seguridad.SumaDVV("Usuario"));
 
             return i;

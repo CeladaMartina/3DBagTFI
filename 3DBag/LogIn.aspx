@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="Home/Home.aspx"><< Volver al Inicio
+                <a href="../Home/Home.aspx"><< Volver al Inicio
                 </a>
                 <br />
             </div>
