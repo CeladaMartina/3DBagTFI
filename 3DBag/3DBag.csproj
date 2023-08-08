@@ -115,6 +115,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="Producto\HistorialVenta.aspx" />
     <Content Include="Producto\IndexProducto.aspx" />
     <Content Include="Navegacion\Comercial.aspx" />
     <Content Include="Seguridad\Index.aspx" />
@@ -180,6 +181,13 @@
     </Compile>
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\HistorialVenta.aspx.cs">
+      <DependentUpon>HistorialVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Producto\HistorialVenta.aspx.designer.cs">
+      <DependentUpon>HistorialVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Producto\IndexProducto.aspx.cs">
       <DependentUpon>IndexProducto.aspx</DependentUpon>

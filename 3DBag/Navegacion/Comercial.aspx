@@ -13,9 +13,9 @@
             <a class="nav-link" href="">Tienda</a>
             <br />
             <%-- visualizar ventas --%>
-            <a class="nav-link" href="">Historial de Ventas</a>
+            <a class="nav-link" href="../Producto/HistorialVenta.aspx">Historial de Ventas</a>
              <br />
-            <%-- venta --%>
+            <%-- detalle venta --%>
             <a class="nav-link" href="">Pedido</a>
            
             
