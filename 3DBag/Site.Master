@@ -39,13 +39,16 @@
                             <a class="nav-link" aria-current="page" href="../Seguridad/Index.aspx">Seguridad</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Comercial</a>
+                            <a class="nav-link" aria-current="page" href="../Navegacion/Comercial.aspx">Comercial</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="../Home/Registrarse.aspx">Registración</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page"href="../Home/Login.aspx">Ingresar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page"">Salir</a>
                         </li>
                     </ul>
                     <%--<ul class="navbar-nav">

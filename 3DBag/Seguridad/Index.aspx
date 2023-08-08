@@ -6,7 +6,7 @@
         <h1>Sistema de Seguridad</h1>
         <br />
         <div>
-            <a class="nav-link" href="Backup.aspx">Generar copia de respaldo</a>
+            <a class="nav-link" href="../Seguridad/Backup.aspx">Generar copia de respaldo</a>
             <br />
             <a class="nav-link" href="">Bitacora</a>
             <br />

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="Idioma.cs" />
+    <Compile Include="Producto.cs" />
     <Compile Include="Seguridad.cs" />
     <Compile Include="Traduccion.cs" />
     <Compile Include="Usuario.cs" />
