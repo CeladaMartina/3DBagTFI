@@ -118,7 +118,7 @@ namespace _3DBag
 
                             //guarda la sesion del usuario, para comprobarlo en las otras paginas
                             HttpContext.Current.Session["UserSession"] = Usuario;                            
-                            Response.Redirect("/Home/Home.aspx", false);                                                   
+                            Response.Redirect("../Home/Home.aspx", false);                                                   
                         }
                         catch (Exception EX)
                         {
@@ -167,7 +167,7 @@ namespace _3DBag
 
                             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogIn. Falla de integridad", "Alta", 0);
 
-                            Response.Redirect("Home.aspx");
+                            Response.Redirect("../Home/Home.aspx");
                         }
                     }
                 }

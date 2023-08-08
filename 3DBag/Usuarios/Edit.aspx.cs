@@ -64,10 +64,16 @@ namespace _3DBag
 
         void Modificar(int Id, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
         {
-            GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, DVH);
+            if (GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, DVH) == 0)
+            {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "label-success";
+                lblResultado.Text = "Usuario modificado correctamente";
+            }
+
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar usuario", "Alta", 0);           
-            //IdUsuario = null;
             LimpiarTxt();
+            
         }
 
         void LimpiarTxt()
@@ -75,6 +81,7 @@ namespace _3DBag
             txtNick.Text = "";
             txtNombre.Text = "";
             txtMail.Text = "";
+            txtIdioma.Text = "";
             rdbBaja.Checked = false;
             rdbBloqueado.Checked = false;
 

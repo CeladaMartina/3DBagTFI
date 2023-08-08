@@ -78,6 +78,15 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.RadioButton rdbBaja;
 
         /// <summary>
+        /// Control lblResultado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResultado;
+
+        /// <summary>
         /// Control btnModificar.
         /// </summary>
         /// <remarks>

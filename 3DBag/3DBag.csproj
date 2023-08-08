@@ -114,6 +114,7 @@
     <Content Include="css\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Cliente\IndexCliente.aspx" />
     <Content Include="Seguridad\Index.aspx" />
     <Content Include="Seguridad\Backup.aspx" />
     <Content Include="Usuarios\Edit.aspx" />
@@ -171,6 +172,13 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Cliente\IndexCliente.aspx.cs">
+      <DependentUpon>IndexCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
+      <DependentUpon>IndexCliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="IObserver.cs" />
     <Compile Include="ISubject.cs" />
     <Compile Include="Seguridad\Index.aspx.cs">

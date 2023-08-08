@@ -57,6 +57,7 @@
                                     <asp:RadioButton ID="rdbBaja" runat="server" />                                                                    
                                 </div>
                             </div>
+                            <asp:Label ID="lblResultado" runat="server" Text="Label" Visible="false"></asp:Label>
                         </div>
                         <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-success btn-block btn-lg" OnClick="ModificarUsuario" />
                         <br />
