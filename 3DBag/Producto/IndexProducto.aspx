@@ -21,6 +21,13 @@
                         <asp:BoundField DataField="Talle" HeaderText="Talle" />
                         <asp:BoundField DataField="Stock" HeaderText="Stock" />
                         <asp:BoundField DataField="PUnit" HeaderText="PUnit" />
+                        <asp:BoundField DataField="Imagen" HeaderText="Imagen" HtmlEncode="false"/>
+                       <%--<asp:TemplateField>
+                           <ItemTemplate>
+                               <asp:Image ID="Image1" runat="server" Height="100" Width="100" ImagenUrl='<% Eval("Imagen") %>' />
+                           </ItemTemplate>
+                       </asp:TemplateField>--%>
+
 
                         <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar">
                             <ControlStyle BackColor="#6699FF" />

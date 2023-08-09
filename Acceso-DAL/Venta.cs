@@ -21,10 +21,10 @@ namespace Acceso_DAL
             {
                 Propiedades_BE.Venta V = new Propiedades_BE.Venta();
                 V.NumVenta = int.Parse(R["NumVenta"].ToString());
-                V.DNICliente = Seguridad.Desencriptar(R["DNIcliente"].ToString());
+                V.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
                 V.Nombre = R["Nombre"].ToString();
                 V.Apellido = R["Apellido"].ToString();
-                V.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
+                V.Cantidad = int.Parse(R["Cantidad"].ToString());
                 V.Descripcion = R["Descripcion"].ToString();                
                 V.Monto = decimal.Parse(R["Monto"].ToString());
                 ListaVenta.Add(V);

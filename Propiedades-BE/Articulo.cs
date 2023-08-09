@@ -80,6 +80,15 @@ namespace Propiedades_BE
             get { return _punit; }
             set { _punit = value; }
         }
+
+        private string _imagen;
+
+        public string Imagen
+        {
+            get { return _imagen; }
+            set { _imagen = value; }
+        }
+
         private bool _baja;
 
         public bool BajaLogica

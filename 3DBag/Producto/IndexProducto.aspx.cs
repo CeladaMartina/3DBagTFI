@@ -29,6 +29,7 @@ namespace _3DBag
             {
                 gridProducto.DataSource = null;
                 gridProducto.DataSource = GestorArticulo.Listar();
+                
                 gridProducto.DataBind();
 
             }

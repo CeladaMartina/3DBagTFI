@@ -31,12 +31,12 @@ namespace Propiedades_BE
             set { _numventa = value; }
         }
 
-        private string _dnicliente;
+        private DateTime _fecha;
 
-        public string DNICliente
+        public DateTime Fecha
         {
-            get { return _dnicliente; }
-            set { _dnicliente = value; }
+            get { return _fecha; }
+            set { _fecha = value; }
         }
 
         private string _nombre;
@@ -54,6 +54,13 @@ namespace Propiedades_BE
             get { return _apellido; }
             set { _apellido = value; }
         }
+        private int _cantidad;
+
+        public int Cantidad
+        {
+            get { return _cantidad; }
+            set { _cantidad = value; }
+        }
 
         private string _descripcion;
 
@@ -61,15 +68,7 @@ namespace Propiedades_BE
         {
             get { return _descripcion; }
             set { _descripcion = value; }
-        }
-
-        private DateTime _fecha;
-
-        public DateTime Fecha
-        {
-            get { return _fecha; }
-            set { _fecha = value; }
-        }
+        }        
 
         private decimal _monto;
 

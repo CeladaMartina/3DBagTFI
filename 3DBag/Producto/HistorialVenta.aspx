@@ -13,12 +13,12 @@
                     <RowStyle BackColor="#f5f5f5" />
                     <SelectedRowStyle BackColor="#669999" Font-Bold="true" ForeColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="NumVenta" HeaderText="NumVenta" />
-                        <asp:BoundField DataField="DNIcliente" HeaderText="DNIcliente" />
+                        <asp:BoundField DataField="NumVenta" HeaderText="NumVenta" />   
+                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
                         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                         <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
-                         <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />  
-                        <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                        <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />                         
                         <asp:BoundField DataField="Monto" HeaderText="Monto" />                   
                     </Columns>
                 </asp:GridView>
