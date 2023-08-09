@@ -9,8 +9,8 @@
             <%-- ABML productos --%>
             <a class="nav-link" href="../Producto/IndexProducto.aspx">Gestión de Productos</a>
              <br />
-            <%-- carrito de compras --%>
-            <a class="nav-link" href="">Tienda</a>
+            <%-- carrito de compras (venta) --%>
+            <a class="nav-link" href="../Producto/TiendaProducto.aspx">Tienda</a>
             <br />
             <%-- visualizar ventas --%>
             <a class="nav-link" href="../Producto/HistorialVenta.aspx">Historial de Ventas</a>
