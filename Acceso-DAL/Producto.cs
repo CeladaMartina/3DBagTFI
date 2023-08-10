@@ -224,8 +224,8 @@ namespace Acceso_DAL
                 //se convierte la imagen  de byte a base64 y despues a img
                 byte[] bytes = (byte[])R["Imagen"];
                 string str = Convert.ToBase64String(bytes);
-                string URL = "data:Image/png;base64," + str;
-                A.Imagen = "<img src=\"" + URL + "\" width='100' height='100'>";
+                string URL = "data:Image/png;base64," + str;                
+                A.Imagen = URL;
                 //fin de imagen
                 A.BajaLogica = bool.Parse(R["BajaLogica"].ToString());
                 ListarArticulo.Add(A);

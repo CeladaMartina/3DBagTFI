@@ -21,12 +21,12 @@
                         <asp:BoundField DataField="Talle" HeaderText="Talle" />
                         <asp:BoundField DataField="Stock" HeaderText="Stock" />
                         <asp:BoundField DataField="PUnit" HeaderText="PUnit" />
-                        <asp:BoundField DataField="Imagen" HeaderText="Imagen" HtmlEncode="false"/>
-                       <%--<asp:TemplateField>
+                        <%--<asp:BoundField DataField="Imagen" HeaderText="Imagen" HtmlEncode="false"/>--%>
+                       <asp:TemplateField>
                            <ItemTemplate>
-                               <asp:Image ID="Image1" runat="server" Height="100" Width="100" ImagenUrl='<% Eval("Imagen") %>' />
+                               <asp:Image ID="Image1" runat="server" ImageUrl='<%#Bind("Imagen") %>' Height="100px" Width="100px"/> 
                            </ItemTemplate>
-                       </asp:TemplateField>--%>
+                       </asp:TemplateField>
 
 
                         <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar">
