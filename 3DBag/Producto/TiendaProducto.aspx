@@ -5,7 +5,7 @@
     <div>
         <h1>Tienda</h1>       
         <br />
-        <asp:DataList ID="dataListProducto" runat="server" DataKeyField="IdArticulo" RepeatColumns="1" RepeatDirection="Horizontal" Width="600px">
+        <asp:DataList ID="dataListProducto" runat="server" DataKeyField="IdArticulo" RepeatColumns="4" RepeatDirection="Horizontal" Width="600px" OnItemCommand="dataListProducto_ItemCommand1">
             <ItemTemplate>
                 <table>
                     <tr>
@@ -15,31 +15,31 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="Label1" runat="server" Text='<%#Bind("Nombre")%>'></asp:Label>
+                            <asp:Label ID="lblNombre" runat="server" Text='<%#Bind("Nombre")%>'></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="Label2" runat="server" Text='<%#Bind("Descripcion")%>'></asp:Label>
+                            <asp:Label ID="lblDescripcion" runat="server" Text='<%#Bind("Descripcion")%>'></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="Label3" runat="server">Cantidad:</asp:Label>
+                            <asp:Label ID="lblCantidad" runat="server">Cantidad:</asp:Label>
                         </td>
                         <td>
                             <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" />
-                        </td>
-                        
+                        <td>                          
+                            <%--<input id="btnAgregar" type="button" value="Agregar" contextmenu="Agregar" onclick="AlCarrito"/>--%>
+                            <%-- <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CommandName="Agregar" CommandArgument='<%#Bind("IdArticulo")%>' />--%>
+                            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CommandName="Agregar" />
+                        </td>                        
                     </tr>
                 </table>
             </ItemTemplate>
-        </asp:DataList>
-        
+        </asp:DataList>        
     </div>
 </asp:Content>

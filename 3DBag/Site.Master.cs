@@ -21,17 +21,27 @@ namespace _3DBag
         {
             if (!IsPostBack)
             {
-                if(Session["UserSession"] != null)
-                {
-                    Usuario objUsuario = (Usuario)(Session["UserSession"]);
-                }
+                //if(Session["UserSession"] != null)
+                //{
+                //    Usuario objUsuario = (Usuario)(Session["UserSession"]);
+                //}
+                //if ((Usuario)(Session["UserSession"]) == null)
+                //{
+                //    //Response.Redirect("../Home/Login.aspx");
+                //}
+                //else
+                //{
+                //    Control fc = FindControl("lblNombre");
+                //    fc.
+                //}
             }
             //DropDownListIdioma.DataSource = GestorIdioma.NombreIdioma();
             //DropDownListIdioma.DataBind();
             //DropDownListIdioma.Items.Insert(0, new ListItem("Idioma", "0"));
         }
 
-        #region Metodos
+        
+        #region Metodos traduccion
 
         public void Attach(IObserver observer)
         {

@@ -6,15 +6,34 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio_BLL;
+using Propiedades_BE;
 
 namespace _3DBag
 {
-    public partial class Formulario_web1 : System.Web.UI.Page
-    {
+    public partial class Home : System.Web.UI.Page
+    {       
+        int id;
+        private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         protected void Page_Load(object sender, EventArgs e)
         {
+            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+            //Primero se conecta con la BD
             Conectar();
+            //Si el usuario se logueo, controla que mensaje de bienvenida dar
+            if ((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
+            {
+                id = Convert.ToInt32(Request.QueryString["usuario"]);
+                if(id == 17)
+                {
+                    lblUsuario.Text = "Bienvenido WEBMASTER";
+                }
+                lblUsuario.Visible = true;
+            }
+            else
+            {
+                lblUsuario.Visible = false;
+            }
         }
         public void Conectar()
         {
