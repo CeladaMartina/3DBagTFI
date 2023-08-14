@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Acceso_BD.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Detalle_Venta.cs" />
     <Compile Include="Idioma.cs" />
     <Compile Include="Permisos.cs" />
     <Compile Include="Producto.cs" />

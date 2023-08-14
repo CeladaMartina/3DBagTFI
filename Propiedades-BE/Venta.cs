@@ -15,12 +15,12 @@ namespace Propiedades_BE
             get { return _idventa; }
             set { _idventa = value; }
         }
-        private int _idcliente;
+        private int _idusuario;
 
-        public int IdCliente
+        public int IdUsuario
         {
-            get { return _idcliente; }
-            set { _idcliente = value; }
+            get { return _idusuario; }
+            set { _idusuario = value; }
         }
 
         private int _numventa;

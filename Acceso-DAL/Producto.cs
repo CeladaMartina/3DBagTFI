@@ -90,13 +90,13 @@ namespace Acceso_DAL
             return Descripcion;
         }
 
-        public int VerificarCantStock(int CodProd)
+        public int VerificarCantStock(int IdArticulo)
         {
             int Cant = 0;
             using (Acceso.Conexion)
             {
                 Acceso.AbrirConexion();
-                string Query = "select Stock from Articulo where CodProd = " + CodProd + "";
+                string Query = "select Stock from Articulo where IdArticulo = " + IdArticulo + "";
                 using (SqlCommand Cmd = new SqlCommand(Query, Acceso.Conexion))
                 {
                     using (SqlDataReader Lector = Cmd.ExecuteReader())

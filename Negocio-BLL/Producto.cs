@@ -32,9 +32,9 @@ namespace Negocio_BLL
             return Mapper.SeleccionarNombreArt(CodProd);
         }
 
-        public int VerificarCantStock(int CodProd)
+        public int VerificarCantStock(int IdArticulo)
         {
-            return Mapper.VerificarCantStock(CodProd);
+            return Mapper.VerificarCantStock(IdArticulo);
         }
 
         public decimal SeleccionPUnit(int CodProd)
