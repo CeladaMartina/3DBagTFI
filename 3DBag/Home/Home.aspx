@@ -3,8 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="text-center">
-        <asp:Label ID="lblUsuario" runat="server" Visible="false"></asp:Label>
-        <%--<label id="lblUsuario" style="visibility: hidden"></label>--%>
+        <asp:Label ID="lblUsuario" runat="server" Visible="false" CssClass="align-self-sm-end"></asp:Label>        
         <br />
         <img src="../Images/logo.png" width="150" height="150" />
 

@@ -5,41 +5,26 @@
     <div>
         <h1>Tienda</h1>       
         <br />
-        <asp:DataList ID="dataListProducto" runat="server" DataKeyField="IdArticulo" RepeatColumns="4" RepeatDirection="Horizontal" Width="600px" OnItemCommand="dataListProducto_ItemCommand1">
+        <asp:DataList ID="dataList" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" Width="600px" DataSourceID="SqlDataSource1" OnItemCommand="dataList_ItemCommand">   
             <ItemTemplate>
-                <table>
-                    <tr>
-                        <td>
-                            <asp:Image ID="Image1" runat="server" ImageUrl='<%#Bind("Imagen") %>' Height="100px" Width="100px"/>                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label ID="lblNombre" runat="server" Text='<%#Bind("Nombre")%>'></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label ID="lblDescripcion" runat="server" Text='<%#Bind("Descripcion")%>'></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label ID="lblCantidad" runat="server">Cantidad:</asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>                          
-                            <%--<input id="btnAgregar" type="button" value="Agregar" contextmenu="Agregar" onclick="AlCarrito"/>--%>
-                            <%-- <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CommandName="Agregar" CommandArgument='<%#Bind("IdArticulo")%>' />--%>
-                            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CommandName="Agregar" />
-                        </td>                        
-                    </tr>
-                </table>
+                <%--Imagen:
+                <asp:Label ID="ImagenLabel" runat="server" Text='<%# Bind("Imagen") %>' />
+                <br />--%>
+                Nombre:
+                <asp:Label ID="NombreLabel" runat="server" Text='<%# Eval("Nombre") %>' />
+                <br />
+                Descripcion:
+                <asp:Label ID="DescripcionLabel" runat="server" Text='<%# Eval("Descripcion") %>' />
+                <br />                
+                Precio:
+                <asp:Label ID="PUnitLabel" runat="server" Text='<%# Eval("PUnit") %>' />
+                <br />
+                Cantidad:
+                <asp:TextBox ID="TxtCantidad" runat="server"></asp:TextBox>
+                <br />
+                <asp:Button ID="BtnAgregar" runat="server" Text="Agregar" CommandName="AgregarCarrito" />
             </ItemTemplate>
-        </asp:DataList>        
+        </asp:DataList>   
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion %>" SelectCommand="SELECT [Nombre], [Descripcion], [PUnit] FROM [Articulo]"></asp:SqlDataSource>
     </div>
 </asp:Content>

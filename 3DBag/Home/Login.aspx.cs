@@ -116,9 +116,9 @@ namespace _3DBag
                             GestorUsuario.LogIn(Usuario);
                             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
 
-                            //guarda la sesion del usuario, para comprobarlo en las otras paginas
+                            //guarda la sesion del usuario, para comprobarlo en las otras paginas                            
+                            HttpContext.Current.Session["UserSession"] = Usuario;
                             //enviamos el ID para presentarlo en la home como mensaje de bienvenida
-                            HttpContext.Current.Session["UserSession"] = Usuario;                            
                             Response.Redirect("../Home/Home.aspx?usuario=" + Usuario.IdUsuario , false);                                                   
                         }
                         catch (Exception EX)

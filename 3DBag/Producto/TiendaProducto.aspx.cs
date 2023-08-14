@@ -18,40 +18,46 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                ListarProductos();
+                //ListarProductos();
             }            
             //(Usuario)(Session["UserSession"])
         }
 
         #region metodos
-        void ListarProductos()
-        {
-            try
-            {
-                dataListProducto.DataSource = null;
-                dataListProducto.DataSource = GestorArticulo.Listar();
-                dataListProducto.DataBind();
-                
+        //void ListarProductos()
+        //{
+        //    try
+        //    {
+        //        dataListProduct.DataSource = null;
+        //        dataListProduct.DataSource = GestorArticulo.Listar();
+        //        dataListProduct.DataBind();
 
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex);
-            }
 
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Response.Write(ex);
+        //    }
+
+        //}
+
         #endregion
+
+
 
         #region botones
-        public void dataListProducto_ItemCommand1(object source, DataListCommandEventArgs e)
-        {
-            if (e.CommandName == "Agregar")
-            {
-                Response.Write("pedido agregado");
-            }
-        }
+        
         #endregion
 
-
+        protected void dataList_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "AgregarCarrito") // check commandname here
+            {
+                int index = e.Item.ItemIndex;
+                Label lbl = (Label)dataList.Items[index].FindControl("NombreLabel");
+                Response.Write(lbl.Text);
+                // your code
+            }
+        }
     }
 }
