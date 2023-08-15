@@ -10,6 +10,7 @@
                 <%--Imagen:
                 <asp:Label ID="ImagenLabel" runat="server" Text='<%# Bind("Imagen") %>' />
                 <br />--%>
+                <asp:Label ID="IdVentaUsuario" runat="server" Text="" Visible="False" />
                 <asp:Label ID="IdArticuloLabel" runat="server" Text='<%# Eval("IdArticulo") %>'  Visible="False" />
                 <br />
                 Nombre:
@@ -28,6 +29,8 @@
                 <br />
             </ItemTemplate>
         </asp:DataList>   
+        <br />
+        <asp:LinkButton ID="VerCarrito" runat="server" OnClick="VerCarrito_Click">-- Ver Carrito de Compras --</asp:LinkButton>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion %>" SelectCommand="SELECT [IdArticulo], [Nombre], [Descripcion], [PUnit] FROM [Articulo]"></asp:SqlDataSource>
     </div>
 </asp:Content>

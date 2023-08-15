@@ -12,6 +12,7 @@ namespace _3DBag
     {
         private ContentPlaceHolder contentPlace;
         int IdVenta = 0;
+        Label IdVentaUsuario;
 
         Negocio_BLL.Producto GestorArticulo = new Negocio_BLL.Producto();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
@@ -78,6 +79,7 @@ namespace _3DBag
             if (e.CommandName == "AgregarCarrito")
             {
                 int index = e.Item.ItemIndex;
+                IdVentaUsuario = (Label)dataList.Items[index].FindControl("IdVentaUsuario");
                 Label IdArticulo = (Label)dataList.Items[index].FindControl("IdArticuloLabel");
                 Label NombreLabel = (Label)dataList.Items[index].FindControl("NombreLabel");
                 Label PUnit = (Label)dataList.Items[index].FindControl("PUnitLabel");
@@ -110,13 +112,17 @@ namespace _3DBag
                     AltaDV(IdVenta, Convert.ToInt32(IdArticulo.Text), NombreLabel.Text, decimal.Parse(PUnit.Text), int.Parse(txtCantidad.Text), 0);
                 }
 
-            }
-
-
-            
+                //guardamos el valor del IDVenta
+                Session["IdVenta"] = IdVenta;
+                
+            }            
         }
 
         #endregion
-    
+
+        protected void VerCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Venta/Pedido.aspx?IdVenta=" + Session["IdVenta"]);
+        }
     }
 }

@@ -115,6 +115,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="Venta\Pedido.aspx" />
     <Content Include="Producto\TiendaProducto.aspx" />
     <Content Include="Producto\HistorialVenta.aspx" />
     <Content Include="Producto\IndexProducto.aspx" />
@@ -182,6 +183,13 @@
     </Compile>
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Venta\Pedido.aspx.cs">
+      <DependentUpon>Pedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Venta\Pedido.aspx.designer.cs">
+      <DependentUpon>Pedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Producto\TiendaProducto.aspx.cs">
       <DependentUpon>TiendaProducto.aspx</DependentUpon>
@@ -316,9 +324,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Venta\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

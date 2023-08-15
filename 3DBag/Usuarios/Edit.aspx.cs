@@ -10,7 +10,6 @@ namespace _3DBag
     public partial class Edit : System.Web.UI.Page
     {        
         string nick;
-
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
