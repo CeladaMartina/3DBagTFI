@@ -21,12 +21,11 @@ namespace Acceso_DAL
             foreach (DataRow R in Tabla.Rows)
             {
                 Propiedades_BE.Venta V = new Propiedades_BE.Venta();
+                V.Descripcion = R["Nombre"].ToString();
+                V.Cantidad = int.Parse(R["Cant"].ToString());
                 V.NumVenta = int.Parse(R["NumVenta"].ToString());
+                V.Nombre = R["Cliente"].ToString();
                 V.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
-                V.Nombre = R["Nombre"].ToString();
-                V.Apellido = R["Apellido"].ToString();
-                V.Cantidad = int.Parse(R["Cantidad"].ToString());
-                V.Descripcion = R["Descripcion"].ToString();                
                 V.Monto = decimal.Parse(R["Monto"].ToString());
                 ListaVenta.Add(V);
             }

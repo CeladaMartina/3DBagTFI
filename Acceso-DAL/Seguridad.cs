@@ -244,6 +244,31 @@ namespace Acceso_DAL
             }
         }
 
+        public List<Propiedades_BE.Bitacora> ConsultarBitacora(DateTime _FechaDesde, DateTime _FechaHasta, string consultaCriticidad, string consultaUsuario)
+        {
+            List<Propiedades_BE.Bitacora> ListaBitacora = new List<Propiedades_BE.Bitacora>();
+
+            Acceso.AbrirConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select Us.Nick,B.Fecha,B.Descripcion,B.Criticidad  from Usuario Us inner join Bitacora B  on Us.IdUsuario = B.IdUsuario where Fecha BETWEEN '" + _FechaDesde.Ticks + "' and '" + _FechaHasta.Ticks + "' and Criticidad IN(" + consultaCriticidad + ") and B.IdUsuario IN (" + consultaUsuario + ")";
+            cmd.Connection = Acceso.Conexion;
+
+            SqlDataReader lector = cmd.ExecuteReader();
+
+            while (lector.Read())
+            {
+                Propiedades_BE.Bitacora B = new Propiedades_BE.Bitacora();
+                B.NickUs = Desencriptar(lector["Nick"].ToString());
+                B.Fecha = new DateTime(long.Parse(lector["Fecha"].ToString()));
+                B.Descripcion = Desencriptar(lector["Descripcion"].ToString());
+                B.Criticidad = lector["Criticidad"].ToString();
+                ListaBitacora.Add(B);
+            }
+            lector.Close();
+            Acceso.CerrarConexion();
+            return ListaBitacora;
+        }
         #endregion
 
         #region backuprestore

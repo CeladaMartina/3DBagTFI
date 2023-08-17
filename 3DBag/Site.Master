@@ -21,7 +21,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <header class="fa-header">
+        <header>
             <!-- CABECERA MAESTRA -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
                 <div class="container-fluid">
@@ -37,29 +37,27 @@
                                 <a class="nav-link" aria-current="page" href="../Navegacion/Administracion.aspx">Administración</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="../Seguridad/Index.aspx">Seguridad</a>
+                                <a class="nav-link" aria-current="page" href="../Navegacion/Seguridad.aspx">Seguridad</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="../Navegacion/Comercial.aspx">Comercial</a>
                             </li>
                             <li class="nav-item">
                                 <asp:LinkButton ID="RegistrarId" runat="server" OnClick="hrefRegistracion">Registración</asp:LinkButton>
-                                <br />
-                                <%--<a class="nav-link" id="RegistrarId" aria-current="page" href="../Home/Registrarse.aspx">Registración</a>--%>
+                                <br />                               
                             </li>
                             <li class="nav-item">
-                                <asp:LinkButton ID="LoginId" runat="server" OnClick="hrefLogin">Ingresar</asp:LinkButton>
-                                <%--<a class="nav-link" id="LoginId" aria-current="page"href="../Home/Login.aspx">Ingresar</a>--%>
-                            </li>
+                                <asp:LinkButton ID="LoginId" runat="server" OnClick="hrefLogin">Ingresar</asp:LinkButton>       
+                                <br />  
                             <li class="nav-item">
                                 <asp:LinkButton ID="SalirId" runat="server">Salir</asp:LinkButton>
                                 <%--<a class="nav-link" id="SalirId" aria-current="page"">Salir</a>--%>
                             </li>
                         </ul>
                         <%--<ul class="navbar-nav">
-                        <asp:DropDownList ID="DropDownListIdioma" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlIdioma_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </ul>--%>
+                            <asp:DropDownList ID="DropDownListIdioma" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlIdioma_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </ul>--%>
                     </div>
                 </div>
             </nav>

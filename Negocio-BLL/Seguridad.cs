@@ -76,16 +76,32 @@ namespace Negocio_BLL
         }
         #endregion
 
-        public void CargarBitacora(int IdUsuario, DateTime Fecha, string Descripcion, string Criticidad, int DVH)
-        {
-            Mapper.CargarBitacora(IdUsuario, Fecha, Descripcion, Criticidad, DVH);
-        }
+        
 
         #region backuprestore
 
         public string GenerarBackUp(string Nombre, string Ruta)
         {
             return Mapper.GenerarBackup(Nombre, Ruta);
+        }
+
+        #endregion
+
+        #region Bitacora
+
+        public List<Propiedades_BE.Bitacora> Listar()
+        {
+            return Mapper.Listar();
+        }
+
+        public List<Propiedades_BE.Bitacora> ConsultarBitacora(DateTime fechaDesde, DateTime fechaHasta, string consultaCriticidad, string consultaUsuario)
+        {
+            return Mapper.ConsultarBitacora(fechaDesde, fechaHasta, consultaCriticidad, consultaUsuario);
+        }
+
+        public void CargarBitacora(int IdUsuario, DateTime Fecha, string Descripcion, string Criticidad, int DVH)
+        {
+            Mapper.CargarBitacora(IdUsuario, Fecha, Descripcion, Criticidad, DVH);
         }
 
         #endregion

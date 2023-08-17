@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class Seguridad : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,7 +17,7 @@ namespace _3DBag
             {
                 if ((Usuario)(Session["UserSession"]) == null)
                 {
-                    Response.Redirect("/Home/Login.aspx");
+                    Response.Redirect("../Home/Login.aspx");
                 }
             }
         }
