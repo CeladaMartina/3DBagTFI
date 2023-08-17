@@ -21,19 +21,18 @@ namespace _3DBag
         {
             if (!IsPostBack)
             {
-                //if(Session["UserSession"] != null)
-                //{
-                //    Usuario objUsuario = (Usuario)(Session["UserSession"]);
-                //}
-                //if ((Usuario)(Session["UserSession"]) == null)
-                //{
-                //    //Response.Redirect("../Home/Login.aspx");
-                //}
-                //else
-                //{
-                //    Control fc = FindControl("lblNombre");
-                //    fc.
-                //}
+                //si el usuario no esta logueado
+                if ((Usuario)(Session["UserSession"]) == null)
+                {
+                    SalirId.Visible = false;                    
+                }
+                else
+                {
+                    //si el usuario esta logueado
+                    LoginId.Visible = false;
+                    RegistrarId.Visible = false;
+                    SalirId.Visible = true;
+                }
             }
             //DropDownListIdioma.DataSource = GestorIdioma.NombreIdioma();
             //DropDownListIdioma.DataBind();
@@ -106,6 +105,16 @@ namespace _3DBag
             //{
             //    //MessageBox.Show(TraducirGlobal("Error") ?? "Error");
             //}
+        }
+
+        protected void hrefRegistracion(object sender, EventArgs e)
+        {
+            Response.Redirect("../Home/Registrarse.aspx");
+        }
+
+        protected void hrefLogin(object sender, EventArgs e)
+        {
+            Response.Redirect("../Home/Login.aspx");
         }
     }
 }
