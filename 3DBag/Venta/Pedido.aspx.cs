@@ -19,7 +19,21 @@ namespace _3DBag
             if (!IsPostBack)
             {
                 IdVenta = Convert.ToInt32(Request.QueryString["IdVenta"]);
-                TraerDetalleVenta(IdVenta);
+                if(IdVenta == 0)
+                {
+                    gridDetalleVenta.Visible = false;
+                    lblMensaje.Visible = true;
+                    linkRedirect.Visible = true;
+                    lblMensaje.Text = "Primero debe agregar un producto al carrito de compras.";                  
+                    
+                }
+                else
+                {
+                    lblMensaje.Visible = false;
+                    gridDetalleVenta.Visible = true;
+                    TraerDetalleVenta(IdVenta);                    
+                }
+                
             }
         }
 
@@ -35,5 +49,33 @@ namespace _3DBag
 
         #region botones
         #endregion
+
+        protected void VerTienda(object sender, EventArgs e)
+        {
+            Response.Redirect("../Producto/TiendaProducto.aspx");
+        }
+
+        protected void gridDetalleVenta_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "editar")
+            {
+                //hagarramos la fila a editar
+                int crow;
+                crow = Convert.ToInt32(e.CommandArgument.ToString());
+
+                GridViewRow Row = (GridViewRow)(((Control)e.CommandSource).NamingContainer);
+                TextBox txtCant = Row.FindControl("txtCant") as TextBox;             
+                
+                //se lo asignamos al txt para poder modificarlo
+                txtCant.Text = gridDetalleVenta.Rows[crow].Cells[1].Text;
+                txtCant.Visible = true;
+
+                //ocultamos esa fila con el valor que venia antes
+                gridDetalleVenta.Rows[crow].Cells[1].Visible = false;
+
+
+
+            }
+        }
     }
 }

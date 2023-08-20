@@ -116,5 +116,13 @@ namespace _3DBag
         {
             Response.Redirect("../Home/Login.aspx");
         }
+
+        protected void onClickSalir(object sender, EventArgs e)
+        {
+            Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogOut", "Baja", 0);
+            GestorUsuario.LogOut();
+            Response.Redirect("../Home/Home.aspx");
+        }
     }
 }

@@ -16,7 +16,7 @@
             <a class="nav-link" href="../Producto/HistorialVenta.aspx">Historial de Ventas</a>
              <br />
             <%-- detalle venta --%>
-            <a class="nav-link" href="">Pedido</a>
+            <a class="nav-link" href="../Venta/Pedido.aspx">Pedido</a>
            
             
         </div>

@@ -50,7 +50,7 @@
                                 <asp:LinkButton ID="LoginId" runat="server" OnClick="hrefLogin">Ingresar</asp:LinkButton>       
                                 <br />  
                             <li class="nav-item">
-                                <asp:LinkButton ID="SalirId" runat="server">Salir</asp:LinkButton>
+                                <asp:LinkButton ID="SalirId" runat="server" OnClick="onClickSalir">Salir</asp:LinkButton>
                                 <%--<a class="nav-link" id="SalirId" aria-current="page"">Salir</a>--%>
                             </li>
                         </ul>

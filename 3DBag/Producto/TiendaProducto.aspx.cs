@@ -114,14 +114,16 @@ namespace _3DBag
 
                 //guardamos el valor del IDVenta
                 Session["IdVenta"] = IdVenta;
-                
+                //mostramos el link para ver el pedido
+                VerCarrito.Visible = true;
+
             }            
         }
 
         #endregion
 
         protected void VerCarrito_Click(object sender, EventArgs e)
-        {
+        {            
             Response.Redirect("../Venta/Pedido.aspx?IdVenta=" + Session["IdVenta"]);
         }
     }
