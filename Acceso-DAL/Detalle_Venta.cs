@@ -23,7 +23,7 @@ namespace Acceso_DAL
 
             foreach (DataRow R in Tabla.Rows)
             {
-                Propiedades_BE.Detalle_Venta DV = new Propiedades_BE.Detalle_Venta();
+                Propiedades_BE.Detalle_Venta DV = new Propiedades_BE.Detalle_Venta();               
                 DV.IdDetalle = int.Parse(R["IdDetalle"].ToString());
                 DV.CodProd = int.Parse(R["CodProd"].ToString());
                 DV.Descrip = R["Nombre"].ToString();

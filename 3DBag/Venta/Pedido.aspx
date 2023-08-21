@@ -13,13 +13,15 @@
                     <RowStyle BackColor="#f5f5f5" />
                     <SelectedRowStyle BackColor="#669999" Font-Bold="true" ForeColor="White" />
                     <Columns>
+                         <asp:BoundField DataField="IdDetalle" HeaderText="IdDetalle" Visible="false" />
+                        <asp:BoundField DataField="IdArticulo" HeaderText="IdArticulo" Visible="false" />
                         <asp:BoundField DataField="Descrip" HeaderText="Descrip" />
-                        <asp:TemplateField >
+                        <asp:TemplateField HeaderText="Cant">
                             <ItemTemplate>
-                                <asp:TextBox ID="txtCant" runat="server" Visible ="false"></asp:TextBox>
+                                <asp:TextBox ID="txtCant" runat="server" Text='<%# Eval("Cant") %>'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Cant" HeaderText="Cant" />
+                        <%--<asp:BoundField DataField="Cant" HeaderText="Cant" />--%>
                         <asp:BoundField DataField="PUnit" HeaderText="PUnit" />                     
                        
                         <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar">

@@ -122,7 +122,9 @@ namespace _3DBag
             Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogOut", "Baja", 0);
             GestorUsuario.LogOut();
-            Response.Redirect("../Home/Home.aspx");
+            //recargamos la pagina
+            Session["UserSession"] = null;
+            Response.Redirect(Request.Url.ToString());
         }
     }
 }
