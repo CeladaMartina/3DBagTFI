@@ -12,16 +12,19 @@
                     <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
                     <RowStyle BackColor="#f5f5f5" />
                     <SelectedRowStyle BackColor="#669999" Font-Bold="true" ForeColor="White" />
-                    <Columns>
-                         <asp:BoundField DataField="IdDetalle" HeaderText="IdDetalle" Visible="false" />
-                        <asp:BoundField DataField="IdArticulo" HeaderText="IdArticulo" Visible="false" />
+                    <Columns>  
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Label ID="IdDetalle" runat="server" Text='<%# Eval("IdDetalle") %>' Visible="false"></asp:Label>
+                                <asp:Label ID="CodProd" runat="server" Text='<%# Eval("CodProd") %>' Visible="false"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="Descrip" HeaderText="Descrip" />
                         <asp:TemplateField HeaderText="Cant">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtCant" runat="server" Text='<%# Eval("Cant") %>'></asp:TextBox>
                             </ItemTemplate>
-                        </asp:TemplateField>
-                        <%--<asp:BoundField DataField="Cant" HeaderText="Cant" />--%>
+                        </asp:TemplateField>                       
                         <asp:BoundField DataField="PUnit" HeaderText="PUnit" />                     
                        
                         <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar">

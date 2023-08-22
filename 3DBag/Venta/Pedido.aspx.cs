@@ -19,8 +19,10 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                IdVenta = Convert.ToInt32(Request.QueryString["IdVenta"]);
-                if(IdVenta == 0)
+                //IdVenta = Convert.ToInt32(Request.QueryString["IdVenta"]);
+                IdVenta = Convert.ToInt32(Session["IdVenta"]);
+
+                if (IdVenta == 0)
                 {
                     gridDetalleVenta.Visible = false;
                     lblMensaje.Visible = true;
@@ -33,8 +35,7 @@ namespace _3DBag
                     lblMensaje.Visible = false;
                     gridDetalleVenta.Visible = true;
                     TraerDetalleVenta(IdVenta);                    
-                }
-                
+                }                
             }
         }
 
@@ -55,11 +56,11 @@ namespace _3DBag
         public void ModificarDV(int IdDetalle, int IdArticulo, decimal PUnit, int Cantidad, int DVH)
         {
             int CantidadChequeoStock = GestorArticulo.VerificarCantStock(IdArticulo);
-            if (Cantidad <= CantidadChequeoStock && GestorDV.ChequearStock(IdArticulo, IdVenta, Cantidad, IdDetalle) <= CantidadChequeoStock)
+            if (Cantidad <= CantidadChequeoStock && GestorDV.ChequearStock(IdArticulo, Convert.ToInt32(Session["IdVenta"]), Cantidad, IdDetalle) <= CantidadChequeoStock)
             {
                 GestorDV.ModificarDV(IdDetalle, IdArticulo, PUnit, Cantidad, DVH);
-                //ListarDV();
-                //Lblsubtotal.Text = GestorDV.SubTotal(int.Parse(TxtIdVenta.Text)).ToString();
+                lblMensaje.Visible = true;                
+                lblMensaje.Text = "Cantidad modificada correctamente.";
             }
             else
             {
@@ -74,27 +75,17 @@ namespace _3DBag
         {
             if (e.CommandName == "editar")
             {
-                //hagarramos la fila a editar
-                //int crow;
-                //crow = Convert.ToInt32(e.CommandArgument.ToString());
-
+                //hagarramos la fila a editar               
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = gridDetalleVenta.Rows[index];
 
-                string idDetalle = row.Cells[2].Text;
+                //buscamos los valores de la tabla y el valor del txt modificado
+                Label CodProd = (Label)row.FindControl("CodProd");
+                Label IdDetalle = (Label)row.FindControl("IdDetalle");
+                TextBox txtCantidad = (TextBox)row.FindControl("txtCant");
+                string precioU =  row.Cells[3].Text;
 
-                //se encuentra el txt modificado y se guarda el cambio
-
-
-                //string value = gridDetalleVenta.Rows[crow].Cells[0].Text;
-
-                //int idDetalle = Convert.ToInt32(gridDetalleVenta.Rows[crow].Cells[0].Text);
-                //int codArticulo = Convert.ToInt32(gridDetalleVenta.Rows[crow].Cells[1].Text);
-                //TextBox txtCantidad = (TextBox)gridDetalleVenta.Rows[crow].FindControl("txtCant");                
-                //int cant = Convert.ToInt32(txtCantidad.Text);                
-                //string precioU = gridDetalleVenta.Rows[crow].Cells[4].Text;
-
-                //ModificarDV(idDetalle, codArticulo, decimal.Parse(precioU), cant, 0);
+                ModificarDV(Convert.ToInt32(IdDetalle.Text), GestorArticulo.SeleccionarIdArticulo(int.Parse(CodProd.Text)), decimal.Parse(precioU), int.Parse(txtCantidad.Text), 0);
 
             }
         }
