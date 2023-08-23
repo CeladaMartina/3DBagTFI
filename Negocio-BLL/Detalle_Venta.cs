@@ -38,9 +38,10 @@ namespace Negocio_BLL
             return i;
         }
 
-        public int ModificarDV(int IdDetalle, int IdArticulo, decimal PUnit, int Cantidad, int DVH)
+        public int ModificarDV(int IdDetalle, int IdArticulo, decimal PUnit, int Cantidad, int DVH, int IdVenta)
         {
             DVTemp.IdDetalle = IdDetalle;
+            DVTemp.IdVenta = IdVenta;
             DVTemp.IdArticulo = IdArticulo;
             DVTemp.PUnit = PUnit;
             DVTemp.Cant = Cantidad;

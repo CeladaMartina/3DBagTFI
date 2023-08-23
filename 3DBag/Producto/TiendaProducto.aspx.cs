@@ -32,25 +32,7 @@ namespace _3DBag
             
         }
 
-        #region metodos
-        //void ListarProductos()
-        //{
-        //    try
-        //    {
-        //        dataListProduct.DataSource = null;
-        //        dataListProduct.DataSource = GestorArticulo.Listar();
-        //        dataListProduct.DataBind();
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Response.Write(ex);
-        //    }
-
-        //}
-
-
+        #region metodos        
         public void AltaVenta(int IdUsuario, DateTime Fecha)
         {
             GestorVenta.Alta(IdUsuario, Fecha);
@@ -65,6 +47,8 @@ namespace _3DBag
             }
             else
             {
+                VerCarrito.Visible = true;
+                VerCarrito.Text = "no hay stock";
                 //MessageBox.Show(Cambiar_Idioma.TraducirGlobal("No hay Stock suficiente") ?? "No hay Stock suficiente");
             }
         }

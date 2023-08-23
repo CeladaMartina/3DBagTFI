@@ -124,7 +124,17 @@ namespace _3DBag
             GestorUsuario.LogOut();
             //recargamos la pagina
             Session["UserSession"] = null;
-            Response.Redirect(Request.Url.ToString());
+
+            //si esta en la home
+            if(Request.Url.ToString() == "https://localhost:44388/Home/Home.aspx")
+            {
+                Response.Redirect(Request.Url.ToString());
+            }
+            else
+            {
+                Response.Redirect("../Home/Home.aspx");
+            }
+            
         }
     }
 }

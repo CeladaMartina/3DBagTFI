@@ -15,6 +15,7 @@
                     <Columns>  
                         <asp:TemplateField>
                             <ItemTemplate>
+                                <asp:Label ID="IdVenta" runat="server" Text='<%# Eval("IdVenta") %>' Visible="false"></asp:Label>
                                 <asp:Label ID="IdDetalle" runat="server" Text='<%# Eval("IdDetalle") %>' Visible="false"></asp:Label>
                                 <asp:Label ID="CodProd" runat="server" Text='<%# Eval("CodProd") %>' Visible="false"></asp:Label>
                             </ItemTemplate>
