@@ -44,14 +44,15 @@
                             </li>
                             <li class="nav-item">
                                 <asp:LinkButton ID="RegistrarId" runat="server" OnClick="hrefRegistracion">Registración</asp:LinkButton>
-                                <br />                               
+                                <br /> 
+                                <br /> 
                             </li>
                             <li class="nav-item">
                                 <asp:LinkButton ID="LoginId" runat="server" OnClick="hrefLogin">Ingresar</asp:LinkButton>       
                                 <br />  
+                                <br /> 
                             <li class="nav-item">
-                                <asp:LinkButton ID="SalirId" runat="server" OnClick="onClickSalir">Salir</asp:LinkButton>
-                                <%--<a class="nav-link" id="SalirId" aria-current="page"">Salir</a>--%>
+                                <asp:LinkButton ID="SalirId" runat="server" OnClick="onClickSalir">Salir</asp:LinkButton>                                
                             </li>
                         </ul>
                         <%--<ul class="navbar-nav">

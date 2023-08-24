@@ -6,7 +6,9 @@
         <h1>Sistema de Administración</h1>
         <br />
         <div>
-            <a class="nav-link" href="../Usuarios/IndexUsuarios.aspx">Gestion de Usuarios.</a>
+            <asp:LinkButton ID="LinkGestionUsuarios" runat="server" OnClick="LinkGestionUsuarios_Click">Gestion de Usuarios.</asp:LinkButton>
+            <%--<a  class="nav-link" href="../Usuarios/IndexUsuarios.aspx">Gestion de Usuarios.</a>--%>
+            <br />
             <br />
              <a class="nav-link" href="../Cliente/IndexCliente.aspx">Gestion de Clientes.</a>
             <br />

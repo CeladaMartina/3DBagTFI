@@ -19,8 +19,29 @@ namespace _3DBag
                 {
                     Response.Redirect("/Home/Login.aspx");
                 }
+                else
+                {
+                    Permisos();
+                }
             }
                 
+        }
+
+        public void Permisos()
+        {
+            if (Propiedades_BE.SingletonLogin.GetInstance.IsLoggedIn())
+            {
+                LinkGestionUsuarios.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Desbloquear_Usuario));
+            }
+            else
+            {
+                LinkGestionUsuarios.Visible = false;
+            }
+        }
+
+        protected void LinkGestionUsuarios_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Usuarios/IndexUsuarios.aspx");
         }
     }
 }

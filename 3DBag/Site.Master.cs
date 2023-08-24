@@ -89,6 +89,7 @@ namespace _3DBag
         }
         #endregion
 
+        #region botones
         protected void ddlIdioma_SelectedIndexChanged(object sender, EventArgs e)
         {
             //try
@@ -122,19 +123,23 @@ namespace _3DBag
             Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogOut", "Baja", 0);
             GestorUsuario.LogOut();
-            //recargamos la pagina
+            //eliminamos la sesion del usuario
             Session["UserSession"] = null;
-
-            //si esta en la home
+            
             if(Request.Url.ToString() == "https://localhost:44388/Home/Home.aspx")
             {
+                //si esta en la home, tiene que recargar asi la pagina, porque sino rompe
                 Response.Redirect(Request.Url.ToString());
             }
             else
             {
+                //si no esta en la home, te lleva ahi
                 Response.Redirect("../Home/Home.aspx");
             }
             
         }
+        #endregion
+
+        
     }
 }

@@ -18,9 +18,10 @@ namespace _3DBag
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");            
         }
 
+        #region metodos
         protected void browse(object sender, EventArgs e)
         {
             Thread thdSyncRead = new Thread(new ThreadStart(openfolder));
@@ -61,6 +62,8 @@ namespace _3DBag
             }
         }
 
+        #endregion
+
         #region traduccion
         public void Update (ISubject Subject)
         {
@@ -73,7 +76,7 @@ namespace _3DBag
         }
         #endregion
 
-
+        
 
     }
 }

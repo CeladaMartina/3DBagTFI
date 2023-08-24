@@ -64,6 +64,7 @@ namespace _3DBag
         public void VerificarIntegridadGeneral()
         {
             string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //falta agregar 2 problemas mas
 
             string ProblemaDefinitivo = ProblemaUsuario;
 
@@ -91,6 +92,10 @@ namespace _3DBag
                 if (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Recalcular_Digitos))
                 {
                     //mostrar en pantalla el problema definitivo
+                    lblError.Visible = true;
+                    lblError.Text = ProblemaDefinitivo;
+                    lblError.CssClass = "alert alert-warning";
+                    LogIn();
                 }
                 else
                 {
@@ -109,6 +114,7 @@ namespace _3DBag
                 {
                     if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
                     {
+                        //ingreso correctamente
                         GestorUsuario.ReiniciarIntentos(txtNick.Text);
 
                         try
@@ -173,6 +179,16 @@ namespace _3DBag
                     }
                 }
             }
+        }
+
+        bool ChequearFallaTxt()
+        {
+            bool A = false;
+            if (string.IsNullOrEmpty(txtNick.Text) || string.IsNullOrEmpty(txtContraseña.Text))
+            {
+                A = true;
+            }
+            return A;
         }
         #endregion
 
