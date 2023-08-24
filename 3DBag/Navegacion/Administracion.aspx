@@ -7,11 +7,11 @@
         <br />
         <div>
             <asp:LinkButton ID="LinkGestionUsuarios" runat="server" OnClick="LinkGestionUsuarios_Click">Gestion de Usuarios.</asp:LinkButton>
-            <%--<a  class="nav-link" href="../Usuarios/IndexUsuarios.aspx">Gestion de Usuarios.</a>--%>
             <br />
             <br />
-             <a class="nav-link" href="../Cliente/IndexCliente.aspx">Gestion de Clientes.</a>
+            <asp:LinkButton ID="LinkGestionClientes" runat="server" OnClick="LinkGestionClientes_Click">Gestion de Clientes.</asp:LinkButton>
             <br />
+             <br />
             <a class="nav-link" href="../Home/Home.aspx">Gestion de Familias.</a>
             <br />
             <a class="nav-link" href="../Home/Home.aspx">Gestion de Patentes.</a>

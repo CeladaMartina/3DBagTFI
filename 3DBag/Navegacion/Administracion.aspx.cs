@@ -31,17 +31,24 @@ namespace _3DBag
         {
             if (Propiedades_BE.SingletonLogin.GetInstance.IsLoggedIn())
             {
-                LinkGestionUsuarios.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Desbloquear_Usuario));
-            }
-            else
-            {
-                LinkGestionUsuarios.Visible = false;
+                LinkGestionUsuarios.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario));
+                LinkGestionClientes.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Cliente));
             }
         }
 
+        #region redirecciones
         protected void LinkGestionUsuarios_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Usuarios/IndexUsuarios.aspx");
         }
+
+        protected void LinkGestionClientes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Cliente/IndexCliente.aspx");
+        }
+
+        #endregion
+
+
     }
 }

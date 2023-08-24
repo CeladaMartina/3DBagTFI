@@ -6,11 +6,13 @@
         <h1>Sistema de Seguridad</h1>
         <br />
         <div>
-            <a class="nav-link" href="../Seguridad/Backup.aspx">Generar copia de respaldo</a>
+            <asp:LinkButton ID="LinkBackup" runat="server" OnClick="LinkBackup_Click">Generar copia de respaldo.</asp:LinkButton> 
             <br />
-            <a class="nav-link" href="../Seguridad/Bitacora.aspx">Bitacora</a>
             <br />
-            <a class="nav-link" href="../Seguridad/Restore.aspx">Restaurar</a>
+            <asp:LinkButton ID="LinkBitacora" runat="server" OnClick="LinkBitacora_Click">Bitacora.</asp:LinkButton>
+            <br />
+            <br />
+            <asp:LinkButton ID="LinkRestore" runat="server" OnClick="LinkRestore_Click">Restore.</asp:LinkButton>           
         </div>
     </div>
 </asp:Content>
