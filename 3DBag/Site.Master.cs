@@ -33,6 +33,8 @@ namespace _3DBag
                     RegistrarId.Visible = false;
                     SalirId.Visible = true;
                 }
+
+                //Traducir();
             }
             //DropDownListIdioma.DataSource = GestorIdioma.NombreIdioma();
             //DropDownListIdioma.DataBind();
@@ -90,22 +92,24 @@ namespace _3DBag
         #endregion
 
         #region botones
+
+        //cuando se selecciona un valor del combo idioma, cambiara
         protected void ddlIdioma_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    DiccionarioTraduccionGlobal = new Dictionary<string, string>();
-            //    foreach (var item in GestorTraduccion.ListarTraduccionDicionario(DropDownListIdioma.SelectedItem.ToString()))
-            //    {
-            //        DiccionarioTraduccionGlobal.Add(item.Original, item.Traducido);
-            //    }
-            //    this.NotificarCambio();
-            //    //Traducir();
-            //}
-            //catch (Exception)
-            //{
-            //    //MessageBox.Show(TraducirGlobal("Error") ?? "Error");
-            //}
+            try
+            {
+                DiccionarioTraduccionGlobal = new Dictionary<string, string>();
+                foreach (var item in GestorTraduccion.ListarTraduccionDicionario(DropDownListIdioma.SelectedItem.ToString()))
+                {
+                    DiccionarioTraduccionGlobal.Add(item.Original, item.Traducido);
+                }
+                this.NotificarCambio();
+                Traducir();
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show(TraducirGlobal("Error") ?? "Error");
+            }
         }
 
         protected void hrefRegistracion(object sender, EventArgs e)
@@ -140,6 +144,17 @@ namespace _3DBag
         }
         #endregion
 
-        
+        #region metodos
+        void Traducir()
+        {
+            //buscamos los botones
+            LinkButton linkLogin = (LinkButton)form1.FindControl("LoginId");
+            LinkButton linkRegistro = (LinkButton)form1.FindControl("RegistrarId");
+
+            //los cambiamos de idioma, por medio del skinId, definira su traduccion
+            linkLogin.Text = TraducirGlobal(linkLogin.SkinID.ToString()) ?? linkLogin.SkinID.ToString();
+            linkRegistro.Text = TraducirGlobal(linkRegistro.SkinID.ToString()) ?? linkRegistro.SkinID.ToString();
+        }
+        #endregion
     }
 }

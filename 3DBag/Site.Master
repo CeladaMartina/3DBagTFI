@@ -43,22 +43,21 @@
                                 <a class="nav-link" aria-current="page" href="../Navegacion/Comercial.aspx">Comercial</a>
                             </li>
                             <li class="nav-item">
-                                <asp:LinkButton ID="RegistrarId" runat="server" OnClick="hrefRegistracion">Registración</asp:LinkButton>
-                                <br /> 
+                                <asp:LinkButton ID="RegistrarId" SkinID="Aceptar" runat="server" OnClick="hrefRegistracion">Registración</asp:LinkButton>  
                                 <br /> 
                             </li>
                             <li class="nav-item">
-                                <asp:LinkButton ID="LoginId" runat="server" OnClick="hrefLogin">Ingresar</asp:LinkButton>       
-                                <br />  
-                                <br /> 
-                            <li class="nav-item">
-                                <asp:LinkButton ID="SalirId" runat="server" OnClick="onClickSalir">Salir</asp:LinkButton>                                
+                                <asp:LinkButton ID="LoginId" SkinID="LogIn" runat="server" OnClick="hrefLogin">Ingresar</asp:LinkButton>       
+                                <br />
+                             <li class="nav-item">
+                                <asp:LinkButton ID="SalirId"  runat="server" OnClick="onClickSalir">Salir</asp:LinkButton>                                
                             </li>
                         </ul>
-                        <%--<ul class="navbar-nav">
-                            <asp:DropDownList ID="DropDownListIdioma" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlIdioma_SelectedIndexChanged">
+                        <ul class="navbar-nav">
+                            <asp:DropDownList ID="DropDownListIdioma" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlIdioma_SelectedIndexChanged" DataSourceID="SqlDataSource1" DataTextField="NombreIdioma" DataValueField="NombreIdioma">
                             </asp:DropDownList>
-                        </ul>--%>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion %>" SelectCommand="SELECT [NombreIdioma] FROM [Idioma]"></asp:SqlDataSource>
+                        </ul>
                     </div>
                 </div>
             </nav>
