@@ -115,6 +115,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="Images\calendar.png" />
     <Content Include="Seguridad\Restore.aspx" />
     <Content Include="Seguridad\Bitacora.aspx" />
     <Content Include="Venta\Pedido.aspx" />

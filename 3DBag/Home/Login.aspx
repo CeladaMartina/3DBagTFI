@@ -41,11 +41,12 @@
                                 <br />
                                 <div class="form-group">
                                     <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success btn-block btn-lg" OnClick="logguear" />
-                                </div>
-                                <div class="form-group">
-                                    <input class="btn btn-info btn-block btn-lg" id="button2" type="button" value="Registrarse" />
-                                </div>
+                                    <%--<input class="btn btn-info btn-block btn-lg" id="button2" type="button" value="Registrarse" />--%>
+                                </div>                               
                                 <br />
+                                <div class="form-group">
+                                    <asp:LinkButton runat="server">¿Olvidaste tu contraseña?</asp:LinkButton>
+                                </div>
                                 <asp:Label ID="lblError" runat="server" Text="Label" CssClass="alert alert-danger" Visible="false"></asp:Label>
                             </div>
                         </div>

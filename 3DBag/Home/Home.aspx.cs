@@ -21,19 +21,29 @@ namespace _3DBag
             //Primero se conecta con la BD
             Conectar();
             //Si el usuario se logueo, controla que mensaje de bienvenida dar
-            if ((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
+            if(Session["ProblemaDefinitivo"] == null)
             {
-                id = Convert.ToInt32(Request.QueryString["usuario"]);
-                if(id == 17)
+                if ((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
                 {
-                    lblUsuario.Text = "Bienvenido WEBMASTER";
+                    id = Convert.ToInt32(Request.QueryString["usuario"]);
+                    if (id == 17)
+                    {
+                        lblUsuario.Text = "Bienvenido WEBMASTER";
+                    }
+                    lblUsuario.Visible = true;
                 }
-                lblUsuario.Visible = true;
+                else
+                {
+                    lblUsuario.Visible = false;
+                }
             }
             else
             {
-                lblUsuario.Visible = false;
+                //si hay un problema en la base lo mostrara aca
+                lblUsuario.Visible = true;
+                lblUsuario.Text = Session["ProblemaDefinitivo"].ToString();
             }
+            
         }
         public void Conectar()
         {

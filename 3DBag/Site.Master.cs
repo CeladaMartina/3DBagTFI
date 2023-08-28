@@ -33,12 +33,7 @@ namespace _3DBag
                     RegistrarId.Visible = false;
                     SalirId.Visible = true;
                 }
-
-                //Traducir();
-            }
-            //DropDownListIdioma.DataSource = GestorIdioma.NombreIdioma();
-            //DropDownListIdioma.DataBind();
-            //DropDownListIdioma.Items.Insert(0, new ListItem("Idioma", "0"));
+            }            
         }
 
         

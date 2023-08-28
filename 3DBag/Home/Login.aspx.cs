@@ -91,10 +91,8 @@ namespace _3DBag
             {
                 if (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Recalcular_Digitos))
                 {
-                    //mostrar en pantalla el problema definitivo
-                    lblError.Visible = true;
-                    lblError.Text = ProblemaDefinitivo;
-                    lblError.CssClass = "alert alert-warning";
+                    //guardamos en sesion el problema de la base
+                    Session["ProblemaDefinitivo"] = ProblemaDefinitivo;
                     LogIn();
                 }
                 else
@@ -109,74 +107,93 @@ namespace _3DBag
         {
             if (Propiedades_BE.SingletonLogin.GlobalIntegridad == 0)
             {
-
-                if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
+                if(ChequearFallaTxt() == false)
                 {
-                    if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
+                    if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
                     {
-                        //ingreso correctamente
-                        GestorUsuario.ReiniciarIntentos(txtNick.Text);
-
-                        try
+                        if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
                         {
-                            GestorUsuario.LogIn(Usuario);
-                            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
+                            //ingreso correctamente
+                            GestorUsuario.ReiniciarIntentos(txtNick.Text);
 
-                            //guarda la sesion del usuario, para comprobarlo en las otras paginas                            
-                            HttpContext.Current.Session["UserSession"] = Usuario;
-                            //enviamos el ID para presentarlo en la home como mensaje de bienvenida
-                            Response.Redirect("../Home/Home.aspx?usuario=" + Usuario.IdUsuario , false);                                                   
+                            try
+                            {
+                                GestorUsuario.LogIn(Usuario);
+                                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Login", "Baja", 0);
+
+                                //guarda la sesion del usuario, para comprobarlo en las otras paginas                            
+                                HttpContext.Current.Session["UserSession"] = Usuario;
+                                //enviamos el ID para presentarlo en la home como mensaje de bienvenida
+                                Response.Redirect("../Home/Home.aspx?usuario=" + Usuario.IdUsuario, false);
+                            }
+                            catch (Exception EX)
+                            {
+                                //MessageBox.Show(EX.Message);
+                            }
                         }
-                        catch (Exception EX)
+                        else
                         {
-                            //MessageBox.Show(EX.Message);
+                            lblError.Visible = true;
+                            lblError.Text = "El usuario se encuentra bloqueado.";
                         }
                     }
-                    else
+                    else if (GestorUsuario.VerificarEstado(txtNick.Text) == true)
+                    {
+                        lblError.Visible = true;
+                        lblError.Text = "No se puede acceder, usuario bloqueado.";
+                    }
+                    else if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
+                    {
+                        lblError.Visible = true;
+                        lblError.Text = "Usuarios y/o contraseña incorrectos.";
+                        Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
+                    }
+                    else if (GestorUsuario.VerificarContador(txtNick.Text) >= 3)
                     {
                         lblError.Visible = true;
                         lblError.Text = "El usuario se encuentra bloqueado.";
+                        Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Bloqueo de usuario", "Alta", 0);
+                        GestorUsuario.BloquearUsuario(txtNick.Text);
                     }
                 }
-                else if (GestorUsuario.VerificarEstado(txtNick.Text) == true)
+                else
                 {
+                    //MessageBox.Show(Cambiar_Idioma.TraducirGlobal("Complete todos los campos") ?? "Complete todos los campos");
                     lblError.Visible = true;
-                    lblError.Text = "No se puede acceder, usuario bloqueado.";
+                    lblError.Text = "Complete todos los campos.";
                 }
-                else if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
-                {
-                    lblError.Visible = true;
-                    lblError.Text = "Usuarios y/o contraseña incorrectos.";
-                    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
-                }
-                else if (GestorUsuario.VerificarContador(txtNick.Text) >= 3)
-                {
-                    lblError.Visible = true;
-                    lblError.Text = "El usuario se encuentra bloqueado.";
-                    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Bloqueo de usuario", "Alta", 0);
-                    GestorUsuario.BloquearUsuario(txtNick.Text);
-                }
+                
             }
             else
             {
-                if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
+
+                if(ChequearFallaTxt() == false)
                 {
-                    if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
+                    if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
                     {
-                        if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
+                        if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
                         {
+                            if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
+                            {
 
-                            lblError.Visible = true;
-                            lblError.Text = "Ingreso correctamente. Error de integridad en la base de datos.";
-                            lblError.CssClass = "alert alert-success";
+                                lblError.Visible = true;
+                                lblError.Text = "Ingreso correctamente. Error de integridad en la base de datos.";
+                                lblError.CssClass = "alert alert-success";
 
-                            GestorUsuario.LogIn(Usuario);
+                                GestorUsuario.LogIn(Usuario);
 
-                            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogIn. Falla de integridad", "Alta", 0);
+                                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "LogIn. Falla de integridad", "Alta", 0);
 
-                            Response.Redirect("../Home/Home.aspx");
+                                Response.Redirect("../Home/Home.aspx");
+                            }
                         }
                     }
+                }
+                else
+                {
+                    //MessageBox.Show(Cambiar_Idioma.TraducirGlobal("Complete todos los campos") ?? "Complete todos los campos");
+                    lblError.Visible = true;
+                    lblError.Text = "Complete todos los campos.";
                 }
             }
         }

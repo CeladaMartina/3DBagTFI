@@ -64,5 +64,43 @@ namespace _3DBag
             gv.PageIndex = e.NewPageIndex;
             ListarBitacora(); 
         }
+
+        protected void imageButtonDesde_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Calendar1.Visible)
+            {
+                Calendar1.Visible = false;
+            }
+            else
+            {
+                Calendar1.Visible = true;
+            }
+            Calendar1.Attributes.Add("style", "position:absolute");
+        }
+
+        protected void imageButtonHasta_Click(object sender, ImageClickEventArgs e)
+        {
+            if (Calendar2.Visible)
+            {
+                Calendar2.Visible = false;
+            }
+            else
+            {
+                Calendar2.Visible = true;
+            }
+            Calendar2.Attributes.Add("style", "position:absolute");
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            txtDesde.Text = Calendar1.SelectedDate.ToString("dd/MM/yyyy");
+            Calendar1.Visible = false;
+        }
+
+        protected void Calendar2_SelectionChanged(object sender, EventArgs e)
+        {
+            txtHasta.Text = Calendar2.SelectedDate.ToString("dd/MM/yyyy");
+            Calendar2.Visible = false;
+        }
     }
 }
