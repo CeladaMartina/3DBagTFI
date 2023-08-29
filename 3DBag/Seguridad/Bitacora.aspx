@@ -36,6 +36,14 @@
             <WeekendDayStyle BackColor="#CCCCFF" />
         </asp:Calendar>
         <br />
+        <asp:DropDownList ID="ListCriticidiad" runat="server">
+            <asp:ListItem>Alta</asp:ListItem>
+            <asp:ListItem>Baja</asp:ListItem>
+            <asp:ListItem>Media</asp:ListItem>
+            <asp:ListItem>Todos</asp:ListItem>
+        </asp:DropDownList>
+        <br />
+        <asp:Button ID="bntFiltrar" runat="server" Text="Filtar" OnClick="bntFiltrar_Click" />
     </div>
     <asp:GridView ID="GridBitacora" PageSize="15" runat="server" AllowPaging="true" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnDataBound="GridBitacora_DataBound" OnPageIndexChanging="GridBitacora_PageIndexChanging">
         <AlternatingRowStyle BackColor="White" />
@@ -65,4 +73,5 @@
         </PagerTemplate>
         <PagerSettings Mode="NextPrevious" Position="Bottom" />
     </asp:GridView>
+    <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>
 </asp:Content>
