@@ -11,9 +11,7 @@ namespace _3DBag
     public partial class Bitacora : System.Web.UI.Page
     {
         private ContentPlaceHolder contentPlace;
-
-        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
-        //Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
+        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();        
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -81,14 +79,15 @@ namespace _3DBag
                 }
 
                 GridBitacora.DataSource = Seguridad.ConsultarBitacora(dtDesde, dtHasta, consultaCriticidad, consultaUsuario);
-                
+                GridBitacora.DataBind();
+
                 if (GridBitacora.Rows.Count == 0)
                 {
                     GridBitacora.DataSource = null;
                     lblError.Visible = true;
                     lblError.Text = "No hay valores para mostrar en la grilla.";
                 }
-                else 
+                else
                 {
                     GridBitacora.DataBind();
                 }

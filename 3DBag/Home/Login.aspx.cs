@@ -54,7 +54,7 @@ namespace _3DBag
             }
             catch(Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
         }       
 
@@ -93,7 +93,7 @@ namespace _3DBag
                 {
                     //guardamos en sesion el problema de la base
                     Session["ProblemaDefinitivo"] = ProblemaDefinitivo;
-                    LogIn();
+                    Response.Redirect("../Home/Home.aspx");                    ;
                 }
                 else
                 {

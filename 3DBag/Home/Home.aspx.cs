@@ -21,9 +21,14 @@ namespace _3DBag
             //Primero se conecta con la BD
             Conectar();
             //Si el usuario se logueo, controla que mensaje de bienvenida dar
-            if(Session["ProblemaDefinitivo"] == null)
+            if(Session["ProblemaDefinitivo"] != null)
             {
-                if ((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
+                lblUsuario.Visible = true;
+                lblUsuario.Text = Session["ProblemaDefinitivo"].ToString();
+            }
+            else
+            {
+                if((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
                 {
                     id = Convert.ToInt32(Request.QueryString["usuario"]);
                     if (id == 17)
@@ -32,16 +37,6 @@ namespace _3DBag
                     }
                     lblUsuario.Visible = true;
                 }
-                else
-                {
-                    lblUsuario.Visible = false;
-                }
-            }
-            else
-            {
-                //si hay un problema en la base lo mostrara aca
-                lblUsuario.Visible = true;
-                lblUsuario.Text = Session["ProblemaDefinitivo"].ToString();
             }
             
         }
