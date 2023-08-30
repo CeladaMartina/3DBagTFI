@@ -38,8 +38,7 @@
         <br />
         <asp:DropDownList ID="ListCriticidiad" runat="server">
             <asp:ListItem>Alta</asp:ListItem>
-            <asp:ListItem>Baja</asp:ListItem>
-            <asp:ListItem>Media</asp:ListItem>
+            <asp:ListItem>Baja</asp:ListItem>            
             <asp:ListItem>Todos</asp:ListItem>
         </asp:DropDownList>
         <br />

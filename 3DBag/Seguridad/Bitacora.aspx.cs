@@ -66,7 +66,7 @@ namespace _3DBag
 
                 string criticidad = ListCriticidiad.SelectedValue;
                 string consultaCriticidad = "";
-                string consultaUsuario = "select IdUsuario from Usuario";
+                string consultaUsuario = "select IdUsuario from Usuario";                
 
                 switch (criticidad)
                 {
@@ -78,10 +78,16 @@ namespace _3DBag
                         break;
                 }
 
+                //fixear la consulta a la base de datos
                 GridBitacora.DataSource = Seguridad.ConsultarBitacora(dtDesde, dtHasta, consultaCriticidad, consultaUsuario);
                 GridBitacora.DataBind();
 
-                if (GridBitacora.Rows.Count == 0)
+                if (GridBitacora.DataSource == null)
+                {                    
+                    lblError.Visible = true;
+                    lblError.Text = "No hay valores para mostrar en la grilla.";
+                }               
+                else if (GridBitacora.Rows.Count == 0)
                 {
                     GridBitacora.DataSource = null;
                     lblError.Visible = true;
@@ -95,9 +101,9 @@ namespace _3DBag
             }
             catch(Exception ex)
             {
-                lblError.Visible = true;
-                lblError.Text = ex.ToString();
-                ListarBitacora();
+                //lblError.Visible = true;
+                //lblError.Text = ex.ToString();
+                //ListarBitacora();
             }
         }
         #endregion
