@@ -23,8 +23,10 @@ namespace _3DBag
             //Si el usuario se logueo, controla que mensaje de bienvenida dar
             if(Session["ProblemaDefinitivo"] != null)
             {
-                lblUsuario.Visible = true;
-                lblUsuario.Text = Session["ProblemaDefinitivo"].ToString();
+
+                containerHome.Visible = false;
+                containerError.Visible = true;
+                lblError.Text = Session["ProblemaDefinitivo"].ToString();
             }
             else
             {
@@ -33,6 +35,8 @@ namespace _3DBag
                     id = Convert.ToInt32(Request.QueryString["usuario"]);
                     if (id == 17)
                     {
+                        containerError.Visible = false;
+                        containerHome.Visible = true;
                         lblUsuario.Text = "Bienvenido WEBMASTER";
                     }
                     lblUsuario.Visible = true;
