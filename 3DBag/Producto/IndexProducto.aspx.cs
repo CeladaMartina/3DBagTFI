@@ -28,7 +28,7 @@ namespace _3DBag
             try
             {
                 gridProducto.DataSource = null;
-                gridProducto.DataSource = GestorArticulo.Listar();                
+                gridProducto.DataSource = GestorArticulo.Listar();
                 gridProducto.DataBind();
 
             }
@@ -41,8 +41,7 @@ namespace _3DBag
         #endregion
 
         #region boton
-
-        protected void gridProducto_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void gridProducto_RowCommand1(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "editar")
             {
@@ -57,7 +56,13 @@ namespace _3DBag
 
             }
         }
+        protected void btnAlta_Click(object sender, EventArgs e)
+        {
+            Response.Write("hola");
+        }
 
         #endregion
+
+
     }
 }
