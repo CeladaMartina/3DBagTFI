@@ -23,7 +23,7 @@ namespace _3DBag
                 //IdVenta = Convert.ToInt32(Request.QueryString["IdVenta"]);
                 IdVenta = Convert.ToInt32(Session["IdVenta"]);
 
-                if (IdVenta == -1)
+                if (IdVenta == 0)
                 {
                     gridDetalleVenta.Visible = false;
                     lblMensaje.Visible = true;
