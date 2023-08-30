@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,9 +11,7 @@ namespace _3DBag
     public partial class Bitacora : System.Web.UI.Page
     {
         private ContentPlaceHolder contentPlace;
-
-        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
-        //Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
+        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();        
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -38,7 +37,77 @@ namespace _3DBag
             }
 
         }
+
+        bool ChequearFallaTxt()
+        {
+            bool A = false;
+            if (string.IsNullOrEmpty(txtDesde.Text) || string.IsNullOrEmpty(txtHasta.Text))
+            {
+                A = true;
+            }
+            return A;
+        }
+
+        void Filtrar()
+        {
+            try
+            {
+                GridBitacora.DataSource = null;
+
+                string strDateDesde = txtDesde.Text;
+                string strDateHasta = txtHasta.Text;
+
+                DateTime dtDesde = DateTime.ParseExact(strDateDesde, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                dtDesde.ToString("yyyy-MM-dd");
+
+                DateTime dtHasta = DateTime.ParseExact(strDateHasta, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                dtHasta.ToString("yyyy-MM-dd");
+                dtHasta.AddHours(23).AddMinutes(59).AddSeconds(59);
+
+                string criticidad = ListCriticidiad.SelectedValue;
+                string consultaCriticidad = "";
+                string consultaUsuario = "select IdUsuario from Usuario";                
+
+                switch (criticidad)
+                {
+                    case "Todos":
+                        consultaCriticidad = "select distinct criticidad from Bitacora";
+                        break;
+                    default:
+                        consultaCriticidad = "select criticidad from Bitacora where criticidad = '" + criticidad + "'";
+                        break;
+                }
+
+                //fixear la consulta a la base de datos
+                GridBitacora.DataSource = Seguridad.ConsultarBitacora(dtDesde, dtHasta, consultaCriticidad, consultaUsuario);
+                GridBitacora.DataBind();
+
+                if (GridBitacora.DataSource == null)
+                {                    
+                    lblError.Visible = true;
+                    lblError.Text = "No hay valores para mostrar en la grilla.";
+                }               
+                else if (GridBitacora.Rows.Count == 0)
+                {
+                    GridBitacora.DataSource = null;
+                    lblError.Visible = true;
+                    lblError.Text = "No hay valores para mostrar en la grilla.";
+                }
+                else
+                {
+                    GridBitacora.DataBind();
+                }
+
+            }
+            catch(Exception ex)
+            {
+                //lblError.Visible = true;
+                //lblError.Text = ex.ToString();
+                //ListarBitacora();
+            }
+        }
         #endregion
+        #region botones paginacion
 
         //por medio de este metodo controlamos cuantas paginas hay para presentar
         protected void GridBitacora_DataBound(object sender, EventArgs e)
@@ -64,7 +133,8 @@ namespace _3DBag
             gv.PageIndex = e.NewPageIndex;
             ListarBitacora(); 
         }
-
+        #endregion
+        #region botones calendario
         protected void imageButtonDesde_Click(object sender, ImageClickEventArgs e)
         {
             if (Calendar1.Visible)
@@ -101,6 +171,43 @@ namespace _3DBag
         {
             txtHasta.Text = Calendar2.SelectedDate.ToString("dd/MM/yyyy");
             Calendar2.Visible = false;
+        }
+
+        #endregion
+
+        protected void bntFiltrar_Click(object sender, EventArgs e)
+        {
+            string strDateDesde = txtDesde.Text;
+            string strDateHasta = txtHasta.Text;
+
+            DateTime dtDesde = DateTime.ParseExact(strDateDesde, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            dtDesde.ToString("yyyy-MM-dd");
+
+            DateTime dtHasta = DateTime.ParseExact(strDateHasta, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            dtHasta.ToString("yyyy-MM-dd");
+            dtHasta.AddHours(23).AddMinutes(59).AddSeconds(59);
+
+            try
+            {
+                if (ChequearFallaTxt() == false)
+                {
+                    if (dtDesde >= dtHasta)
+                    {
+                        lblError.Visible = true;
+                        lblError.Text = "La fecha Hasta no puede ser menor que Desde.";
+                    }
+                    else
+                    {
+                        Filtrar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = "Error filtrando";
+                ListarBitacora();
+            }
         }
     }
 }
