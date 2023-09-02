@@ -13,7 +13,7 @@
         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="btnBackup" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" />
+        <asp:Button ID="btnBackup" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" SkinID="Realizar" />
         <br />
         <br />
         <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>    

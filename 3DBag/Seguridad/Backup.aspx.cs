@@ -16,9 +16,13 @@ namespace _3DBag
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+
+        //FolderBrowserDialog fbd = new FolderBrowserDialog();
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");            
+            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+            Traducir();
+            //ver que cuando termina de traducir, haga un refresh de pantalla para que se vea reflejado el cambio
         }
 
         #region metodos
@@ -31,14 +35,30 @@ namespace _3DBag
 
         public void openfolder()
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            DialogResult result = fbd.ShowDialog();
+            
+            //DialogResult result = fbd.ShowDialog();
 
             //fixear que el txt se llene con el path
-            txtRuta.Text = fbd.SelectedPath;
+            //txtRuta.Text = fbd.SelectedPath;
         }
 
         public void Generar(object sender, EventArgs e)
+        {
+            try
+            {
+                if(ChequearFallaTxt() == false)
+                {
+                    RealizarBackUp();
+                }
+            }catch(Exception ex)
+            {
+                lblResultado.Visible = true;
+                lblResultado.Text = "Complete los datos";
+                lblResultado.CssClass = "alert alert-warning";
+            }            
+        }
+
+        void RealizarBackUp()
         {
             Directory.CreateDirectory(txtRuta.Text);
             DirectorySecurity sec = Directory.GetAccessControl(txtRuta.Text);
@@ -48,7 +68,7 @@ namespace _3DBag
             Directory.SetAccessControl(txtRuta.Text, sec);
 
             string Backup = Seguridad.GenerarBackUp(txtNombre.Text, txtRuta.Text);
-            if(Backup == "ok")
+            if (Backup == "ok")
             {
                 lblResultado.Visible = true;
                 lblResultado.Text = "Backup realizado correctamente.";
@@ -61,18 +81,28 @@ namespace _3DBag
                 lblResultado.CssClass = "alert alert-warning";
             }
         }
-
+        bool ChequearFallaTxt()
+        {
+            bool A = false;
+            if (string.IsNullOrEmpty(txtRuta.Text) || string.IsNullOrEmpty(txtNombre.Text))
+            {
+                A = true;
+            }
+            return A;
+        }
         #endregion
 
         #region traduccion
-        public void Update (ISubject Subject)
+        public void Update(ISubject Subject)
         {
             lblRuta.Text = Subject.TraducirObserver(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
+            lblNombre.Text = Subject.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
         }
 
         public void Traducir()
-        {
-            //lblRuta.Text = CambiarIdioma
+        {            
+            lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblRuta.Text = SiteMaster.TraducirGlobal(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
         }
         #endregion
 

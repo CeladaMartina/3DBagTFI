@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio_BLL;
 
 namespace _3DBag
 {
     public partial class IndexProducto : System.Web.UI.Page
     {
         private ContentPlaceHolder contentPlace;
-        Negocio_BLL.Producto GestorArticulo = new Negocio_BLL.Producto();        
-        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+        Negocio_BLL.Producto GestorArticulo = new Negocio_BLL.Producto();      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -40,8 +39,8 @@ namespace _3DBag
         }
         #endregion
 
-        #region boton
-        protected void gridProducto_RowCommand1(object sender, GridViewCommandEventArgs e)
+        #region botones
+        protected void gridProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "editar")
             {
@@ -56,12 +55,10 @@ namespace _3DBag
 
             }
         }
-        protected void btnAlta_Click(object sender, EventArgs e)
-        {
-            Response.Write("hola");
-        }
-
         #endregion
+
+       
+
 
 
     }
