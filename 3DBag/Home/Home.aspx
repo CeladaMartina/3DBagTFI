@@ -24,10 +24,10 @@
                 <asp:Label ID="lblError" runat="server" CssClass="align-self-sm-end"></asp:Label>  
                 <br />
                 <br />
-                <asp:LinkButton ID="btnRestore" runat="server">Restore</asp:LinkButton>
+                <asp:LinkButton ID="btnRestore" runat="server" OnClick="hrefRestaurar">Restore</asp:LinkButton>
                 <br />
                 <br />
-                <asp:LinkButton ID="btnRecalcularDV" runat="server">Recalcular DV</asp:LinkButton>
+                <asp:LinkButton ID="btnRecalcularDV" runat="server" OnClick="hrefRecalcular">Recalcular DV</asp:LinkButton>
             </asp:TableCell>            
         </asp:TableRow>
     </asp:Table>

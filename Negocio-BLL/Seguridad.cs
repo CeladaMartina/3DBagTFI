@@ -85,6 +85,11 @@ namespace Negocio_BLL
             return Mapper.GenerarBackup(Nombre, Ruta);
         }
 
+        public string Restaurar(string ruta)
+        {
+            return Mapper.Restaurar(ruta);
+        }
+
         #endregion
 
         #region Bitacora

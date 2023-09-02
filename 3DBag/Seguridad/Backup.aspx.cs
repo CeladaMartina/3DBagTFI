@@ -17,7 +17,6 @@ namespace _3DBag
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
 
-        //FolderBrowserDialog fbd = new FolderBrowserDialog();
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -26,22 +25,7 @@ namespace _3DBag
         }
 
         #region metodos
-        protected void browse(object sender, EventArgs e)
-        {
-            Thread thdSyncRead = new Thread(new ThreadStart(openfolder));
-            thdSyncRead.SetApartmentState(ApartmentState.STA);
-            thdSyncRead.Start();
-        }
-
-        public void openfolder()
-        {
-            
-            //DialogResult result = fbd.ShowDialog();
-
-            //fixear que el txt se llene con el path
-            //txtRuta.Text = fbd.SelectedPath;
-        }
-
+        
         public void Generar(object sender, EventArgs e)
         {
             try
@@ -105,8 +89,5 @@ namespace _3DBag
             lblRuta.Text = SiteMaster.TraducirGlobal(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
         }
         #endregion
-
-        
-
     }
 }

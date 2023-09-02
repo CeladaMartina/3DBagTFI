@@ -51,5 +51,16 @@ namespace _3DBag
             Conexion.ConnectionString = GestorUsuario.GetConexion();
             Conexion.Open();
         }
+
+        protected void hrefRestaurar(object sender, EventArgs e)
+        {
+            Response.Redirect("../Seguridad/Restore.aspx");
+        }
+
+        protected void hrefRecalcular(object sender, EventArgs e)
+        {
+            //crear pagina
+            Response.Redirect("../Seguridad/Restore.aspx");
+        }
     }
 }

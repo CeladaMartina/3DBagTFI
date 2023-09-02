@@ -6,7 +6,7 @@
         <h1>BackUp</h1>
         <br />
         <asp:Label ID="lblRuta" runat="server" Text="Ruta" SkinID="Ruta"></asp:Label>        
-        <asp:TextBox ID="txtRuta" runat="server"></asp:TextBox><asp:Button ID="btnBuscar" runat="server"  OnClick="browse" CssClass="btn btn-outline-primary" Text="Examinar"></asp:Button>
+        <asp:TextBox ID="txtRuta" runat="server"></asp:TextBox>
         <br />
         <br />
         <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label> 
