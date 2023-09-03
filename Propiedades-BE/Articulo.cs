@@ -96,5 +96,13 @@ namespace Propiedades_BE
             get { return _baja; }
             set { _baja = value; }
         }
+
+        private int _dvh;
+
+        public int DVH
+        {
+            get { return _dvh; }
+            set { _dvh = value; }
+        }
     }
 }

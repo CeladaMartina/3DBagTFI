@@ -10,8 +10,7 @@ namespace _3DBag
     public partial class IndexProducto : System.Web.UI.Page
     {
         private ContentPlaceHolder contentPlace;
-        Negocio_BLL.Producto GestorArticulo = new Negocio_BLL.Producto();      
-
+        Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -21,13 +20,12 @@ namespace _3DBag
             }
         }
 
-        #region metodos
         void ListarProductos()
         {
             try
             {
                 gridProducto.DataSource = null;
-                gridProducto.DataSource = GestorArticulo.Listar();
+                gridProducto.DataSource = GestorProducto.Listar();
                 gridProducto.DataBind();
 
             }
@@ -37,9 +35,12 @@ namespace _3DBag
             }
 
         }
-        #endregion
 
-        #region botones
+        protected void btnAlta_Click(object sender, EventArgs e)
+        {
+            Response.Write("alta");
+        }
+
         protected void gridProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "editar")
@@ -50,16 +51,10 @@ namespace _3DBag
 
 
                 //enviamos el nick del usuario
-                Response.Redirect("Edit.aspx?usuario=" + v);
+                //Response.Redirect("Edit.aspx?usuario=" + v);
 
 
             }
         }
-        #endregion
-
-       
-
-
-
     }
 }
