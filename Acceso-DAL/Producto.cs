@@ -216,8 +216,7 @@ namespace Acceso_DAL
                 A.CodProd = int.Parse(R["CodProd"].ToString());
                 A.Nombre = (R["Nombre"].ToString());
                 A.Descripcion = (R["Descripcion"].ToString());
-                A.Material = (R["Material"].ToString());
-                A.Talle = int.Parse(R["Talle"].ToString());
+                A.Material = (R["Material"].ToString());                
                 A.NombreLocalidad = (R["NombreLocalidad"].ToString());
                 A.Stock = int.Parse(R["Stock"].ToString());
                 A.PUnit = decimal.Parse(R["PUnit"].ToString());

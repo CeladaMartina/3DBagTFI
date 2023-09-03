@@ -12,8 +12,7 @@
             <asp:BoundField DataField="CodProd" HeaderText="CodProd" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
-            <asp:BoundField DataField="Material" HeaderText="Material" />
-            <asp:BoundField DataField="Talle" HeaderText="Talle" />
+            <asp:BoundField DataField="Material" HeaderText="Material" />            
             <asp:BoundField DataField="Stock" HeaderText="Stock" />
             <asp:BoundField DataField="PUnit" HeaderText="PUnit" />
             <%--<asp:BoundField DataField="Imagen" HeaderText="Imagen" HtmlEncode="false"/>--%>
