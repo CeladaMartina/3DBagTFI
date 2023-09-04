@@ -11,6 +11,9 @@ namespace Negocio_BLL
     {
         Acceso_DAL.Producto Mapper = new Acceso_DAL.Producto();
         Propiedades_BE.Articulo ArticuloTemp = new Propiedades_BE.Articulo();
+        Acceso_DAL.Producto producto = new Acceso_DAL.Producto();
+        Acceso_DAL.Seguridad Seguridad = new Acceso_DAL.Seguridad();
+        long DV = 0;
 
         public void EjecutarConsulta(string Consulta)
         {
@@ -75,41 +78,50 @@ namespace Negocio_BLL
             return Lista;
         }
 
-        public int Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int IdLocalidad, int Talle, int Stock, decimal PUnit)
+        public int Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int IdLocalidad, int Stock, decimal PUnit, int DVH)
         {
             ArticuloTemp.IdArticulo = IdArticulo;
             ArticuloTemp.CodProd = CodProd;
             ArticuloTemp.Nombre = Nombre;
             ArticuloTemp.Descripcion = Descripcion;
             ArticuloTemp.Material = Material;
-            ArticuloTemp.IdLocalidad = IdLocalidad;
-            ArticuloTemp.Talle = Talle;
+            ArticuloTemp.IdLocalidad = IdLocalidad;            
             ArticuloTemp.Stock = Stock;
             ArticuloTemp.PUnit = PUnit;
-
-            return Mapper.Alta(ArticuloTemp);
+            ArticuloTemp.DVH = DVH;
+            
+            int i = Mapper.Alta(ArticuloTemp);
+            DV = Seguridad.CalcularDVH("select * from Articulo where IdArticulo= " + ArticuloTemp.IdArticulo + "", "Articulo");
+            producto.EjecutarConsulta("Update Articulo set DVH= '" + DV + "' where IdArticulo=" + ArticuloTemp.IdArticulo + "");
+            return i;
         }
 
-        public int Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int IdLocalidad, int Talle, int Stock, decimal PUnit)
+        public int Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int IdLocalidad, int Stock, decimal PUnit, int DVH)
         {
             ArticuloTemp.IdArticulo = IdArticulo;
             ArticuloTemp.CodProd = CodProd;
             ArticuloTemp.Nombre = Nombre;
             ArticuloTemp.Descripcion = Descripcion;
             ArticuloTemp.Material = Material;
-            ArticuloTemp.IdLocalidad = IdLocalidad;
-            ArticuloTemp.Talle = Talle;
+            ArticuloTemp.IdLocalidad = IdLocalidad;            
             ArticuloTemp.Stock = Stock;
             ArticuloTemp.PUnit = PUnit;
+            ArticuloTemp.DVH = DVH;
 
-            return Mapper.Modificar(ArticuloTemp);
+            int i = Mapper.Modificar(ArticuloTemp);
+            DV = Seguridad.CalcularDVH("select * from Articulo where IdArticulo= " + ArticuloTemp.IdArticulo + "", "Articulo");
+            producto.EjecutarConsulta("Update Articulo set DVH= '" + DV + "' where IdArticulo=" + ArticuloTemp.IdArticulo + "");
+            return i;
         }
 
         public int Baja(int IdArticulo)
         {
             ArticuloTemp.IdArticulo = IdArticulo;
-
             return Mapper.Baja(ArticuloTemp);
+
+            //tengo que agregar la tabla al dvv
+            //int i = Mapper.Baja(ArticuloTemp);
+            //Seguridad.ActualizarDVV()
         }
     }
 }

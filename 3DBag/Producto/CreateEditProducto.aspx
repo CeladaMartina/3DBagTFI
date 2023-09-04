@@ -34,7 +34,7 @@
         <asp:FileUpload ID="FileUploadImagen" runat="server" />
         <br />
         <br />
-        <asp:Button ID="btnFunction" runat="server" />
+        <asp:Button ID="btnFunction" runat="server" OnClick="btnFunction_Click" />
         <br />
         <br />
         <asp:LinkButton ID="LinkRedirect" runat="server" OnClick="LinkRedirect_Click"><< Volver a la lista</asp:LinkButton>

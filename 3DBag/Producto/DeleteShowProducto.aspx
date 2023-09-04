@@ -20,7 +20,7 @@
         <asp:Label ID="lblPUnit" runat="server">Precio: </asp:Label><asp:Label ID="lblPUnitResp" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Button ID="btnFuncion" runat="server"/>
+        <asp:Button ID="btnBorrar" runat="server" Text="Borrar" OnClick="btnBorrar_Click" />
         <br />
         <br />
         <asp:LinkButton ID="LinkRedireccion" runat="server" OnClick="LinkRedireccion_Click"><< Volver atrás</asp:LinkButton>

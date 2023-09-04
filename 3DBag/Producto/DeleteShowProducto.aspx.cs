@@ -12,7 +12,7 @@ namespace _3DBag
         int codProd;
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
-        Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
+        Negocio_BLL.Producto GestorArticulo = new Negocio_BLL.Producto();
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -25,15 +25,14 @@ namespace _3DBag
                 {
                     lblTitulo.Text = "Eliminar";
                     lblPregunta.Visible = true;
-                    lblPregunta.Text = "¿Estás seguro de que quieres eliminar esto?";
-                    btnFuncion.Text = "Eliminar";
+                    lblPregunta.Text = "¿Estás seguro de que quieres eliminar esto?";                    
                 }
                 else
                 {
                     //pantalla VER                     
                     lblTitulo.Text = "Detalles";
                     lblPregunta.Visible = false;
-                    btnFuncion.Visible = false;
+                    btnBorrar.Visible = false;
                 }
 
                 TraerProducto(codProd);
@@ -42,7 +41,7 @@ namespace _3DBag
 
         void TraerProducto(int codProd)
         {
-            List<Propiedades_BE.Articulo> producto = GestorProducto.consultarCodProd(codProd);
+            List<Propiedades_BE.Articulo> producto = GestorArticulo.consultarCodProd(codProd);
             lblCodProdResp.Text = producto[0].CodProd.ToString();
             lblNombreResp.Text = producto[0].Nombre;
             lblDescripcionResp.Text = producto[0].Descripcion;
@@ -51,9 +50,29 @@ namespace _3DBag
             lblPUnitResp.Text = producto[0].PUnit.ToString();
         }
 
+        void Baja(int IdArticulo)
+        {
+            GestorArticulo.Baja(IdArticulo);
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Baja Articulo", "Baja", 0);
+
+        }
+
         protected void LinkRedireccion_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Producto/IndexProducto.aspx");
         }
+
+        protected void btnBorrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Baja(GestorArticulo.SeleccionarIdArticulo(codProd));
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show(CambiarIdioma.TraducirGlobal("Error") ?? "Error");
+            }
+        }
+
     }
 }
