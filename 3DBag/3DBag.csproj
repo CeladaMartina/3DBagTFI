@@ -115,6 +115,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="Producto\DeleteShowProducto.aspx" />
     <Content Include="Producto\CreateEditProducto.aspx" />
     <Content Include="Producto\IndexProducto.aspx" />
     <Content Include="Images\calendar.png" />
@@ -187,6 +188,13 @@
     </Compile>
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\DeleteShowProducto.aspx.cs">
+      <DependentUpon>DeleteShowProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Producto\DeleteShowProducto.aspx.designer.cs">
+      <DependentUpon>DeleteShowProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Producto\CreateEditProducto.aspx.cs">
       <DependentUpon>CreateEditProducto.aspx</DependentUpon>

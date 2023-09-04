@@ -43,15 +43,25 @@ namespace _3DBag
 
         protected void gridProducto_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int crow;
+            crow = Convert.ToInt32(e.CommandArgument.ToString());
+            string v = gridProducto.Rows[crow].Cells[0].Text;
+
             if (e.CommandName == "editar")
             {
-                int crow;
-                crow = Convert.ToInt32(e.CommandArgument.ToString());
-                string v = gridProducto.Rows[crow].Cells[0].Text;
-
-
                 //enviamos el codProd del Prod
                 Response.Redirect("CreateEditProducto.aspx?producto=" + v);
+            }
+            //enviamos el codProd del Prod y la funcion a realizar
+            else if (e.CommandName == "select")
+            {
+
+                Response.Redirect("DeleteShowProducto.aspx?producto=" + v + "&Funcion=Ver");
+
+            }
+            else if(e.CommandName == "borrar")
+            {
+                Response.Redirect("DeleteShowProducto.aspx?producto=" + v + "&Funcion=borrar");
             }
         }
     }

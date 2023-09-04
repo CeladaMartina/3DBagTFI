@@ -48,7 +48,7 @@ namespace _3DBag
 
         protected void LinkRedirect_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/IndexProducto.aspx");
+            Response.Redirect("../Producto/IndexProducto.aspx");
         }
     }
 }
