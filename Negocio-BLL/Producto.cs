@@ -64,6 +64,11 @@ namespace Negocio_BLL
             return Lista;
         }
 
+        public List<Propiedades_BE.Articulo> consultarCodProd(int CodProd)
+        {
+            return Mapper.consultarCodProd(CodProd);
+        }
+
         public List<Propiedades_BE.Articulo> ListarTopProductos()
         {
             List<Propiedades_BE.Articulo> Lista = Mapper.ListarTopProductos();

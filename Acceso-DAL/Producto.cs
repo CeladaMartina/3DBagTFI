@@ -156,6 +156,35 @@ namespace Acceso_DAL
             return CodProd;
         }
 
+        public List<Propiedades_BE.Articulo> consultarCodProd(int CodProd)
+        {
+            List<Propiedades_BE.Articulo> codProdList = new List<Propiedades_BE.Articulo>();
+            Acceso.AbrirConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.Text;
+
+            cmd.CommandText = "select * from Articulo where CodProd = '" + CodProd + "'";
+
+            cmd.Connection = Acceso.Conexion;
+            SqlDataReader lector = cmd.ExecuteReader();
+
+            while (lector.Read())
+            {
+                Propiedades_BE.Articulo A = new Propiedades_BE.Articulo();
+                A.IdArticulo = int.Parse(lector["IdArticulo"].ToString());
+                A.CodProd = int.Parse(lector["CodProd"].ToString());
+                A.Nombre = lector["Nombre"].ToString();
+                A.Descripcion = lector["Descripcion"].ToString();
+                A.Material = lector["Material"].ToString();
+                A.Stock = int.Parse(lector["Stock"].ToString());
+                A.PUnit = decimal.Parse(lector["PUnit"].ToString());
+                codProdList.Add(A);
+            }
+            lector.Close();
+            Acceso.CerrarConexion();
+            return codProdList;
+        }
+
         public List<string> DescripcionProd()
         {
             List<string> DescProd = new List<string>();

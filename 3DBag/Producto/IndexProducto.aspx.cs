@@ -38,7 +38,7 @@ namespace _3DBag
 
         protected void btnAlta_Click(object sender, EventArgs e)
         {
-            Response.Write("alta");
+            Response.Redirect("CreateEditProducto.aspx");
         }
 
         protected void gridProducto_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -50,10 +50,8 @@ namespace _3DBag
                 string v = gridProducto.Rows[crow].Cells[0].Text;
 
 
-                //enviamos el nick del usuario
-                //Response.Redirect("Edit.aspx?usuario=" + v);
-
-
+                //enviamos el codProd del Prod
+                Response.Redirect("CreateEditProducto.aspx?producto=" + v);
             }
         }
     }
