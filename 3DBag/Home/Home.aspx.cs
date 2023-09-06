@@ -15,6 +15,7 @@ namespace _3DBag
         int id;
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
+        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -44,6 +45,8 @@ namespace _3DBag
             }
             
         }
+
+        #region metodos
         public void Conectar()
         {
             SqlConnection Conexion = new SqlConnection();
@@ -52,15 +55,35 @@ namespace _3DBag
             Conexion.Open();
         }
 
+        void RUsuario()
+        {
+            GestorUsuario.RecalcularDVH();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Usuario recalculado", "Alta", 0);
+        }
+
+        void RDVV()
+        {
+            Seguridad.RecalcularDVV();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Digitos DVV recalculados", "Alta", 0);     
+        }
+
+        #endregion
+        #region botones 
         protected void hrefRestaurar(object sender, EventArgs e)
         {
             Response.Redirect("../Seguridad/Restore.aspx");
+           
         }
 
         protected void hrefRecalcular(object sender, EventArgs e)
-        {
-            //crear pagina
-            Response.Redirect("../Seguridad/Restore.aspx");
+        {            
+            RUsuario(); //recalculamos la tabla Usuario
+            RDVV();     //recalculamos la tabla Digitos Verticales    
+            Session["ProblemaDefinitivo"] = null;
+            Propiedades_BE.SingletonLogin.GlobalIntegridad = 0;
+            Response.Redirect("../Home/Login.aspx");
         }
+
+        #endregion
     }
 }
