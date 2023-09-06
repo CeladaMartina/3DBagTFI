@@ -14,7 +14,8 @@
             <br />
             <asp:LinkButton ID="LinkGestionFamilias" runat="server" OnClick="LinkGestionFamilias_Click">Gestion de Familias.</asp:LinkButton>
             <br />
-            <a class="nav-link" href="../Home/Home.aspx">Gestion de Patentes.</a>
+             <br />
+            <asp:LinkButton ID="LinkGestionPatentes" runat="server" OnClick="LinkGestionPatentes_Click">Gestion de Patentes.</asp:LinkButton>            
         </div>
     </div>
 </asp:Content>
