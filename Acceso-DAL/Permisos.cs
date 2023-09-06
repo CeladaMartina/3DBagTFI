@@ -11,52 +11,295 @@ namespace Acceso_DAL
     {
         Acceso_BD Acceso = new Acceso_BD();
 
-        public void FillUserComponents(Propiedades_BE.Usuario u)
+        #region Seguridad
+
+        public Array GetAllPermisos()
         {
-            var cnn = new SqlConnection(Acceso.GlobalConexion);
-            cnn.Open();
+            return Enum.GetValues(typeof(Propiedades_BE.TipoPermiso));
+        }
 
-            var cmd2 = new SqlCommand();
-            cmd2.Connection = cnn;
-            cmd2.CommandText = "select p.* from usuarios_permisos up inner join Permiso p on up.id_permiso=p.id where id_usuario=@id;";
-            cmd2.Parameters.AddWithValue("id", u.IdUsuario);
-
-            var reader = cmd2.ExecuteReader();
-            u.Permisos.Clear();
-            while (reader.Read())
+        public Propiedades_BE.Componente GuardarComponente(Propiedades_BE.Componente p, bool esfamilia)
+        {
+            try
             {
-                var idp = reader.GetInt32(reader.GetOrdinal("id"));
-                var nombrep = reader.GetString(reader.GetOrdinal("nombre"));
+                var cnn = new SqlConnection(Acceso.GlobalConexion);
+                cnn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = cnn;
 
-                var permisop = String.Empty;
-                if (reader["permiso"] != DBNull.Value)
-                    permisop = reader.GetString(reader.GetOrdinal("permiso"));
+                var sql = "insert into Permiso (nombre,permiso) values (@nombre,@permiso);  SELECT ID AS LastID FROM Permiso WHERE ID = @@Identity;";
 
-                Propiedades_BE.Componente c1;
-                if (!String.IsNullOrEmpty(permisop))
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("nombre", p.Nombre));
+
+                if (esfamilia)
                 {
-                    c1 = new Propiedades_BE.Patente();
-                    c1.Id = idp;
-                    c1.Nombre = nombrep;
-                    c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permisop);
-                    u.Permisos.Add(c1);
+                    cmd.Parameters.Add(new SqlParameter("permiso", DBNull.Value)); //al ser null ver tipopermiso
                 }
                 else
                 {
-                    c1 = new Propiedades_BE.Familia();
-                    c1.Id = idp;
-                    c1.Nombre = nombrep;
-
-                    var f = GetAll("=" + idp);
-
-                    foreach (var familia in f)
-                    {
-                        c1.AgregarHijo(familia);
-                    }
-                    u.Permisos.Add(c1);
+                    cmd.Parameters.Add(new SqlParameter("permiso", p.Permiso.ToString()));
                 }
+
+                var id = cmd.ExecuteScalar();
+                p.Id = (int)id;
+                return p;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public Propiedades_BE.Componente EliminarComponente(Propiedades_BE.Componente p, bool esfamilia)
+        {
+            try
+            {
+                var cnn = new SqlConnection(Acceso.GlobalConexion);
+                cnn.Open();
+                var cmd1 = new SqlCommand();
+                cmd1.Connection = cnn;
+
+                var sql1 = "";
+                if (esfamilia)
+                {
+                    sql1 = "select ((select count(*) from permiso_permiso where id_permiso_hijo = (select id from Permiso where nombre = @nombre and permiso is NULL))+(select count(*) from usuarios_permisos where id_permiso = (select id from Permiso where nombre = @nombre and permiso is NULL)) )";
+                }
+                else
+                {
+                    sql1 = "select ((select count(*) from permiso_permiso where id_permiso_hijo = (select id from Permiso where nombre = @nombre and permiso = @permiso))+(select count(*) from usuarios_permisos where id_permiso = (select id from Permiso where nombre = @nombre and permiso = @permiso)) )";
+                }
+
+                cmd1.CommandText = sql1;
+                cmd1.Parameters.Add(new SqlParameter("nombre", p.Nombre));
+                if (esfamilia)
+                {
+                    BorrarRelacionesFamilia(p.Nombre);
+                }
+                else
+                {
+                    cmd1.Parameters.Add(new SqlParameter("permiso", p.Permiso.ToString()));
+                }
+
+                var tot = cmd1.ExecuteScalar();
+
+                if (int.Parse(tot.ToString()) == 0)
+                {
+                    var cmd = new SqlCommand();
+                    cmd.Connection = cnn;
+                    var sql = "";
+
+                    if (esfamilia)
+                        sql = "delete from Permiso where nombre = @nombre and permiso is NULL ;";
+                    else
+                        sql = "delete from Permiso where nombre = @nombre and permiso = @permiso ;";
+
+                    cmd.CommandText = sql;
+                    cmd.Parameters.Add(new SqlParameter("nombre", p.Nombre));
+
+
+                    if (esfamilia) { }
+                    else
+                    {
+                        cmd.Parameters.Add(new SqlParameter("permiso", p.Permiso.ToString()));
+                    }
+                    var id = cmd.ExecuteNonQuery();
+                    p.Id = (int)id;
+                    return p;
+                }
+                else
+                {
+                    int id = 0;
+                    p.Id = id;
+                    return p;
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public void GuardarFamilia(Propiedades_BE.Familia c)
+        {
+            try
+            {
+                var cnn = new SqlConnection(Acceso.GlobalConexion);
+                cnn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = cnn;
+
+                var sql = $@"delete from permiso_permiso where id_permiso_padre=@id;";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("id", c.Id));
+                cmd.ExecuteNonQuery();
+
+                foreach (var item in c.Hijos)
+                {
+                    cmd = new SqlCommand();
+                    cmd.Connection = cnn;
+
+                    sql = $@"insert into permiso_permiso (id_permiso_padre,id_permiso_hijo) values (@id_permiso_padre,@id_permiso_hijo) ";
+                    //sql = "if not exists (select * from permiso_permiso where (id_permiso_padre=@id_permiso_padre and id_permiso_hijo=@id_permiso_hijo) ) insert into permiso_permiso (id_permiso_padre,id_permiso_hijo) values (@id_permiso_padre,@id_permiso_hijo) ";
+
+                    cmd.CommandText = sql;
+                    cmd.Parameters.Add(new SqlParameter("id_permiso_padre", c.Id));
+                    cmd.Parameters.Add(new SqlParameter("id_permiso_hijo", item.Id));
+
+                    cmd.ExecuteNonQuery();
+                }
+                cnn.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void EliminarFamilia(string NomFam, string NomPat, bool isfam)
+        {
+            try
+            {
+                var cnn = new SqlConnection(Acceso.GlobalConexion);
+                cnn.Open();
+                var cmd = new SqlCommand();
+
+                cmd.Connection = cnn;
+                var sql = "";
+                if (isfam == true)
+                {
+                    sql = "delete from permiso_permiso where (id_permiso_padre=(select id from Permiso where nombre = '" + NomFam + "' and permiso IS NULL) and id_permiso_hijo=(select id from Permiso where nombre = '" + NomPat + "' and permiso IS NULL)) ";
+                }
+                else
+                {
+                    sql = "delete from permiso_permiso where (id_permiso_padre=(select id from Permiso where nombre = '" + NomFam + "' and permiso IS NULL) and id_permiso_hijo=(select id from Permiso where nombre = '" + NomPat + "' and permiso IS NOT NULL)) ";
+                }
+
+                cmd.CommandText = sql;
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception) { }
+        }
+
+        public void ModificarFamilia(string NomOriginal, string NomNuevo)
+        {
+            try
+            {
+                var cnn = new SqlConnection(Acceso.GlobalConexion);
+                cnn.Open();
+                var cmd = new SqlCommand();
+
+                cmd = new SqlCommand();
+                cmd.Connection = cnn;
+
+                var sql = "update Permiso set Nombre = @Nombre where Id = (Select Id from Permiso where Nombre = @NombreOriginal) and permiso is null";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("NombreOriginal", NomOriginal));
+                cmd.Parameters.Add(new SqlParameter("Nombre", NomNuevo));
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public IList<Propiedades_BE.Patente> GetAllPatentes()
+        {
+            var cnn = new SqlConnection(Acceso.GlobalConexion);
+            cnn.Open();
+            var cmd = new SqlCommand();
+            cmd.Connection = cnn;
+
+            var sql = "select * from Permiso p where p.permiso is not null;";
+
+            cmd.CommandText = sql;
+
+            var reader = cmd.ExecuteReader();
+
+            var lista = new List<Propiedades_BE.Patente>();
+
+            while (reader.Read())
+            {
+                var id = reader.GetInt32(reader.GetOrdinal("id"));
+                var nombre = reader.GetString(reader.GetOrdinal("nombre"));
+                var permiso = reader.GetString(reader.GetOrdinal("permiso"));
+
+                Propiedades_BE.Patente c = new Propiedades_BE.Patente();
+
+                c.Id = id;
+                c.Nombre = nombre;
+                c.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permiso);
+                lista.Add(c);
             }
             reader.Close();
+            cnn.Close();
+            return lista;
+        }
+
+        public IList<Propiedades_BE.Familia> GetAllFamilias()
+        {
+            var cnn = new SqlConnection(Acceso.GlobalConexion);
+            cnn.Open();
+            var cmd = new SqlCommand();
+            cmd.Connection = cnn;
+
+            var sql = "select * from Permiso p where p.permiso is  null;";
+
+            cmd.CommandText = sql;
+
+            var reader = cmd.ExecuteReader();
+
+            var lista = new List<Propiedades_BE.Familia>();
+
+            while (reader.Read())
+            {
+                var id = reader.GetInt32(reader.GetOrdinal("id"));
+                var nombre = reader.GetString(reader.GetOrdinal("nombre"));
+
+                Propiedades_BE.Familia c = new Propiedades_BE.Familia();
+
+                c.Id = id;
+                c.Nombre = nombre;
+                lista.Add(c);
+            }
+            reader.Close();
+            cnn.Close();
+            return lista;
+        }
+
+        public IList<Propiedades_BE.Familia> GetAllPermisosPermisos()
+        {
+            var cnn = new SqlConnection(Acceso.GlobalConexion);
+            cnn.Open();
+            var cmd = new SqlCommand();
+            cmd.Connection = cnn;
+
+            var sql = "select (select nombre from Permiso where id = pp.id_permiso_padre) as 'NomFam',p.nombre as 'NomPatente' from permiso_permiso pp inner join Permiso p on p.id = pp.id_permiso_hijo";
+
+            cmd.CommandText = sql;
+
+            var reader = cmd.ExecuteReader();
+
+            var lista = new List<Propiedades_BE.Familia>();
+
+            while (reader.Read())
+            {
+                var nombre_fam = reader.GetString(reader.GetOrdinal("NomFam"));
+                var nombre_pat = reader.GetString(reader.GetOrdinal("NomPatente"));
+
+                Propiedades_BE.Familia f = new Propiedades_BE.Familia();
+                f.Nombre = nombre_pat;
+                f.NombreFamilia = nombre_fam;
+                lista.Add(f);
+            }
+            reader.Close();
+            cnn.Close();
+            return lista;
         }
 
         public IList<Propiedades_BE.Componente> GetAll(string familia)
@@ -153,5 +396,170 @@ namespace Acceso_DAL
             }
             return component;
         }
+
+        public void FillUserComponents(Propiedades_BE.Usuario u)
+        {
+            var cnn = new SqlConnection(Acceso.GlobalConexion);
+            cnn.Open();
+
+            var cmd2 = new SqlCommand();
+            cmd2.Connection = cnn;
+            cmd2.CommandText = "select p.* from usuarios_permisos up inner join Permiso p on up.id_permiso=p.id where id_usuario=@id;";
+            cmd2.Parameters.AddWithValue("id", u.IdUsuario);
+
+            var reader = cmd2.ExecuteReader();
+            u.Permisos.Clear();
+            while (reader.Read())
+            {
+                var idp = reader.GetInt32(reader.GetOrdinal("id"));
+                var nombrep = reader.GetString(reader.GetOrdinal("nombre"));
+
+                var permisop = String.Empty;
+                if (reader["permiso"] != DBNull.Value)
+                    permisop = reader.GetString(reader.GetOrdinal("permiso"));
+
+                Propiedades_BE.Componente c1;
+                if (!String.IsNullOrEmpty(permisop))
+                {
+                    c1 = new Propiedades_BE.Patente();
+                    c1.Id = idp;
+                    c1.Nombre = nombrep;
+                    c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permisop);
+                    u.Permisos.Add(c1);
+                }
+                else
+                {
+                    c1 = new Propiedades_BE.Familia();
+                    c1.Id = idp;
+                    c1.Nombre = nombrep;
+
+                    var f = GetAll("=" + idp);
+
+                    foreach (var familia in f)
+                    {
+                        c1.AgregarHijo(familia);
+                    }
+                    u.Permisos.Add(c1);
+                }
+            }
+            reader.Close();
+        }
+
+        public void FillFamilyComponents(Propiedades_BE.Familia familia)
+        {
+            familia.VaciarHijo();
+            foreach (var item in GetAll("=" + familia.Id))
+            {
+                familia.AgregarHijo(item);
+            }
+        }
+
+        #endregion
+
+        #region VerificarBorrado
+
+        public int VerificarBorradoFam(string NombreFamilia)
+        {
+            int i = 0;
+            SqlConnection Connection = new SqlConnection(Acceso.GlobalConexion);
+            Connection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Connection;
+            cmd.CommandText = "select id_permiso_hijo from permiso_permiso where id_permiso_padre = (select Id from Permiso where nombre = '" + NombreFamilia + "' and permiso is NULL) and id_permiso_hijo not in (select id from Permiso where permiso is null) union select id_permiso_hijo from permiso_permiso where id_permiso_padre in (select id_permiso_hijo from permiso_permiso where id_permiso_padre = (select Id from Permiso where nombre = '" + NombreFamilia + "') and id_permiso_hijo in (select id from Permiso where permiso is null))";
+            var QueryPatentes = cmd.ExecuteReader();
+            List<int> ListaPatetentesFamilia = new List<int>();
+            while (QueryPatentes.Read())
+            {
+                ListaPatetentesFamilia.Add(QueryPatentes.GetInt32(0));
+            }
+            QueryPatentes.Close();
+            foreach (int Patente in ListaPatetentesFamilia)
+            {
+                cmd.CommandText = "select * from usuarios_permisos where (id_usuario in (select IdUsuario from Usuario where BajaLogica != 1 and Estado != 1) and id_permiso = " + Patente + ") or (id_permiso in (select id_permiso_padre from permiso_permiso where id_permiso_hijo = " + Patente + " and id_permiso_padre != (select Id from Permiso where nombre = '" + NombreFamilia + "' and permiso is NULL)) and id_usuario in (select IdUsuario from Usuario where BajaLogica != 1 and Estado != 1))";
+                var QueryVerificar = cmd.ExecuteReader();
+                if (QueryVerificar.Read())
+                {
+                    i += 0;
+                }
+                else
+                {
+                    i += 1;
+                }
+                QueryVerificar.Close();
+            }
+            Connection.Close();
+
+            return i;
+        }
+
+        public int VerificarBorradoPatFam(string NombreFamilia, string NombrePatente)
+        {
+            int i = 0;
+            SqlConnection Connection = new SqlConnection(Acceso.GlobalConexion);
+            Connection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Connection;
+            cmd.CommandText = "select * from usuarios_permisos where (id_usuario in (select IdUsuario from Usuario where BajaLogica != 1 and Estado != 1) and id_permiso = (select Id from Permiso where nombre = '" + NombrePatente + "' and permiso is not NULL)) or (id_permiso in (select id_permiso_padre from permiso_permiso where id_permiso_hijo = (select Id from Permiso where nombre = '" + NombrePatente + "' and permiso is not NULL) and id_permiso_padre != (select Id from Permiso where nombre = '" + NombreFamilia + "' and permiso is NULL)) and id_usuario in (select IdUsuario from Usuario where BajaLogica != 1 and Estado != 1))";
+            var QueryPatFam = cmd.ExecuteReader();
+            if (QueryPatFam.Read())
+            {
+                i = 0;
+            }
+            else
+            {
+                i = 1;
+            }
+            QueryPatFam.Close();
+            Connection.Close();
+            return i;
+        }
+
+        public void BorrarRelacionesFamilia(string NombreFamilia)
+        {
+            SqlConnection Connection = new SqlConnection(Acceso.GlobalConexion);
+            Connection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Connection;
+            cmd.CommandText = "delete from usuarios_permisos where id_permiso = (select id from Permiso where nombre = '" + NombreFamilia + "' and permiso IS NULL)";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "delete from permiso_permiso where id_permiso_padre = (select id from Permiso where nombre = '" + NombreFamilia + "' and permiso IS NULL)";
+            cmd.ExecuteNonQuery();
+            Connection.Close();
+        }
+
+        public int VerificarBorradoPatente(string NombrePatente)
+        {
+            int i = 0;
+            SqlConnection Connection = new SqlConnection(Acceso.GlobalConexion);
+            Connection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Connection;
+            cmd.CommandText = "select * from permiso_permiso where id_permiso_hijo = (select id from Permiso where permiso is not null and nombre = '" + NombrePatente + "')";
+            var QueryPatentes = cmd.ExecuteReader();
+            if (QueryPatentes.Read())
+            {
+                i = 0;
+            }
+            else
+            {
+                QueryPatentes.Close();
+                cmd.CommandText = "select * from usuarios_permisos where id_permiso = (select id from Permiso where permiso is not null and nombre = '" + NombrePatente + "')";
+                var QueryUsuarios = cmd.ExecuteReader();
+                if (QueryUsuarios.Read())
+                {
+                    i = 0;
+                }
+                else
+                {
+                    i = 1;
+                    QueryUsuarios.Close();
+                }
+                QueryUsuarios.Close();
+            }
+            QueryPatentes.Close();
+            Connection.Close();
+            return i;
+        }
+        #endregion
     }
 }

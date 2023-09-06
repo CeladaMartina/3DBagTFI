@@ -47,8 +47,12 @@ namespace _3DBag
             Response.Redirect("../Cliente/IndexCliente.aspx");
         }
 
+
         #endregion
 
-
+        protected void LinkGestionFamilias_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Usuarios/IndexFamilias.aspx");
+        }
     }
 }
