@@ -245,8 +245,7 @@ namespace Acceso_DAL
                 A.CodProd = int.Parse(R["CodProd"].ToString());
                 A.Nombre = (R["Nombre"].ToString());
                 A.Descripcion = (R["Descripcion"].ToString());
-                A.Material = (R["Material"].ToString());                
-                A.NombreLocalidad = (R["NombreLocalidad"].ToString());
+                A.Material = (R["Material"].ToString());               
                 A.Stock = int.Parse(R["Stock"].ToString());
                 A.PUnit = decimal.Parse(R["PUnit"].ToString());
                 //se convierte la imagen  de byte a base64 y despues a img
@@ -264,16 +263,15 @@ namespace Acceso_DAL
         public int Alta(Propiedades_BE.Articulo A)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[9];
-            P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);
-            P[1] = new SqlParameter("@IdLocalidad", A.IdLocalidad);
-            P[2] = new SqlParameter("@CodProd", A.CodProd);
-            P[3] = new SqlParameter("@Nombre", A.Nombre);
-            P[4] = new SqlParameter("@Descripcion", A.Descripcion);
-            P[5] = new SqlParameter("@Material", A.Material);            
-            P[6] = new SqlParameter("@Stock", A.Stock);
-            P[7] = new SqlParameter("@PUnit", A.PUnit);
-            P[8] = new SqlParameter("@DVH", A.DVH);
+            SqlParameter[] P = new SqlParameter[8];
+            P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);            
+            P[1] = new SqlParameter("@CodProd", A.CodProd);
+            P[2] = new SqlParameter("@Nombre", A.Nombre);
+            P[3] = new SqlParameter("@Descripcion", A.Descripcion);
+            P[4] = new SqlParameter("@Material", A.Material);            
+            P[5] = new SqlParameter("@Stock", A.Stock);
+            P[6] = new SqlParameter("@PUnit", A.PUnit);
+            P[7] = new SqlParameter("@DVH", A.DVH);
             fa = Acceso.Escribir("AltaArticulo", P);
             return fa;
         }
@@ -281,15 +279,14 @@ namespace Acceso_DAL
         public int Modificar(Propiedades_BE.Articulo A)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[8];
-            P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);
-            P[1] = new SqlParameter("@IdLocalidad", A.IdLocalidad);
-            P[2] = new SqlParameter("@CodProd", A.CodProd);
-            P[3] = new SqlParameter("@Nombre", A.Nombre);
-            P[4] = new SqlParameter("@Descripcion", A.Descripcion);
-            P[5] = new SqlParameter("@Material", A.Material);           
-            P[6] = new SqlParameter("@PUnit", A.PUnit);
-            P[7] = new SqlParameter("@DVH", A.DVH);
+            SqlParameter[] P = new SqlParameter[7];
+            P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);           
+            P[1] = new SqlParameter("@CodProd", A.CodProd);
+            P[2] = new SqlParameter("@Nombre", A.Nombre);
+            P[3] = new SqlParameter("@Descripcion", A.Descripcion);
+            P[4] = new SqlParameter("@Material", A.Material);           
+            P[5] = new SqlParameter("@PUnit", A.PUnit);
+            P[6] = new SqlParameter("@DVH", A.DVH);
             fa = Acceso.Escribir("ModificarArticulo", P);
             return fa;
         }

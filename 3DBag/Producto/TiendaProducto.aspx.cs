@@ -33,9 +33,9 @@ namespace _3DBag
         }
 
         #region metodos        
-        public void AltaVenta(int IdUsuario, DateTime Fecha)
+        public void AltaVenta(int IdUsuario, DateTime Fecha, int DVH)
         {
-            GestorVenta.Alta(IdUsuario, Fecha);
+            GestorVenta.Alta(IdUsuario, Fecha, DVH);
         }
 
         public void AltaDV(int IdVenta, int IdArticulo, string Descripcion, decimal PUnit, int Cantidad, int DVH)
@@ -89,7 +89,7 @@ namespace _3DBag
                 else
                 {
                     //si no existe, lo creamos
-                    AltaVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Today);
+                    AltaVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Today, 0);
                     //traemos el ultimo IDVenta realizado
                     IdVenta = GestorVenta.TraerIdVenta();
                     //creamos el alta detalle 

@@ -50,7 +50,7 @@ namespace _3DBag
         public void Conectar()
         {
             SqlConnection Conexion = new SqlConnection();
-            GestorUsuario.GenerarConexion("GASGANO", "Diploma_Empresa");
+            GestorUsuario.GenerarConexion("GASGANO", "TFI_Empresa");
             Conexion.ConnectionString = GestorUsuario.GetConexion();
             Conexion.Open();
         }

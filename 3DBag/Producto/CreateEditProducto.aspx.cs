@@ -58,16 +58,16 @@ namespace _3DBag
             return A;
         }
 
-        void Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int IdLocalidad, int Stock, decimal PUnit, int DVH)
+        void Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material,int Stock, decimal PUnit, int DVH)
         {
-            GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, IdLocalidad, Stock, PUnit, DVH);
+            GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH);
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Articulo", "Media", 0);
 
         }
 
-        void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int IdLocalidad, int Stock, decimal PUnit, int DVH)
+        void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
         {
-            GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, IdLocalidad, Stock, PUnit, DVH);
+            GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH);
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar Articulo", "Baja", 0);
 
         }
@@ -85,7 +85,7 @@ namespace _3DBag
                 {
                     try
                     {
-                        Modificar(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, 8, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);
+                        Modificar(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);
                     }
                     catch (Exception)
                     {
@@ -103,7 +103,7 @@ namespace _3DBag
                 {
                     try
                     {
-                        Alta(IdArticulo, int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, 8, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);
+                        Alta(IdArticulo, int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);
                     }
                     catch (Exception)
                     {

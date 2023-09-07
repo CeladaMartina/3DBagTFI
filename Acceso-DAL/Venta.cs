@@ -79,9 +79,10 @@ namespace Acceso_DAL
         public int Alta(Propiedades_BE.Venta Venta)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[2];
+            SqlParameter[] P = new SqlParameter[3];
             P[0] = new SqlParameter("@IdUsuario", Venta.IdUsuario);
             P[1] = new SqlParameter("@Fecha", Venta.Fecha.Ticks);
+            P[2] = new SqlParameter("@DVH", Venta.DVH);
             fa = Acceso.Escribir("AltaVenta", P);
             return fa;
         }
@@ -149,6 +150,16 @@ namespace Acceso_DAL
                 Acceso.CerrarConexion();
             }
             return IdVenta;
+        }
+
+        public void EjecutarConsulta(string Consulta)
+        {
+            Acceso.AbrirConexion();
+            SqlCommand Cmd = new SqlCommand();
+            Cmd.Connection = Acceso.Conexion;
+            Cmd.CommandText = Consulta;
+            Cmd.ExecuteNonQuery();
+            Acceso.CerrarConexion();
         }
     }
 }

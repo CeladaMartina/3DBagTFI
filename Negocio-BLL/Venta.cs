@@ -10,7 +10,9 @@ namespace Negocio_BLL
     {
         Acceso_DAL.Venta Mapper = new Acceso_DAL.Venta();
         Propiedades_BE.Venta VentaTemp = new Propiedades_BE.Venta();
-                
+        Acceso_DAL.Seguridad Seguridad = new Acceso_DAL.Seguridad();
+        long DV = 0;
+
         public List<Propiedades_BE.Venta> Listar()
         {
             return Mapper.Listar();
@@ -31,12 +33,19 @@ namespace Negocio_BLL
             return Mapper.TraerIdVenta();
         }
 
-        public int Alta(int IdUsuario, DateTime Fecha)
+        public int Alta(int IdUsuario, DateTime Fecha, int DVH)
         {
             VentaTemp.IdUsuario = IdUsuario;
             VentaTemp.Fecha = Fecha;
+            VentaTemp.DVH = DVH;
 
-            return Mapper.Alta(VentaTemp);
+            //return Mapper.Alta(VentaTemp);
+
+            int i = Mapper.Alta(VentaTemp);
+            DV = Seguridad.CalcularDVH("select * from Venta where IdVenta=(select TOP 1 IdVenta from Venta ORDER BY IdVenta DESC) ", "Venta");
+            Mapper.EjecutarConsulta("Update Venta set DVH= '" + DV + "' where IdVenta=" + VentaTemp.IdVenta + "");
+            Seguridad.ActualizarDVV("Venta", Seguridad.SumaDVV("Venta"));
+            return i;
         }
         public bool VerificarExistenciaMonto(int IdVenta)
         {

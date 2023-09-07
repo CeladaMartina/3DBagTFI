@@ -77,5 +77,12 @@ namespace Propiedades_BE
             get { return _monto; }
             set { _monto = value; }
         }
+        private int _dvh;
+
+        public int DVH
+        {
+            get { return _dvh; }
+            set { _dvh = value; }
+        }
     }
 }
