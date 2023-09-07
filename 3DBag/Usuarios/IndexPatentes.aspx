@@ -16,10 +16,7 @@
             </asp:ButtonField>
             <asp:ButtonField ButtonType="Button" CommandName="select" Text="Ver">
                 <ControlStyle BackColor="Lime" />
-            </asp:ButtonField>
-            <asp:ButtonField ButtonType="Button" CommandName="borrar" Text="Borrar">
-                <ControlStyle BackColor="#CC3300" />
-            </asp:ButtonField>
+            </asp:ButtonField>            
         </Columns>
     </asp:GridView>
 </asp:Content>

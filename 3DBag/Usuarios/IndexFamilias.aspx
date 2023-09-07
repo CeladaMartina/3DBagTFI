@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="gridFamilias" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover">
+    <asp:GridView ID="gridFamilias" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnRowCommand="gridFamilias_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
         <RowStyle BackColor="#f5f5f5" />
@@ -16,10 +16,7 @@
             </asp:ButtonField>
             <asp:ButtonField ButtonType="Button" CommandName="select" Text="Ver">
                 <ControlStyle BackColor="Lime" />
-            </asp:ButtonField>
-            <asp:ButtonField ButtonType="Button" CommandName="borrar" Text="Borrar">
-                <ControlStyle BackColor="#CC3300" />
-            </asp:ButtonField>
+            </asp:ButtonField>            
         </Columns>
     </asp:GridView>
 </asp:Content>

@@ -44,10 +44,8 @@ namespace _3DBag
                 crow = Convert.ToInt32(e.CommandArgument.ToString());
                 string v = gridUsuarios.Rows[crow].Cells[0].Text;
 
-
                 //enviamos el nick del usuario
                 Response.Redirect("Edit.aspx?usuario="+ v);
-
                 
             }
         }
