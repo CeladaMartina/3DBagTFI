@@ -46,9 +46,7 @@ namespace _3DBag
 
             if (e.CommandName == "select")
             {
-                //enviamos el id de la familia
-
-                
+                //enviamos los valores de la familia                
                 FamTemp = new Propiedades_BE.Familia();
                 FamTemp.Id = Convert.ToInt32(v);
                 FamTemp.Nombre = gridFamilias.Rows[crow].Cells[1].Text;

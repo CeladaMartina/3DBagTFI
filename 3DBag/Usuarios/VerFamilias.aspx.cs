@@ -22,6 +22,7 @@ namespace _3DBag
                 FamTemp = new Propiedades_BE.Familia();
                 FamTemp.Id = Convert.ToInt32(Request.QueryString["id"]);
                 FamTemp.Nombre = Request.QueryString["nombre"];
+                lblNombreResp.Text = FamTemp.Nombre;
                 MostrarFamiliaPermisos(true);
             }
         }
@@ -69,6 +70,11 @@ namespace _3DBag
                     LlenarTreeView(Hijo, item);
                 }
             }
+        }
+
+        protected void LinkRedireccion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Usuarios/IndexFamilias.aspx");
         }
     }
 }
