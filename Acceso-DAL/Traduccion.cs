@@ -53,7 +53,7 @@ namespace Acceso_DAL
             using (Acceso.Conexion)
             {
                 Acceso.AbrirConexion();
-                string query = "select Original from IdiomaOriginal";
+                string query = "select Original from IdiomaOrigin";
                 using (SqlCommand command = new SqlCommand(query, Acceso.Conexion))
                 {
                     using (SqlDataReader lector = command.ExecuteReader())
@@ -77,7 +77,7 @@ namespace Acceso_DAL
             using (Acceso.Conexion)
             {
                 Acceso.AbrirConexion();
-                string query = "select Original from IdiomaOriginal where Original like '%" + Original + "%'";
+                string query = "select Original from IdiomaOrigin where Original like '%" + Original + "%'";
                 using (SqlCommand command = new SqlCommand(query, Acceso.Conexion))
                 {
                     using (SqlDataReader lector = command.ExecuteReader())

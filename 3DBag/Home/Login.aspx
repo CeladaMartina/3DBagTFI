@@ -21,7 +21,8 @@
                         <div class="row">
                             <div class="col">
                                 <center>
-                                    <h3>Member Login</h3>
+                                    <%--<h3 >Member Login</h3>--%>
+                                    <asp:Label ID="MemberId" SkinID="Miembro" runat="server">Miembro</asp:Label>
                                 </center>
                             </div>
                         </div>
@@ -32,30 +33,32 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <label>Nick</label>
+                                <asp:Label ID="nickId" runat="server" SkinID="Nick">Nick</asp:Label>
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtNick" CssClass="form-control" runat="server" placeholder="Nick"></asp:TextBox>
+                                    <asp:TextBox ID="txtNick" CssClass="form-control" runat="server" placeholder="Nick" SkinID="Nick"></asp:TextBox>
                                 </div>
                                 <br />
-                                <label>Contraseña</label>
+                                <asp:Label ID="contraseñaId" runat="server" SkinID="Contraseña">Contraseña</asp:Label>
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtContraseña" CssClass="form-control" runat="server" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="txtContraseña" CssClass="form-control" runat="server" placeholder="Contraseña" TextMode="Password" SkinID="Contraseña"></asp:TextBox>
                                 </div>
                                 <br />
                                 <div class="form-group">
-                                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success btn-block btn-lg" OnClick="logguear" />
+                                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success btn-block btn-lg" OnClick="logguear" SkinID="Ingresar" />
                                     <%--<input class="btn btn-info btn-block btn-lg" id="button2" type="button" value="Registrarse" />--%>
                                 </div>                               
                                 <br />
                                 <div class="form-group">
-                                    <asp:LinkButton runat="server">¿Olvidaste tu contraseña?</asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="Olvidaste" SkinID="¿Olvidaste tu contraseña?" OnClick="Olvidaste_Click">¿Olvidaste tu contraseña?</asp:LinkButton>
                                 </div>                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <a href="../Home/Home.aspx"><< Volver al Inicio
-                </a>
+                <br />                
+                <%--<a href="../Home/Home.aspx"><< Volver al Inicio
+                </a>--%>
+                <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
                 <br />
             </div>
         </div>

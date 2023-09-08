@@ -10,7 +10,7 @@ using Propiedades_BE;
 
 namespace _3DBag
 {
-    public partial class Home : System.Web.UI.Page
+    public partial class Home : System.Web.UI.Page, IObserver
     {       
         int id;
         private ContentPlaceHolder contentPlace;
@@ -82,6 +82,11 @@ namespace _3DBag
             Session["ProblemaDefinitivo"] = null;
             Propiedades_BE.SingletonLogin.GlobalIntegridad = 0;
             Response.Redirect("../Home/Login.aspx");
+        }
+
+        public void Update(ISubject Sujeto)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

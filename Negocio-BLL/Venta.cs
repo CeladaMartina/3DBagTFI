@@ -43,7 +43,7 @@ namespace Negocio_BLL
 
             int i = Mapper.Alta(VentaTemp);
             DV = Seguridad.CalcularDVH("select * from Venta where IdVenta=(select TOP 1 IdVenta from Venta ORDER BY IdVenta DESC) ", "Venta");
-            Mapper.EjecutarConsulta("Update Venta set DVH= '" + DV + "' where IdVenta=" + VentaTemp.IdVenta + "");
+            Mapper.EjecutarConsulta("Update Venta set DVH= '" + DV + "' where IdVenta=(select TOP 1 IdVenta from Venta ORDER BY IdVenta DESC)");
             Seguridad.ActualizarDVV("Venta", Seguridad.SumaDVV("Venta"));
             return i;
         }

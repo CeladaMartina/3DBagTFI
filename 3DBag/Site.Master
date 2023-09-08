@@ -31,19 +31,23 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="../Home/Home.aspx">Home</a>
+                                <%--<a class="nav-link active" aria-current="page" href="../Home/Home.aspx">Home</a>--%>
+                                <asp:LinkButton ID="HomeId" SkinID="Home" runat="server" class="nav-link" OnClick="HomeId_Click">Home</asp:LinkButton>       
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="../Navegacion/Administracion.aspx">Administración</a>
+                                <%--<a class="nav-link" aria-current="page" href="../Navegacion/Administracion.aspx">Administración</a>--%>
+                                <asp:LinkButton ID="AdminId" SkinID="Administracion" runat="server" class="nav-link" OnClick="AdminId_Click">Administración</asp:LinkButton>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="../Navegacion/Seguridad.aspx">Seguridad</a>
+                                <%--<a class="nav-link" aria-current="page" href="../Navegacion/Seguridad.aspx">Seguridad</a>--%>
+                                <asp:LinkButton ID="SeguridadId" SkinID="Seguridad" runat="server" class="nav-link" OnClick="SeguridadId_Click">Comercial</asp:LinkButton>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="../Navegacion/Comercial.aspx">Comercial</a>
+                                <%--<a class="nav-link" aria-current="page" href="../Navegacion/Comercial.aspx">Comercial</a>--%>
+                                <asp:LinkButton ID="ComercialId" SkinID="Comercial" runat="server" class="nav-link" OnClick="ComercialId_Click">Seguridad</asp:LinkButton>
                             </li>
                             <li class="nav-item">
-                                <asp:LinkButton ID="RegistrarId" SkinID="Aceptar" runat="server" class="nav-link" OnClick="hrefRegistracion">Registración</asp:LinkButton>  
+                                <asp:LinkButton ID="RegistrarId" SkinID="Registracion" runat="server" class="nav-link" OnClick="hrefRegistracion">Registración</asp:LinkButton>  
                                 <br /> 
                             </li>
                             <li class="nav-item">

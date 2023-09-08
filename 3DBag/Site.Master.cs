@@ -107,16 +107,6 @@ namespace _3DBag
             }
         }
 
-        protected void hrefRegistracion(object sender, EventArgs e)
-        {
-            Response.Redirect("../Home/Registrarse.aspx");
-        }
-
-        protected void hrefLogin(object sender, EventArgs e)
-        {
-            Response.Redirect("../Home/Login.aspx");
-        }
-
         protected void onClickSalir(object sender, EventArgs e)
         {
             Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
@@ -142,14 +132,46 @@ namespace _3DBag
         #region metodos
         void Traducir()
         {
-            //buscamos los botones
-            LinkButton linkLogin = (LinkButton)form1.FindControl("LoginId");
-            LinkButton linkRegistro = (LinkButton)form1.FindControl("RegistrarId");
-
-            //los cambiamos de idioma, por medio del skinId, definira su traduccion
-            linkLogin.Text = TraducirGlobal(linkLogin.SkinID.ToString()) ?? linkLogin.SkinID.ToString();
-            linkRegistro.Text = TraducirGlobal(linkRegistro.SkinID.ToString()) ?? linkRegistro.SkinID.ToString();
+            HomeId.Text = TraducirGlobal(HomeId.SkinID.ToString()) ?? HomeId.SkinID.ToString();
+            AdminId.Text = TraducirGlobal(AdminId.SkinID.ToString()) ?? AdminId.SkinID.ToString();
+            SeguridadId.Text = TraducirGlobal(SeguridadId.SkinID.ToString()) ?? SeguridadId.SkinID.ToString();
+            ComercialId.Text = TraducirGlobal(ComercialId.SkinID.ToString()) ?? ComercialId.SkinID.ToString();
+            LoginId.Text = TraducirGlobal(LoginId.SkinID.ToString()) ?? LoginId.SkinID.ToString();
+            RegistrarId.Text = TraducirGlobal(RegistrarId.SkinID.ToString()) ?? RegistrarId.SkinID.ToString();
+            SalirId.Text = TraducirGlobal(SalirId.SkinID.ToString()) ?? SalirId.SkinID.ToString();
         }
+        #endregion
+
+        #region redirecciones
+        protected void hrefRegistracion(object sender, EventArgs e)
+        {
+            Response.Redirect("../Home/Registrarse.aspx");
+        }
+
+        protected void hrefLogin(object sender, EventArgs e)
+        {
+            Response.Redirect("../Home/Login.aspx");
+        }
+        protected void HomeId_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Home/Home.aspx");
+        }
+
+        protected void AdminId_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Administracion.aspx");
+        }
+
+        protected void SeguridadId_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Seguridad.aspx");
+        }
+
+        protected void ComercialId_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Comercial.aspx");
+        }
+
         #endregion
     }
 }

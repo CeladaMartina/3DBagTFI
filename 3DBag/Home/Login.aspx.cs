@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace _3DBag
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page, IObserver
     {
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
@@ -35,6 +35,7 @@ namespace _3DBag
         {
             if (!Page.IsPostBack)
             {
+                Traducir();
                 Session["UserSession"] = null;
             }
 
@@ -207,9 +208,41 @@ namespace _3DBag
             }
             return A;
         }
+
         #endregion
 
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            MemberId.Text = Sujeto.TraducirObserver(MemberId.SkinID.ToString()) ?? MemberId.SkinID.ToString();
+            nickId.Text = Sujeto.TraducirObserver(nickId.SkinID.ToString()) ?? nickId.SkinID.ToString();
+            contraseñaId.Text = Sujeto.TraducirObserver(contraseñaId.SkinID.ToString()) ?? contraseñaId.SkinID.ToString();
+            btnLogin.Text = Sujeto.TraducirObserver(btnLogin.SkinID.ToString()) ?? btnLogin.SkinID.ToString();
+            Olvidaste.Text = Sujeto.TraducirObserver(Olvidaste.SkinID.ToString()) ?? Olvidaste.SkinID.ToString();
+            linkVolver.Text = Sujeto.TraducirObserver(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            MemberId.Text = SiteMaster.TraducirGlobal(MemberId.SkinID.ToString()) ?? MemberId.SkinID.ToString();
+            nickId.Text = SiteMaster.TraducirGlobal(nickId.SkinID.ToString()) ?? nickId.SkinID.ToString();
+            contraseñaId.Text = SiteMaster.TraducirGlobal(contraseñaId.SkinID.ToString()) ?? contraseñaId.SkinID.ToString();
+            btnLogin.Text = SiteMaster.TraducirGlobal(btnLogin.SkinID.ToString()) ?? btnLogin.SkinID.ToString();
+            Olvidaste.Text = SiteMaster.TraducirGlobal(Olvidaste.SkinID.ToString()) ?? Olvidaste.SkinID.ToString();
+            linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
+        }
 
 
+        #endregion
+
+        protected void Olvidaste_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Home/Home.aspx");
+        }
     }
 }

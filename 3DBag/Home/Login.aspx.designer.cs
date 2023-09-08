@@ -24,6 +24,24 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
+        /// Control MemberId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MemberId;
+
+        /// <summary>
+        /// Control nickId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nickId;
+
+        /// <summary>
         /// Control txtNick.
         /// </summary>
         /// <remarks>
@@ -31,6 +49,15 @@ namespace _3DBag
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNick;
+
+        /// <summary>
+        /// Control contraseñaId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label contraseñaId;
 
         /// <summary>
         /// Control txtContraseña.
@@ -49,5 +76,23 @@ namespace _3DBag
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
+
+        /// <summary>
+        /// Control Olvidaste.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Olvidaste;
+
+        /// <summary>
+        /// Control linkVolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkVolver;
     }
 }
