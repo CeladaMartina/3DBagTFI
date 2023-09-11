@@ -15,8 +15,8 @@ namespace _3DBag
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
 
         List<IObserver> ListaObservadores = new List<IObserver>();
-
         public static Dictionary<string, string> DiccionarioTraduccionGlobal;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -46,15 +46,19 @@ namespace _3DBag
 
         public void NotificarCambio()
         {
+            //var numerator = Application.OpenForms.GetEnumerator();
+            
             var numerator = Application.GetEnumerator();
             while (numerator.MoveNext())
             {
                 if (numerator.Current is IObserver)
                 {
                     this.Attach((IObserver)numerator.Current);
+                    
                 }
-            }
+            }            
             ListaObservadores.ForEach(item => item.Update(this));
+            
         }
 
         public string TraducirObserver(string variable)

@@ -16,15 +16,28 @@ namespace _3DBag
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+        Propiedades_BE.Usuario usuario;
+
+        #region patron
+        PatternChain.Cliente cliente = new PatternChain.Cliente();
+        PatternChain.Empleado empleado = new PatternChain.Empleado();
+        PatternChain.Administrador administrador = new PatternChain.Administrador();
+        PatternChain.Webmaster webmaster = new PatternChain.Webmaster();
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             //Primero se conecta con la BD
             Conectar();
+
+            //patron chain
+            webmaster.AgregarSiguiente(administrador);
+            administrador.AgregarSiguiente(empleado);
+            empleado.AgregarSiguiente(cliente);                    
+
             //Si el usuario se logueo, controla que mensaje de bienvenida dar
             if(Session["ProblemaDefinitivo"] != null)
             {
-
                 containerHome.Visible = false;
                 containerError.Visible = true;
                 lblError.Text = Session["ProblemaDefinitivo"].ToString();
@@ -33,14 +46,10 @@ namespace _3DBag
             {
                 if((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
                 {
-                    id = Convert.ToInt32(Request.QueryString["usuario"]);
-                    if (id == 17)
-                    {
-                        containerError.Visible = false;
-                        containerHome.Visible = true;
-                        lblUsuario.Text = "Bienvenido WEBMASTER";
-                    }
+                    containerError.Visible = false;
+                    containerHome.Visible = true;
                     lblUsuario.Visible = true;
+                    lblUsuario.Text = webmaster.Procesar(usuario);                    
                 }
             }
             

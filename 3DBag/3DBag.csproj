@@ -192,6 +192,11 @@
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PatternChain\Administrador.cs" />
+    <Compile Include="PatternChain\Aprobador.cs" />
+    <Compile Include="PatternChain\Cliente.cs" />
+    <Compile Include="PatternChain\Empleado.cs" />
+    <Compile Include="PatternChain\Webmaster.cs" />
     <Compile Include="Usuarios\VerFamilias.aspx.cs">
       <DependentUpon>VerFamilias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
