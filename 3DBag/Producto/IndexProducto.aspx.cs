@@ -64,5 +64,12 @@ namespace _3DBag
                 Response.Redirect("DeleteShowProducto.aspx?producto=" + v + "&Funcion=borrar");
             }
         }
+
+        protected void btnWebService_Click(object sender, EventArgs e)
+        {
+            WebService webService = new WebService();
+            lblRespuesta.Text = webService.TopListaProd();
+            lblRespuesta.Visible = true;
+        }
     }
 }

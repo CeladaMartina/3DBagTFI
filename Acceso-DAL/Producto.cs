@@ -300,21 +300,43 @@ namespace Acceso_DAL
             return fa;
         }
 
-        public List<Propiedades_BE.Articulo> ListarTopProductos()
-        {
-            List<Propiedades_BE.Articulo> ListarTopProductos = new List<Propiedades_BE.Articulo>();
-            DataTable Tabla = Acceso.Leer("ListarTopProductos", null);
+        //public List<Propiedades_BE.Articulo> ListarTopProductos()
+        //{
+        //    List<Propiedades_BE.Articulo> ListarTopProductos = new List<Propiedades_BE.Articulo>();
+        //    DataTable Tabla = Acceso.Leer("ListarTopProductos", null);
 
-            foreach (DataRow R in Tabla.Rows)
+        //    foreach (DataRow R in Tabla.Rows)
+        //    {
+        //        Propiedades_BE.Articulo A = new Propiedades_BE.Articulo();
+        //        A.CodProd = int.Parse(R["CodProd"].ToString());
+        //        A.Nombre = R["Nombre"].ToString();
+        //        A.Descripcion = R["Descripcion"].ToString();
+        //        A.PUnit = decimal.Parse(R["Precio"].ToString());
+        //        ListarTopProductos.Add(A);
+        //    }
+        //    return ListarTopProductos;
+        //}
+
+        public string ListarTopProd()
+        {
+            string respuesta = "";
+            using (Acceso.Conexion)
             {
-                Propiedades_BE.Articulo A = new Propiedades_BE.Articulo();
-                A.CodProd = int.Parse(R["CodProd"].ToString());
-                A.Nombre = R["Nombre"].ToString();
-                A.Descripcion = R["Descripcion"].ToString();
-                A.PUnit = decimal.Parse(R["Precio"].ToString());
-                ListarTopProductos.Add(A);
+                Acceso.AbrirConexion();
+                string Query = "select top 2 CodProd, Nombre, Descripcion, sum(PUnit) as 'Precio' from Articulo group by CodProd, Nombre, Descripcion order by sum(PUnit) desc";
+                using (SqlCommand Cmd = new SqlCommand(Query, Acceso.Conexion))
+                {
+                    using (SqlDataReader Lector = Cmd.ExecuteReader())
+                    {
+                        while (Lector.Read())
+                        {
+                            respuesta = Lector.GetValue(0).ToString();
+                        }
+                    }
+                }
+                Acceso.CerrarConexion();
             }
-            return ListarTopProductos;
+            return respuesta;
         }
         #endregion
     }

@@ -29,4 +29,10 @@
             </asp:ButtonField>
         </Columns>
     </asp:GridView>
+    <br />
+    <br />
+    <asp:Button ID="btnWebService" runat="server" Text="Consultar Top Productos" OnClick="btnWebService_Click"/>
+    <br />
+    <br />
+    <asp:Label ID="lblRespuesta" runat="server" Visible="false"></asp:Label>
 </asp:Content>

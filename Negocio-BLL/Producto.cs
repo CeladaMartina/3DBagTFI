@@ -72,10 +72,15 @@ namespace Negocio_BLL
             return Mapper.consultarCodProd(CodProd);
         }
 
-        public List<Propiedades_BE.Articulo> ListarTopProductos()
+        //public List<Propiedades_BE.Articulo> ListarTopProductos()
+        //{
+        //    List<Propiedades_BE.Articulo> Lista = Mapper.ListarTopProductos();
+        //    return Lista;
+        //}
+
+        public string TopListaProd()
         {
-            List<Propiedades_BE.Articulo> Lista = Mapper.ListarTopProductos();
-            return Lista;
+            return Mapper.ListarTopProd();
         }
 
         public int Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
