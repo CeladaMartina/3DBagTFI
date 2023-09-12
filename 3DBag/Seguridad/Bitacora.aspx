@@ -36,11 +36,18 @@
             <WeekendDayStyle BackColor="#CCCCFF" />
         </asp:Calendar>
         <br />
+        <asp:Label ID="lblCriticidad" runat="server">Criticidad: </asp:Label>
         <asp:DropDownList ID="ListCriticidiad" runat="server">
             <asp:ListItem>Alta</asp:ListItem>
             <asp:ListItem>Baja</asp:ListItem>            
             <asp:ListItem>Todos</asp:ListItem>
         </asp:DropDownList>
+        <br />
+        <br />
+        <asp:Label ID="lblUsuario" runat="server">Usuarios: </asp:Label>
+        <asp:DropDownList ID="ListUsuarios" runat="server">            
+        </asp:DropDownList>
+        <br />
         <br />
         <asp:Button ID="bntFiltrar" runat="server" Text="Filtar" OnClick="bntFiltrar_Click" />
     </div>

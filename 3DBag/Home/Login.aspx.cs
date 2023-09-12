@@ -35,8 +35,15 @@ namespace _3DBag
         {
             if (!Page.IsPostBack)
             {
-                Traducir();
-                Session["UserSession"] = null;
+                
+                Session["UserSession"] = null;               
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                    //Update()
+                }
             }
 
             contentPlace = (ContentPlaceHolder)Master.FindControl("LoginUser");

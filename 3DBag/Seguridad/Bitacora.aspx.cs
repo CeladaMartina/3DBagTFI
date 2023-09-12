@@ -11,13 +11,16 @@ namespace _3DBag
     public partial class Bitacora : System.Web.UI.Page
     {
         private ContentPlaceHolder contentPlace;
-        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();        
+        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+        Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                CargarComboUsuario();
                 ListarBitacora();
+
             }
         }
 
@@ -36,6 +39,16 @@ namespace _3DBag
                 Response.Write(ex);
             }
 
+        }
+
+        void CargarComboUsuario()
+        {
+            ListUsuarios.Items.Add("Todos");
+            List<string> NickUsuarios = GestorUsuario.NickUsuario();
+            foreach (var NickUs in NickUsuarios)
+            {
+                ListUsuarios.Items.Add(NickUs.ToString());
+            }
         }
 
         bool ChequearFallaTxt()
@@ -65,8 +78,19 @@ namespace _3DBag
                 dtHasta.AddHours(23).AddMinutes(59).AddSeconds(59);
 
                 string criticidad = ListCriticidiad.SelectedValue;
+                string usuario = ListUsuarios.SelectedValue;
                 string consultaCriticidad = "";
-                string consultaUsuario = "select IdUsuario from Usuario";                
+                string consultaUsuario = "";
+
+                switch (usuario)
+                {                    
+                    case "Todos":
+                        consultaUsuario = "select IdUsuario from Usuario";
+                        break;
+                    default:
+                        consultaUsuario = "select IdUsuario from Usuario where Nick = '" + Seguridad.EncriptarAES(usuario) + "'";
+                        break;
+                }
 
                 switch (criticidad)
                 {
@@ -96,6 +120,7 @@ namespace _3DBag
                 else
                 {
                     GridBitacora.DataBind();
+                    lblError.Visible = false;
                 }
 
             }
@@ -175,6 +200,7 @@ namespace _3DBag
 
         #endregion
 
+        
         protected void bntFiltrar_Click(object sender, EventArgs e)
         {
             string strDateDesde = txtDesde.Text;

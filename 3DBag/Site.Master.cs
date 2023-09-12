@@ -33,6 +33,13 @@ namespace _3DBag
                     RegistrarId.Visible = false;
                     SalirId.Visible = true;
                 }
+
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownListIdioma.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                    //Update()
+                }
             }            
         }
 
@@ -95,6 +102,7 @@ namespace _3DBag
         //cuando se selecciona un valor del combo idioma, cambiara
         protected void ddlIdioma_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Session["IdiomaSelect"] = DropDownListIdioma.SelectedItem.ToString();
             try
             {
                 DiccionarioTraduccionGlobal = new Dictionary<string, string>();
