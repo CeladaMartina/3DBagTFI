@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Data;
 using System.Web.UI.WebControls;
 
 namespace _3DBag
@@ -13,6 +15,7 @@ namespace _3DBag
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -235,5 +238,50 @@ namespace _3DBag
                 ListarBitacora();
             }
         }
+
+        //exporta lo que vemos en la bitacora en xml.
+        protected void btnExportar_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            //recorre el header de la tabla
+            foreach(TableCell column in GridBitacora.HeaderRow.Cells)
+            {
+                dt.Columns.Add(column.Text);
+            }
+            
+            //recorre las filas de la tabla
+            foreach(GridViewRow row in GridBitacora.Rows)
+            {
+                dt.Rows.Add();
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    dt.Rows[row.RowIndex][i] = row.Cells[i].Text;
+                }               
+            }
+
+            //guardamos la tabla
+            ds.Tables.Add(dt);
+            // Specify the file path for the XML file
+            string filePath = Server.MapPath("~/GridBitacora.xml");
+
+            // Write the DataSet to an XML file
+            ds.WriteXml(filePath);
+
+            // Provide a download link for the generated XML file
+            Response.Clear();
+            Response.ContentType = "application/xml";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=GridBitacora.xml");
+            Response.TransmitFile(filePath);
+            Response.End();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //base.VerifyRenderingInServerForm(control);
+        }
+
+
     }
 }

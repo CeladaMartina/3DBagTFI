@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Negocio_BLL
 {
@@ -107,6 +113,41 @@ namespace Negocio_BLL
         public void CargarBitacora(int IdUsuario, DateTime Fecha, string Descripcion, string Criticidad, int DVH)
         {
             Mapper.CargarBitacora(IdUsuario, Fecha, Descripcion, Criticidad, DVH);
+        }
+
+        //dejar x ahora
+        public void SerializarBitacora(string Ruta, DataGridView GridViewBitacora)
+        {
+            List<Propiedades_BE.Bitacora> ListarBitacora = new List<Propiedades_BE.Bitacora>();
+
+            foreach (DataGridViewRow DataBitacora in GridViewBitacora.Rows)
+            {
+                Propiedades_BE.Bitacora Bi = new Propiedades_BE.Bitacora();
+                Bi.NickUs = DataBitacora.Cells["NickUs"].Value.ToString();
+                Bi.Descripcion = DataBitacora.Cells["Descripcion"].Value.ToString();
+                Bi.Fecha = new DateTime(long.Parse(DataBitacora.Cells["Fecha"].Value.ToString()));
+                Bi.Criticidad = DataBitacora.Cells["Criticidad"].Value.ToString();
+                ListarBitacora.Add(Bi);
+            }
+
+            Directory.CreateDirectory(Ruta);
+            DirectorySecurity sec = Directory.GetAccessControl(Ruta);
+
+            SecurityIdentifier everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+            sec.AddAccessRule(new FileSystemAccessRule(everyone, FileSystemRights.Modify | FileSystemRights.Synchronize, InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit, PropagationFlags.None, AccessControlType.Allow));
+            Directory.SetAccessControl(Ruta, sec);
+
+            XmlSerializer Formateador = new XmlSerializer(typeof(List<Propiedades_BE.Bitacora>));
+
+            string fecha_final = DateTime.Now.ToShortDateString().Replace("/", "-");
+            XmlTextWriter Stream = new XmlTextWriter("" + Ruta + "\\Serializacion_Bitacora_" + fecha_final + ".xml", Encoding.UTF8);
+
+            Stream.Formatting = Formatting.Indented;
+            Stream.Indentation = 1;
+            Stream.IndentChar = '\t';
+
+            Formateador.Serialize(Stream, ListarBitacora);
+            Stream.Close();
         }
 
         #endregion

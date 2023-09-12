@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <NickUs>admin</NickUs>
+    <Descripcion>Login</Descripcion>
+    <Fecha>2023-09-11 1:18:52 PM</Fecha>
+    <Criticidad>Baja</Criticidad>
+  </Table1>
+  <Table1>
+    <NickUs>admin</NickUs>
+    <Descripcion>Login</Descripcion>
+    <Fecha>2023-09-11 1:33:14 PM</Fecha>
+    <Criticidad>Baja</Criticidad>
+  </Table1>
+  <Table1>
+    <NickUs>admin</NickUs>
+    <Descripcion>Login</Descripcion>
+    <Fecha>2023-09-11 4:49:51 PM</Fecha>
+    <Criticidad>Baja</Criticidad>
+  </Table1>
+  <Table1>
+    <NickUs>admin</NickUs>
+    <Descripcion>LogOut</Descripcion>
+    <Fecha>2023-09-11 4:52:02 PM</Fecha>
+    <Criticidad>Baja</Criticidad>
+  </Table1>
+</NewDataSet>

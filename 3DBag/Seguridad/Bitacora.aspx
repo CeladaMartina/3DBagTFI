@@ -80,4 +80,7 @@
         <PagerSettings Mode="NextPrevious" Position="Bottom" />
     </asp:GridView>
     <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>
+    <br />
+    <br />
+    <asp:Button ID="btnExportar" runat="server" Text="Exportar" OnClick="btnExportar_Click"/>
 </asp:Content>
