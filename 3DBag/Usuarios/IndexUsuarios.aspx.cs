@@ -38,26 +38,23 @@ namespace _3DBag
 
         protected void gridUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if(e.CommandName == "editar")
-            {
-                int crow;
-                crow = Convert.ToInt32(e.CommandArgument.ToString());
-                string v = gridUsuarios.Rows[crow].Cells[0].Text;
+            int crow;
+            crow = Convert.ToInt32(e.CommandArgument.ToString());
+            string v = gridUsuarios.Rows[crow].Cells[0].Text;
 
+            if (e.CommandName == "editar")
+            {
                 //enviamos el nick del usuario
                 Response.Redirect("Edit.aspx?usuario="+ v);
                 
             }
+            else if (e.CommandName == "select")
+            {
+
+                Response.Redirect("DeleteShowUsuario.aspx?usuario=" + v + "&Funcion=Ver");
+
+            }
         }
-
-
-
-
-
-
-
-
-
 
     }
 }

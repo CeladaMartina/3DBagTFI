@@ -115,6 +115,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="Usuarios\DeleteShowUsuario.aspx" />
     <Content Include="Usuarios\VerFamilias.aspx" />
     <Content Include="Usuarios\IndexPatentes.aspx" />
     <Content Include="Usuarios\IndexFamilias.aspx" />
@@ -191,6 +192,13 @@
     </Compile>
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\DeleteShowUsuario.aspx.cs">
+      <DependentUpon>DeleteShowUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\DeleteShowUsuario.aspx.designer.cs">
+      <DependentUpon>DeleteShowUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="PatternChain\Administrador.cs" />
     <Compile Include="PatternChain\Aprobador.cs" />

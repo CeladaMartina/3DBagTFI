@@ -53,18 +53,23 @@ namespace _3DBag
 
         public void NotificarCambio()
         {
-            //var numerator = Application.OpenForms.GetEnumerator();
+            ////var numerator = Application.OpenForms.GetEnumerator();
             
-            var numerator = Application.GetEnumerator();
-            while (numerator.MoveNext())
-            {
-                if (numerator.Current is IObserver)
-                {
-                    this.Attach((IObserver)numerator.Current);
+            //var numerator = Application.GetEnumerator();
+            //while (numerator.MoveNext())
+            //{
+            //    if (numerator.Current is IObserver)
+            //    {
+            //        this.Attach((IObserver)numerator.Current);
                     
-                }
-            }            
-            ListaObservadores.ForEach(item => item.Update(this));
+            //    }
+            //}            
+            //ListaObservadores.ForEach(item => item.Update(this));
+
+            foreach(IObserver observer in ListaObservadores)
+            {
+                observer.Update(this);
+            }
             
         }
 

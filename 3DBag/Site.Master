@@ -54,7 +54,7 @@
                                 <asp:LinkButton ID="LoginId" SkinID="LogIn" runat="server" class="nav-link" OnClick="hrefLogin">Ingresar</asp:LinkButton>       
                                 <br />
                              <li class="nav-item">
-                                <asp:LinkButton ID="SalirId"  runat="server" class="nav-link" OnClick="onClickSalir">Salir</asp:LinkButton>                                
+                                <asp:LinkButton ID="SalirId" SkinID="Salir"  runat="server" class="nav-link" OnClick="onClickSalir">Salir</asp:LinkButton>                                
                             </li>
                         </ul>
                         <ul class="navbar-nav">

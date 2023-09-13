@@ -18,24 +18,33 @@ namespace _3DBag
 
         private static Login _instancia;
 
+        SiteMaster masterData;
+        ISubject SubjectData;
+
         private ContentPlaceHolder contentPlace;
 
         //singletonLogin
-        public static Login ObtenerInstancia()
-        {
-            if (_instancia == null)
-            {
-                _instancia = new Login();
-            }           
-            
-            return _instancia;
-        }
-      
+        //public static Login ObtenerInstancia()
+        //{
+        //    if (_instancia == null)
+        //    {
+        //        _instancia = new Login();
+        //    }
+
+        //    return _instancia;
+        //}
+
+        //public Login(ISubject subject)
+        //{
+        //    SubjectData = subject;
+        //    SubjectData.Attach(this);
+        //}
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)
             {
-                
                 Session["UserSession"] = null;               
                 if (Session["IdiomaSelect"] != null)
                 {
