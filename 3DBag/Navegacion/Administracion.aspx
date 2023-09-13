@@ -6,10 +6,7 @@
         <h1>Sistema de Administración</h1>
         <br />
         <div>
-            <asp:LinkButton ID="LinkGestionUsuarios" runat="server" OnClick="LinkGestionUsuarios_Click">Gestion de Usuarios.</asp:LinkButton>
-            <br />
-            <br />
-            <asp:LinkButton ID="LinkGestionClientes" runat="server" OnClick="LinkGestionClientes_Click">Gestion de Clientes.</asp:LinkButton>
+            <asp:LinkButton ID="LinkGestionUsuarios" runat="server" OnClick="LinkGestionUsuarios_Click">Gestion de Usuarios.</asp:LinkButton>            
             <br />
             <br />
             <asp:LinkButton ID="LinkGestionFamilias" runat="server" OnClick="LinkGestionFamilias_Click">Gestion de Familias.</asp:LinkButton>

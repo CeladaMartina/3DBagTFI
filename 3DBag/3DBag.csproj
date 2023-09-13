@@ -131,7 +131,7 @@
     <Content Include="Navegacion\Comercial.aspx" />
     <Content Include="Navegacion\Seguridad.aspx" />
     <Content Include="Seguridad\Backup.aspx" />
-    <Content Include="Usuarios\Edit.aspx" />
+    <Content Include="Usuarios\CreateEditUsuario.aspx" />
     <Content Include="Usuarios\IndexUsuarios.aspx" />
     <Content Include="Navegacion\Administracion.aspx" />
     <Content Include="Home\Registrarse.aspx" />
@@ -305,12 +305,12 @@
     <Compile Include="Seguridad\Backup.aspx.designer.cs">
       <DependentUpon>Backup.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
+    <Compile Include="Usuarios\CreateEditUsuario.aspx.cs">
+      <DependentUpon>CreateEditUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuarios\Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
+    <Compile Include="Usuarios\CreateEditUsuario.aspx.designer.cs">
+      <DependentUpon>CreateEditUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios\IndexUsuarios.aspx.cs">
       <DependentUpon>IndexUsuarios.aspx</DependentUpon>

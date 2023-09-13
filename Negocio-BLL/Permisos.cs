@@ -37,6 +37,12 @@ namespace Negocio_BLL
             _permisos.FillUserComponents(u);
         }
 
+        //devuelve en forma de lista los permisos del usuario, para ponerlo en  listbox
+        public IList<Propiedades_BE.Componente> FillUserComponentsList(Propiedades_BE.Usuario u)
+        {
+            return _permisos.FillUserComponentsList(u);
+        }
+
         public void FillFamilyComponents(Propiedades_BE.Familia familia)
         {
             _permisos.FillFamilyComponents(familia);

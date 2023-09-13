@@ -31,8 +31,7 @@ namespace _3DBag
         {
             if (Propiedades_BE.SingletonLogin.GetInstance.IsLoggedIn())
             {
-                LinkGestionUsuarios.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario));
-                LinkGestionClientes.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Cliente));
+                LinkGestionUsuarios.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario));                
             }
         }
 
@@ -40,11 +39,6 @@ namespace _3DBag
         protected void LinkGestionUsuarios_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Usuarios/IndexUsuarios.aspx");
-        }
-
-        protected void LinkGestionClientes_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("../Cliente/IndexCliente.aspx");
         }
 
         protected void LinkGestionFamilias_Click(object sender, EventArgs e)

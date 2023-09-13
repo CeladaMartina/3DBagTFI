@@ -397,6 +397,8 @@ namespace Acceso_DAL
             return component;
         }
 
+
+        //devuelve en forma de metodo los permisos del usuario, para ponerlo en treeview
         public void FillUserComponents(Propiedades_BE.Usuario u)
         {
             var cnn = new SqlConnection(Acceso.GlobalConexion);
@@ -445,6 +447,61 @@ namespace Acceso_DAL
             reader.Close();
         }
 
+
+        //devuelve en forma de lista los permisos del usuario, para ponerlo en  listbox
+        public IList<Propiedades_BE.Componente> FillUserComponentsList(Propiedades_BE.Usuario u)
+        {
+            var cnn = new SqlConnection(Acceso.GlobalConexion);
+            cnn.Open();
+
+            var cmd2 = new SqlCommand();
+            cmd2.Connection = cnn;
+            cmd2.CommandText = "select p.* from usuarios_permisos up inner join Permiso p on up.id_permiso=p.id where id_usuario=@id;";
+            cmd2.Parameters.AddWithValue("id", u.IdUsuario);
+
+            var reader = cmd2.ExecuteReader();
+            var lista = new List<Propiedades_BE.Componente>();
+
+            u.Permisos.Clear();
+            while (reader.Read())
+            {
+                var idp = reader.GetInt32(reader.GetOrdinal("id"));
+                var nombrep = reader.GetString(reader.GetOrdinal("nombre"));
+
+                var permisop = String.Empty;
+                if (reader["permiso"] != DBNull.Value)
+                    permisop = reader.GetString(reader.GetOrdinal("permiso"));
+
+                Propiedades_BE.Componente c1;
+                if (!String.IsNullOrEmpty(permisop))
+                {
+                    c1 = new Propiedades_BE.Patente();
+                    c1.Id = idp;
+                    c1.Nombre = nombrep;
+                    c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permisop);
+                    u.Permisos.Add(c1);
+                    lista.Add(c1);
+                }
+                else
+                {
+                    c1 = new Propiedades_BE.Familia();
+                    c1.Id = idp;
+                    c1.Nombre = nombrep;
+
+                    var f = GetAll("=" + idp);
+
+                    foreach (var familia in f)
+                    {
+                        c1.AgregarHijo(familia);
+                    }
+                    u.Permisos.Add(c1);
+                    lista.Add(c1);
+                }               
+
+            }
+            reader.Close();
+            return lista;
+        }
         public void FillFamilyComponents(Propiedades_BE.Familia familia)
         {
             familia.VaciarHijo();

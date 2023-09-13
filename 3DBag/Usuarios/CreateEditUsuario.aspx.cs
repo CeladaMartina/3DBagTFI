@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -7,13 +8,15 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Edit : System.Web.UI.Page
+    public partial class CreateEditUsuario : System.Web.UI.Page
     {        
         string nick;
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+        Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
 
+        Propiedades_BE.Usuario TempUs;
         protected void Page_Load(object sender, EventArgs e)
         {            
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -21,6 +24,7 @@ namespace _3DBag
             {
                 nick = Request.QueryString["usuario"];
                 TraerUsuario();
+                TraerPermisos();
             }           
         }
 
@@ -31,15 +35,15 @@ namespace _3DBag
             txtNick.Text = usuario[0].Nick;
             txtNombre.Text = usuario[0].Nombre;
             txtMail.Text = usuario[0].Mail;
-            txtIdUsuario.Text =  usuario[0].IdUsuario.ToString();
+            //txtIdUsuario.Text =  usuario[0].IdUsuario.ToString();
 
             if (Convert.ToString(usuario[0].Estado) == "true")
             {
-                rdbBloqueado.Checked = true;
+                //rdbBloqueado.Checked = true;
             }
             else
             {
-                rdbBloqueado.Checked = false;
+                //rdbBloqueado.Checked = false;
             }
 
             if(Convert.ToString(usuario[0].IdIdioma) == "1")
@@ -53,11 +57,11 @@ namespace _3DBag
 
             if (Convert.ToString(usuario[0].BajaLogica) == "true")
             {
-                rdbBaja.Checked = true;
+                //rdbBaja.Checked = true;
             }
             else
             {
-                rdbBaja.Checked = false;
+                //rdbBaja.Checked = false;
             }
         }
 
@@ -65,9 +69,9 @@ namespace _3DBag
         {
             if (GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, DVH) == 0)
             {
-                lblResultado.Visible = true;
-                lblResultado.CssClass = "label-success";
-                lblResultado.Text = "Usuario modificado correctamente";
+                //lblResultado.Visible = true;
+                //lblResultado.CssClass = "label-success";
+                //lblResultado.Text = "Usuario modificado correctamente";
             }
 
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar usuario", "Alta", 0);           
@@ -81,10 +85,20 @@ namespace _3DBag
             txtNombre.Text = "";
             txtMail.Text = "";
             txtIdioma.Text = "";
-            rdbBaja.Checked = false;
-            rdbBloqueado.Checked = false;
+            //rdbBaja.Checked = false;
+            //rdbBloqueado.Checked = false;
 
         }
+
+        void TraerPermisos()
+        {
+            TempUs = new Propiedades_BE.Usuario();
+            TempUs.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
+            TempUs.Nombre = txtNombre.Text;
+            PAsig.DataSource = GestorPermisos.FillUserComponentsList(TempUs);
+            PAsig.DataBind();            
+        }
+
         #endregion
         #region boton
         public void ModificarUsuario(object sender, EventArgs e)
@@ -98,8 +112,8 @@ namespace _3DBag
                 //MessageBox.Show(CambiarIdioma.TraducirGlobal("Error") ?? "Error");
             }
         }
-
         #endregion
+
 
 
     }
