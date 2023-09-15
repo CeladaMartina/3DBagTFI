@@ -105,15 +105,6 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.TextBox txtIdioma;
 
         /// <summary>
-        /// Control lblPAsig.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPAsig;
-
-        /// <summary>
         /// Control PAsig.
         /// </summary>
         /// <remarks>
@@ -123,13 +114,22 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.ListBox PAsig;
 
         /// <summary>
-        /// Control lblPNoAsig.
+        /// Control btnAsignar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPNoAsig;
+        protected global::System.Web.UI.WebControls.Button btnAsignar;
+
+        /// <summary>
+        /// Control btnNoAsignar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNoAsignar;
 
         /// <summary>
         /// Control PNoAsig.

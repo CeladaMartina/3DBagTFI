@@ -24,16 +24,29 @@
         <asp:TextBox ID="txtIdioma" runat="server" Width="170px"></asp:TextBox>   
         <br />
         <br />
-        <asp:Label ID="lblPAsig" runat="server" Text="Patentes Asignadas"></asp:Label>
-        <br />
-        <asp:ListBox ID="PAsig" runat="server" Height="315px" Width="208px">
-        </asp:ListBox>
-        <asp:Label ID="lblPNoAsig" runat="server" Text="Patentes No Asignadas"></asp:Label>        
-        <asp:ListBox ID="PNoAsig" runat="server" Height="315px" Width="208px">
-        </asp:ListBox>
-        <br />
-        <br />
-        <asp:Button ID="btnFunction" runat="server"/>
+        <asp:Table runat="server">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell>Patentes Asignadas</asp:TableHeaderCell>
+                <asp:TableHeaderCell>-</asp:TableHeaderCell>
+                <asp:TableHeaderCell>-</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Patentes No Asignadas</asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:ListBox ID="PAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Button ID="btnAsignar" runat="server" Text="<-- Asignar"/>                     
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Button ID="btnNoAsignar" runat="server" Text="Desasignar -->"/>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:ListBox ID="PNoAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+        <asp:Button ID="btnFunction" runat="server" Text="Editar"/>
         <br />
         <br />
         <asp:LinkButton ID="LinkRedirect" runat="server"><< Volver a la lista</asp:LinkButton>

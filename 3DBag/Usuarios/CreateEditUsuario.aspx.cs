@@ -24,7 +24,7 @@ namespace _3DBag
             {
                 nick = Request.QueryString["usuario"];
                 TraerUsuario();
-                TraerPermisos();
+                TraerPermisos();               
             }           
         }
 
@@ -90,15 +90,40 @@ namespace _3DBag
 
         }
 
+        //trae permisos de ese usuario
         void TraerPermisos()
         {
             TempUs = new Propiedades_BE.Usuario();
             TempUs.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
             TempUs.Nombre = txtNombre.Text;
-            PAsig.DataSource = GestorPermisos.FillUserComponentsList(TempUs);
-            PAsig.DataBind();            
-        }
 
+            //trae las patentes de ese usuario especifico
+            PAsig.DataSource = GestorPermisos.FillUserComponentsList(TempUs);
+            PAsig.DataBind();
+
+            //trae todas las patentes
+            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
+            PNoAsig.DataBind();
+
+            //elimina de patente no asignada, permisos que ya tiene el usuario
+            foreach(ListItem item1 in PAsig.Items)
+            {
+                bool existe = false;
+
+                foreach(ListItem item2 in PNoAsig.Items)
+                {
+                    if(item1.Text == item2.Text && item1.Value == item2.Value)
+                    {
+                        existe = true;
+                        PNoAsig.Items.Remove(item2);
+                        break;
+                    }
+                }                
+            }
+            
+
+        }
+        
         #endregion
         #region boton
         public void ModificarUsuario(object sender, EventArgs e)
