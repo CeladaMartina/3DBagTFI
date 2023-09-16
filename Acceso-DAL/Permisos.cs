@@ -481,8 +481,38 @@ namespace Acceso_DAL
                     c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permisop);
                     u.Permisos.Add(c1);
                     lista.Add(c1);
-                }
-                else
+                }               
+            }
+            reader.Close();
+            return lista;
+        }
+
+        //devuelve en forma de lista las familias del usuario, para ponerlo en  listbox
+        public IList<Propiedades_BE.Componente> FillUserComponentsListF(Propiedades_BE.Usuario u)
+        {
+            var cnn = new SqlConnection(Acceso.GlobalConexion);
+            cnn.Open();
+
+            var cmd2 = new SqlCommand();
+            cmd2.Connection = cnn;
+            cmd2.CommandText = "select p.* from usuarios_permisos up inner join Permiso p on up.id_permiso=p.id where id_usuario=@id;";
+            cmd2.Parameters.AddWithValue("id", u.IdUsuario);
+
+            var reader = cmd2.ExecuteReader();
+            var lista = new List<Propiedades_BE.Componente>();
+
+            u.Permisos.Clear();
+            while (reader.Read())
+            {
+                var idp = reader.GetInt32(reader.GetOrdinal("id"));
+                var nombrep = reader.GetString(reader.GetOrdinal("nombre"));
+
+                var permisop = String.Empty;
+                if (reader["permiso"] != DBNull.Value)
+                    permisop = reader.GetString(reader.GetOrdinal("permiso"));
+
+                Propiedades_BE.Componente c1;
+                if (String.IsNullOrEmpty(permisop))
                 {
                     c1 = new Propiedades_BE.Familia();
                     c1.Id = idp;
@@ -496,8 +526,7 @@ namespace Acceso_DAL
                     }
                     u.Permisos.Add(c1);
                     lista.Add(c1);
-                }               
-
+                }
             }
             reader.Close();
             return lista;
@@ -511,7 +540,7 @@ namespace Acceso_DAL
             }
         }
 
-        //prueba
+        //trae el id del permiso
         public int traerIDPermiso(string nombre)
         {
             int Id = 0;

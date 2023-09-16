@@ -97,6 +97,14 @@ namespace _3DBag
             TempUs.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
             TempUs.Nombre = txtNombre.Text;
 
+            //trae las familias de ese usuario especifico
+            FAsig.DataSource = GestorPermisos.FillUserComponentsListF(TempUs);
+            FAsig.DataBind();
+
+            //trae todas las familias
+            FNoAsig.DataSource = GestorPermisos.GetAllFamilias();
+            FNoAsig.DataBind();
+
             //trae las patentes de ese usuario especifico
             PAsig.DataSource = GestorPermisos.FillUserComponentsList(TempUs);
             PAsig.DataBind();
@@ -119,6 +127,22 @@ namespace _3DBag
                         break;
                     }
                 }                
+            }
+
+            //elimina de familia No asignada, familias que ya tiene el usuario
+            foreach (ListItem item1 in FAsig.Items)
+            {
+                bool existe = false;
+
+                foreach (ListItem item2 in FNoAsig.Items)
+                {
+                    if (item1.Text == item2.Text && item1.Value == item2.Value)
+                    {
+                        existe = true;
+                        FNoAsig.Items.Remove(item2);
+                        break;
+                    }
+                }
             }
         }
         
@@ -147,15 +171,29 @@ namespace _3DBag
 
         void AgregarFamilia()
         {
+            TempUs = new Propiedades_BE.Usuario();
 
+            if (TempUs != null)
+            {
+                string ope = FNoAsig.SelectedItem.Value;
+                FAsig.Items.Add(ope);
+                FNoAsig.Items.Remove(ope);
+            }
         }
 
         void QuitarFamilia()
         {
+            TempUs = new Propiedades_BE.Usuario();
 
+            if (TempUs != null)
+            {
+                string ope = FAsig.SelectedItem.Value;
+                FNoAsig.Items.Add(ope);
+                FAsig.Items.Remove(ope);
+            }
         }
 
-        void Guardar()
+        void GuardarPatente()
         {            
             Propiedades_BE.Componente c1;
             
@@ -177,7 +215,30 @@ namespace _3DBag
             GestorUsuario.GuardarPermisos(TempUs);
 
         }
+
+        void GuardarFamilia()
+        {
+            Propiedades_BE.Componente c1;
+
+            TempUs = new Propiedades_BE.Usuario();
+            TempUs.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
+
+            foreach (ListItem item in FAsig.Items)
+            {
+                c1 = new Propiedades_BE.Familia();
+                string permiso = item.Text.Replace(" ", "_");
+                c1.Nombre = item.ToString();
+
+                c1.Id = GestorPermisos.traerIDPermiso(c1.Nombre);
+                c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permiso);
+
+                TempUs.Permisos.Add(c1);
+            }
+
+            GestorUsuario.GuardarPermisos(TempUs);
+        }
         #endregion
+
         #region boton
         public void ModificarUsuario(object sender, EventArgs e)
         {
@@ -220,15 +281,45 @@ namespace _3DBag
         {
             try
             {
-                Guardar();
+                GuardarPatente();
+                GuardarFamilia();
             }
             catch (Exception)
             {
                 //error
             }
         }
-        #endregion
 
+        protected void LinkRedirect_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Usuarios/IndexUsuarios.aspx");
+        }
+
+        protected void btnAsignarF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AgregarFamilia();
+            }
+            catch (Exception)
+            {
+                //error
+            }
+        }
+
+        protected void btnNoAsignarF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                QuitarFamilia();
+            }
+            catch (Exception)
+            {
+                //error
+            }
+        }
+
+        #endregion
 
     }
 }

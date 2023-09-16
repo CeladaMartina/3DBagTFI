@@ -24,7 +24,33 @@
         <asp:TextBox ID="txtIdioma" runat="server" Width="170px"></asp:TextBox>   
         <br />
         <br />
-        <asp:Table runat="server">
+        <label id="lblFamilias" runat="server">Familias:</label>
+        <asp:Table ID="Familias" runat="server">
+            <asp:TableHeaderRow>
+                <asp:TableHeaderCell>Familias Asignadas</asp:TableHeaderCell>
+                <asp:TableHeaderCell>-</asp:TableHeaderCell>
+                <asp:TableHeaderCell>-</asp:TableHeaderCell>
+                <asp:TableHeaderCell>Familias No Asignadas</asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:ListBox ID="FAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Button ID="btnAsignarF" runat="server" Text="<-- Asignar" OnClick="btnAsignarF_Click"/>                     
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Button ID="btnNoAsignarF" runat="server" Text="Desasignar -->" OnClick="btnNoAsignarF_Click"/>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:ListBox ID="FNoAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+        <br />
+        <br />
+        <label id="lblPatentes" runat="server">Patentes:</label>
+        <asp:Table ID="Permisos" runat="server">
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell>Patentes Asignadas</asp:TableHeaderCell>
                 <asp:TableHeaderCell>-</asp:TableHeaderCell>
@@ -46,9 +72,11 @@
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
+        <br />
+        <br />
         <asp:Button ID="btnFunction" runat="server" Text="Editar" OnClick="btnFunction_Click"/>
         <br />
         <br />
-        <asp:LinkButton ID="LinkRedirect" runat="server"><< Volver a la lista</asp:LinkButton>
+        <asp:LinkButton ID="LinkRedirect" runat="server" OnClick="LinkRedirect_Click"><< Volver a la lista</asp:LinkButton>
     </div>
 </asp:Content>
