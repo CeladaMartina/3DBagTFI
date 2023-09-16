@@ -14,9 +14,9 @@ namespace _3DBag
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
-        Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
+        Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();        
 
-        Propiedades_BE.Usuario TempUs;
+        Propiedades_BE.Usuario TempUs;        
         protected void Page_Load(object sender, EventArgs e)
         {            
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -62,7 +62,7 @@ namespace _3DBag
             else
             {
                 //rdbBaja.Checked = false;
-            }
+            }           
         }
 
         void Modificar(int Id, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
@@ -120,10 +120,63 @@ namespace _3DBag
                     }
                 }                
             }
-            
-
         }
         
+        void AgregarPatente()
+        {
+            TempUs = new Propiedades_BE.Usuario();
+            if (TempUs != null)
+            {
+                string ope = PNoAsig.SelectedItem.Value;
+                PAsig.Items.Add(ope);
+                PNoAsig.Items.Remove(ope);
+            }
+        }
+
+        void QuitarPatente()
+        {
+            TempUs = new Propiedades_BE.Usuario();
+
+            if (TempUs != null)
+            {
+                string ope = PAsig.SelectedItem.Value;
+                PNoAsig.Items.Add(ope);
+                PAsig.Items.Remove(ope);
+            }
+        }
+
+        void AgregarFamilia()
+        {
+
+        }
+
+        void QuitarFamilia()
+        {
+
+        }
+
+        void Guardar()
+        {            
+            Propiedades_BE.Componente c1;
+            
+            TempUs = new Propiedades_BE.Usuario();            
+            TempUs.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
+
+            foreach (ListItem item in PAsig.Items)
+            {
+                c1 = new Propiedades_BE.Patente();
+                string permiso = item.Text.Replace(" ", "_");                
+                c1.Nombre = item.ToString();                
+
+                c1.Id = GestorPermisos.traerIDPermiso(c1.Nombre);
+                c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permiso);
+
+                TempUs.Permisos.Add(c1);
+            }
+            
+            GestorUsuario.GuardarPermisos(TempUs);
+
+        }
         #endregion
         #region boton
         public void ModificarUsuario(object sender, EventArgs e)
@@ -137,8 +190,44 @@ namespace _3DBag
                 //MessageBox.Show(CambiarIdioma.TraducirGlobal("Error") ?? "Error");
             }
         }
-        #endregion
 
+        protected void btnAsignar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AgregarPatente();
+            }
+            catch (Exception)
+            {
+                //error
+            }
+
+        }
+
+        protected void btnNoAsignar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                QuitarPatente();
+            }
+            catch (Exception)
+            {
+                //error
+            }
+        }
+
+        protected void btnFunction_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Guardar();
+            }
+            catch (Exception)
+            {
+                //error
+            }
+        }
+        #endregion
 
 
     }

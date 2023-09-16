@@ -105,6 +105,11 @@ namespace Negocio_BLL
             return _permisos.GetAllPatentes();
         }
 
+
+        public int traerIDPermiso(string nombre)
+        {
+            return _permisos.traerIDPermiso(nombre);
+        }
         #endregion
 
         #region Verificar Borrado

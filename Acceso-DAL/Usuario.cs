@@ -465,5 +465,41 @@ namespace Acceso_DAL
             fa = Acceso.Escribir("BajaUsuario", P);
             return fa;
         }
+
+        public void GuardarPermiso(Propiedades_BE.Usuario U)
+        {
+            try
+            {
+                var cnn = new SqlConnection(Acceso.GlobalConexion);
+                cnn.Open();
+                var cmd = new SqlCommand();
+                cmd.Connection = cnn;
+
+                var sql = $@"delete from usuarios_permisos where id_usuario=@id;";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("id", U.IdUsuario));
+                cmd.ExecuteNonQuery();
+
+                foreach (var item in U.Permisos)
+                {
+                    cmd = new SqlCommand();
+                    cmd.Connection = cnn;
+
+                    sql = $@"insert into usuarios_permisos (id_usuario,id_permiso) values (@id_usuario,@id_permiso) ";
+
+                    cmd.CommandText = sql;
+                    cmd.Parameters.Add(new SqlParameter("id_usuario", U.IdUsuario));
+                    cmd.Parameters.Add(new SqlParameter("id_permiso", item.Id));
+
+                    cmd.ExecuteNonQuery();
+                }
+                cnn.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

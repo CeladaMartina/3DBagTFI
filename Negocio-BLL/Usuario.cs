@@ -105,7 +105,10 @@ namespace Negocio_BLL
             Propiedades_BE.SingletonLogin.GetInstance.LogOut();
         }
 
-
+        public void GuardarPermisos(Propiedades_BE.Usuario u)
+        {
+            Mapper.GuardarPermiso(u);
+        }
         #endregion
 
         #region ABML Usuario

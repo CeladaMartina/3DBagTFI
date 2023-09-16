@@ -313,13 +313,13 @@ namespace Acceso_DAL
         }
         public string GenerarBackup(string Nombre, string ruta)
         {
-            string query = "USE MASTER; BACKUP DATABASE [BD3dbag] TO DISK = N'" + ruta + "\\" + Nombre + ".bak' WITH NOFORMAT,NOINIT,NAME = N'" + Nombre + "', SKIP,NOREWIND,NOUNLOAD,STATS = 10 ";
+            string query = "USE MASTER; BACKUP DATABASE [TFI_Empresa] TO DISK = N'" + ruta + "\\" + Nombre + ".bak' WITH NOFORMAT,NOINIT,NAME = N'" + Nombre + "', SKIP,NOREWIND,NOUNLOAD,STATS = 10 ";
             return Ejecutar(query, null);
         }
 
         public string Restaurar(string ruta)
         {
-            string query = "USE MASTER; ALTER DATABASE [Diploma_Empresa] SET Single_User WITH Rollback Immediate; RESTORE DATABASE [Diploma_Empresa] FROM  DISK = '" + ruta + "' WITH REPLACE; ALTER DATABASE [Diploma_Empresa] SET Multi_User";
+            string query = "USE MASTER; ALTER DATABASE [TFI_Empresa] SET Single_User WITH Rollback Immediate; RESTORE DATABASE [TFI_Empresa] FROM  DISK = '" + ruta + "' WITH REPLACE; ALTER DATABASE [TFI_Empresa] SET Multi_User";
             return Ejecutar(query, null);
         }
         #endregion

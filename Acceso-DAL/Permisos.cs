@@ -215,7 +215,7 @@ namespace Acceso_DAL
             var cmd = new SqlCommand();
             cmd.Connection = cnn;
 
-            var sql = "select nombre, permiso from Permiso p where p.permiso is not null;";
+            var sql = "select * from Permiso p where p.permiso is not null;";
 
             cmd.CommandText = sql;
 
@@ -225,13 +225,13 @@ namespace Acceso_DAL
 
             while (reader.Read())
             {
-                //var id = reader.GetInt32(reader.GetOrdinal("id"));
+                var id = reader.GetInt32(reader.GetOrdinal("id"));
                 var nombre = reader.GetString(reader.GetOrdinal("nombre"));
                 var permiso = reader.GetString(reader.GetOrdinal("permiso"));
 
                 Propiedades_BE.Patente c = new Propiedades_BE.Patente();
 
-                //c.Id = id;
+                c.Id = id;
                 c.Nombre = nombre;
                 c.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permiso);
                 lista.Add(c);
@@ -509,6 +509,34 @@ namespace Acceso_DAL
             {
                 familia.AgregarHijo(item);
             }
+        }
+
+        //prueba
+        public int traerIDPermiso(string nombre)
+        {
+            int Id = 0;
+            using (Acceso.Conexion)
+            {
+                Acceso.AbrirConexion();
+                string QueryID = " select id from Permiso where nombre='" + nombre + "'";
+
+                using (SqlCommand Cmd = new SqlCommand(QueryID, Acceso.Conexion))
+                {
+                    using (SqlDataReader Lector = Cmd.ExecuteReader())
+                    {
+                        if (Lector.Read())
+                        {
+                            Id = Lector.GetInt32(0);
+                        }
+                        else
+                        {
+                            Id = -1;
+                        }
+                    }
+                }
+                Acceso.CerrarConexion();
+            }
+            return Id;
         }
 
         #endregion

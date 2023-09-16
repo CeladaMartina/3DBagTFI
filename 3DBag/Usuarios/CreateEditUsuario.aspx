@@ -36,17 +36,17 @@
                     <asp:ListBox ID="PAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:Button ID="btnAsignar" runat="server" Text="<-- Asignar"/>                     
+                    <asp:Button ID="btnAsignar" runat="server" Text="<-- Asignar" OnClick="btnAsignar_Click"/>                     
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:Button ID="btnNoAsignar" runat="server" Text="Desasignar -->"/>
+                    <asp:Button ID="btnNoAsignar" runat="server" Text="Desasignar -->" OnClick="btnNoAsignar_Click"/>
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:ListBox ID="PNoAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-        <asp:Button ID="btnFunction" runat="server" Text="Editar"/>
+        <asp:Button ID="btnFunction" runat="server" Text="Editar" OnClick="btnFunction_Click"/>
         <br />
         <br />
         <asp:LinkButton ID="LinkRedirect" runat="server"><< Volver a la lista</asp:LinkButton>
