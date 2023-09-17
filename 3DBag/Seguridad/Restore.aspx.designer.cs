@@ -15,13 +15,22 @@ namespace _3DBag
     {
 
         /// <summary>
-        /// Control lblNombre.
+        /// Control divGeneral.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombre;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGeneral;
+
+        /// <summary>
+        /// Control lblRuta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRuta;
 
         /// <summary>
         /// Control txtRuta.
@@ -33,13 +42,13 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.TextBox txtRuta;
 
         /// <summary>
-        /// Control btnRestaurar.
+        /// Control btnRestore.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRestaurar;
+        protected global::System.Web.UI.WebControls.Button btnRestore;
 
         /// <summary>
         /// Control lblResultado.
@@ -49,5 +58,14 @@ namespace _3DBag
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblResultado;
+
+        /// <summary>
+        /// Control lblPermiso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPermiso;
     }
 }

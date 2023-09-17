@@ -229,8 +229,7 @@ namespace _3DBag
                 string permiso = item.Text.Replace(" ", "_");
                 c1.Nombre = item.ToString();
 
-                c1.Id = GestorPermisos.traerIDPermiso(c1.Nombre);
-                c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permiso);
+                c1.Id = GestorPermisos.traerIDPermiso(c1.Nombre);               
 
                 TempUs.Permisos.Add(c1);
             }
@@ -244,7 +243,7 @@ namespace _3DBag
         {
             try
             {
-                Modificar(Convert.ToInt32(txtIdUsuario.Text), txtNick.Text, txtNombre.Text, txtMail.Text, false, 0, txtIdioma.Text, 0);
+                
             }
             catch (Exception)
             {
@@ -283,6 +282,7 @@ namespace _3DBag
             {
                 GuardarPatente();
                 GuardarFamilia();
+                Modificar(Convert.ToInt32(txtIdUsuario.Text), txtNick.Text, txtNombre.Text, txtMail.Text, false, 0, txtIdioma.Text, 0);
             }
             catch (Exception)
             {

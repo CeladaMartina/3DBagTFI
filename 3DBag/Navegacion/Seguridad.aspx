@@ -12,7 +12,8 @@
             <asp:LinkButton ID="LinkBitacora" runat="server" OnClick="LinkBitacora_Click">Bitacora.</asp:LinkButton>
             <br />
             <br />
-            <asp:LinkButton ID="LinkRestore" runat="server" OnClick="LinkRestore_Click">Restore.</asp:LinkButton>           
+            <asp:LinkButton ID="LinkRestore" runat="server" OnClick="LinkRestore_Click">Restore.</asp:LinkButton>
+            <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>
         </div>
     </div>
 </asp:Content>

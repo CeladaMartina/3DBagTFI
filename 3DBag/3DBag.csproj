@@ -115,6 +115,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="Seguridad\Restore.aspx" />
     <Content Include="Usuarios\DeleteShowUsuario.aspx" />
     <Content Include="Usuarios\VerFamilias.aspx" />
     <Content Include="Usuarios\IndexPatentes.aspx" />
@@ -123,7 +124,6 @@
     <Content Include="Producto\CreateEditProducto.aspx" />
     <Content Include="Producto\IndexProducto.aspx" />
     <Content Include="Images\calendar.png" />
-    <Content Include="Seguridad\Restore.aspx" />
     <Content Include="Seguridad\Bitacora.aspx" />
     <Content Include="Venta\Pedido.aspx" />
     <Content Include="Producto\TiendaProducto.aspx" />
@@ -193,6 +193,13 @@
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Seguridad\Restore.aspx.cs">
+      <DependentUpon>Restore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seguridad\Restore.aspx.designer.cs">
+      <DependentUpon>Restore.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios\DeleteShowUsuario.aspx.cs">
       <DependentUpon>DeleteShowUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -246,13 +253,6 @@
     </Compile>
     <Compile Include="Producto\IndexProducto.aspx.designer.cs">
       <DependentUpon>IndexProducto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Seguridad\Restore.aspx.cs">
-      <DependentUpon>Restore.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Seguridad\Restore.aspx.designer.cs">
-      <DependentUpon>Restore.aspx</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\Bitacora.aspx.cs">
       <DependentUpon>Bitacora.aspx</DependentUpon>

@@ -231,9 +231,9 @@ namespace Acceso_DAL
                 P[3] = new SqlParameter("@Criticidad", Criticidad);
                 P[4] = new SqlParameter("@DVH", DVH);
                 Acceso.Escribir("CargarBitacora", P);
-                //long DV = CalcularDVH("select * from Bitacora where Fecha = '" + Fecha + "'", "Bitacora");
-                //EjecutarConsulta("Update Bitacora set DVH = " + DV + "where Fecha = '" + Fecha + "'");
-                //ActualizarDVV("Bitacora", SumaDVV("Bitacora"));
+                long dv = CalcularDVH("select * from Bitacora where Fecha = '" + Fecha.Ticks + "'", "Bitacora");
+                EjecutarConsulta("update Bitacora set DVH= " + dv + "where Fecha = '" + Fecha.Ticks + "'");
+                ActualizarDVV("Bitacora", SumaDVV("Bitacora"));
 
                 o = 1;
             }

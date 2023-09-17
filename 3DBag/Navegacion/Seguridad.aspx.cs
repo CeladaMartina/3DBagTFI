@@ -19,22 +19,6 @@ namespace _3DBag
                 {
                     Response.Redirect("../Home/Login.aspx");
                 }
-                else
-                {
-                    //controlar los permisos del usuario
-                    Permisos();
-                }
-            }
-        }
-
-        public void Permisos()
-        {
-            if (Propiedades_BE.SingletonLogin.GetInstance.IsLoggedIn())
-            {
-                //ocultará o mostrará las redirecciones segun dependa
-                LinkBackup.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Realizar_BackUp));
-                LinkBitacora.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Ver_Bitacora));
-                LinkRestore.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Realizar_Restore));
             }
         }
 

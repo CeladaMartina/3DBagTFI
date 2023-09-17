@@ -19,7 +19,7 @@ namespace _3DBag
         private static Login _instancia;
 
         SiteMaster masterData;
-        ISubject SubjectData;
+        private ISubject SubjectData;
 
         private ContentPlaceHolder contentPlace;
 
@@ -36,8 +36,8 @@ namespace _3DBag
 
         //public Login(ISubject subject)
         //{
-        //    SubjectData = subject;
-        //    SubjectData.Attach(this);
+        //    this.SubjectData = subject;
+        //    this.SubjectData.Attach(this);
         //}
 
         protected void Page_Load(object sender, EventArgs e)

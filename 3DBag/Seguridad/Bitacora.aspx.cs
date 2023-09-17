@@ -21,9 +21,20 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                CargarComboUsuario();
-                ListarBitacora();
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Ver_Bitacora)))
+                {
+                    divGeneral.Visible = true;
+                    lblPermiso.Visible = false;
 
+                    CargarComboUsuario();
+                    ListarBitacora();
+                }
+                else
+                {
+                    divGeneral.Visible = false;
+                    lblPermiso.Text = "No tiene los permisos para realizar esta accion.";
+                    lblPermiso.Visible = true;
+                }
             }
         }
 

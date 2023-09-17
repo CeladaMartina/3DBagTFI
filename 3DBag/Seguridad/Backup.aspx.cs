@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
@@ -20,8 +21,20 @@ namespace _3DBag
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
-            Traducir();
-            //ver que cuando termina de traducir, haga un refresh de pantalla para que se vea reflejado el cambio
+            
+            //Traducir();
+            if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Realizar_BackUp)))
+            {                
+                divBackup.Visible = true;
+                lblPermiso.Visible = false;
+            }
+            else
+            {
+                divBackup.Visible = false;
+                lblPermiso.Text = "No tiene los permisos para realizar esta accion";
+                lblPermiso.Visible = true;
+            }
+            
         }
 
         #region metodos
@@ -54,12 +67,14 @@ namespace _3DBag
             string Backup = Seguridad.GenerarBackUp(txtNombre.Text, txtRuta.Text);
             if (Backup == "ok")
             {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Backup exitoso", "Alta", 0);
                 lblResultado.Visible = true;
                 lblResultado.Text = "Backup realizado correctamente.";
                 lblResultado.CssClass = "alert alert-success";
             }
             else
             {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Backup error", "Alta", 0);
                 lblResultado.Visible = true;
                 lblResultado.Text = "Se produjo error al realizar el backup";
                 lblResultado.CssClass = "alert alert-warning";
