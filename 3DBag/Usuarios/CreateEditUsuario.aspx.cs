@@ -22,9 +22,23 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                nick = Request.QueryString["usuario"];
-                TraerUsuario();
-                TraerPermisos();               
+                // si el cod viene null, mostrara pantalla Alta
+                if (Request.QueryString["usuario"] == null)
+                {
+                    lblTitulo.Text = "Nuevo Usuario";
+                    btnFunction.Text = "Agregar";
+                    TraerPatentes();
+                    TrearFamilias();
+                }
+                else
+                {
+                    //si el cod viene, mostrara pantalla Editar
+                    nick = Request.QueryString["usuario"];
+                    lblTitulo.Text = "Editar Usuario";
+                    btnFunction.Text = "Editar";
+                    TraerUsuario();
+                    TraerPermisos();
+                }
             }           
         }
 
@@ -32,18 +46,18 @@ namespace _3DBag
         void TraerUsuario()
         {
             List<Propiedades_BE.Usuario> usuario = GestorUsuario.consultarNick(nick);
-            txtNick.Text = usuario[0].Nick;
+            txtIdUsuario.Text = usuario[0].IdUsuario.ToString();
+            txtNick.Text = usuario[0].Nick;            
             txtNombre.Text = usuario[0].Nombre;
-            txtMail.Text = usuario[0].Mail;
-            //txtIdUsuario.Text =  usuario[0].IdUsuario.ToString();
+            txtMail.Text = usuario[0].Mail;            
 
-            if (Convert.ToString(usuario[0].Estado) == "true")
+            if (usuario[0].Estado == true)
             {
-                //rdbBloqueado.Checked = true;
+                checkBloqueado.Checked = true;
             }
             else
             {
-                //rdbBloqueado.Checked = false;
+                checkBloqueado.Checked = false;
             }
 
             if(Convert.ToString(usuario[0].IdIdioma) == "1")
@@ -55,13 +69,13 @@ namespace _3DBag
                 txtIdioma.Text = "Ingles";
             }            
 
-            if (Convert.ToString(usuario[0].BajaLogica) == "true")
+            if (usuario[0].BajaLogica == true)
             {
-                //rdbBaja.Checked = true;
+                checkBaja.Checked = true;
             }
             else
             {
-                //rdbBaja.Checked = false;
+                checkBaja.Checked = false;
             }           
         }
 
@@ -79,14 +93,22 @@ namespace _3DBag
             
         }
 
+        void Alta(string Nick, string Contraseña, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
+        {
+            GestorUsuario.AltaUsuario(Nick, Contraseña, Nombre, Mail, Estado, Contador, Idioma, DVH);
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta usuario", "Alta", 0);
+            LimpiarTxt();            
+        }
+
         void LimpiarTxt()
         {
             txtNick.Text = "";
             txtNombre.Text = "";
             txtMail.Text = "";
             txtIdioma.Text = "";
-            //rdbBaja.Checked = false;
-            //rdbBloqueado.Checked = false;
+            txtContraseña.Text = "";
+            checkBaja.Checked = false;
+            checkBloqueado.Checked = false;
 
         }
 
@@ -99,22 +121,17 @@ namespace _3DBag
 
             //trae las familias de ese usuario especifico
             FAsig.DataSource = GestorPermisos.FillUserComponentsListF(TempUs);
-            FAsig.DataBind();
-
-            //trae todas las familias
-            FNoAsig.DataSource = GestorPermisos.GetAllFamilias();
-            FNoAsig.DataBind();
+            FAsig.DataBind();            
 
             //trae las patentes de ese usuario especifico
             PAsig.DataSource = GestorPermisos.FillUserComponentsList(TempUs);
             PAsig.DataBind();
 
-            //trae todas las patentes
-            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
-            PNoAsig.DataBind();
+            TraerPatentes();
+            TrearFamilias();
 
             //elimina de patente no asignada, permisos que ya tiene el usuario
-            foreach(ListItem item1 in PAsig.Items)
+            foreach (ListItem item1 in PAsig.Items)
             {
                 bool existe = false;
 
@@ -145,7 +162,21 @@ namespace _3DBag
                 }
             }
         }
-        
+
+        void TraerPatentes()
+        {
+            //trae todas las patentes
+            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
+            PNoAsig.DataBind();
+        }
+
+        void TrearFamilias()
+        {
+            //trae todas las familias
+            FNoAsig.DataSource = GestorPermisos.GetAllFamilias();
+            FNoAsig.DataBind();
+        }
+
         void AgregarPatente()
         {
             TempUs = new Propiedades_BE.Usuario();
@@ -236,20 +267,21 @@ namespace _3DBag
 
             GestorUsuario.GuardarPermisos(TempUs);
         }
+
+        bool ChequearFallaTxt()
+        {
+            bool A = false;
+            if (string.IsNullOrEmpty(txtNick.Text) || string.IsNullOrEmpty(txtMail.Text) || string.IsNullOrEmpty(txtNombre.Text))
+            {
+                A = true;
+            }
+            return A;
+        }
+
+        
         #endregion
 
-        #region boton
-        public void ModificarUsuario(object sender, EventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception)
-            {
-                //MessageBox.Show(CambiarIdioma.TraducirGlobal("Error") ?? "Error");
-            }
-        }
+        #region boton       
 
         protected void btnAsignar_Click(object sender, EventArgs e)
         {
@@ -280,9 +312,38 @@ namespace _3DBag
         {
             try
             {
-                GuardarPatente();
-                GuardarFamilia();
-                Modificar(Convert.ToInt32(txtIdUsuario.Text), txtNick.Text, txtNombre.Text, txtMail.Text, false, 0, txtIdioma.Text, 0);
+                if(ChequearFallaTxt() == false)
+                {
+                    if (Request.QueryString["Funcion"] == "alta")
+                    {
+                        Alta(txtNick.Text, txtContraseña.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text, 0);
+                    }
+                    else if(Request.QueryString["Funcion"] == "editar")
+                    {
+                        if (txtContraseña.Text != "")
+                        {
+                            if (Seguridad.ValidarClave(txtContraseña.Text) == true)
+                            {
+                                GestorUsuario.ConfirmarCambioContraseña(txtNick.Text, txtContraseña.Text, txtMail.Text);
+                                Seguridad.CargarBitacora(GestorUsuario.SeleccionarIDNick(txtNick.Text), DateTime.Now, "Contraseña cambiada", "Alta", 0);
+                            }
+                            else
+                            {
+                                //Ingrese otra contraseña
+                            }
+                        }
+
+                        Modificar(Convert.ToInt32(txtIdUsuario.Text), txtNick.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text, 0);
+                    }
+
+                    GuardarPatente();
+                    GuardarFamilia();
+                }
+                else
+                {
+                    //complete todos los datos
+                }
+
             }
             catch (Exception)
             {

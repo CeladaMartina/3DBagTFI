@@ -18,23 +18,10 @@ namespace _3DBag
                 if ((Usuario)(Session["UserSession"]) == null)
                 {
                     Response.Redirect("/Home/Login.aspx");
-                }
-                else
-                {
-                    Permisos();
-                }
+                }               
             }
                 
         }
-
-        public void Permisos()
-        {
-            if (Propiedades_BE.SingletonLogin.GetInstance.IsLoggedIn())
-            {
-                LinkGestionUsuarios.Visible=(Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario));                
-            }
-        }
-
         #region redirecciones
         protected void LinkGestionUsuarios_Click(object sender, EventArgs e)
         {

@@ -11,17 +11,27 @@
         <br />
         <asp:TextBox ID="txtNick" runat="server"></asp:TextBox>
         <br />
+        <asp:Label ID="lblContraseña" runat="server" Text="Contraseña"></asp:Label>
+        <br />
+        <asp:TextBox ID="txtContraseña" runat="server"></asp:TextBox>
+        <br />
         <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
         <br />
         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
         <br />
         <asp:Label ID="lblMail" runat="server" Text="Mail"></asp:Label>
         <br />
-        <asp:TextBox ID="txtMail" runat="server"></asp:TextBox>        
+        <asp:TextBox ID="txtMail" runat="server" Width="225px"></asp:TextBox>        
         <br />
         <asp:Label ID="lblIdioma" runat="server" Text="Idioma"></asp:Label>
         <br />        
-        <asp:TextBox ID="txtIdioma" runat="server" Width="170px"></asp:TextBox>   
+        <asp:TextBox ID="txtIdioma" runat="server" Width="170px"></asp:TextBox>  
+        <br />
+        <asp:Label ID="lblBloqueado" runat="server" Text="Bloqueado"></asp:Label><asp:CheckBox ID="checkBloqueado" runat="server" />
+        <br />
+        <br />
+        <asp:Label ID="lblBaja" runat="server" Text="Baja"></asp:Label><asp:CheckBox ID="checkBaja" runat="server" />
+        <br />
         <br />
         <br />
         <label id="lblFamilias" runat="server">Familias:</label>

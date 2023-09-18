@@ -5,7 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
         <h1>Usuarios</h1>
-        <a class="nav-link" href="">Nuevo Usuario</a>
+        <asp:Button ID="btnAltaUsuario" runat="server" Text="Nuevo Usuario" OnClick="btnAltaUsuario_Click" />
+        <br />
         <br />
         <div class="form-group">
             <div class="table-responsive">

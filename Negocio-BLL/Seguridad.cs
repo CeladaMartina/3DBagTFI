@@ -82,7 +82,13 @@ namespace Negocio_BLL
         }
         #endregion
 
-        
+        #region contraseña
+        public bool ValidarClave(string clave)
+        {
+            return Mapper.ValidarClave(clave);
+        }
+        #endregion
+
 
         #region backuprestore
 

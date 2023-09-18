@@ -45,16 +45,22 @@ namespace _3DBag
             if (e.CommandName == "editar")
             {
                 //enviamos el nick del usuario
-                Response.Redirect("CreateEditUsuario.aspx?usuario="+ v);
+                Response.Redirect("CreateEditUsuario.aspx?usuario="+ v + "&Funcion=editar");
                 
             }
-            else if (e.CommandName == "select")
-            {
+            else if (e.CommandName == "select")            {
 
                 Response.Redirect("DeleteShowUsuario.aspx?usuario=" + v + "&Funcion=Ver");
-
+            }
+            else if (e.CommandName == "borrar")
+            {
+                Response.Redirect("DeleteShowUsuario.aspx?usuario=" + v + "&Funcion=borrar");
             }
         }
 
+        protected void btnAltaUsuario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateEditUsuario.aspx?Funcion=alta");
+        }
     }
 }

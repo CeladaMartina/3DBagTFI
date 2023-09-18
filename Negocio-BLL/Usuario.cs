@@ -109,6 +109,16 @@ namespace Negocio_BLL
         {
             Mapper.GuardarPermiso(u);
         }
+
+        public void ConfirmarCambioContraseña(string Nick, string Contraseña, string Mail)
+        {
+            string Query = "Update Usuario set Contraseña= '" + Seguridad.EncriptarMD5(Contraseña) + "' where Nick = '" + Seguridad.EncriptarAES(Nick) + "' and Mail= '" + Mail + "'";
+            Mapper.EjecutarConsulta(Query);
+            long Dv;
+            Dv = Seguridad.CalcularDVH("Select * from Usuario where Nick = '" + Seguridad.EncriptarAES(Nick) + "' and Mail = '" + Mail + "'", "Usuario");
+            Mapper.EjecutarConsulta("Update Usuario set DVH = " + Dv + " where Nick = '" + Seguridad.EncriptarAES(Nick) + "' and Mail= '" + Mail + "'");
+            Seguridad.ActualizarDVV("Usuario", Seguridad.SumaDVV("Usuario"));
+        }
         #endregion
 
         #region ABML Usuario
@@ -131,7 +141,7 @@ namespace Negocio_BLL
             UsuarioTemp.Nombre = Nombre;
             UsuarioTemp.Mail = Mail;
             UsuarioTemp.Estado = Estado;
-            UsuarioTemp.Contador = 0;
+            UsuarioTemp.Contador = Contador;
             UsuarioTemp.Idioma = Idioma;
             UsuarioTemp.DVH = DVH;
 

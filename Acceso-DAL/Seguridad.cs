@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -323,5 +324,35 @@ namespace Acceso_DAL
             return Ejecutar(query, null);
         }
         #endregion
+
+        #region contraseña
+        public bool ValidarClave(string clave)
+        {
+            int a = 0;
+            if (clave.Length >= 8 || clave.Length <= 16)
+            {
+                a += 1;
+            }
+            if (Regex.IsMatch(clave, @"[1234567890]"))
+            {
+                a += 1;
+            }
+            if (Regex.IsMatch(clave, @"[A-Z]"))
+            {
+                a += 1;
+            }
+            if (Regex.IsMatch(clave, @"[a-z]"))
+            {
+                a += 1;
+            }
+            bool i = false;
+            if (a == 4)
+            {
+                i = true;
+            }
+            return i;
+        }
+        #endregion
     }
+
 }
