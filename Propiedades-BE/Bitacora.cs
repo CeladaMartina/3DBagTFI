@@ -62,5 +62,13 @@ namespace Propiedades_BE
             get { return _dvh; }
             set { _dvh = value; }
         }
+
+        private long _fechaB;
+
+        public long FechaB
+        {
+            get { return _fechaB; }
+            set { _fechaB = value; }
+        }
     }
 }

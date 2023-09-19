@@ -284,6 +284,7 @@ namespace Acceso_DAL
                 B.IdBitacora = int.Parse(R["IdBitacora"].ToString());
                 B.IdUsuario = int.Parse(R["IdUsuario"].ToString());
                 B.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
+                B.FechaB = B.Fecha.Ticks;
                 B.Descripcion = R["Descripcion"].ToString();
                 B.Criticidad = R["Criticidad"].ToString();                
                 B.DVH = int.Parse(R["DVH"].ToString());
@@ -306,7 +307,7 @@ namespace Acceso_DAL
             {
                 string IdBitacora = B.IdBitacora.ToString();
                 string IdUsuario = B.IdUsuario.ToString();
-                string Fecha = B.Fecha.ToString();
+                string Fecha = B.FechaB.ToString();
                 string Descripcion = B.Descripcion;
                 string Criticidad = B.Criticidad;                
                 string dvh = B.DVH.ToString();

@@ -89,7 +89,7 @@ namespace _3DBag
             }
 
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar usuario", "Alta", 0);           
-            LimpiarTxt();
+            //LimpiarTxt();
             
         }
 
@@ -97,7 +97,7 @@ namespace _3DBag
         {
             GestorUsuario.AltaUsuario(Nick, Contraseña, Nombre, Mail, Estado, Contador, Idioma, DVH);
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta usuario", "Alta", 0);
-            LimpiarTxt();            
+            //LimpiarTxt();            
         }
 
         void LimpiarTxt()
