@@ -100,6 +100,12 @@ namespace _3DBag
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Venta recalculado", "Alta", 0);
         }
 
+        void RBitacora()
+        {
+            Seguridad.RecalcularDVH();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Bitacora recalculado", "Alta", 0);
+        }
+
         void RDVV()
         {
             Seguridad.RecalcularDVV();
@@ -133,7 +139,8 @@ namespace _3DBag
             //RPermiso(); //recalculamos la tabla Permiso
             //RArticulo(); //recalculamos la tabla articulo
             //RIdioma(); //recalculamos la tabla idioma
-            RVenta();
+            //RVenta(); //recalculamos la tabla Venta
+            RBitacora();
             RDVV();     //recalculamos la tabla Digitos Verticales  
         }
         #endregion

@@ -99,6 +99,9 @@ namespace Negocio_BLL
             return Mapper.ListaVerificacion();
         }
 
+        #endregion
+
+        #region verificacion integral
         public string VerificarIntegridadDV(int GlobalIdUsuario)
         {
             return Mapper.VerificarIntegridadDV(GlobalIdUsuario);

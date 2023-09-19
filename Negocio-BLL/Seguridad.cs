@@ -47,12 +47,12 @@ namespace Negocio_BLL
         public void RecalcularDVV()
         {
             //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Usuario) where NombreTabla = 'Usuario'");
-            //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Bitacora) where NombreTabla = 'Bitacora'");
+            Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Bitacora) where NombreTabla = 'Bitacora'");
             //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Detalle_Venta) where NombreTabla = 'Detalle_Venta'");
             //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Permiso) where NombreTabla = 'Permiso'");
             //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Articulo) where NombreTabla = 'Articulo'");
             //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Idioma) where NombreTabla = 'Idioma'");
-            Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Venta) where NombreTabla = 'Venta'");
+            //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Venta) where NombreTabla = 'Venta'");
         }
 
         public long ObtenerDVV(string NombreTabla)
@@ -158,6 +158,17 @@ namespace Negocio_BLL
 
             Formateador.Serialize(Stream, ListarBitacora);
             Stream.Close();
+        }
+
+        //verificacion integral
+        public string VerificarIntegridadBitacora(int GlobalIdUsuario)
+        {
+            return Mapper.VerificarIntegridadBitacora(GlobalIdUsuario);
+        }
+
+        public void RecalcularDVH()
+        {
+            Mapper.RecalcularDVH();
         }
 
         #endregion

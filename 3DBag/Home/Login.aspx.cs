@@ -13,8 +13,8 @@ namespace _3DBag
     public partial class Login : System.Web.UI.Page, IObserver
     {
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
-        //Negocio_BLL.Detalle_Venta GestorDV = new Negocio_BLL.Detalle_Venta();        
-        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+        Negocio_BLL.Detalle_Venta GestorDV = new Negocio_BLL.Detalle_Venta();        
+        Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad(); //bitacora
         Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
         Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
         Negocio_BLL.Idioma GestorIdioma = new Negocio_BLL.Idioma();
@@ -63,15 +63,16 @@ namespace _3DBag
         #region metodos
         public void VerificarIntegridadGeneral()
         {
-            //string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);            
-            //string ProblemaPermiso = GestorPermisos.VerificarIntegridadPermiso(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            //string ProblemaProducto = GestorProducto.VerificarIntegridadProducto(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            //string ProblemaIdioma = GestorIdioma.VerificarIntegridadIdioma(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);            
+            string ProblemaPermiso = GestorPermisos.VerificarIntegridadPermiso(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            string ProblemaProducto = GestorProducto.VerificarIntegridadProducto(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            string ProblemaIdioma = GestorIdioma.VerificarIntegridadIdioma(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
             string ProblemaVenta = GestorVenta.VerificarIntegridadVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            //string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //string ProblemaBitacora = Seguridad.VerificarIntegridadBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
 
             //string ProblemaDefinitivo = ProblemaPermiso + ProblemaUsuario + ProblemaProducto + ProblemaIdioma;
-            string ProblemaDefinitivo = ProblemaVenta;
+            string ProblemaDefinitivo = ProblemaUsuario + ProblemaPermiso + ProblemaProducto + ProblemaIdioma + ProblemaVenta + ProblemaDetalleVenta;
 
             if (ProblemaDefinitivo == "")
             {
