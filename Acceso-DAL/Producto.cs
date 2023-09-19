@@ -11,6 +11,7 @@ namespace Acceso_DAL
     public class Producto
     {
         Acceso_BD Acceso = new Acceso_BD();
+        Seguridad Seguridad = new Seguridad();
 
         #region Seguridad
 
@@ -337,6 +338,136 @@ namespace Acceso_DAL
                 Acceso.CerrarConexion();
             }
             return respuesta;
+        }
+        #endregion
+
+        #region verificacion integral
+
+        public List<Propiedades_BE.Articulo> ListaVerificacion()
+        {
+            List<Propiedades_BE.Articulo> Lista = new List<Propiedades_BE.Articulo>();
+            DataTable Tabla = Acceso.Leer("ListarProductoVerificacion", null);
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                Propiedades_BE.Articulo Prod = new Propiedades_BE.Articulo();
+                Prod.IdArticulo = int.Parse(R["IdArticulo"].ToString());
+                Prod.CodProd = int.Parse(R["CodProd"].ToString());
+                Prod.Nombre = R["Nombre"].ToString();
+                Prod.Descripcion = R["Descripcion"].ToString();
+                Prod.Material = R["Material"].ToString();
+                Prod.Stock = int.Parse(R["Stock"].ToString());
+                Prod.PUnit = int.Parse(R["PUnit"].ToString());
+                Prod.BajaLogica = bool.Parse(R["BajaLogica"].ToString());
+                Prod.Imagen = R["Imagen"].ToString();
+                Prod.DVH = int.Parse(R["DVH"].ToString());
+                Lista.Add(Prod);
+            }
+            return Lista;
+        }
+
+        public string VerificarIntegridadProducto(int GlobalIdUsuario)
+        {
+            long Suma = 0;
+            long DVH = 0;
+            string msj = "";
+            string msj2 = "";
+
+            List<int> CamposFallidos = new List<int>();
+            List<Propiedades_BE.Articulo> Articulo = ListaVerificacion();
+
+            foreach (Propiedades_BE.Articulo Prod in Articulo.ToList())
+            {
+                string IdArticulo = Prod.IdArticulo.ToString();
+                string CodProd = Prod.CodProd.ToString();
+                string Nombre = Prod.Nombre;
+                string Descripcion = Prod.Descripcion;
+                string Material = Prod.Material;
+                string Stock = Prod.Stock.ToString();
+                string PUnit = Prod.PUnit.ToString();
+                string BajaLogica = Prod.BajaLogica.ToString();
+                string Imagen = Prod.Imagen;
+                string dvh = Prod.DVH.ToString();
+
+                long IdArticuloP = Seguridad.ObtenerAscii(IdArticulo);
+                long CodProdP = Seguridad.ObtenerAscii(CodProd);
+                long NombreP = Seguridad.ObtenerAscii(Nombre);
+                long DescripcionP = Seguridad.ObtenerAscii(Descripcion);
+                long MaterialP = Seguridad.ObtenerAscii(Material);
+                long StockP = Seguridad.ObtenerAscii(Stock);
+                long PUnitP = Seguridad.ObtenerAscii(PUnit);
+                long BajaLogicaP = Seguridad.ObtenerAscii(BajaLogica);
+                long ImagenP = Seguridad.ObtenerAscii(Imagen);
+                long dvhP = long.Parse(dvh);
+
+                Suma = IdArticuloP + CodProdP + NombreP + DescripcionP + MaterialP + StockP + PUnitP + BajaLogicaP + ImagenP;
+                DVH += Suma;
+
+                if (dvhP == Suma)
+                {
+                    Articulo.Remove(Prod);
+                }
+            }
+            if (DVH != Seguridad.VerificacionDVV("Articulo"))
+            {
+                msj += "Se encontro un error en la tabla Articulo \n";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Articulo", "Alta", 0);
+
+                if (DVH < Seguridad.VerificacionDVV("Artciulo"))
+                {
+                    msj += "Posibilidad de eliminacion de 1 o mas registros de Articulo \n";
+                    Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Articulo", "Alta", 0);
+                }
+            }
+            foreach (Propiedades_BE.Articulo MalCampo in Articulo)
+            {
+                CamposFallidos.Add(MalCampo.IdArticulo);
+            }
+            foreach (var item in CamposFallidos)
+            {
+
+                msj += "Se encontro un fallo en la fila con Id Articulo: " + item + " \n";
+                msj2 = "Error Articulo IdArticulo:" + item + "";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
+                msj2 = "";
+            }
+            return msj;
+        }
+
+        public void RecalcularDVH()
+        {
+            long suma = 0;
+
+            List<Propiedades_BE.Articulo> prod = ListaVerificacion();
+            foreach (Propiedades_BE.Articulo Prod in prod.ToList())
+            {
+                suma = 0;
+
+                string IdArticulo = Prod.IdArticulo.ToString();
+                string CodProd = Prod.CodProd.ToString();
+                string Nombre = Prod.Nombre;
+                string Descripcion = Prod.Descripcion;
+                string Material = Prod.Material;
+                string Stock = Prod.Stock.ToString();
+                string PUnit = Prod.PUnit.ToString();
+                string BajaLogica = Prod.BajaLogica.ToString();
+                string Imagen = Prod.Imagen;
+                string dvh = Prod.DVH.ToString();
+
+                long IdArticuloP = Seguridad.ObtenerAscii(IdArticulo);
+                long CodProdP = Seguridad.ObtenerAscii(CodProd);
+                long NombreP = Seguridad.ObtenerAscii(Nombre);
+                long DescripcionP = Seguridad.ObtenerAscii(Descripcion);
+                long MaterialP = Seguridad.ObtenerAscii(Material);
+                long StockP = Seguridad.ObtenerAscii(Stock);
+                long PUnitP = Seguridad.ObtenerAscii(PUnit);
+                long BajaLogicaP = Seguridad.ObtenerAscii(BajaLogica);
+                long ImagenP = Seguridad.ObtenerAscii(Imagen);
+                long dvhP = long.Parse(dvh);
+
+                suma = IdArticuloP + CodProdP + NombreP + DescripcionP + MaterialP + StockP + PUnitP + BajaLogicaP + ImagenP;
+                Acceso.EjecutarConsulta("Update Articulo set DVH = " + suma + " where IdArticulo = " + IdArticulo + "");
+            }
         }
         #endregion
     }

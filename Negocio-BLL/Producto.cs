@@ -128,5 +128,18 @@ namespace Negocio_BLL
             //int i = Mapper.Baja(ArticuloTemp);
             //Seguridad.ActualizarDVV()
         }
+
+        #region verificacion integral 
+        public string VerificarIntegridadProducto(int GlobalIdUsuario)
+        {
+            return Mapper.VerificarIntegridadProducto(GlobalIdUsuario);
+        }
+
+        public void RecalcularDVH()
+        {
+            Mapper.RecalcularDVH();
+        }
+
+        #endregion
     }
 }
