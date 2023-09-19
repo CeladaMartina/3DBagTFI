@@ -34,5 +34,13 @@ namespace Propiedades_BE
         {
             return Nombre;
         }
+
+        private int _dvh;
+
+        public int DVH
+        {
+            get { return _dvh; }
+            set { _dvh = value; }
+        }
     }
 }

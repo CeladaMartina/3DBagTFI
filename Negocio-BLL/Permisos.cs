@@ -10,6 +10,7 @@ namespace Negocio_BLL
     {
         Acceso_DAL.Permisos _permisos;
 
+
         public Permisos()
         {
             _permisos = new Acceso_DAL.Permisos();
@@ -98,11 +99,18 @@ namespace Negocio_BLL
         }
         #endregion
 
-        #region Permisos 
-        public Array GetAllPermisos()
+        #region VerificarIntegridad
+
+        public string VerificarIntegridadPermiso(int GlobalIdUsuario)
         {
-            return _permisos.GetAllPermisos();
+            return _permisos.VerificarIntegridadPermiso(GlobalIdUsuario);
         }
+
+        public void RecalcularDVH()
+        {
+            _permisos.RecalcularDVH();
+        }
+
         #endregion
 
         #region Patentes
@@ -137,6 +145,12 @@ namespace Negocio_BLL
         #endregion
 
         #region Permisos
+
+        public Array GetAllPermisos()
+        {
+            return _permisos.GetAllPermisos();
+        }
+
         public IList<Propiedades_BE.Familia> GetAllPermisosPermisos()
         {
             return _permisos.GetAllPermisosPermisos();

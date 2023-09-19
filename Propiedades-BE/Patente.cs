@@ -19,5 +19,8 @@ namespace Propiedades_BE
         public override void EliminarHijo(Componente C) { }
 
         public override void VaciarHijo() { }
+
+        
+
     }
 }

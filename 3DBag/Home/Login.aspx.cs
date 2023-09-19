@@ -13,7 +13,12 @@ namespace _3DBag
     public partial class Login : System.Web.UI.Page, IObserver
     {
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
+        Negocio_BLL.Detalle_Venta GestorDV = new Negocio_BLL.Detalle_Venta();        
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+        Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
+
+
+
         Propiedades_BE.Usuario Usuario = new Propiedades_BE.Usuario();
 
         private static Login _instancia;
@@ -80,10 +85,11 @@ namespace _3DBag
         #region metodos
         public void VerificarIntegridadGeneral()
         {
-            string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            //falta agregar 2 problemas mas
+            //string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            string ProblemaPermiso = GestorPermisos.VerificarIntegridadPermiso(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
 
-            string ProblemaDefinitivo = ProblemaUsuario;
+            string ProblemaDefinitivo = ProblemaPermiso;
 
             if (ProblemaDefinitivo == "")
             {

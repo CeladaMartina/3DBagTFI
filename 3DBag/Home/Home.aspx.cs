@@ -16,6 +16,9 @@ namespace _3DBag
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
+        Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
+
+
         Propiedades_BE.Usuario usuario;
 
         #region patron
@@ -64,9 +67,16 @@ namespace _3DBag
             Conexion.Open();
         }
 
+        //recalcular dvh 
         void RUsuario()
         {
             GestorUsuario.RecalcularDVH();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Usuario recalculado", "Alta", 0);
+        }
+
+        void RPermiso()
+        {
+            GestorPermisos.RecalcularDVH();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Usuario recalculado", "Alta", 0);
         }
 
@@ -85,9 +95,8 @@ namespace _3DBag
         }
 
         protected void hrefRecalcular(object sender, EventArgs e)
-        {            
-            RUsuario(); //recalculamos la tabla Usuario
-            RDVV();     //recalculamos la tabla Digitos Verticales    
+        {
+            RecalcularTablas();              
             Session["ProblemaDefinitivo"] = null;
             Propiedades_BE.SingletonLogin.GlobalIntegridad = 0;
             Response.Redirect("../Home/Login.aspx");
@@ -98,6 +107,12 @@ namespace _3DBag
             throw new NotImplementedException();
         }
 
+        void RecalcularTablas()
+        {
+            //RUsuario(); //recalculamos la tabla Usuario
+            RPermiso(); //recalculamos la tabla Permiso
+            RDVV();     //recalculamos la tabla Digitos Verticales  
+        }
         #endregion
     }
 }

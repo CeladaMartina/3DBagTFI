@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Acceso_DAL
     public class Permisos
     {
         Acceso_BD Acceso = new Acceso_BD();
+        Seguridad Seguridad = new Seguridad();
 
         #region Seguridad
 
@@ -673,6 +675,108 @@ namespace Acceso_DAL
             QueryPatentes.Close();
             Connection.Close();
             return i;
+        }
+        #endregion
+
+        #region verificacionIntegridad
+
+        public List<Propiedades_BE.Patente> ListaVerificacion()
+        {
+            List<Propiedades_BE.Patente> Lista = new List<Propiedades_BE.Patente>();
+            DataTable Tabla = Acceso.Leer("ListarPermisoVerificacion", null);
+
+            Propiedades_BE.Componente DV;
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                DV = new Propiedades_BE.Patente();
+                DV.Id = int.Parse(R["id"].ToString());
+                DV.Nombre = R["nombre"].ToString();
+                DV.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), R["permiso"].ToString());               
+                DV.DVH = int.Parse(R["DVH"].ToString());
+                Lista.Add((Propiedades_BE.Patente)DV);
+            }
+            return Lista;
+        }
+
+        public string VerificarIntegridadPermiso(int GlobalIdUsuario)
+        {
+            long Suma = 0;
+            long DVH = 0;
+            string msj = "";
+            string msj2 = "";
+
+            List<int> CamposFallidos = new List<int>();
+            List<Propiedades_BE.Patente> DetalleP = ListaVerificacion();
+
+            foreach (Propiedades_BE.Patente DP in DetalleP.ToList())
+            {
+                string Id = DP.Id.ToString();
+                string nombre = DP.Nombre.ToString();
+                string permiso  = DP.Permiso.ToString();
+                string dvh = DP.DVH.ToString();               
+
+                long IdPermiso = Seguridad.ObtenerAscii(Id);
+                long nombreP = Seguridad.ObtenerAscii(nombre);
+                long permisoP = Seguridad.ObtenerAscii(permiso);             
+                long dvhP = long.Parse(dvh);
+
+                Suma = IdPermiso + nombreP + permisoP;
+                DVH += Suma;
+
+                if (dvhP == Suma)
+                {
+                    DetalleP.Remove(DP);
+                }
+            }
+            if (DVH != Seguridad.VerificacionDVV("Permiso"))
+            {
+                msj += "Se encontro un error en la tabla Permiso \n";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Permiso", "Alta", 0);
+
+                if (DVH < Seguridad.VerificacionDVV("Permiso"))
+                {
+                    msj += "Posibilidad de eliminacion de 1 o mas registros de Permiso \n";
+                    Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Permiso", "Alta", 0);
+                }
+            }
+            foreach (Propiedades_BE.Patente MalCampo in DetalleP)
+            {
+                CamposFallidos.Add(MalCampo.Id);
+            }
+            foreach (var item in CamposFallidos)
+            {
+
+                msj += "Se encontro un fallo en la fila con Id Permiso: " + item + " \n";
+                msj2 = "Error Permiso Id:" + item + "";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
+                msj2 = "";
+            }
+            return msj;
+        }
+
+        public void RecalcularDVH()
+        {
+            long suma = 0;
+
+            List<Propiedades_BE.Patente> P = ListaVerificacion();
+            foreach (Propiedades_BE.Patente Pat in P.ToList())
+            {
+                suma = 0;
+
+                string Id = Pat.Id.ToString();
+                string nombre = Pat.Nombre.ToString();
+                string permiso  = Pat.Permiso.ToString();
+                string dvh = Pat.DVH.ToString();               
+
+                long IdPermiso = Seguridad.ObtenerAscii(Id);
+                long nombreP = Seguridad.ObtenerAscii(nombre);
+                long permisoP = Seguridad.ObtenerAscii(permiso);             
+                long dvhP = long.Parse(dvh);
+
+                suma = IdPermiso + nombreP + permisoP;
+                Acceso.EjecutarConsulta("Update Permiso set DVH = " + suma + " where id = " + Id + "");
+            }
         }
         #endregion
     }
