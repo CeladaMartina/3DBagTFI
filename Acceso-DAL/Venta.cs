@@ -161,5 +161,106 @@ namespace Acceso_DAL
             Cmd.ExecuteNonQuery();
             Acceso.CerrarConexion();
         }
+
+        #region verificar integridad
+
+        public List<Propiedades_BE.Venta> ListaVerificacion()
+        {
+            List<Propiedades_BE.Venta> Lista = new List<Propiedades_BE.Venta>();
+            DataTable Tabla = Acceso.Leer("ListarVentaVVerificacion", null);
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                Propiedades_BE.Venta V = new Propiedades_BE.Venta();
+                V.IdVenta = int.Parse(R["IdVenta"].ToString());
+                V.IdUsuario = int.Parse(R["IdUsuario"].ToString());
+                V.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
+                V.DVH = int.Parse(R["DVH"].ToString());
+                Lista.Add(V);
+            }
+            return Lista;
+        }
+
+        public string VerificarIntegridadVenta(int GlobalIdUsuario)
+        {
+            long Suma = 0;
+            long DVH = 0;
+            string msj = "";
+            string msj2 = "";
+
+            List<int> CamposFallidos = new List<int>();
+            List<Propiedades_BE.Venta> DetalleV = ListaVerificacion();
+
+            foreach (Propiedades_BE.Venta Dv in DetalleV.ToList())
+            {
+                string IdVenta = Dv.IdVenta.ToString();
+                string IdUsuario = Dv.IdUsuario.ToString();
+                string Fecha = Dv.Fecha.ToString();                
+                string dvh = Dv.DVH.ToString();
+
+                long IdVentaV = Seguridad.ObtenerAscii(IdVenta);
+                long IdUsuarioV = Seguridad.ObtenerAscii(IdUsuario);
+                long FechaV = Seguridad.ObtenerAscii(Fecha);
+                long dvhV = long.Parse(dvh);
+
+                Suma = IdVentaV + IdUsuarioV + FechaV;
+                DVH += Suma;
+
+                if (dvhV == Suma)
+                {
+                    DetalleV.Remove(Dv);
+                }
+            }
+            if (DVH != Seguridad.VerificacionDVV("Venta"))
+            {
+                msj += "Se encontro un error en la tabla Venta \n";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Venta", "Alta", 0);
+
+                if (DVH < Seguridad.VerificacionDVV("Venta"))
+                {
+                    msj += "Posibilidad de eliminacion de 1 o mas registros de Venta \n";
+                    Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Venta", "Alta", 0);
+                }
+            }
+            foreach (Propiedades_BE.Venta MalCampo in DetalleV)
+            {
+                CamposFallidos.Add(MalCampo.IdVenta);
+            }
+            foreach (var item in CamposFallidos)
+            {
+
+                msj += "Se encontro un fallo en la fila con Id Venta: " + item + " \n";
+                msj2 = "Error Venta IdVenta:" + item + "";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
+                msj2 = "";
+            }
+            return msj;
+        }
+
+        public void RecalcularDVH()
+        {
+            long suma = 0;
+
+            List<Propiedades_BE.Venta> DetalleV = ListaVerificacion();
+            foreach (Propiedades_BE.Venta Dv in DetalleV.ToList())
+            {
+                suma = 0;
+
+                string IdVenta = Dv.IdVenta.ToString();
+                string IdUsuario = Dv.IdUsuario.ToString();
+                string Fecha = Dv.Fecha.ToString();
+                string dvh = Dv.DVH.ToString();
+
+                long IdVentaV = Seguridad.ObtenerAscii(IdVenta);
+                long IdUsuarioV = Seguridad.ObtenerAscii(IdUsuario);
+                long FechaV = Seguridad.ObtenerAscii(Fecha);
+                long dvhV = long.Parse(dvh);
+
+                suma = IdVentaV + IdUsuarioV + FechaV;
+                Acceso.EjecutarConsulta("Update Venta set DVH = " + suma + " where IdVenta = " + IdVenta + "");
+            }
+        }
+
+        #endregion
     }
 }

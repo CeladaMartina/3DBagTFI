@@ -60,5 +60,17 @@ namespace Negocio_BLL
         {
             return Mapper.ExisteVenta(IdUsuario, Fecha);
         }
+
+        #region verificacion integridad 
+        public string VerificarIntegridadVenta(int GlobalIdUsuario)
+        {
+            return Mapper.VerificarIntegridadVenta(GlobalIdUsuario);
+        }
+
+        public void RecalcularDVH()
+        {
+            Mapper.RecalcularDVH();
+        }
+        #endregion
     }
 }

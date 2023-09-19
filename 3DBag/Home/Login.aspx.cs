@@ -18,6 +18,7 @@ namespace _3DBag
         Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
         Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
         Negocio_BLL.Idioma GestorIdioma = new Negocio_BLL.Idioma();
+        Negocio_BLL.Venta GestorVenta = new Negocio_BLL.Venta();
 
         private ContentPlaceHolder contentPlace;
         Propiedades_BE.Usuario Usuario = new Propiedades_BE.Usuario();
@@ -62,15 +63,15 @@ namespace _3DBag
         #region metodos
         public void VerificarIntegridadGeneral()
         {
-            //string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            //string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //string ProblemaUsuario = GestorUsuario.VerificarIntegridadUsuario(Propiedades_BE.SingletonLogin.GlobalIdUsuario);            
             //string ProblemaPermiso = GestorPermisos.VerificarIntegridadPermiso(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
             //string ProblemaProducto = GestorProducto.VerificarIntegridadProducto(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            string ProblemaIdioma = GestorIdioma.VerificarIntegridadIdioma(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-
+            //string ProblemaIdioma = GestorIdioma.VerificarIntegridadIdioma(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            string ProblemaVenta = GestorVenta.VerificarIntegridadVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
 
             //string ProblemaDefinitivo = ProblemaPermiso + ProblemaUsuario + ProblemaProducto + ProblemaIdioma;
-            string ProblemaDefinitivo = ProblemaIdioma;
+            string ProblemaDefinitivo = ProblemaVenta;
 
             if (ProblemaDefinitivo == "")
             {
