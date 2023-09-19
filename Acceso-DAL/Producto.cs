@@ -357,7 +357,7 @@ namespace Acceso_DAL
                 Prod.Descripcion = R["Descripcion"].ToString();
                 Prod.Material = R["Material"].ToString();
                 Prod.Stock = int.Parse(R["Stock"].ToString());
-                Prod.PUnit = int.Parse(R["PUnit"].ToString());
+                Prod.PUnit = decimal.Parse(R["PUnit"].ToString());
                 Prod.BajaLogica = bool.Parse(R["BajaLogica"].ToString());
                 Prod.Imagen = R["Imagen"].ToString();
                 Prod.DVH = int.Parse(R["DVH"].ToString());

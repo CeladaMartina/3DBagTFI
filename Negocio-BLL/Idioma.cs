@@ -40,5 +40,18 @@ namespace Negocio_BLL
             IdiomaTemp.NombreIdioma = Nombre;
             return Mapper.Modificar(IdiomaTemp);
         }
+
+        #region verificacion integridad
+        public string VerificarIntegridadIdioma(int GlobalIdUsuario)
+        {
+            return Mapper.VerificarIntegridadIdioma(GlobalIdUsuario);
+        }
+
+        public void RecalcularDVH()
+        {
+            Mapper.RecalcularDVH();
+        }
+
+        #endregion
     }
 }

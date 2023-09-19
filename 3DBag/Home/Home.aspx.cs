@@ -17,6 +17,7 @@ namespace _3DBag
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
         Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
+        Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
 
 
         Propiedades_BE.Usuario usuario;
@@ -77,7 +78,19 @@ namespace _3DBag
         void RPermiso()
         {
             GestorPermisos.RecalcularDVH();
-            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Usuario recalculado", "Alta", 0);
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Permisos recalculado", "Alta", 0);
+        }
+
+        void RArticulo()
+        {
+            GestorProducto.RecalcularDVH();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Articulo recalculado", "Alta", 0);
+        }
+
+        void RIdioma()
+        {
+            GestorProducto.RecalcularDVH();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Idioma recalculado", "Alta", 0);
         }
 
         void RDVV()
@@ -110,7 +123,9 @@ namespace _3DBag
         void RecalcularTablas()
         {
             //RUsuario(); //recalculamos la tabla Usuario
-            RPermiso(); //recalculamos la tabla Permiso
+            //RPermiso(); //recalculamos la tabla Permiso
+            //RArticulo(); //recalculamos la tabla articulo
+            RIdioma(); //recalculamos la tabla idioma
             RDVV();     //recalculamos la tabla Digitos Verticales  
         }
         #endregion

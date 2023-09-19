@@ -11,6 +11,7 @@ namespace Acceso_DAL
     public class Idioma
     {
         Acceso_BD Acceso = new Acceso_BD();
+        Seguridad Seguridad = new Seguridad();
 
         public List<Propiedades_BE.Idioma> Listar()
         {
@@ -78,5 +79,106 @@ namespace Acceso_DAL
             fa = Acceso.Escribir("ModificarIdioma", Param);
             return fa;
         }
+
+        #region verificacion integridad 
+
+        public List<Propiedades_BE.Idioma> ListaVerificacion()
+        {
+            List<Propiedades_BE.Idioma> Lista = new List<Propiedades_BE.Idioma>();
+            DataTable Tabla = Acceso.Leer("ListarIdiomaVerificacion", null);
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                Propiedades_BE.Idioma Idioma = new Propiedades_BE.Idioma();
+                Idioma.IdIdioma = int.Parse(R["IdIdioma"].ToString());
+                Idioma.NombreIdioma = R["NombreIdioma"].ToString();
+                Idioma.BajaLogica = bool.Parse(R["BajaLogica"].ToString());
+                Idioma.DVH = int.Parse(R["DVH"].ToString());
+                Lista.Add(Idioma);
+            }
+            return Lista;
+        }
+
+        public string VerificarIntegridadIdioma(int GlobalIdUsuario)
+        {
+            long Suma = 0;
+            long DVH = 0;
+            string msj = "";
+            string msj2 = "";
+
+            List<int> CamposFallidos = new List<int>();
+            List<Propiedades_BE.Idioma> DetalleI = ListaVerificacion();
+
+            foreach (Propiedades_BE.Idioma Idioma in DetalleI.ToList())
+            {
+                string IdIdioma = Idioma.IdIdioma.ToString();
+                string NombreIdioma = Idioma.NombreIdioma.ToString();
+                string BajaLogica = Idioma.BajaLogica.ToString();
+                string dvh = Idioma.DVH.ToString();
+               
+
+                long IdIdiomaI = Seguridad.ObtenerAscii(IdIdioma);
+                long NombreIdiomaI = Seguridad.ObtenerAscii(NombreIdioma);
+                long BajaLogicaI = Seguridad.ObtenerAscii(BajaLogica);                               
+                long dvhI = long.Parse(dvh);
+
+                Suma = IdIdiomaI + NombreIdiomaI + BajaLogicaI;
+                DVH += Suma;
+
+                if (dvhI == Suma)
+                {
+                    DetalleI.Remove(Idioma);
+                }
+            }
+            if (DVH != Seguridad.VerificacionDVV("Idioma"))
+            {
+                msj += "Se encontro un error en la tabla Idioma \n";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Idioma", "Alta", 0);
+
+                if (DVH < Seguridad.VerificacionDVV("Idioma"))
+                {
+                    msj += "Posibilidad de eliminacion de 1 o mas registros de Idioma \n";
+                    Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Idioma", "Alta", 0);
+                }
+            }
+            foreach (Propiedades_BE.Idioma MalCampo in DetalleI)
+            {
+                CamposFallidos.Add(MalCampo.IdIdioma);
+            }
+            foreach (var item in CamposFallidos)
+            {
+
+                msj += "Se encontro un fallo en la fila con Id Detalle: " + item + " \n";
+                msj2 = "Error Idioma IdVejta:" + item + "";
+                Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
+                msj2 = "";
+            }
+            return msj;
+        }
+
+        public void RecalcularDVH()
+        {
+            long suma = 0;
+
+            List<Propiedades_BE.Idioma> DetalleI = ListaVerificacion();
+            foreach (Propiedades_BE.Idioma Idioma in DetalleI.ToList())
+            {
+                suma = 0;
+
+                string IdIdioma = Idioma.IdIdioma.ToString();
+                string NombreIdioma = Idioma.NombreIdioma.ToString();
+                string BajaLogica = Idioma.BajaLogica.ToString();
+                string dvh = Idioma.DVH.ToString();
+
+                long IdIdiomaI = Seguridad.ObtenerAscii(IdIdioma);
+                long NombreIdiomaI = Seguridad.ObtenerAscii(NombreIdioma);
+                long BajaLogicaI = Seguridad.ObtenerAscii(BajaLogica);
+                long dvhI = long.Parse(dvh);
+
+                suma = IdIdiomaI + NombreIdiomaI + BajaLogicaI;
+                Acceso.EjecutarConsulta("Update Idioma set DVH = " + suma + " where IdIdioma = " + IdIdioma + "");
+            }
+        }
+        #endregion
     }
 }
