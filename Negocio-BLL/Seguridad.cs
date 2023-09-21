@@ -50,7 +50,7 @@ namespace Negocio_BLL
             Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Bitacora) where NombreTabla = 'Bitacora'");
             Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Detalle_Venta) where NombreTabla = 'Detalle_Venta'");
             //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Permiso) where NombreTabla = 'Permiso'");
-            //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Articulo) where NombreTabla = 'Articulo'");
+            Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Articulo) where NombreTabla = 'Articulo'");
             //Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Idioma) where NombreTabla = 'Idioma'");
             Mapper.EjecutarConsulta("Update DVV set DVV.DVV = (select ISNULL(SUM(DVH), 0) from Venta) where NombreTabla = 'Venta'");
         }
@@ -90,6 +90,11 @@ namespace Negocio_BLL
         public bool ValidarClave(string clave)
         {
             return Mapper.ValidarClave(clave);
+        }
+
+        public string GenerarClave()
+        {
+            return Mapper.GenerarClave();
         }
         #endregion
 

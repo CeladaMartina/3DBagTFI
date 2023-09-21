@@ -460,6 +460,12 @@ namespace Acceso_DAL
             }
             return i;
         }
+
+        public string GenerarClave()
+        {
+            const string Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            return new string(Enumerable.Repeat(Chars, 7).Select(s => s[Random.Next(s.Length)]).ToArray());
+        }
         #endregion
     }
 

@@ -144,11 +144,12 @@ namespace _3DBag
         {
             //RUsuario(); //recalculamos la tabla Usuario
             //RPermiso(); //recalculamos la tabla Permiso
-            //RArticulo(); //recalculamos la tabla articulo
+            // //recalculamos la tabla articulo
             //RIdioma(); //recalculamos la tabla idioma
             RDetalleVenta(); //recalculamos la tabla detalle venta
             RVenta(); //recalculamos la tabla Venta
             RBitacora();
+            RArticulo();
             RDVV();     //recalculamos la tabla Digitos Verticales  
         }
         #endregion

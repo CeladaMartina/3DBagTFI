@@ -243,7 +243,7 @@ namespace _3DBag
 
         protected void Olvidaste_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("../Home/OlvidoContraseña.aspx");
         }
 
         protected void linkVolver_Click(object sender, EventArgs e)

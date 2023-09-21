@@ -121,6 +121,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="Home\OlvidoContraseña.aspx" />
     <Content Include="Venta\FinalizarCompra.aspx" />
     <Content Include="Seguridad\Restore.aspx" />
     <Content Include="Usuarios\DeleteShowUsuario.aspx" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\OlvidoContraseña.aspx.cs">
+      <DependentUpon>OlvidoContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\OlvidoContraseña.aspx.designer.cs">
+      <DependentUpon>OlvidoContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="Venta\FinalizarCompra.aspx.cs">
       <DependentUpon>FinalizarCompra.aspx</DependentUpon>
