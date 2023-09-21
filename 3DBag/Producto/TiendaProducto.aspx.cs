@@ -48,7 +48,7 @@ namespace _3DBag
             else
             {
                 VerCarrito.Visible = true;
-                VerCarrito.Text = "no hay stock";
+                VerCarrito.Text = "No hay Stock suficiente";
                 //MessageBox.Show(Cambiar_Idioma.TraducirGlobal("No hay Stock suficiente") ?? "No hay Stock suficiente");
             }
         }
@@ -82,7 +82,7 @@ namespace _3DBag
                     }
                     else
                     {
-                        //si no existe el producto en lo que ya se elijio, se agrega al listado
+                        //si no existe el producto en lo que ya se eligio, se agrega al listado
                         AltaDV(IdVenta, Convert.ToInt32(IdArticulo.Text), NombreLabel.Text, decimal.Parse(PUnit.Text), int.Parse(txtCantidad.Text), 0);
                     }                   
                 }

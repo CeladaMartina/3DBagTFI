@@ -21,24 +21,25 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Descrip" HeaderText="Descrip" />
-                        <asp:TemplateField HeaderText="Cant">
+                        <asp:BoundField DataField="PUnit" HeaderText="PUnit" />   
+                       <%-- <asp:TemplateField HeaderText="Cant">
                             <ItemTemplate>
                                 <asp:TextBox ID="txtCant" runat="server" Text='<%# Eval("Cant") %>'></asp:TextBox>
                             </ItemTemplate>
-                        </asp:TemplateField>                       
-                        <asp:BoundField DataField="PUnit" HeaderText="PUnit" />                     
-                       
-                        <asp:ButtonField ButtonType="Button" CommandName="editar" Text="Editar">
-                            <ControlStyle BackColor="#6699FF" />
-                        </asp:ButtonField>
+                        </asp:TemplateField>     --%>                  
+                        <asp:BoundField DataField="Cant" HeaderText="Cant" />  
+
                         <asp:ButtonField ButtonType="Button" CommandName="borrar" Text="Borrar">
                             <ControlStyle BackColor="#CC3300" />
                         </asp:ButtonField>
                     </Columns>
-                </asp:GridView>
-                <asp:Label ID="lblMensaje" runat="server" Visible="false"></asp:Label>
+                </asp:GridView>    
                 <br />
-                <asp:LinkButton ID="linkRedirect" runat="server" Visible="false" OnClick="VerTienda">-- Ver Tienda --</asp:LinkButton>
+                <br />
+                <asp:LinkButton ID="linkRedirect" runat="server" OnClick="VerTienda"><< Agregar Productos al Carrito</asp:LinkButton>
+                <br />
+                <br />
+                <asp:Button ID="btnComprarAhora" Text="Comprar" runat="server" OnClick="btnComprarAhora_Click" />                
             </div>
         </div>
     </div>

@@ -24,6 +24,7 @@ namespace Acceso_DAL
             return Acceso.GlobalConexion;
         }
 
+        #region verificacion integridad
         public void RecalcularDVH()
         {
             long suma = 0;
@@ -128,6 +129,8 @@ namespace Acceso_DAL
             }
             return msj;
         }
+
+        #endregion
 
         public List<Propiedades_BE.Usuario> Listar()
         {
@@ -344,31 +347,28 @@ namespace Acceso_DAL
             return Id;
         }
 
-        public int SeleccionarNick(string Nick)
+        //traigo el nick del usuario logueado
+        public string SeleccionarNick(int IdUsuario)
         {
-            int Id = 0;
+            string nick = "";
             using (Acceso.Conexion)
             {
                 Acceso.AbrirConexion();
-                string QueryID = "select * from Usuario where Nick = '" + Seguridad.EncriptarAES(Nick) + "'";
+                string Query = "select Nombre from Usuario where IdUsuario = '" + IdUsuario + "'";
 
-                using (SqlCommand Cmd = new SqlCommand(QueryID, Acceso.Conexion))
+                using (SqlCommand Cmd = new SqlCommand(Query, Acceso.Conexion))
                 {
                     using (SqlDataReader Lector = Cmd.ExecuteReader())
                     {
-                        if (Lector.Read())
+                        while (Lector.Read())
                         {
-                            Id = Lector.GetInt32(0);
-                        }
-                        else
-                        {
-                            Id = -1;
+                            nick = Lector.GetString(0);
                         }
                     }
                 }
                 Acceso.CerrarConexion();
             }
-            return Id;
+            return nick;
         }
 
         public List<string> NickUsuario()

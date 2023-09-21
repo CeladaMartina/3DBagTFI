@@ -24,15 +24,6 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.GridView gridDetalleVenta;
 
         /// <summary>
-        /// Control lblMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
-
-        /// <summary>
         /// Control linkRedirect.
         /// </summary>
         /// <remarks>
@@ -40,5 +31,14 @@ namespace _3DBag
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkRedirect;
+
+        /// <summary>
+        /// Control btnComprarAhora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnComprarAhora;
     }
 }

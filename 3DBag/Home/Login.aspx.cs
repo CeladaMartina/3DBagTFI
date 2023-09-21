@@ -67,11 +67,13 @@ namespace _3DBag
             string ProblemaPermiso = GestorPermisos.VerificarIntegridadPermiso(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
             string ProblemaProducto = GestorProducto.VerificarIntegridadProducto(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
             string ProblemaIdioma = GestorIdioma.VerificarIntegridadIdioma(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            string ProblemaVenta = GestorVenta.VerificarIntegridadVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            string ProblemaBitacora = Seguridad.VerificarIntegridadBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //string ProblemaVenta = GestorVenta.VerificarIntegridadVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+            //string ProblemaBitacora = Seguridad.VerificarIntegridadBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
 
-            string ProblemaDefinitivo = ProblemaUsuario + ProblemaPermiso + ProblemaProducto + ProblemaIdioma + ProblemaVenta + ProblemaDetalleVenta + ProblemaBitacora;
+            //string ProblemaDefinitivo = ProblemaUsuario + ProblemaPermiso + ProblemaProducto + ProblemaIdioma + ProblemaVenta + ProblemaDetalleVenta + ProblemaBitacora;
+            string ProblemaDefinitivo = ProblemaUsuario + ProblemaPermiso + ProblemaProducto + ProblemaIdioma;
+
 
             if (ProblemaDefinitivo == "")
             {

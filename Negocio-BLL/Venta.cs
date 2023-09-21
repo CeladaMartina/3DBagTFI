@@ -8,7 +8,7 @@ namespace Negocio_BLL
 {
     public class Venta
     {
-        Acceso_DAL.Venta Mapper = new Acceso_DAL.Venta();
+        Acceso_DAL.Venta Mapper = new Acceso_DAL.Venta();        
         Propiedades_BE.Venta VentaTemp = new Propiedades_BE.Venta();
         Acceso_DAL.Seguridad Seguridad = new Acceso_DAL.Seguridad();
         long DV = 0;
@@ -60,6 +60,8 @@ namespace Negocio_BLL
         {
             return Mapper.ExisteVenta(IdUsuario, Fecha);
         }
+
+        
 
         #region verificacion integridad 
         public string VerificarIntegridadVenta(int GlobalIdUsuario)

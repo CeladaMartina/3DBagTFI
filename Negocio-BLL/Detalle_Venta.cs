@@ -12,6 +12,7 @@ namespace Negocio_BLL
         Propiedades_BE.Detalle_Venta DVTemp = new Propiedades_BE.Detalle_Venta();
         Acceso_DAL.Seguridad Seguridad = new Acceso_DAL.Seguridad();
         Acceso_DAL.Producto Articulo = new Acceso_DAL.Producto();
+        Acceso_DAL.Usuario MapperU = new Acceso_DAL.Usuario();
 
         long DV = 0;
 
@@ -113,5 +114,10 @@ namespace Negocio_BLL
         }
 
         #endregion
+
+        public string SeleccionarNick(int idUsuario)
+        {
+            return MapperU.SeleccionarNick(idUsuario);
+        }
     }
 }
