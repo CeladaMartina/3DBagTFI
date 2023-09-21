@@ -175,6 +175,7 @@ namespace Acceso_DAL
                 V.IdVenta = int.Parse(R["IdVenta"].ToString());
                 V.IdUsuario = int.Parse(R["IdUsuario"].ToString());
                 V.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
+                V.FechaV = V.Fecha.Ticks; 
                 V.DVH = int.Parse(R["DVH"].ToString());
                 Lista.Add(V);
             }
@@ -195,7 +196,7 @@ namespace Acceso_DAL
             {
                 string IdVenta = Dv.IdVenta.ToString();
                 string IdUsuario = Dv.IdUsuario.ToString();
-                string Fecha = Dv.Fecha.ToString();                
+                string Fecha = Dv.FechaV.ToString();                
                 string dvh = Dv.DVH.ToString();
 
                 long IdVentaV = Seguridad.ObtenerAscii(IdVenta);

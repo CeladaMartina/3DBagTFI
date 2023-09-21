@@ -185,6 +185,11 @@ namespace Negocio_BLL
 
             return i;
         }
+
+        public string TraerMail(int IdUsuario)
+        {
+            return Mapper.TraerMail(IdUsuario);
+        } 
         #endregion
 
 

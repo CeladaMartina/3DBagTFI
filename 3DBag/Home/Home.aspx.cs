@@ -19,6 +19,7 @@ namespace _3DBag
         Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
         Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
         Negocio_BLL.Venta GestorVenta = new Negocio_BLL.Venta();
+        Negocio_BLL.Detalle_Venta GestorDetalleVenta = new Negocio_BLL.Detalle_Venta();
 
 
         Propiedades_BE.Usuario usuario;
@@ -106,6 +107,12 @@ namespace _3DBag
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Bitacora recalculado", "Alta", 0);
         }
 
+        void RDetalleVenta()
+        {
+            GestorDetalleVenta.RecalcularDVH();
+            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Bitacora recalculado", "Alta", 0);
+        }
+
         void RDVV()
         {
             Seguridad.RecalcularDVV();
@@ -139,7 +146,8 @@ namespace _3DBag
             //RPermiso(); //recalculamos la tabla Permiso
             //RArticulo(); //recalculamos la tabla articulo
             //RIdioma(); //recalculamos la tabla idioma
-            //RVenta(); //recalculamos la tabla Venta
+            RDetalleVenta(); //recalculamos la tabla detalle venta
+            RVenta(); //recalculamos la tabla Venta
             RBitacora();
             RDVV();     //recalculamos la tabla Digitos Verticales  
         }

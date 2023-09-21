@@ -501,5 +501,28 @@ namespace Acceso_DAL
                 throw;
             }
         }
+
+        public string TraerMail(int IdUsuario)
+        {
+            string mail = "";
+            using (Acceso.Conexion)
+            {
+                Acceso.AbrirConexion();
+                string Query = "select Mail from Usuario where IdUsuario = '" + IdUsuario + "'";
+
+                using (SqlCommand Cmd = new SqlCommand(Query, Acceso.Conexion))
+                {
+                    using (SqlDataReader Lector = Cmd.ExecuteReader())
+                    {
+                        while (Lector.Read())
+                        {
+                            mail = Lector.GetString(0);
+                        }
+                    }
+                }
+                Acceso.CerrarConexion();
+            }
+            return mail;
+        }
     }
 }
