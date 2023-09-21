@@ -1,11 +1,9 @@
-﻿using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Web;
@@ -98,7 +96,7 @@ namespace _3DBag
 
             //GestorVenta.Vender(Convert.ToInt32(Session["IdVenta"]));
             //string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "/Factura");
-            string ruta = "../Factura/";
+            string ruta = "C:\\Users\\mcelada\\Desktop\\SAP - TFI - Auditoria 2023\\TFI\\3DBag\\3DBag\\3DBag\\Facturas\\";
             string lblSubtotal = GestorDV.SubTotal(int.Parse(Session["IdVenta"].ToString())).ToString();
             PDF(ruta, Convert.ToInt32(Session["IdVenta"]), GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario), DateTime.Now.ToShortDateString(), decimal.Parse(lblSubtotal));
             
@@ -107,42 +105,93 @@ namespace _3DBag
 
         void PDF(string ruta, int NumVenta, string Cliente, string Fecha, decimal Total)
         {
+            Directory.CreateDirectory(ruta);
+            DirectorySecurity sec = Directory.GetAccessControl(ruta);
 
-            // Create a new PDF document
-            var pdfPath = Server.MapPath("~/Factura/Nombre");
-            var pdfDocument = new PdfDocument(new PdfWriter(pdfPath));
-            var pdf = new Document(pdfDocument);
+            SecurityIdentifier everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+            sec.AddAccessRule(new FileSystemAccessRule(everyone, FileSystemRights.Modify | FileSystemRights.Synchronize, InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit, PropagationFlags.None, AccessControlType.Allow));
+            Directory.SetAccessControl(ruta, sec);
 
-            // Create a table with the same number of columns as the GridView
-            var table = new Table(gridDetalleVenta.HeaderRow.Cells.Count);
+            string fecha_final = Fecha.Replace("/", "-");
+            string ruta_final = "" + ruta + "Venta" + NumVenta + "__" + fecha_final + ".pdf";
 
-            // Add header row cells to the PDF table
-            foreach (TableCell headerCell in gridDetalleVenta.HeaderRow.Cells)
+            System.IO.FileStream fs = new FileStream(ruta_final, FileMode.Create);
+            Document doc = new Document(PageSize.A4);
+            doc.SetMargins(40f, 40f, 40f, 40f);
+            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+            doc.Open();
+
+            BaseFont Fuente0 = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, true);
+            iTextSharp.text.Font Titulo = new iTextSharp.text.Font(Fuente0, 26f, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+
+
+            BaseFont Fuente1 = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, true);
+            iTextSharp.text.Font Titulo2 = new iTextSharp.text.Font(Fuente1, 18f, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+
+            BaseFont Fuente2 = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, true);
+            iTextSharp.text.Font TablasTitulo = new iTextSharp.text.Font(Fuente2, 14f, iTextSharp.text.Font.ITALIC, BaseColor.BLACK);
+
+            BaseFont Fuente3 = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, true);
+            iTextSharp.text.Font TablasTexto = new iTextSharp.text.Font(Fuente3, 12f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+
+            Paragraph Venta = new Paragraph("Venta", Titulo);
+            Venta.Alignment = Element.ALIGN_CENTER;
+            doc.Add(Venta);
+            doc.Add(new Chunk("\n"));
+
+            Paragraph NVenta = new Paragraph("Numero de venta: " + NumVenta + "", Titulo2);
+            NVenta.Alignment = Element.ALIGN_LEFT;
+            doc.Add(NVenta);
+            doc.Add(new Chunk("\n"));
+
+            Paragraph ClienteN = new Paragraph("Cliente: " + Cliente + "", Titulo2);
+            ClienteN.Alignment = Element.ALIGN_LEFT;
+            doc.Add(ClienteN);
+            doc.Add(new Chunk("\n"));
+
+            Paragraph FechaP = new Paragraph("Fecha: " + Fecha + "", Titulo2);
+            FechaP.Alignment = Element.ALIGN_LEFT;
+            doc.Add(FechaP);
+            doc.Add(new Chunk("\n"));
+
+            PdfPTable table = new PdfPTable(3);
+            //table.AddCell(new PdfPCell(new Phrase("Codigo Producto", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase("Descripcion", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase("Precio", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase("Cantidad", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+            table.SpacingBefore = 10;
+            foreach(GridViewRow row in gridDetalleVenta.Rows)
             {
-                table.AddCell(new Paragraph(headerCell.Text));
-            }
-
-            // Add data rows to the PDF table
-            foreach (GridViewRow row in gridDetalleVenta.Rows)
-            {
-                foreach (TableCell cell in row.Cells)
+                try
                 {
-                    table.AddCell(new Paragraph(cell.Text));
+                    string Descripcion = row.Cells[1].Text;
+                    decimal PrecioU = decimal.Parse(row.Cells[2].Text);
+                    int Cantidad = int.Parse(row.Cells[3].Text);
+
+                    table.AddCell(new PdfPCell(new Phrase(Descripcion.ToString(), TablasTexto)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table.AddCell(new PdfPCell(new Phrase(PrecioU.ToString(), TablasTexto)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE });
+                    table.AddCell(new PdfPCell(new Phrase(Cantidad.ToString(), TablasTexto)) { HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE });
+                }
+                catch(Exception ex)
+                {
+                    //error
                 }
             }
+            doc.Add(table);
 
-            // Add the table to the PDF document
-            pdf.Add(table);
+            Paragraph Linea = new Paragraph("----------------------------", Titulo2);
+            Linea.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(Linea);
 
-            // Close the PDF document
-            pdf.Close();
+            Paragraph TotalF = new Paragraph("El total es: " + Total + "", Titulo2);
+            TotalF.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(TotalF);
+            doc.Add(new Chunk("\n"));
 
-            // Provide the generated PDF file for download or display
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            Response.AppendHeader("Content-Disposition", $"attachment; filename=GridViewToPdf.pdf");
-            Response.TransmitFile(pdfPath);
-            Response.End();
+            Session["NombreFactura"] = ruta_final;
+            doc.Close();
+            writer.Close();
         }
     }
 }
