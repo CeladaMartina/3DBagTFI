@@ -93,14 +93,11 @@ namespace _3DBag
 
         protected void btnComprarAhora_Click(object sender, EventArgs e)
         {
-
-            //GestorVenta.Vender(Convert.ToInt32(Session["IdVenta"]));
-            //string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "/Factura");
-            string ruta = "C:\\Users\\mcelada\\Desktop\\SAP - TFI - Auditoria 2023\\TFI\\3DBag\\3DBag\\3DBag\\Facturas\\";
+            string ruta = "C:\\Users\\mcelada\\Desktop\\SAP - TFI - Auditoria 2023\\TFI\\3DBag\\3DBag\\3DBag\\Facturas\\"; //intentar arreglar esto
             string lblSubtotal = GestorDV.SubTotal(int.Parse(Session["IdVenta"].ToString())).ToString();
             PDF(ruta, Convert.ToInt32(Session["IdVenta"]), GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario), DateTime.Now.ToShortDateString(), decimal.Parse(lblSubtotal));
             
-            Response.Redirect("../Venta/FinalizarVenta.aspx?IdVenta=" + Session["IdVenta"] + "&Factura=" + Session["NombreFactura"]);
+            Response.Redirect("../Venta/FinalizarCompra.aspx?IdVenta=" + Session["IdVenta"] + "&Factura=" + Session["NombreFactura"]);
         }
 
         void PDF(string ruta, int NumVenta, string Cliente, string Fecha, decimal Total)
@@ -114,6 +111,7 @@ namespace _3DBag
 
             string fecha_final = Fecha.Replace("/", "-");
             string ruta_final = "" + ruta + "Venta" + NumVenta + "__" + fecha_final + ".pdf";
+            string rutaViewPDF= "Venta" + NumVenta + "__" + fecha_final + ".pdf";
 
             System.IO.FileStream fs = new FileStream(ruta_final, FileMode.Create);
             Document doc = new Document(PageSize.A4);
@@ -189,7 +187,7 @@ namespace _3DBag
             doc.Add(TotalF);
             doc.Add(new Chunk("\n"));
 
-            Session["NombreFactura"] = ruta_final;
+            Session["NombreFactura"] = rutaViewPDF;
             doc.Close();
             writer.Close();
         }
