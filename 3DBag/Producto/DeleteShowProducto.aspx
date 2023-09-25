@@ -5,7 +5,7 @@
     <div>
         <asp:Label ID="lblTitulo" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblPregunta" runat="server" Visible="false"></asp:Label>
+        <asp:Label ID="lblPregunta" runat="server" Visible="false" ></asp:Label>
         <br />
         <asp:Label ID="lblCodProd" runat="server">Codigo Producto: </asp:Label><asp:Label ID="lblCodProdResp" runat="server"></asp:Label>
         <br />
@@ -21,6 +21,9 @@
         <br />
         <br />
         <asp:Button ID="btnBorrar" runat="server" Text="Borrar" OnClick="btnBorrar_Click" />
+        <br />
+        <br />
+        <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>
         <br />
         <br />
         <asp:LinkButton ID="LinkRedireccion" runat="server" OnClick="LinkRedireccion_Click"><< Volver atrás</asp:LinkButton>

@@ -61,6 +61,7 @@ namespace _3DBag
         void Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material,int Stock, decimal PUnit, int DVH)
         {
             GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH);
+            lblRespuesta.Text = SiteMaster.TraducirGlobal("Alta de Producto exitosamente") ?? ("Alta de Producto exitosamente");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Articulo", "Media", 0);
 
         }
@@ -68,6 +69,7 @@ namespace _3DBag
         void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
         {
             GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH);
+            lblRespuesta.Text = SiteMaster.TraducirGlobal("Modificación de Producto exitosamente") ?? ("Modificación de Producto exitosamente");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar Articulo", "Baja", 0);
 
         }
@@ -89,12 +91,12 @@ namespace _3DBag
                     }
                     catch (Exception)
                     {
-                        //MessageBox.Show(CambiarIdioma.TraducirGlobal("Error") ?? "Error");
+                        lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");                        
                     }
                 }
                 else
                 {
-                    //MessageBox.Show(CambiarIdioma.TraducirGlobal("Complete todos los campos") ?? "Complete todos los campos");
+                    lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
             }
             else
@@ -107,12 +109,12 @@ namespace _3DBag
                     }
                     catch (Exception)
                     {
-                        //MessageBox.Show(CambiarIdioma.TraducirGlobal("Error") ?? "Error");
+                        lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                     }
                 }
                 else
                 {
-                    //MessageBox.Show(CambiarIdioma.TraducirGlobal("Complete todos los campos") ?? "Complete todos los campos");
+                    lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
             }
         }

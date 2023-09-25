@@ -35,18 +35,18 @@ namespace _3DBag
                     LimpiarTxt();
                     IdUsuario = -1;
                     lblError.Visible = true;
-                    lblError.Text = "Registrado exitosamente.";
+                    lblError.Text = SiteMaster.TraducirGlobal("Registrado correctamente") ?? ("Registrado correctamente");
                 }
                 catch (Exception ex)
                 {
                     lblError.Visible = true;
-                    lblError.Text = "Error.";
+                    lblError.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 }
             }
             else
             {
                 lblError.Visible = true;
-                lblError.Text = "Complete todos los campos.";
+                lblError.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
             }
         }
         #endregion
@@ -88,8 +88,7 @@ namespace _3DBag
             txtEmail.Text = "";
             txtTelefono.Text = "";
             txtFecha.Text = "";
-            DropDownList1.SelectedValue = "0";
-                
+            DropDownList1.SelectedValue = "0";                
         }
         
         #endregion

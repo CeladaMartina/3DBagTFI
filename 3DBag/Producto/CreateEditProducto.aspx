@@ -37,6 +37,9 @@
         <asp:Button ID="btnFunction" runat="server" OnClick="btnFunction_Click" />
         <br />
         <br />
+        <asp:Label ID="lblRespuesta" runat="server"></asp:Label>
+        <br />
+        <br />
         <asp:LinkButton ID="LinkRedirect" runat="server" OnClick="LinkRedirect_Click"><< Volver a la lista</asp:LinkButton>
     </div>
 </asp:Content>

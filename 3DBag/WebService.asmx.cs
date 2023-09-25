@@ -21,7 +21,9 @@ namespace _3DBag
         [WebMethod]
         public string TopListaProd()
         {
-            return GestorProducto.TopListaProd();
+            List<Propiedades_BE.Articulo> articulo = GestorProducto.TopListaProd();
+            string respuesta = "El producto " + articulo[0].Nombre + " " + articulo[0].Descripcion + " tiene un precio de $" + articulo[0].PUnit;
+            return respuesta;
         }
     }
 }

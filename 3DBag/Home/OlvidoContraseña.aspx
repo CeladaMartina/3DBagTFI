@@ -8,5 +8,8 @@
     <asp:Label ID="lblMail" runat="server"> Mail: </asp:Label><asp:TextBox ID="txtMail" runat="server"></asp:TextBox>
     <br />
     <br />
+    <asp:Label ID="lblRespuesta" runat="server"></asp:Label>
+    <br />
+    <br />
     <asp:Button ID="btnActualizarContra" runat="server" Text="Enviar Contraseña" OnClick="btnActualizarContra_Click"/>
 </asp:Content>

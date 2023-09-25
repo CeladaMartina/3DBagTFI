@@ -36,7 +36,7 @@ namespace _3DBag
             if (Contador >= 3)
             {
                 GestorUsuario.BloquearUsuario(txtNick.Text);
-                //MessageBox.Show(CambiarIdioma.TraducirGlobal("Su usuario ha sido bloqueado. Contacte al administrador del sistema") ?? "Su usuario ha sido bloqueado. Contacte al administrador del sistema");
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Su usuario ha sido bloqueado. Contacte al administrador del sistema") ?? ("Su usuario ha sido bloqueado. Contacte al administrador del sistema");
             }
             else
             {
@@ -44,13 +44,12 @@ namespace _3DBag
                 {
                     GestorUsuario.ReiniciarIntentos(txtNick.Text);
                     string contraseñaNueva = Seguridad.GenerarClave();
-                    ConfirmarCambio(contraseñaNueva);
-                    //MessageBox.Show(CambiarIdioma.TraducirGlobal("Datos bien cargados") ?? "Datos bien cargados");                    
+                    ConfirmarCambio(contraseñaNueva);                             
                 }
                 else
                 {
                     Contador += 1;
-                    //MessageBox.Show(CambiarIdioma.TraducirGlobal("Datos mal cargados") ?? "Datos mal cargados");
+                    lblRespuesta.Text = SiteMaster.TraducirGlobal("Datos mal cargados") ?? ("Datos mal cargados");                   
                 }
             }
         }
@@ -64,17 +63,16 @@ namespace _3DBag
                     GestorUsuario.ConfirmarCambioContraseña(txtNick.Text, contraseñaNueva, txtMail.Text);
                     Seguridad.CargarBitacora(GestorUsuario.SeleccionarIDNick(txtNick.Text), DateTime.Now, "Contraseña cambiada", "Alta", 0);
                     EnviarMail(contraseñaNueva, txtMail.Text);
-                    //MessageBox.Show(CambiarIdioma.TraducirGlobal("Contraseña cambiada con exito") ?? "Contraseña cambiada con exito");
-                    //this.Close();
+                    lblRespuesta.Text = SiteMaster.TraducirGlobal("Contraseña cambiada con exito") ?? ("Contraseña cambiada con exito");                    
                 }
                 else
                 {
-                    //MessageBox.Show(CambiarIdioma.TraducirGlobal("Ingrese otra contraseña") ?? "Ingrese otra contraseña");
+                    lblRespuesta.Text = SiteMaster.TraducirGlobal("Ingrese otra contraseña") ?? ("Ingrese otra contraseña");                    
                 }
             }
             catch (Exception)
             {
-                //MessageBox.Show(CambiarIdioma.TraducirGlobal("Error cambiando clave, intente nuevamente") ?? "Error cambiando clave, intente nuevamente");
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Error cambiando clave, intente nuevamente") ?? ("Error cambiando clave, intente nuevamente");               
             }
 
         }
@@ -109,12 +107,12 @@ namespace _3DBag
                 }
                 catch (Exception ex)
                 {
-                    //error
+                    lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 }
             }
             else
             {
-                //Complete todos los campos
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");               
             }
         }
     }
