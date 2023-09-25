@@ -249,7 +249,7 @@ namespace Acceso_DAL
 
                 string IdVenta = Dv.IdVenta.ToString();
                 string IdUsuario = Dv.IdUsuario.ToString();
-                string Fecha = Dv.Fecha.ToString();
+                string Fecha = Dv.FechaV.ToString();
                 string dvh = Dv.DVH.ToString();
 
                 long IdVentaV = Seguridad.ObtenerAscii(IdVenta);

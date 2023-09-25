@@ -76,37 +76,31 @@ namespace _3DBag
             GestorUsuario.RecalcularDVH();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Usuario recalculado", "Alta", 0);
         }
-
         void RPermiso()
         {
             GestorPermisos.RecalcularDVH();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Permisos recalculado", "Alta", 0);
         }
-
         void RArticulo()
         {
             GestorProducto.RecalcularDVH();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Articulo recalculado", "Alta", 0);
         }
-
         void RIdioma()
         {
             GestorProducto.RecalcularDVH();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Idioma recalculado", "Alta", 0);
         }
-
         void RVenta()
         {
             GestorVenta.RecalcularDVH();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Venta recalculado", "Alta", 0);
         }
-
         void RBitacora()
         {
             Seguridad.RecalcularDVH();
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "DVH Bitacora recalculado", "Alta", 0);
         }
-
         void RDetalleVenta()
         {
             GestorDetalleVenta.RecalcularDVH();
@@ -142,15 +136,14 @@ namespace _3DBag
 
         void RecalcularTablas()
         {
-            //RUsuario(); //recalculamos la tabla Usuario
-            //RPermiso(); //recalculamos la tabla Permiso
-            // //recalculamos la tabla articulo
-            //RIdioma(); //recalculamos la tabla idioma
-            RDetalleVenta(); //recalculamos la tabla detalle venta
-            RVenta(); //recalculamos la tabla Venta
+            RUsuario(); 
+            RPermiso();          
+            RIdioma(); 
+            RDetalleVenta();
+            RVenta(); 
             RBitacora();
             RArticulo();
-            RDVV();     //recalculamos la tabla Digitos Verticales  
+            RDVV(); //recalculamos la tabla Digitos Verticales  
         }
         #endregion
     }
