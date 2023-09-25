@@ -37,6 +37,7 @@ namespace _3DBag
                 if (Session["IdiomaSelect"] != null)
                 {
                     DropDownListIdioma.SelectedValue = Session["IdiomaSelect"].ToString();
+                    //DropDownListIdioma.SelectedValue = "Español";
                     Traducir();
                     //Update()
                 }

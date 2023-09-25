@@ -7,7 +7,7 @@
         <asp:Label ID="lblTitulo" SkinID="Bitacora" runat="server">Bitacora</asp:Label>
         <br />
         <br />
-        <div id="divFiltro" style="display: flex; justify-content: left; align-items: center;">
+        <div id="divFiltro" style="display: flex; justify-content: space-evenly; align-items: center;">
 
             <asp:Label ID="lblDesde" SkinID="Desde" runat="server">Desde</asp:Label>
             <asp:TextBox ID="txtDesde" runat="server"></asp:TextBox>
@@ -46,12 +46,15 @@
             </asp:DropDownList>
             <br />
             <br />
-            <asp:Label ID="lblUsuario" runat="server">Usuarios: </asp:Label>
+            <asp:Label ID="lblUsuarios" runat="server">Usuarios: </asp:Label>
             <asp:DropDownList ID="ListUsuarios" runat="server">
             </asp:DropDownList>
             <br />
             <br />
             <asp:Button ID="bntFiltrar" runat="server" Text="Filtar" OnClick="bntFiltrar_Click" />
+            <br />
+            <br />
+            <asp:Button ID="btnExportar" runat="server" Text="Exportar" OnClick="btnExportar_Click" />
         </div>
         <asp:GridView ID="GridBitacora" PageSize="10" runat="server" AllowPaging="true" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnDataBound="GridBitacora_DataBound" OnPageIndexChanging="GridBitacora_PageIndexChanging">
             <AlternatingRowStyle BackColor="White" />
@@ -83,8 +86,7 @@
         </asp:GridView>
         <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>
         <br />
-        <br />
-        <asp:Button ID="btnExportar" runat="server" Text="Exportar" OnClick="btnExportar_Click" />
+        <br />        
     </div>
      <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>   
 </asp:Content>

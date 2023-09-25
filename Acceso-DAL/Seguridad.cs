@@ -362,7 +362,7 @@ namespace Acceso_DAL
             {
                 string IdBitacora = B.IdBitacora.ToString();
                 string IdUsuario = B.IdUsuario.ToString();
-                string Fecha = B.Fecha.ToString();
+                string Fecha = B.FechaB.ToString();
                 string Descripcion = B.Descripcion;
                 string Criticidad = B.Criticidad;
                 string dvh = B.DVH.ToString();

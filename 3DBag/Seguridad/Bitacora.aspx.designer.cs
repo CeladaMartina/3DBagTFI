@@ -123,13 +123,13 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.DropDownList ListCriticidiad;
 
         /// <summary>
-        /// Control lblUsuario.
+        /// Control lblUsuarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsuario;
+        protected global::System.Web.UI.WebControls.Label lblUsuarios;
 
         /// <summary>
         /// Control ListUsuarios.
@@ -150,6 +150,15 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Button bntFiltrar;
 
         /// <summary>
+        /// Control btnExportar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportar;
+
+        /// <summary>
         /// Control GridBitacora.
         /// </summary>
         /// <remarks>
@@ -166,15 +175,6 @@ namespace _3DBag
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError;
-
-        /// <summary>
-        /// Control btnExportar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportar;
 
         /// <summary>
         /// Control lblPermiso.

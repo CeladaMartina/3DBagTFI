@@ -25,3 +25,17 @@
 #footer1{
     background: #762b00;
 }
+
+#ContentPlaceHolder1_containerHome {
+    text-align: center;
+}
+
+#ContentPlaceHolder1_lblUsuario{
+    font-size: 30px;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

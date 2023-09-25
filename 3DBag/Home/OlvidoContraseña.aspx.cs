@@ -84,7 +84,7 @@ namespace _3DBag
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("martina.celada@gmail.com", "3DBag 2023");
             mail.Subject = "Cambio de Contraseña 3DBag";
-            mail.Body = "<h2>Aqui esta tu nuevo contraseña</h2><br/><p>No la compartas con nadie: "+ contraseñaNueva + "</p>";
+            mail.Body = "<h2>Aqui esta tu nueva contraseña</h2><br/><p>No la compartas con nadie: "+ contraseñaNueva + "</p>";
             mail.IsBodyHtml = true;
 
             mail.To.Add(new MailAddress(Mail));

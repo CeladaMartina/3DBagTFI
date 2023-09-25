@@ -69,7 +69,9 @@ namespace _3DBag
             string ProblemaIdioma = GestorIdioma.VerificarIntegridadIdioma(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
             //string ProblemaVenta = GestorVenta.VerificarIntegridadVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
             //string ProblemaDetalleVenta = GestorDV.VerificarIntegridadDV(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
-            //string ProblemaBitacora = Seguridad.VerificarIntegridadBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
+
+            
+            string ProblemaBitacora = Seguridad.VerificarIntegridadBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
 
             //string ProblemaDefinitivo = ProblemaUsuario + ProblemaPermiso + ProblemaProducto + ProblemaIdioma + ProblemaVenta + ProblemaDetalleVenta + ProblemaBitacora;
             string ProblemaDefinitivo = ProblemaUsuario + ProblemaPermiso + ProblemaProducto + ProblemaIdioma;
