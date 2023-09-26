@@ -24,7 +24,8 @@ namespace _3DBag
                 if(Request.QueryString["producto"] == null)
                 {
                     lblTitulo.Text = "Nuevo Producto";
-                    btnFunction.Text = "Agregar";                    
+                    btnFunction.Text = "Agregar";
+                    Imagen.Visible = false;
                 }
                 else
                 {
@@ -45,7 +46,9 @@ namespace _3DBag
             txtDescripcion.Text = producto[0].Descripcion;
             txtMaterial.Text = producto[0].Material;
             txtStock.Text = producto[0].Stock.ToString();
-            txtPUnit.Text = producto[0].PUnit.ToString();
+            txtPUnit.Text = producto[0].PUnit.ToString();           
+            Imagen.Visible = true;
+            Imagen.ImageUrl = producto[0].Imagen.ToString();
         }
 
         bool ChequearFallaTxt()
@@ -67,9 +70,9 @@ namespace _3DBag
 
         }
 
-        void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
+        void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, byte[] ImagenProd, int DVH)
         {
-            GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH);
+            GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, ImagenProd, DVH);
             lblRespuesta.Text = SiteMaster.TraducirGlobal("Modificación de Producto exitosamente") ?? ("Modificación de Producto exitosamente");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar Articulo", "Baja", 0);
 
@@ -104,7 +107,16 @@ namespace _3DBag
                 {
                     try
                     {
-                        Modificar(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);
+                        string prodFileName = Path.GetFileName(FileUploadImagen.PostedFile.FileName);
+                        if (prodFileName == "")
+                        {
+                            lblRespuesta.Text = SiteMaster.TraducirGlobal("Cargue una Imagen") ?? ("Cargue una Imagen");
+                        }
+                        else
+                        {
+                            byte[] ImagenProd = ObtenerImagen();
+                            Modificar(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), ImagenProd, 0);
+                        }
                     }
                     catch (Exception)
                     {

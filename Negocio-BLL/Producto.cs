@@ -103,7 +103,7 @@ namespace Negocio_BLL
             return i;
         }
 
-        public int Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
+        public int Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, byte[] Imagen, int DVH)
         {
             ArticuloTemp.IdArticulo = IdArticulo;
             ArticuloTemp.CodProd = CodProd;
@@ -112,6 +112,7 @@ namespace Negocio_BLL
             ArticuloTemp.Material = Material;                       
             ArticuloTemp.Stock = Stock;
             ArticuloTemp.PUnit = PUnit;
+            ArticuloTemp.ImagenByte = Imagen;
             ArticuloTemp.DVH = DVH;
 
             int i = Mapper.Modificar(ArticuloTemp);

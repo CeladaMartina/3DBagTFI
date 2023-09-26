@@ -179,6 +179,12 @@ namespace Acceso_DAL
                 A.Material = lector["Material"].ToString();
                 A.Stock = int.Parse(lector["Stock"].ToString());
                 A.PUnit = decimal.Parse(lector["PUnit"].ToString());
+                //se convierte la imagen  de byte a base64 y despues a img
+                byte[] bytes = (byte[])lector["Imagen"];
+                string str = Convert.ToBase64String(bytes);
+                string URL = "data:Image/png;base64," + str;
+                A.Imagen = URL;
+                //fin de imagen
                 codProdList.Add(A);
             }
             lector.Close();
@@ -281,14 +287,16 @@ namespace Acceso_DAL
         public int Modificar(Propiedades_BE.Articulo A)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[7];
+            SqlParameter[] P = new SqlParameter[8];
             P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);           
             P[1] = new SqlParameter("@CodProd", A.CodProd);
             P[2] = new SqlParameter("@Nombre", A.Nombre);
             P[3] = new SqlParameter("@Descripcion", A.Descripcion);
-            P[4] = new SqlParameter("@Material", A.Material);           
-            P[5] = new SqlParameter("@PUnit", A.PUnit);
-            P[6] = new SqlParameter("@DVH", A.DVH);
+            P[4] = new SqlParameter("@Material", A.Material);
+            P[5] = new SqlParameter("@Stock", A.Stock);
+            P[6] = new SqlParameter("@PUnit", A.PUnit);
+            P[7] = new SqlParameter("@Imagen", A.ImagenByte);
+            P[8] = new SqlParameter("@DVH", A.DVH);
             fa = Acceso.Escribir("ModificarArticulo", P);
             return fa;
         }

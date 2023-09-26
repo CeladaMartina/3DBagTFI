@@ -30,6 +30,9 @@
         <br />
         <asp:TextBox ID="txtPUnit" runat="server"></asp:TextBox>
         <br />
+        <br />        
+        <asp:Image ID="Imagen" runat="server" ImageUrl='<%#Bind("Imagen") %>' Height="100px" Width="100px" Visible="false"/>
+        <br />
         <br />
         <asp:FileUpload ID="FileUploadImagen" runat="server"/>
         <br />
