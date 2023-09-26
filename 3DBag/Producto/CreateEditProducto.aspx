@@ -31,7 +31,7 @@
         <asp:TextBox ID="txtPUnit" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:FileUpload ID="FileUploadImagen" runat="server" />
+        <asp:FileUpload ID="FileUploadImagen" runat="server"/>
         <br />
         <br />
         <asp:Button ID="btnFunction" runat="server" OnClick="btnFunction_Click" />

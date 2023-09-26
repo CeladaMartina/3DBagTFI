@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -58,9 +59,9 @@ namespace _3DBag
             return A;
         }
 
-        void Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material,int Stock, decimal PUnit, int DVH)
+        void Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material,int Stock, decimal PUnit,byte[] Imagen, int DVH)
         {
-            GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH);
+            GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, Imagen, DVH);
             lblRespuesta.Text = SiteMaster.TraducirGlobal("Alta de Producto exitosamente") ?? ("Alta de Producto exitosamente");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Articulo", "Media", 0);
 
@@ -72,6 +73,22 @@ namespace _3DBag
             lblRespuesta.Text = SiteMaster.TraducirGlobal("Modificación de Producto exitosamente") ?? ("Modificación de Producto exitosamente");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar Articulo", "Baja", 0);
 
+        }
+
+        byte[] ObtenerImagen()
+        {
+            byte[] resultado;
+
+            using (Stream s = FileUploadImagen.PostedFile.InputStream)
+            {
+                using(BinaryReader br = new BinaryReader(s))
+                {
+                    byte[] Databytes = br.ReadBytes((Int32)s.Length);
+                    resultado = Databytes;
+                }
+            }    
+            
+            return resultado;
         }
 
         protected void LinkRedirect_Click(object sender, EventArgs e)
@@ -105,7 +122,17 @@ namespace _3DBag
                 {
                     try
                     {
-                        Alta(IdArticulo, int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);
+                        string prodFileName = Path.GetFileName(FileUploadImagen.PostedFile.FileName);
+                        if(prodFileName == "")
+                        {
+                            lblRespuesta.Text = SiteMaster.TraducirGlobal("Cargue una Imagen") ?? ("Cargue una Imagen");
+                        }
+                        else
+                        {
+                            byte[] ImagenProd = ObtenerImagen();
+                            Alta(IdArticulo, int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), ImagenProd, 0);
+
+                        }
                     }
                     catch (Exception)
                     {

@@ -83,7 +83,7 @@ namespace Negocio_BLL
             return Mapper.ListarTopProductos();
         }
 
-        public int Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
+        public int Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, byte[] Imagen, int DVH)
         {
             ArticuloTemp.IdArticulo = IdArticulo;
             ArticuloTemp.CodProd = CodProd;
@@ -92,11 +92,13 @@ namespace Negocio_BLL
             ArticuloTemp.Material = Material;                    
             ArticuloTemp.Stock = Stock;
             ArticuloTemp.PUnit = PUnit;
+            ArticuloTemp.ImagenByte = Imagen;
             ArticuloTemp.DVH = DVH;
             
             int i = Mapper.Alta(ArticuloTemp);
-            DV = Seguridad.CalcularDVH("select * from Articulo where IdArticulo= " + ArticuloTemp.IdArticulo + "", "Articulo");
-            producto.EjecutarConsulta("Update Articulo set DVH= '" + DV + "' where IdArticulo=" + ArticuloTemp.IdArticulo + "");
+
+            DV = Seguridad.CalcularDVH("select * from Articulo where IdArticulo = (select TOP 1 IdArticulo from Articulo order by IdArticulo desc)", "Articulo");
+            producto.EjecutarConsulta("Update Articulo set DVH= '" + DV + "' where IdArticulo = (select TOP 1 IdArticulo from Articulo order by IdArticulo desc)");
             Seguridad.ActualizarDVV("Articulo", Seguridad.SumaDVV("Articulo"));
             return i;
         }

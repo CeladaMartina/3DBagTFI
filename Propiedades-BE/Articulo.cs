@@ -104,5 +104,15 @@ namespace Propiedades_BE
             get { return _dvh; }
             set { _dvh = value; }
         }
+
+        //imagenByte 
+        private byte[] _imagenByte;
+
+        public byte[] ImagenByte
+        {
+            get { return _imagenByte; }
+            set { _imagenByte = value; }
+        }
+
     }
 }
