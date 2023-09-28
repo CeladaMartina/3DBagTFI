@@ -2,15 +2,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="divGeneral" runat="server">
-        <h1>Restore</h1>
+     <asp:Label ID="lblTitulo" SkinID="Restauracion" runat="server">Restauracion</asp:Label>
         <br />
+        <br />
+    <div id="divGeneral" runat="server">        
         <asp:Label ID="lblRuta" runat="server" Text="Ruta" SkinID="Ruta"></asp:Label>     
         <br />
         <asp:TextBox ID="txtRuta" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="btnRestore" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" SkinID="Realizar" />
+        <asp:Button ID="btnRestore" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" SkinID="Generar" />
         <br />
         <br />
         <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>    

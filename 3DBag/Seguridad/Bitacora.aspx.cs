@@ -32,7 +32,7 @@ namespace _3DBag
                 else
                 {
                     divGeneral.Visible = false;
-                    lblPermiso.Text = "No tiene los permisos para realizar esta accion.";
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
                     lblPermiso.Visible = true;
                 }
             }
@@ -123,13 +123,13 @@ namespace _3DBag
                 if (GridBitacora.DataSource == null)
                 {                    
                     lblError.Visible = true;
-                    lblError.Text = "No hay valores para mostrar en la grilla.";
+                    lblError.Text = SiteMaster.TraducirGlobal("No hay valores para mostrar en la grilla.") ?? ("No hay valores para mostrar en la grilla.");
                 }               
                 else if (GridBitacora.Rows.Count == 0)
                 {
                     GridBitacora.DataSource = null;
                     lblError.Visible = true;
-                    lblError.Text = "No hay valores para mostrar en la grilla.";
+                    lblError.Text = SiteMaster.TraducirGlobal("No hay valores para mostrar en la grilla.") ?? ("No hay valores para mostrar en la grilla.");
                 }
                 else
                 {
@@ -234,7 +234,7 @@ namespace _3DBag
                     if (dtDesde >= dtHasta)
                     {
                         lblError.Visible = true;
-                        lblError.Text = "La fecha Hasta no puede ser menor que Desde.";
+                        lblError.Text = SiteMaster.TraducirGlobal("La fecha Hasta no puede ser menor que Desde.") ?? ("La fecha Hasta no puede ser menor que Desde.");
                     }
                     else
                     {
@@ -245,7 +245,7 @@ namespace _3DBag
             catch (Exception ex)
             {
                 lblError.Visible = true;
-                lblError.Text = "Error filtrando";
+                lblError.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 ListarBitacora();
             }
         }

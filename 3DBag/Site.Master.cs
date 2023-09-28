@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using Propiedades_BE;
 
 namespace _3DBag
@@ -55,22 +56,22 @@ namespace _3DBag
         public void NotificarCambio()
         {
             ////var numerator = Application.OpenForms.GetEnumerator();
-            
-            //var numerator = Application.GetEnumerator();
-            //while (numerator.MoveNext())
-            //{
-            //    if (numerator.Current is IObserver)
-            //    {
-            //        this.Attach((IObserver)numerator.Current);
-                    
-            //    }
-            //}            
-            //ListaObservadores.ForEach(item => item.Update(this));
 
-            foreach(IObserver observer in ListaObservadores)
+            var numerator = Application.GetEnumerator();
+            while (numerator.MoveNext())
             {
-                observer.Update(this);
+                if (numerator.Current is IObserver)
+                {
+                    this.Attach((IObserver)numerator.Current);
+
+                }
             }
+            ListaObservadores.ForEach(item => item.Update(this));
+
+            //foreach(IObserver observer in ListaObservadores)
+            //{
+            //    observer.Update(this);
+            //}
             
         }
 
@@ -121,7 +122,7 @@ namespace _3DBag
             }
             catch (Exception)
             {
-                //MessageBox.Show(TraducirGlobal("Error") ?? "Error");
+                MessageBox.Show(TraducirGlobal("Error") ?? "Error");
             }
         }
 

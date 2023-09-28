@@ -3,12 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="divGeneral" runat="server">
-        <asp:Label ID="lblTitulo" SkinID="Bitacora" runat="server">Bitacora</asp:Label>
+    <asp:Label ID="lblTitulo" SkinID="Bitacora" runat="server">Bitacora</asp:Label>
         <br />
         <br />
+    <div id="divGeneral" runat="server">        
         <div id="divFiltro" style="display: flex; justify-content: space-evenly; align-items: center;">
-
             <asp:Label ID="lblDesde" SkinID="Desde" runat="server">Desde</asp:Label>
             <asp:TextBox ID="txtDesde" runat="server"></asp:TextBox>
             <asp:ImageButton ID="imageButtonDesde" runat="server" ImageUrl="~/Images/calendar.png" ImageAlign="AbsBottom" Height="22px" Width="27px" OnClick="imageButtonDesde_Click" />
@@ -37,7 +36,7 @@
                 <WeekendDayStyle BackColor="#CCCCFF" />
             </asp:Calendar>
             <br />
-            <asp:Label ID="lblCriticidad" runat="server">Criticidad: </asp:Label>
+            <asp:Label ID="lblCriticidad" runat="server" SkinID="Criticidad">Criticidad: </asp:Label>
             <asp:DropDownList ID="ListCriticidiad" runat="server">
                 <asp:ListItem>Todos</asp:ListItem>
                 <asp:ListItem>Alta</asp:ListItem>
@@ -46,15 +45,15 @@
             </asp:DropDownList>
             <br />
             <br />
-            <asp:Label ID="lblUsuarios" runat="server">Usuarios: </asp:Label>
+            <asp:Label ID="lblUsuarios" runat="server" SkinID="Usuarios">Usuarios: </asp:Label>
             <asp:DropDownList ID="ListUsuarios" runat="server">
             </asp:DropDownList>
             <br />
             <br />
-            <asp:Button ID="bntFiltrar" runat="server" Text="Filtar" OnClick="bntFiltrar_Click" />
+            <asp:Button ID="bntFiltrar" runat="server" Text="Filtar" SkinID="Filtrar" OnClick="bntFiltrar_Click" />
             <br />
             <br />
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" OnClick="btnExportar_Click" />
+            <asp:Button ID="btnExportar" runat="server" Text="Exportar" SkinID="Exportar" OnClick="btnExportar_Click" />
         </div>
         <asp:GridView ID="GridBitacora" PageSize="10" runat="server" AllowPaging="true" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnDataBound="GridBitacora_DataBound" OnPageIndexChanging="GridBitacora_PageIndexChanging">
             <AlternatingRowStyle BackColor="White" />
@@ -71,10 +70,10 @@
                 <table>
                     <tr>
                         <td>
-                            <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" CommandName="Page" CommandArgument="Prev" />
-                            <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" CommandName="Page" CommandArgument="Next" />
+                            <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" SkinID="Anterior" CommandName="Page" CommandArgument="Prev" />
+                            <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" SkinID="Siguiente" CommandName="Page" CommandArgument="Next" />
                         </td>
-                        <td>Pagina N°
+                        <td>Pag N°
                         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                             Total Pag.
                         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>

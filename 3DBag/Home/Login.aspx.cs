@@ -117,8 +117,7 @@ namespace _3DBag
                     if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
                     {
                         if (GestorUsuario.VerificarEstado(txtNick.Text) == false)
-                        {
-                            //ingreso correctamente
+                        {                            
                             GestorUsuario.ReiniciarIntentos(txtNick.Text);
 
                             try
@@ -133,7 +132,8 @@ namespace _3DBag
                             }
                             catch (Exception EX)
                             {
-                                //MessageBox.Show(EX.Message);
+                                lblError.Visible = true;
+                                lblError.Text = "Error de Servicio:" + EX;
                             }
                         }
                         else
@@ -163,15 +163,12 @@ namespace _3DBag
                 }
                 else
                 {
-                    //MessageBox.Show(Cambiar_Idioma.TraducirGlobal("Complete todos los campos") ?? "Complete todos los campos");
                     lblError.Visible = true;
                     lblError.Text = "Complete todos los campos.";
-                }
-                
+                }                
             }
             else
             {
-
                 if(ChequearFallaTxt() == false)
                 {
                     if (GestorUsuario.VerificarUsuarioContraseña(txtNick.Text, txtContraseña.Text, Propiedades_BE.SingletonLogin.GlobalIntegridad) == 1)
@@ -196,7 +193,6 @@ namespace _3DBag
                 }
                 else
                 {
-                    //MessageBox.Show(Cambiar_Idioma.TraducirGlobal("Complete todos los campos") ?? "Complete todos los campos");
                     lblError.Visible = true;
                     lblError.Text = "Complete todos los campos.";
                 }

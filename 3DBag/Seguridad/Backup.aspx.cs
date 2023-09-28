@@ -20,9 +20,8 @@ namespace _3DBag
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");            
             
-            //Traducir();
             if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Realizar_BackUp)))
             {                
                 divBackup.Visible = true;
@@ -31,7 +30,7 @@ namespace _3DBag
             else
             {
                 divBackup.Visible = false;
-                lblPermiso.Text = "No tiene los permisos para realizar esta accion";
+                lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
                 lblPermiso.Visible = true;
             }
             
@@ -50,7 +49,7 @@ namespace _3DBag
             }catch(Exception ex)
             {
                 lblResultado.Visible = true;
-                lblResultado.Text = "Complete los datos";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 lblResultado.CssClass = "alert alert-warning";
             }            
         }
@@ -69,14 +68,14 @@ namespace _3DBag
             {
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Backup exitoso", "Alta", 0);
                 lblResultado.Visible = true;
-                lblResultado.Text = "Backup realizado correctamente.";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Backup realizado correctamente") ?? ("Backup realizado correctamente");
                 lblResultado.CssClass = "alert alert-success";
             }
             else
             {
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Backup error", "Alta", 0);
                 lblResultado.Visible = true;
-                lblResultado.Text = "Se produjo error al realizar el backup";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Se produjo error al realizar el Backup") ?? ("Se produjo error al realizar el Backup"); 
                 lblResultado.CssClass = "alert alert-warning";
             }
         }

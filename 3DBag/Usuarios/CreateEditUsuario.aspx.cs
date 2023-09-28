@@ -22,23 +22,36 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                // si el cod viene null, mostrara pantalla Alta
-                if (Request.QueryString["usuario"] == null)
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario)))
                 {
-                    lblTitulo.Text = "Nuevo Usuario";
-                    btnFunction.Text = "Agregar";
-                    TraerPatentes();
-                    TrearFamilias();
+                    divUsuarios.Visible = true;
+                    lblPermiso.Visible = false;
+
+                    // si el cod viene null, mostrara pantalla Alta
+                if (Request.QueryString["usuario"] == null)
+                    {
+                        lblTitulo.Text = SiteMaster.TraducirGlobal("Nuevo Usuario") ?? ("Nuevo Usuario");
+                        btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
+                        TraerPatentes();
+                        TrearFamilias();
+                    }
+                    else
+                    {
+                        //si el cod viene, mostrara pantalla Editar
+                        nick = Request.QueryString["usuario"];
+                        lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Usuario") ?? ("Editar Usuario");
+                        btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
+                        TraerUsuario();
+                        TraerPermisos();
+                    }
                 }
                 else
                 {
-                    //si el cod viene, mostrara pantalla Editar
-                    nick = Request.QueryString["usuario"];
-                    lblTitulo.Text = "Editar Usuario";
-                    btnFunction.Text = "Editar";
-                    TraerUsuario();
-                    TraerPermisos();
+                    divUsuarios.Visible = false;
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
+                    lblPermiso.Visible = true;
                 }
+                
             }           
         }
 
@@ -83,9 +96,9 @@ namespace _3DBag
         {
             if (GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, DVH) == 0)
             {
-                //lblResultado.Visible = true;
-                //lblResultado.CssClass = "label-success";
-                //lblResultado.Text = "Usuario modificado correctamente";
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "label-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Usuario modificado correctamente") ?? ("Usuario modificado correctamente");
             }
 
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar usuario", "Alta", 0);           
@@ -291,7 +304,8 @@ namespace _3DBag
             }
             catch (Exception)
             {
-                //error
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
 
         }
@@ -304,7 +318,8 @@ namespace _3DBag
             }
             catch (Exception)
             {
-                //error
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
 
@@ -329,7 +344,8 @@ namespace _3DBag
                             }
                             else
                             {
-                                //Ingrese otra contraseña
+                                lblResultado.Visible = true;
+                                lblResultado.Text = SiteMaster.TraducirGlobal("Ingrese otra contraseña") ?? ("Ingrese otra contraseña");
                             }
                         }
 
@@ -341,13 +357,15 @@ namespace _3DBag
                 }
                 else
                 {
-                    //complete todos los datos
+                    lblResultado.Visible = true;
+                    lblResultado.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
 
             }
             catch (Exception)
             {
-                //error
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
 
@@ -364,7 +382,8 @@ namespace _3DBag
             }
             catch (Exception)
             {
-                //error
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
 
@@ -376,7 +395,8 @@ namespace _3DBag
             }
             catch (Exception)
             {
-                //error
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
 

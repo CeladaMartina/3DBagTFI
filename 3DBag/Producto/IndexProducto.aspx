@@ -2,7 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Button ID="btnAlta" runat="server" Text="Alta Producto" OnClick="btnAlta_Click" />
+    <asp:Label ID="lblTitulo" SkinID="Productos" runat="server">Productos</asp:Label>
+        <br />          
+        <br />
+    <asp:Button ID="btnAlta" runat="server" Text="Nuevo Producto" SkinID="Nuevo Producto" OnClick="btnAlta_Click" />
     <asp:GridView ID="gridProducto" runat="server" AutoGenerateColumns="false" Width="100%" OnRowCommand="gridProducto_RowCommand">
         <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
         <Columns>

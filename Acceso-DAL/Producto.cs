@@ -287,7 +287,7 @@ namespace Acceso_DAL
         public int Modificar(Propiedades_BE.Articulo A)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[8];
+            SqlParameter[] P = new SqlParameter[9];
             P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);           
             P[1] = new SqlParameter("@CodProd", A.CodProd);
             P[2] = new SqlParameter("@Nombre", A.Nombre);

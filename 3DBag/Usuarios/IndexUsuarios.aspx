@@ -3,9 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <h1>Usuarios</h1>
-        <asp:Button ID="btnAltaUsuario" runat="server" Text="Nuevo Usuario" OnClick="btnAltaUsuario_Click" />
+   <asp:Label ID="lblTitulo" SkinID="Usuarios" runat="server">Usuarios</asp:Label>
+        <br />          
+        <br />
+    <div>        
+        <asp:Button ID="btnAltaUsuario" runat="server" Text="Nuevo Usuario" SkinID="Nuevo Usuario" OnClick="btnAltaUsuario_Click" />
         <br />
         <br />
         <div class="form-group">

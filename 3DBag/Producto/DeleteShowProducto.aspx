@@ -7,17 +7,17 @@
         <br />
         <asp:Label ID="lblPregunta" runat="server" Visible="false" ></asp:Label>
         <br />
-        <asp:Label ID="lblCodProd" runat="server">Codigo Producto: </asp:Label><asp:Label ID="lblCodProdResp" runat="server"></asp:Label>
+        <asp:Label ID="lblCodProd" runat="server" SkinID="Codigo Producto">Codigo Producto: </asp:Label><asp:Label ID="lblCodProdResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblNombre" runat="server">Nombre: </asp:Label><asp:Label ID="lblNombreResp" runat="server"></asp:Label>
+        <asp:Label ID="lblNombre" runat="server" SkinID="Nombre">Nombre: </asp:Label><asp:Label ID="lblNombreResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblDescripcion" runat="server">Descripcion: </asp:Label><asp:Label ID="lblDescripcionResp" runat="server"></asp:Label>
+        <asp:Label ID="lblDescripcion" runat="server" SkinID="Descripcion">Descripcion: </asp:Label><asp:Label ID="lblDescripcionResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblMaterial" runat="server">Material: </asp:Label><asp:Label ID="lblMaterialResp" runat="server"></asp:Label>
+        <asp:Label ID="lblMaterial" runat="server" SkinID="Material">Material: </asp:Label><asp:Label ID="lblMaterialResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblStock" runat="server">Stock: </asp:Label><asp:Label ID="lblStockResp" runat="server"></asp:Label>
+        <asp:Label ID="lblStock" runat="server" SkinID="Stock">Stock: </asp:Label><asp:Label ID="lblStockResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblPUnit" runat="server">Precio: </asp:Label><asp:Label ID="lblPUnitResp" runat="server"></asp:Label>
+        <asp:Label ID="lblPUnit" runat="server" SkinID="Precio">Precio: </asp:Label><asp:Label ID="lblPUnitResp" runat="server"></asp:Label>
         <br />
         <br />
         <asp:Button ID="btnBorrar" runat="server" Text="Borrar" OnClick="btnBorrar_Click" />
@@ -26,6 +26,6 @@
         <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>
         <br />
         <br />
-        <asp:LinkButton ID="LinkRedireccion" runat="server" OnClick="LinkRedireccion_Click"><< Volver atrás</asp:LinkButton>
+        <asp:LinkButton ID="LinkRedireccion" runat="server" SkinID="Volver a la lista" OnClick="LinkRedireccion_Click"><< Volver atrás</asp:LinkButton>
     </div>
 </asp:Content>

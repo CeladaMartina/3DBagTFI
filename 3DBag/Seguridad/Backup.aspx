@@ -2,14 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">    
-    <div id="divBackup" class="container" runat="server">
-        <h1>BackUp</h1>
+    <asp:Label ID="lblTitulo" SkinID="Generar copia de respaldo" runat="server">Generar copia de respaldo</asp:Label>
+        <br />          
         <br />
+    <div id="divBackup" class="container" runat="server">        
         <asp:Label ID="lblRuta" runat="server" Text="Ruta" SkinID="Ruta"></asp:Label>        
         <asp:TextBox ID="txtRuta" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label> 
+        <asp:Label ID="lblNombre" runat="server" Text="Nombre" SkinID="Nombre"></asp:Label> 
         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
         <br />
         <br />

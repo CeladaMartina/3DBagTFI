@@ -23,16 +23,16 @@ namespace _3DBag
                 //si el cod viene null, mostrara pantalla Alta
                 if(Request.QueryString["producto"] == null)
                 {
-                    lblTitulo.Text = "Nuevo Producto";
-                    btnFunction.Text = "Agregar";
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Nuevo Producto") ?? ("Nuevo Producto");
+                    btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
                     Imagen.Visible = false;
                 }
                 else
                 {
                     //si el cod viene, mostrara pantalla Editar
                     codProd = Convert.ToInt32(Request.QueryString["producto"]);
-                    lblTitulo.Text = "Editar Producto";
-                    btnFunction.Text = "Editar";
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Producto") ?? ("Editar Producto");
+                    btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
                     TraerProducto(codProd);                    
                 }
             }
@@ -78,6 +78,7 @@ namespace _3DBag
 
         }
 
+        //la imagen la crea en bytes para subirlo a la base de datos
         byte[] ObtenerImagen()
         {
             byte[] resultado;

@@ -80,8 +80,7 @@ namespace Acceso_DAL
                 string Nombre = Usu.Nombre;
                 string Mail = Usu.Mail;
                 string Estado = Usu.Estado.ToString();
-                string Contador = Usu.Contador.ToString();
-                //string Idioma = Usu.Idioma;
+                string Contador = Usu.Contador.ToString();               
                 string IdIdioma = Usu.IdIdioma.ToString();
                 string BajaLogica = Usu.BajaLogica.ToString();
                 string dvh = Usu.DVH.ToString();

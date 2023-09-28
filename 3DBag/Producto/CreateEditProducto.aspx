@@ -6,27 +6,27 @@
         <asp:Label ID="lblTitulo" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Label ID="lblCodProd" runat="server" Text="CodProd"></asp:Label>
+        <asp:Label ID="lblCodProd" runat="server" SkinID="Codigo Producto" Text="CodProd"></asp:Label>
         <br />
         <asp:TextBox ID="txtCodProd" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
+        <asp:Label ID="lblNombre" runat="server" Text="Nombre" SkinID="Nombre"></asp:Label>
         <br />
         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion"></asp:Label>
+        <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion" SkinID="Descripcion"></asp:Label>
         <br />
         <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblMaterial" runat="server" Text="Material"></asp:Label>
+        <asp:Label ID="lblMaterial" runat="server" Text="Material" SkinID="Material"></asp:Label>
         <br />
         <asp:TextBox ID="txtMaterial" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblStock" runat="server" Text="Stock"></asp:Label>
+        <asp:Label ID="lblStock" runat="server" Text="Stock" SkinID="Stock"></asp:Label>
         <br />
         <asp:TextBox ID="txtStock" runat="server"></asp:TextBox>
         <br />
-        <asp:Label ID="lblPUnit" runat="server" Text="Precio"></asp:Label>
+        <asp:Label ID="lblPUnit" runat="server" Text="Precio" SkinID="Precio"></asp:Label>
         <br />
         <asp:TextBox ID="txtPUnit" runat="server"></asp:TextBox>
         <br />
@@ -43,6 +43,6 @@
         <asp:Label ID="lblRespuesta" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:LinkButton ID="LinkRedirect" runat="server" OnClick="LinkRedirect_Click"><< Volver a la lista</asp:LinkButton>
+        <asp:LinkButton ID="LinkRedirect" runat="server" OnClick="LinkRedirect_Click" SkinID="Volver a la lista"><< Volver a la lista</asp:LinkButton>
     </div>
 </asp:Content>

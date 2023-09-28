@@ -21,25 +21,40 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                nick = Request.QueryString["usuario"];
-
-                //pantalla EDITAR
-                if (Request.QueryString["Funcion"] == "borrar")
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario)))
                 {
-                    lblTitulo.Text = "Eliminar";
-                    lblPregunta.Visible = true;
-                    lblPregunta.Text = "¿Estás seguro de que quieres eliminar esto?";
+                    DivUsuarios.Visible = true;
+                    lblPermiso.Visible = false;
+
+                    nick = Request.QueryString["usuario"];
+
+                    //pantalla EDITAR
+                    if (Request.QueryString["Funcion"] == "borrar")
+                    {
+                        lblTitulo.Text = SiteMaster.TraducirGlobal("Eliminar") ?? ("Eliminar");
+                        lblPregunta.Visible = true;
+                        lblPregunta.Text = SiteMaster.TraducirGlobal("¿Estás seguro de que quieres eliminar esto?") ?? ("¿Estás seguro de que quieres eliminar esto?");
+                    }
+                    else
+                    {
+                        //pantalla VER                     
+                        lblTitulo.Text = SiteMaster.TraducirGlobal("Detalles") ?? ("Detalles");
+                        lblPregunta.Visible = false;
+                        btnBorrar.Visible = false;
+                    }
+
+                    TraerUsuario(nick);
+                    TraerPermisos();
+
                 }
                 else
                 {
-                    //pantalla VER                     
-                    lblTitulo.Text = "Detalles";
-                    lblPregunta.Visible = false;
-                    btnBorrar.Visible = false;
+                    DivUsuarios.Visible = false;
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
+                    lblPermiso.Visible = true;
                 }
 
-                TraerUsuario(nick);
-                TraerPermisos();
+               
             }
         }
 

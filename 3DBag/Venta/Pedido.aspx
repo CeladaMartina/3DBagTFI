@@ -2,9 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div> 
-         <h1>Pedido</h1>       
+     <asp:Label ID="lblPedido" SkinID="Pedido" runat="server">Pedido</asp:Label>
+        <br />          
         <br />
+    <div>
         <div class="form-group">
             <div class="table-responsive">
                 <asp:GridView ID="gridDetalleVenta" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnRowCommand="gridDetalleVenta_RowCommand">
@@ -15,9 +16,9 @@
                     <Columns>  
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Label ID="IdVenta" runat="server" Text='<%# Eval("IdVenta") %>' Visible="false"></asp:Label>
+                                <%--<asp:Label ID="IdVenta" runat="server" Text='<%# Eval("IdVenta") %>' Visible="false"></asp:Label>
                                 <asp:Label ID="IdDetalle" runat="server" Text='<%# Eval("IdDetalle") %>' Visible="false"></asp:Label>
-                                <asp:Label ID="CodProd" runat="server" Text='<%# Eval("CodProd") %>' Visible="false"></asp:Label>
+                                <asp:Label ID="CodProd" runat="server" Text='<%# Eval("CodProd") %>' Visible="false"></asp:Label>--%>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Descrip" HeaderText="Descrip" />
@@ -39,7 +40,7 @@
                 <asp:LinkButton ID="linkRedirect" runat="server" OnClick="VerTienda"><< Agregar Productos al Carrito</asp:LinkButton>
                 <br />
                 <br />
-                <asp:Button ID="btnComprarAhora" Text="Comprar" runat="server" OnClick="btnComprarAhora_Click" />                
+                <asp:Button ID="btnComprarAhora" Text="Comprar" SkinID="Comprar" runat="server" OnClick="btnComprarAhora_Click" />                
             </div>
         </div>
     </div>

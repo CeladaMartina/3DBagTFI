@@ -17,7 +17,7 @@
                          <div class="row">
                              <div class="col">
                                  <center>
-                                     <h3>Registrarse</h3>
+                                     <asp:Label ID="Registracion" runat="server" SkinID="Registracion">Registracion</asp:Label>    
                                  </center>
                              </div>
                          </div>
@@ -28,55 +28,55 @@
                          </div>
                          <div class="row">
                              <div class="col-md-6">
-                                <label>Nick</label>
+                                 <asp:Label ID="lblNick" runat="server" SkinID="Nick">Nick</asp:Label>                                
                                  <div class="form-group">
                                      <asp:TextBox ID="txtNick" CssClass="form-control" runat="server" placeholder="Nick"></asp:TextBox>
                                  </div>
                              </div>                                                        
                              <div class="col-md-6">
-                                 <label>Contraseña</label>
+                                 <asp:Label ID="Contraseña" runat="server" SkinID="Contraseña">Contraseña</asp:Label>                                 
                                  <div class="form-group">
-                                     <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" placeholder="Contraseña" TextMode="Password"></asp:TextBox>
+                                     <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
                                  </div>
                              </div>                             
                              <div class="col-md-6">
-                                 <label>Nombre</label>
+                                 <asp:Label ID="Nombre" runat="server" SkinID="Nombre">Nombre</asp:Label>                                 
                                  <div class="form-group">
                                      <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" placeholder="Nombre" ></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
-                                 <label>Apellido</label>
+                                 <asp:Label ID="Apellido" runat="server" SkinID="Apellido">Apellido</asp:Label>
                                  <div class="form-group">
                                      <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server" placeholder="Apellido" ></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
-                                 <label>DNI</label>
+                                 <asp:Label ID="DNI" runat="server" SkinID="DNI">DNI</asp:Label>
                                  <div class="form-group">
                                      <asp:TextBox ID="txtDNI" CssClass="form-control" runat="server" placeholder="DNI" TextMode="Number"></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
-                                 <label>Email</label>
+                                 <asp:Label ID="Email" runat="server" SkinID="Email">Email</asp:Label>
                                  <div class="form-group">
                                      <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" placeholder="Email" TextMode="Email"></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
-                                 <label>Telefono</label>
+                                 <asp:Label ID="Telefono" runat="server" SkinID="Telefono">Telefono</asp:Label>
                                  <div class="form-group">
                                      <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server" placeholder="Telefono" TextMode="Phone"></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
-                                 <label>Fecha de Nacimiento</label>
+                                 <asp:Label ID="Fecha_de_Nacimiento" runat="server" SkinID="Fecha de Nacimiento">Fecha de Nacimiento</asp:Label>
                                  <div class="form-group">
                                      <asp:TextBox ID="txtFecha" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
-                                 <label>Idioma</label>
+                                 <asp:Label ID="Idioma" runat="server" SkinID="Idioma">Idioma</asp:Label>
                                  <div class="form-group">
                                      <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server">
                                          <asp:ListItem  Text="Select" Value="Select"></asp:ListItem>
@@ -96,7 +96,7 @@
                           <asp:Label ID="lblError" runat="server" Text="Label" CssClass="alert alert-danger" Visible="false"></asp:Label>
                      </div>
                  </div>             
-                <a href="Home/Home.aspx">
+                <a href="../Home/Home.aspx">
                     << Volver al Inicio
                 </a>
                  <br />

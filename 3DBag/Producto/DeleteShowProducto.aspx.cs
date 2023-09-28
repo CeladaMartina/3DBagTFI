@@ -23,14 +23,14 @@ namespace _3DBag
                 //pantalla EDITAR
                 if (Request.QueryString["Funcion"] == "borrar")
                 {
-                    lblTitulo.Text = "Eliminar";
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Eliminar") ?? ("Eliminar");
                     lblPregunta.Visible = true;
-                    lblPregunta.Text = "¿Estás seguro de que quieres eliminar esto?";                    
+                    lblPregunta.Text = SiteMaster.TraducirGlobal("¿Estás seguro de que quieres eliminar esto?") ?? ("¿Estás seguro de que quieres eliminar esto?");                   
                 }
                 else
                 {
                     //pantalla VER                     
-                    lblTitulo.Text = "Detalles";
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Detalles") ?? ("Detalles");
                     lblPregunta.Visible = false;
                     btnBorrar.Visible = false;
                 }

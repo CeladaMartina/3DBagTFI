@@ -74,6 +74,8 @@ namespace _3DBag
         {
             GestorVenta.Vender(Convert.ToInt32(Session["IdVenta"]));
             EnviarMail();
+            lblResultado.Visible = true;
+            lblResultado.Text = SiteMaster.TraducirGlobal("Compra finalizada correctamente. Factura enviada por email.") ?? ("Compra finalizada correctamente. Factura enviada por email.");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Venta Realizada", "Baja", 0);
             Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
         }

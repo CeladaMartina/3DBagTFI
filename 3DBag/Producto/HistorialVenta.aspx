@@ -3,7 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <h1>Historial Ventas</h1>        
+        <asp:Label ID="lblTitulo" SkinID="Historial de Ventas" runat="server">Historial de Ventas</asp:Label>
+        <br />          
         <br />
         <div class="form-group">
             <div class="table-responsive">

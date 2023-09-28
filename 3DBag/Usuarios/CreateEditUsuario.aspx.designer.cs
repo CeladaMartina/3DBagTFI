@@ -15,6 +15,24 @@ namespace _3DBag
     {
 
         /// <summary>
+        /// Control lblUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsuario;
+
+        /// <summary>
+        /// Control divUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUsuarios;
+
+        /// <summary>
         /// Control lblTitulo.
         /// </summary>
         /// <remarks>
@@ -159,13 +177,13 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.CheckBox checkBaja;
 
         /// <summary>
-        /// Control lblFamilias.
+        /// Control lblFamilia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFamilias;
+        protected global::System.Web.UI.WebControls.Label lblFamilia;
 
         /// <summary>
         /// Control Familias.
@@ -213,13 +231,13 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.ListBox FNoAsig;
 
         /// <summary>
-        /// Control lblPatentes.
+        /// Control lblPatente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPatentes;
+        protected global::System.Web.UI.WebControls.Label lblPatente;
 
         /// <summary>
         /// Control Permisos.
@@ -276,6 +294,15 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Button btnFunction;
 
         /// <summary>
+        /// Control lblResultado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResultado;
+
+        /// <summary>
         /// Control LinkRedirect.
         /// </summary>
         /// <remarks>
@@ -283,5 +310,14 @@ namespace _3DBag
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkRedirect;
+
+        /// <summary>
+        /// Control lblPermiso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPermiso;
     }
 }
