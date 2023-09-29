@@ -20,7 +20,7 @@
         <asp:Label ID="lblPUnit" runat="server" SkinID="Precio">Precio: </asp:Label><asp:Label ID="lblPUnitResp" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Button ID="btnBorrar" runat="server" Text="Borrar" OnClick="btnBorrar_Click" />
+        <asp:Button ID="btnBorrar" runat="server" Text="Borrar" SkinID="Eliminar" OnClick="btnBorrar_Click" />
         <br />
         <br />
         <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class IndexProducto : System.Web.UI.Page
+    public partial class IndexProducto : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
@@ -16,6 +16,15 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                Session["UserSession"] = null;
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 ListarProductos();
             }
         }
@@ -71,5 +80,21 @@ namespace _3DBag
             lblRespuesta.Text = webService.TopListaProd();           
             lblRespuesta.Visible = true;
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            btnAlta.Text = Sujeto.TraducirObserver(btnAlta.SkinID.ToString()) ?? btnAlta.SkinID.ToString();
+            btnWebService.Text = Sujeto.TraducirObserver(btnWebService.SkinID.ToString()) ?? btnWebService.SkinID.ToString();            
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            btnAlta.Text = SiteMaster.TraducirGlobal(btnAlta.SkinID.ToString()) ?? btnAlta.SkinID.ToString();
+            btnWebService.Text = SiteMaster.TraducirGlobal(btnWebService.SkinID.ToString()) ?? btnWebService.SkinID.ToString();
+        }
+        #endregion
     }
 }

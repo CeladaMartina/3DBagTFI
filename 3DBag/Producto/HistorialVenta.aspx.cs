@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class HistorialVenta : System.Web.UI.Page
+    public partial class HistorialVenta : System.Web.UI.Page,IObserver
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Venta GestorVenta = new Negocio_BLL.Venta();        
@@ -16,6 +16,15 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                Session["UserSession"] = null;
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 ListarProductos();
             }
         }
@@ -38,7 +47,16 @@ namespace _3DBag
         }
         #endregion
 
-        #region boton
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+        }
         #endregion
     }
 }

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class DeleteShowProducto : System.Web.UI.Page
+    public partial class DeleteShowProducto : System.Web.UI.Page, IObserver
     {
         int codProd;
         private ContentPlaceHolder contentPlace;
@@ -18,6 +18,15 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                Session["UserSession"] = null;
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 codProd = Convert.ToInt32(Request.QueryString["producto"]);
 
                 //pantalla EDITAR
@@ -77,5 +86,30 @@ namespace _3DBag
             }
         }
 
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblCodProd.Text = Sujeto.TraducirObserver(lblCodProd.SkinID.ToString()) ?? lblCodProd.SkinID.ToString();
+            lblNombre.Text = Sujeto.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblDescripcion.Text = Sujeto.TraducirObserver(lblDescripcion.SkinID.ToString()) ?? lblDescripcion.SkinID.ToString();
+            lblMaterial.Text = Sujeto.TraducirObserver(lblMaterial.SkinID.ToString()) ?? lblMaterial.SkinID.ToString();
+            lblStock.Text = Sujeto.TraducirObserver(lblStock.SkinID.ToString()) ?? lblStock.SkinID.ToString();
+            lblPUnit.Text = Sujeto.TraducirObserver(lblPUnit.SkinID.ToString()) ?? lblPUnit.SkinID.ToString();
+            btnBorrar.Text = Sujeto.TraducirObserver(btnBorrar.SkinID.ToString()) ?? btnBorrar.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblCodProd.Text = SiteMaster.TraducirGlobal(lblCodProd.SkinID.ToString()) ?? lblCodProd.SkinID.ToString();
+            lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblDescripcion.Text = SiteMaster.TraducirGlobal(lblDescripcion.SkinID.ToString()) ?? lblDescripcion.SkinID.ToString();
+            lblMaterial.Text = SiteMaster.TraducirGlobal(lblMaterial.SkinID.ToString()) ?? lblMaterial.SkinID.ToString();
+            lblStock.Text = SiteMaster.TraducirGlobal(lblStock.SkinID.ToString()) ?? lblStock.SkinID.ToString();
+            lblPUnit.Text = SiteMaster.TraducirGlobal(lblPUnit.SkinID.ToString()) ?? lblPUnit.SkinID.ToString();
+            btnBorrar.Text = SiteMaster.TraducirGlobal(btnBorrar.SkinID.ToString()) ?? btnBorrar.SkinID.ToString();
+        }
+        #endregion
     }
 }

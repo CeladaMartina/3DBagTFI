@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Seguridad : System.Web.UI.Page
+    public partial class Seguridad : System.Web.UI.Page, IObserver
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,6 +18,16 @@ namespace _3DBag
                 if ((Usuario)(Session["UserSession"]) == null)
                 {
                     Response.Redirect("../Home/Login.aspx");
+                }
+                else
+                {
+                    Session["UserSession"] = null;
+                    if (Session["IdiomaSelect"] != null)
+                    {
+                        DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                        masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                        Traducir();                        
+                    }
                 }
             }
         }
@@ -36,6 +46,22 @@ namespace _3DBag
         protected void LinkRestore_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Seguridad/Restore.aspx");
+        }
+
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            LinkBackup.Text = Sujeto.TraducirObserver(LinkBackup.SkinID.ToString()) ?? LinkBackup.SkinID.ToString();
+            LinkBitacora.Text = Sujeto.TraducirObserver(LinkBitacora.SkinID.ToString()) ?? LinkBitacora.SkinID.ToString();
+            LinkRestore.Text = Sujeto.TraducirObserver(LinkRestore.SkinID.ToString()) ?? LinkRestore.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            LinkBackup.Text = SiteMaster.TraducirGlobal(LinkBackup.SkinID.ToString()) ?? LinkBackup.SkinID.ToString();
+            LinkBitacora.Text = SiteMaster.TraducirGlobal(LinkBitacora.SkinID.ToString()) ?? LinkBitacora.SkinID.ToString();
+            LinkRestore.Text = SiteMaster.TraducirGlobal(LinkRestore.SkinID.ToString()) ?? LinkRestore.SkinID.ToString();
         }
 
         #endregion

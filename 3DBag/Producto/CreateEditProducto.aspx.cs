@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class CreateEditProducto : System.Web.UI.Page
+    public partial class CreateEditProducto : System.Web.UI.Page, IObserver
     {
         int codProd;        
         int IdArticulo = -1;
@@ -20,8 +20,17 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                Session["UserSession"] = null;
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 //si el cod viene null, mostrara pantalla Alta
-                if(Request.QueryString["producto"] == null)
+                if (Request.QueryString["producto"] == null)
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Nuevo Producto") ?? ("Nuevo Producto");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
@@ -158,5 +167,30 @@ namespace _3DBag
                 }
             }
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblCodProd.Text = Sujeto.TraducirObserver(lblCodProd.SkinID.ToString()) ?? lblCodProd.SkinID.ToString();
+            lblNombre.Text = Sujeto.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblDescripcion.Text = Sujeto.TraducirObserver(lblDescripcion.SkinID.ToString()) ?? lblDescripcion.SkinID.ToString();
+            lblMaterial.Text = Sujeto.TraducirObserver(lblMaterial.SkinID.ToString()) ?? lblMaterial.SkinID.ToString();
+            lblStock.Text = Sujeto.TraducirObserver(lblStock.SkinID.ToString()) ?? lblStock.SkinID.ToString();
+            lblPUnit.Text = Sujeto.TraducirObserver(lblPUnit.SkinID.ToString()) ?? lblPUnit.SkinID.ToString();            
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblCodProd.Text = SiteMaster.TraducirGlobal(lblCodProd.SkinID.ToString()) ?? lblCodProd.SkinID.ToString();
+            lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblDescripcion.Text = SiteMaster.TraducirGlobal(lblDescripcion.SkinID.ToString()) ?? lblDescripcion.SkinID.ToString();
+            lblMaterial.Text = SiteMaster.TraducirGlobal(lblMaterial.SkinID.ToString()) ?? lblMaterial.SkinID.ToString();
+            lblStock.Text = SiteMaster.TraducirGlobal(lblStock.SkinID.ToString()) ?? lblStock.SkinID.ToString();
+            lblPUnit.Text = SiteMaster.TraducirGlobal(lblPUnit.SkinID.ToString()) ?? lblPUnit.SkinID.ToString();            
+
+        }
+        #endregion
     }
 }

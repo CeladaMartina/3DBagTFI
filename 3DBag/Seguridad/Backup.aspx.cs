@@ -20,8 +20,17 @@ namespace _3DBag
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");            
-            
+            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+
+            //traduccion de la pagina
+            Session["UserSession"] = null;
+            if (Session["IdiomaSelect"] != null)
+            {
+                DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                Traducir();
+            }
+
             if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Realizar_BackUp)))
             {                
                 divBackup.Visible = true;
@@ -93,12 +102,14 @@ namespace _3DBag
         #region traduccion
         public void Update(ISubject Subject)
         {
+            lblTitulo.Text = Subject.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             lblRuta.Text = Subject.TraducirObserver(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
             lblNombre.Text = Subject.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
         }
 
         public void Traducir()
-        {            
+        {           
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
             lblRuta.Text = SiteMaster.TraducirGlobal(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
         }

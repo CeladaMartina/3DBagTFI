@@ -14,7 +14,6 @@
             <br />
             <br />
             <asp:LinkButton ID="LinkRestore" SkinID="Restauracion" runat="server" OnClick="LinkRestore_Click">Restore.</asp:LinkButton>
-            <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>
-        </div>
+        </div>        
     </div>
 </asp:Content>

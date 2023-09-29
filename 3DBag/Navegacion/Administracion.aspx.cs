@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Administracion : System.Web.UI.Page
+    public partial class Administracion : System.Web.UI.Page, IObserver
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,18 @@ namespace _3DBag
                 if ((Usuario)(Session["UserSession"]) == null)
                 {
                     Response.Redirect("/Home/Login.aspx");
-                }               
+                }
+                else
+                {
+                    Session["UserSession"] = null;
+                    if (Session["IdiomaSelect"] != null)
+                    {
+                        DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                        masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                        Traducir();                        
+                    }
+                }             
+                
             }
                 
         }
@@ -36,6 +47,22 @@ namespace _3DBag
         protected void LinkGestionPatentes_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Usuarios/IndexPatentes.aspx");
+        }
+
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            LinkGestionUsuarios.Text = Sujeto.TraducirObserver(LinkGestionUsuarios.SkinID.ToString()) ?? LinkGestionUsuarios.SkinID.ToString();
+            LinkGestionFamilias.Text = Sujeto.TraducirObserver(LinkGestionFamilias.SkinID.ToString()) ?? LinkGestionFamilias.SkinID.ToString();
+            LinkGestionPatentes.Text = Sujeto.TraducirObserver(LinkGestionPatentes.SkinID.ToString()) ?? LinkGestionPatentes.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            LinkGestionUsuarios.Text = SiteMaster.TraducirGlobal(LinkGestionUsuarios.SkinID.ToString()) ?? LinkGestionUsuarios.SkinID.ToString();
+            LinkGestionFamilias.Text = SiteMaster.TraducirGlobal(LinkGestionFamilias.SkinID.ToString()) ?? LinkGestionFamilias.SkinID.ToString();
+            LinkGestionPatentes.Text = SiteMaster.TraducirGlobal(LinkGestionPatentes.SkinID.ToString()) ?? LinkGestionPatentes.SkinID.ToString();
         }
         #endregion
 

@@ -72,7 +72,7 @@ namespace _3DBag
             }
             catch (Exception)
             {
-                lblRespuesta.Text = SiteMaster.TraducirGlobal("Error cambiando clave, intente nuevamente") ?? ("Error cambiando clave, intente nuevamente");               
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Error cambiando contraseña, intente nuevamente") ?? ("Error cambiando contraseña, intente nuevamente");               
             }
 
         }

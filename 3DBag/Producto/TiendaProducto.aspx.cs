@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class TiendaProducto : System.Web.UI.Page
+    public partial class TiendaProducto : System.Web.UI.Page,IObserver
     {
         private ContentPlaceHolder contentPlace;
         int IdVenta = 0;
@@ -26,8 +26,14 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                //ListarProductos();
-                //HttpContext.Current.Session["UserSession"] = Usuario;
+                //traduccion de la pagina
+                Session["UserSession"] = null;
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
             }
             
         }
@@ -48,8 +54,7 @@ namespace _3DBag
             else
             {
                 VerCarrito.Visible = true;
-                VerCarrito.Text = "No hay Stock suficiente";
-                //MessageBox.Show(Cambiar_Idioma.TraducirGlobal("No hay Stock suficiente") ?? "No hay Stock suficiente");
+                VerCarrito.Text = SiteMaster.TraducirGlobal("No hay Stock suficiente") ?? ("No hay Stock suficiente");               
             }
         }
 
@@ -69,38 +74,44 @@ namespace _3DBag
                 Label PUnit = (Label)dataList.Items[index].FindControl("PUnitLabel");
                 TextBox txtCantidad = (TextBox)dataList.Items[index].FindControl("TxtCantidad");
 
-
-                //verificamos si ya existe una venta de este usuario en este momento.
-                IdVenta = GestorVenta.ExisteVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Today);
-
-                if (IdVenta != 0)
+                if(txtCantidad.Text == "")
                 {
-                    //si existe el producto, lo unificamos,
-                    if (GestorDV.ExisteProducto(IdVenta, Convert.ToInt32(IdArticulo.Text)) == true)
-                    {
-                        GestorDV.UnificarArticulos(IdVenta, Convert.ToInt32(IdArticulo.Text), Convert.ToInt32(txtCantidad.Text));
-                    }
-                    else
-                    {
-                        //si no existe el producto en lo que ya se eligio, se agrega al listado
-                        AltaDV(IdVenta, Convert.ToInt32(IdArticulo.Text), NombreLabel.Text, decimal.Parse(PUnit.Text), int.Parse(txtCantidad.Text), 0);
-                    }                   
+                    lblRespuesta.Visible = true;
+                    lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
                 else
                 {
-                    //si no existe, lo creamos
-                    AltaVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Today, 0);
-                    //traemos el ultimo IDVenta realizado
-                    IdVenta = GestorVenta.TraerIdVenta();
-                    //creamos el alta detalle 
-                    AltaDV(IdVenta, Convert.ToInt32(IdArticulo.Text), NombreLabel.Text, decimal.Parse(PUnit.Text), int.Parse(txtCantidad.Text), 0);
+                    //verificamos si ya existe una venta de este usuario en este momento.
+                    IdVenta = GestorVenta.ExisteVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Today);
+
+                    if (IdVenta != 0)
+                    {
+                        //si existe el producto, lo unificamos,
+                        if (GestorDV.ExisteProducto(IdVenta, Convert.ToInt32(IdArticulo.Text)) == true)
+                        {
+                            GestorDV.UnificarArticulos(IdVenta, Convert.ToInt32(IdArticulo.Text), Convert.ToInt32(txtCantidad.Text));
+                        }
+                        else
+                        {
+                            //si no existe el producto en lo que ya se eligio, se agrega al listado
+                            AltaDV(IdVenta, Convert.ToInt32(IdArticulo.Text), NombreLabel.Text, decimal.Parse(PUnit.Text), int.Parse(txtCantidad.Text), 0);
+                        }
+                    }
+                    else
+                    {
+                        //si no existe, lo creamos
+                        AltaVenta(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Today, 0);
+                        //traemos el ultimo IDVenta realizado
+                        IdVenta = GestorVenta.TraerIdVenta();
+                        //creamos el alta detalle 
+                        AltaDV(IdVenta, Convert.ToInt32(IdArticulo.Text), NombreLabel.Text, decimal.Parse(PUnit.Text), int.Parse(txtCantidad.Text), 0);
+                    }
+
+                    //guardamos el valor del IDVenta
+                    Session["IdVenta"] = IdVenta;
+                    //mostramos el link para ver el pedido
+                    VerCarrito.Visible = true;
                 }
-
-                //guardamos el valor del IDVenta
-                Session["IdVenta"] = IdVenta;
-                //mostramos el link para ver el pedido
-                VerCarrito.Visible = true;
-
             }            
         }
 
@@ -110,5 +121,22 @@ namespace _3DBag
         {            
             Response.Redirect("../Venta/Pedido.aspx?IdVenta=" + Session["IdVenta"]);
         }
+
+        #region traduccion
+        
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            //BtnAgregar.Text = Sujeto.TraducirObserver(BtnAgregar.SkinID.ToString()) ?? BtnAgregar.SkinID.ToString();
+            VerCarrito.Text = Sujeto.TraducirObserver(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();            
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            //BtnAgregar.Text = SiteMaster.TraducirGlobal(BtnAgregar.SkinID.ToString()) ?? BtnAgregar.SkinID.ToString();
+            VerCarrito.Text = SiteMaster.TraducirGlobal(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();         
+        }
+        #endregion
     }
 }

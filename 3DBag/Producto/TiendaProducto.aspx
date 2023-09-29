@@ -3,7 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <h1>Tienda</h1>       
+        <asp:Label ID="lblTitulo" runat="server" SkinID="Tienda">Tienda</asp:Label>
+        <br />
         <br />
         <asp:DataList ID="dataList" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" Width="600px" DataSourceID="SqlDataSource1" OnItemCommand="dataList_ItemCommand" DataKeyField="IdArticulo">   
             <ItemTemplate>
@@ -25,12 +26,13 @@
                 Cantidad:
                  <asp:TextBox ID="TxtCantidad" runat="server"></asp:TextBox>
                 <br />
-                <asp:Button ID="BtnAgregar" runat="server" Text="Agregar" CommandName="AgregarCarrito" />
+                <asp:Button ID="BtnAgregar" runat="server" Text="Agregar" SkinID="Agregar" CommandName="AgregarCarrito" />
                 <br />
             </ItemTemplate>
         </asp:DataList>   
         <br />
-        <asp:LinkButton ID="VerCarrito" runat="server" OnClick="VerCarrito_Click" Visible="False">-- Ver Carrito de Compras --</asp:LinkButton>
+        <asp:Label ID="lblRespuesta" runat="server" Visible="false"></asp:Label>
+        <asp:LinkButton ID="VerCarrito" runat="server" OnClick="VerCarrito_Click" Visible="False" SkinID="Ver Carrito de Compras">-- Ver Carrito de Compras --</asp:LinkButton>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion %>" SelectCommand="SELECT [IdArticulo], [Nombre], [Descripcion], [PUnit] FROM [Articulo]"></asp:SqlDataSource>
     </div>
 </asp:Content>

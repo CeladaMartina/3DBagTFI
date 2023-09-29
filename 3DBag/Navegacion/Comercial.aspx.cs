@@ -8,7 +8,7 @@ using Propiedades_BE;
 
 namespace _3DBag
 {
-    public partial class Comercial : System.Web.UI.Page
+    public partial class Comercial : System.Web.UI.Page, IObserver
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +21,13 @@ namespace _3DBag
                 }
                 else
                 {
+                    Session["UserSession"] = null;
+                    if (Session["IdiomaSelect"] != null)
+                    {
+                        DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                        masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                        Traducir();                        
+                    }
                     Permisos();
                 }
             }
@@ -59,6 +66,23 @@ namespace _3DBag
             Response.Redirect("../Venta/Pedido.aspx");
         }
 
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            LinkProductos.Text = Sujeto.TraducirObserver(LinkProductos.SkinID.ToString()) ?? LinkProductos.SkinID.ToString();
+            LinkVerVentas.Text = Sujeto.TraducirObserver(LinkVerVentas.SkinID.ToString()) ?? LinkVerVentas.SkinID.ToString();
+            LinkTienda.Text = Sujeto.TraducirObserver(LinkTienda.SkinID.ToString()) ?? LinkTienda.SkinID.ToString();
+            LinkPedido.Text = Sujeto.TraducirObserver(LinkPedido.SkinID.ToString()) ?? LinkPedido.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            LinkProductos.Text = SiteMaster.TraducirGlobal(LinkProductos.SkinID.ToString()) ?? LinkProductos.SkinID.ToString();
+            LinkVerVentas.Text = SiteMaster.TraducirGlobal(LinkVerVentas.SkinID.ToString()) ?? LinkVerVentas.SkinID.ToString();
+            LinkTienda.Text = SiteMaster.TraducirGlobal(LinkTienda.SkinID.ToString()) ?? LinkTienda.SkinID.ToString();
+            LinkPedido.Text = SiteMaster.TraducirGlobal(LinkPedido.SkinID.ToString()) ?? LinkPedido.SkinID.ToString();
+        }
         #endregion
     }
 }

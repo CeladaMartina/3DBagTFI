@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Bitacora : System.Web.UI.Page
+    public partial class Bitacora : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
@@ -21,6 +21,15 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                Session["UserSession"] = null;
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Ver_Bitacora)))
                 {
                     divGeneral.Visible = true;
@@ -140,9 +149,9 @@ namespace _3DBag
             }
             catch(Exception ex)
             {
-                //lblError.Visible = true;
-                //lblError.Text = ex.ToString();
-                //ListarBitacora();
+                lblError.Visible = true;
+                lblError.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+                ListarBitacora();
             }
         }
         #endregion
@@ -293,6 +302,28 @@ namespace _3DBag
             //base.VerifyRenderingInServerForm(control);
         }
 
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblDesde.Text = Sujeto.TraducirObserver(lblDesde.SkinID.ToString()) ?? lblDesde.SkinID.ToString();
+            lblHasta.Text = Sujeto.TraducirObserver(lblHasta.SkinID.ToString()) ?? lblHasta.SkinID.ToString();
+            lblCriticidad.Text = Sujeto.TraducirObserver(lblCriticidad.SkinID.ToString()) ?? lblCriticidad.SkinID.ToString();
+            lblUsuarios.Text = Sujeto.TraducirObserver(lblUsuarios.SkinID.ToString()) ?? lblUsuarios.SkinID.ToString();
+            bntFiltrar.Text = Sujeto.TraducirObserver(bntFiltrar.SkinID.ToString()) ?? bntFiltrar.SkinID.ToString();
+            btnExportar.Text = Sujeto.TraducirObserver(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();            
+        }
 
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblDesde.Text = SiteMaster.TraducirGlobal(lblDesde.SkinID.ToString()) ?? lblDesde.SkinID.ToString();
+            lblHasta.Text = SiteMaster.TraducirGlobal(lblHasta.SkinID.ToString()) ?? lblHasta.SkinID.ToString();
+            lblCriticidad.Text = SiteMaster.TraducirGlobal(lblCriticidad.SkinID.ToString()) ?? lblCriticidad.SkinID.ToString();
+            lblUsuarios.Text = SiteMaster.TraducirGlobal(lblUsuarios.SkinID.ToString()) ?? lblUsuarios.SkinID.ToString();
+            bntFiltrar.Text = SiteMaster.TraducirGlobal(bntFiltrar.SkinID.ToString()) ?? bntFiltrar.SkinID.ToString();
+            btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
+        }
+        #endregion
     }
 }
