@@ -36,6 +36,13 @@ namespace _3DBag
             //Primero se conecta con la BD
             Conectar();
 
+            if (Session["IdiomaSelect"] != null)
+            {
+                DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                Traducir();
+            }
+
             //patron chain
             webmaster.AgregarSiguiente(administrador);
             administrador.AgregarSiguiente(empleado);
@@ -60,8 +67,7 @@ namespace _3DBag
             }
             
         }
-
-        #region metodos
+        
         public void Conectar()
         {
             SqlConnection Conexion = new SqlConnection();
@@ -70,7 +76,28 @@ namespace _3DBag
             Conexion.Open();
         }
 
-        //recalcular dvh 
+        #region traduccion
+
+        public void Update(ISubject Sujeto)
+        {
+            lblHome.Text = Sujeto.TraducirObserver(lblHome.SkinID.ToString()) ?? lblHome.SkinID.ToString();
+            lblHome2.Text = Sujeto.TraducirObserver(lblHome2.SkinID.ToString()) ?? lblHome2.SkinID.ToString();
+            lblHome3.Text = Sujeto.TraducirObserver(lblHome3.SkinID.ToString()) ?? lblHome3.SkinID.ToString();
+            lblHome4.Text = Sujeto.TraducirObserver(lblHome4.SkinID.ToString()) ?? lblHome4.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblHome.Text = SiteMaster.TraducirGlobal(lblHome.SkinID.ToString()) ?? lblHome.SkinID.ToString();
+            lblHome2.Text = SiteMaster.TraducirGlobal(lblHome2.SkinID.ToString()) ?? lblHome2.SkinID.ToString();
+            lblHome3.Text = SiteMaster.TraducirGlobal(lblHome3.SkinID.ToString()) ?? lblHome3.SkinID.ToString();
+            lblHome4.Text = SiteMaster.TraducirGlobal(lblHome4.SkinID.ToString()) ?? lblHome4.SkinID.ToString();
+        }
+
+        #endregion
+
+
+        #region recalcular dvh
         void RUsuario()
         {
             GestorUsuario.RecalcularDVH();
@@ -127,11 +154,6 @@ namespace _3DBag
             Session["ProblemaDefinitivo"] = null;
             Propiedades_BE.SingletonLogin.GlobalIntegridad = 0;
             Response.Redirect("../Home/Login.aspx");
-        }
-
-        public void Update(ISubject Sujeto)
-        {
-            throw new NotImplementedException();
         }
 
         void RecalcularTablas()

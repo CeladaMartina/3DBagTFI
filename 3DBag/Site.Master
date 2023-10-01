@@ -80,7 +80,7 @@
             <div id="footer1" class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <p>@ Todos los derechos reservados.</p>
+                        <asp:Label ID="lblFooter" SkinID="Todos los derechos reservados." runat="server">Todos los derechos reservados.</asp:Label>                        
                     </div>
                 </div>
             </div>

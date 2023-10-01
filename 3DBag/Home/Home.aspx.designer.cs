@@ -42,6 +42,33 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblHome;
 
         /// <summary>
+        /// Control lblHome2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHome2;
+
+        /// <summary>
+        /// Control lblHome3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHome3;
+
+        /// <summary>
+        /// Control lblHome4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHome4;
+
+        /// <summary>
         /// Control containerError.
         /// </summary>
         /// <remarks>

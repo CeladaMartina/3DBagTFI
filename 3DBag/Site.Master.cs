@@ -37,10 +37,8 @@ namespace _3DBag
 
                 if (Session["IdiomaSelect"] != null)
                 {
-                    DropDownListIdioma.SelectedValue = Session["IdiomaSelect"].ToString();
-                    //DropDownListIdioma.SelectedValue = "Español";
-                    Traducir();
-                    //Update()
+                    DropDownListIdioma.SelectedValue = Session["IdiomaSelect"].ToString();                   
+                    Traducir();                    
                 }
             }            
         }
@@ -55,8 +53,6 @@ namespace _3DBag
 
         public void NotificarCambio()
         {
-            ////var numerator = Application.OpenForms.GetEnumerator();
-
             var numerator = Application.GetEnumerator();
             while (numerator.MoveNext())
             {
@@ -67,12 +63,6 @@ namespace _3DBag
                 }
             }
             ListaObservadores.ForEach(item => item.Update(this));
-
-            //foreach(IObserver observer in ListaObservadores)
-            //{
-            //    observer.Update(this);
-            //}
-            
         }
 
         public string TraducirObserver(string variable)
@@ -158,6 +148,7 @@ namespace _3DBag
             LoginId.Text = TraducirGlobal(LoginId.SkinID.ToString()) ?? LoginId.SkinID.ToString();
             RegistrarId.Text = TraducirGlobal(RegistrarId.SkinID.ToString()) ?? RegistrarId.SkinID.ToString();
             SalirId.Text = TraducirGlobal(SalirId.SkinID.ToString()) ?? SalirId.SkinID.ToString();
+            lblFooter.Text = TraducirGlobal(lblFooter.SkinID.ToString()) ?? lblFooter.SkinID.ToString();
         }
         #endregion
 

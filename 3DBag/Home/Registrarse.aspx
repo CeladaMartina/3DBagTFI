@@ -89,7 +89,7 @@
                          <div class="row">
                              <div class="col">
                                  <center>
-                                     <asp:Button ID="btnRegistrar" runat="server" Text="Registrarse" CssClass="btn btn-success btn-block btn-lg" OnClick="Registrar" />
+                                     <asp:Button ID="btnRegistrar" runat="server" SkinID="Registracion" Text="Registrarse" CssClass="btn btn-success btn-block btn-lg" OnClick="Registrar" />
                                  </center>
                              </div>
                          </div>

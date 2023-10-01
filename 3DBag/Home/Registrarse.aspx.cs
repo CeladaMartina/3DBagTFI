@@ -132,5 +132,10 @@ namespace _3DBag
             linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
         #endregion
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Home/Home.aspx");
+        }
     }
 }
