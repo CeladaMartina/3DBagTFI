@@ -20,8 +20,7 @@ namespace _3DBag
                     Response.Redirect("../Home/Login.aspx");
                 }
                 else
-                {
-                    Session["UserSession"] = null;
+                {                    
                     if (Session["IdiomaSelect"] != null)
                     {
                         DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");

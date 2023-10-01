@@ -40,10 +40,10 @@
         <asp:Label ID="lblFamilia" runat="server" SkinID="Familia">Familias:</asp:Label>        
         <asp:Table ID="Familias" runat="server">
             <asp:TableHeaderRow>
-                <asp:TableHeaderCell SkinID="Familias Asignadas">Familias Asignadas</asp:TableHeaderCell>
+                <asp:TableHeaderCell ID="tituloFamAsig" SkinID="Familias Asignadas">Familias Asignadas</asp:TableHeaderCell>
                 <asp:TableHeaderCell>-</asp:TableHeaderCell>
                 <asp:TableHeaderCell>-</asp:TableHeaderCell>
-                <asp:TableHeaderCell SkinID="Familias No Asignadas">Familias No Asignadas</asp:TableHeaderCell>
+                <asp:TableHeaderCell ID="tituloNoFamAsig" SkinID="Familias No Asignadas">Familias No Asignadas</asp:TableHeaderCell>
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>

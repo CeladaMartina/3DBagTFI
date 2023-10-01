@@ -18,8 +18,7 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                //traduccion de la pagina
-                Session["UserSession"] = null;
+                //traduccion de la pagina               
                 if (Session["IdiomaSelect"] != null)
                 {
                     DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");

@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class OlvidoContraseña : System.Web.UI.Page
+    public partial class OlvidoContraseña : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
@@ -18,6 +18,13 @@ namespace _3DBag
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+
+            if (Session["IdiomaSelect"] != null)
+            {
+                DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                Traducir();                
+            }
         }
 
         #region metodos
@@ -115,5 +122,21 @@ namespace _3DBag
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");               
             }
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblNick.Text = Sujeto.TraducirObserver(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();
+            lblMail.Text = Sujeto.TraducirObserver(lblMail.SkinID.ToString()) ?? lblMail.SkinID.ToString();
+            btnActualizarContra.Text = Sujeto.TraducirObserver(btnActualizarContra.SkinID.ToString()) ?? btnActualizarContra.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblNick.Text = SiteMaster.TraducirGlobal(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();
+            lblMail.Text = SiteMaster.TraducirGlobal(lblMail.SkinID.ToString()) ?? lblMail.SkinID.ToString();
+            btnActualizarContra.Text = SiteMaster.TraducirGlobal(btnActualizarContra.SkinID.ToString()) ?? btnActualizarContra.SkinID.ToString();
+        }
+        #endregion
     }
 }

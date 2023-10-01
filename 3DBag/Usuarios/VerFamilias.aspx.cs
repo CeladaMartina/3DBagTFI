@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class VerFamilias : System.Web.UI.Page
+    public partial class VerFamilias : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Propiedades_BE.Familia FamTemp;
@@ -19,6 +19,16 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+               
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
+
                 FamTemp = new Propiedades_BE.Familia();
                 FamTemp.Id = Convert.ToInt32(Request.QueryString["id"]);
                 FamTemp.Nombre = Request.QueryString["nombre"];
@@ -76,5 +86,23 @@ namespace _3DBag
         {
             Response.Redirect("../Usuarios/IndexFamilias.aspx");
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblNombre.Text = Sujeto.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblDetalles.Text = Sujeto.TraducirObserver(lblDetalles.SkinID.ToString()) ?? lblDetalles.SkinID.ToString();
+            LinkRedireccion.Text = Sujeto.TraducirObserver(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblDetalles.Text = SiteMaster.TraducirGlobal(lblDetalles.SkinID.ToString()) ?? lblDetalles.SkinID.ToString();
+            LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
+        }
+        #endregion
     }
 }

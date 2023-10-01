@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Pedido : System.Web.UI.Page
+    public partial class Pedido : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         int IdVenta = -1;
@@ -25,6 +25,15 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 IdVenta = Convert.ToInt32(Session["IdVenta"]);
 
                 if (IdVenta == 0)
@@ -191,5 +200,21 @@ namespace _3DBag
             doc.Close();
             writer.Close();
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblPedido.Text = Sujeto.TraducirObserver(lblPedido.SkinID.ToString()) ?? lblPedido.SkinID.ToString();
+            linkRedirect.Text = Sujeto.TraducirObserver(linkRedirect.SkinID.ToString()) ?? linkRedirect.SkinID.ToString();
+            btnComprarAhora.Text = Sujeto.TraducirObserver(btnComprarAhora.SkinID.ToString()) ?? btnComprarAhora.SkinID.ToString();            
+        }
+
+        public void Traducir()
+        {
+            lblPedido.Text = SiteMaster.TraducirGlobal(lblPedido.SkinID.ToString()) ?? lblPedido.SkinID.ToString();
+            linkRedirect.Text = SiteMaster.TraducirGlobal(linkRedirect.SkinID.ToString()) ?? linkRedirect.SkinID.ToString();
+            btnComprarAhora.Text = SiteMaster.TraducirGlobal(btnComprarAhora.SkinID.ToString()) ?? btnComprarAhora.SkinID.ToString();
+        }
+        #endregion
     }
 }

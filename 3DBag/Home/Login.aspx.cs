@@ -33,8 +33,7 @@ namespace _3DBag
                 {
                     DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
                     masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
-                    Traducir();
-                    //Update()
+                    Traducir();                   
                 }
             }
 
@@ -231,8 +230,6 @@ namespace _3DBag
             Olvidaste.Text = SiteMaster.TraducirGlobal(Olvidaste.SkinID.ToString()) ?? Olvidaste.SkinID.ToString();
             linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
-
-
         #endregion
 
         protected void Olvidaste_Click(object sender, EventArgs e)

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class DeleteShowUsuario : System.Web.UI.Page
+    public partial class DeleteShowUsuario : System.Web.UI.Page, IObserver
     {
         string nick;
         private ContentPlaceHolder contentPlace;
@@ -21,6 +21,15 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario)))
                 {
                     DivUsuarios.Visible = true;
@@ -115,5 +124,36 @@ namespace _3DBag
         {
             Response.Redirect("../Usuarios/IndexUsuarios.aspx");
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblUsuario.Text = Sujeto.TraducirObserver(lblUsuario.SkinID.ToString()) ?? lblUsuario.SkinID.ToString();
+            lblNick.Text = Sujeto.TraducirObserver(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();
+            lblPregunta.Text = Sujeto.TraducirObserver(lblPregunta.SkinID.ToString()) ?? lblPregunta.SkinID.ToString();
+            lblNombre.Text = Sujeto.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblMail.Text = Sujeto.TraducirObserver(lblMail.SkinID.ToString()) ?? lblMail.SkinID.ToString();
+            lblIdioma.Text = Sujeto.TraducirObserver(lblIdioma.SkinID.ToString()) ?? lblIdioma.SkinID.ToString();
+            lblPermisos.Text = Sujeto.TraducirObserver(lblPermisos.SkinID.ToString()) ?? lblPermisos.SkinID.ToString();
+            btnBorrar.Text = Sujeto.TraducirObserver(btnBorrar.SkinID.ToString()) ?? btnBorrar.SkinID.ToString();
+            LinkRedireccion.Text = Sujeto.TraducirObserver(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString(); 
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblUsuario.Text = SiteMaster.TraducirGlobal(lblUsuario.SkinID.ToString()) ?? lblUsuario.SkinID.ToString();
+            lblNick.Text = SiteMaster.TraducirGlobal(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();
+            lblPregunta.Text = SiteMaster.TraducirGlobal(lblPregunta.SkinID.ToString()) ?? lblPregunta.SkinID.ToString();
+            lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblMail.Text = SiteMaster.TraducirGlobal(lblMail.SkinID.ToString()) ?? lblMail.SkinID.ToString();
+            lblIdioma.Text = SiteMaster.TraducirGlobal(lblIdioma.SkinID.ToString()) ?? lblIdioma.SkinID.ToString();
+            lblPermisos.Text = SiteMaster.TraducirGlobal(lblPermisos.SkinID.ToString()) ?? lblPermisos.SkinID.ToString();
+            btnBorrar.Text = SiteMaster.TraducirGlobal(btnBorrar.SkinID.ToString()) ?? btnBorrar.SkinID.ToString();
+            LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();   
+        }
+        #endregion
+
     }
 }

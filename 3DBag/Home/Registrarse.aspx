@@ -96,9 +96,7 @@
                           <asp:Label ID="lblError" runat="server" Text="Label" CssClass="alert alert-danger" Visible="false"></asp:Label>
                      </div>
                  </div>             
-                <a href="../Home/Home.aspx">
-                    << Volver al Inicio
-                </a>
+                <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
                  <br />
              </div>
          </div>

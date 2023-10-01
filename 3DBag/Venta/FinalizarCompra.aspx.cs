@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class FinalizarCompra : System.Web.UI.Page
+    public partial class FinalizarCompra : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Detalle_Venta GestorDV = new Negocio_BLL.Detalle_Venta();
@@ -22,6 +22,15 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+               
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 IdVenta = Convert.ToInt32(Session["IdVenta"]);
                 TraerDetalleVenta();
             }
@@ -79,5 +88,23 @@ namespace _3DBag
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Venta Realizada", "Baja", 0);
             Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblCliente.Text = Sujeto.TraducirObserver(lblCliente.SkinID.ToString()) ?? lblCliente.SkinID.ToString();
+            lblIdVenta.Text = Sujeto.TraducirObserver(lblIdVenta.SkinID.ToString()) ?? lblIdVenta.SkinID.ToString();
+            lblTipoFactura.Text = Sujeto.TraducirObserver(lblTipoFactura.SkinID.ToString()) ?? lblTipoFactura.SkinID.ToString();
+            btnFinalizarCompra.Text = Sujeto.TraducirObserver(btnFinalizarCompra.SkinID.ToString()) ?? btnFinalizarCompra.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblCliente.Text = SiteMaster.TraducirGlobal(lblCliente.SkinID.ToString()) ?? lblCliente.SkinID.ToString();
+            lblIdVenta.Text = SiteMaster.TraducirGlobal(lblIdVenta.SkinID.ToString()) ?? lblIdVenta.SkinID.ToString();
+            lblTipoFactura.Text = SiteMaster.TraducirGlobal(lblTipoFactura.SkinID.ToString()) ?? lblTipoFactura.SkinID.ToString();
+            btnFinalizarCompra.Text = SiteMaster.TraducirGlobal(btnFinalizarCompra.SkinID.ToString()) ?? btnFinalizarCompra.SkinID.ToString();
+        }
+        #endregion
     }
 }

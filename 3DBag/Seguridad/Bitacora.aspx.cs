@@ -22,7 +22,7 @@ namespace _3DBag
             if (!IsPostBack)
             {
                 //traduccion de la pagina
-                Session["UserSession"] = null;
+                
                 if (Session["IdiomaSelect"] != null)
                 {
                     DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class Restore : System.Web.UI.Page
+    public partial class Restore : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Negocio_BLL.Seguridad Seguridad = new Negocio_BLL.Seguridad();
@@ -15,7 +15,15 @@ namespace _3DBag
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
 
-            //Traducir();
+            //traduccion de la pagina
+           
+            if (Session["IdiomaSelect"] != null)
+            {
+                DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                Traducir();
+            }
+
             if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Realizar_Restore)))
             {
                 divGeneral.Visible = true;
@@ -85,5 +93,21 @@ namespace _3DBag
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Restore fallido", "Alta", 0);                
             }
         }
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblRuta.Text = Sujeto.TraducirObserver(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
+            btnRestore.Text = Sujeto.TraducirObserver(btnRestore.SkinID.ToString()) ?? btnRestore.SkinID.ToString();            
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblRuta.Text = SiteMaster.TraducirGlobal(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
+            btnRestore.Text = SiteMaster.TraducirGlobal(btnRestore.SkinID.ToString()) ?? btnRestore.SkinID.ToString();            
+        }
+        #endregion
     }
 }

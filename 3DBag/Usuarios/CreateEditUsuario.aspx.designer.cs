@@ -195,6 +195,24 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Table Familias;
 
         /// <summary>
+        /// Control tituloFamAsig.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell tituloFamAsig;
+
+        /// <summary>
+        /// Control tituloNoFamAsig.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell tituloNoFamAsig;
+
+        /// <summary>
         /// Control FAsig.
         /// </summary>
         /// <remarks>
