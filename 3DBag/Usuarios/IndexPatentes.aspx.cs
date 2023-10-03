@@ -27,7 +27,7 @@ namespace _3DBag
                     Traducir();
                 }
 
-                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo)))
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Patentes)))
                 {
                     divPatentes.Visible = true;
                     lblPermiso.Visible = false;

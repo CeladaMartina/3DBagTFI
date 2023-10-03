@@ -149,7 +149,7 @@ namespace _3DBag
                     else if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
                     {
                         lblError.Visible = true;
-                        lblError.Text = SiteMaster.TraducirGlobal("Usuarios y/o contraseña incorrectos") ?? ("Usuarios y/o contraseña incorrectos");
+                        lblError.Text = SiteMaster.TraducirGlobal("Usuarios y/o contraseña incorrecto") ?? ("Usuarios y/o contraseña incorrecto");
                         Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
                     }
                     else if (GestorUsuario.VerificarContador(txtNick.Text) >= 3)
