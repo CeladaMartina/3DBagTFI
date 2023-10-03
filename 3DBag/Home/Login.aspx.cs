@@ -102,7 +102,7 @@ namespace _3DBag
                 else
                 {
                     lblError.Visible = true;
-                    lblError.Text = "Falla de integridad: No tiene los permisos necesarios.";                    
+                    lblError.Text = SiteMaster.TraducirGlobal("Falla de integridad: No tiene los permisos necesarios.") ?? ("Falla de integridad: No tiene los permisos necesarios.");                    
                 }
             }
         }
@@ -132,30 +132,30 @@ namespace _3DBag
                             catch (Exception EX)
                             {
                                 lblError.Visible = true;
-                                lblError.Text = "Error de Servicio:" + EX;
+                                lblError.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                             }
                         }
                         else
                         {
                             lblError.Visible = true;
-                            lblError.Text = "El usuario se encuentra bloqueado.";
+                            lblError.Text = SiteMaster.TraducirGlobal("El usuario se encuentra bloqueado") ?? ("El usuario se encuentra bloqueado");
                         }
                     }
                     else if (GestorUsuario.VerificarEstado(txtNick.Text) == true)
                     {
                         lblError.Visible = true;
-                        lblError.Text = "No se puede acceder, usuario bloqueado.";
+                        lblError.Text = SiteMaster.TraducirGlobal("No se puede acceder, usuario bloqueado") ?? ("No se puede acceder, usuario bloqueado");
                     }
                     else if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
                     {
                         lblError.Visible = true;
-                        lblError.Text = "Usuarios y/o contraseña incorrectos.";
+                        lblError.Text = SiteMaster.TraducirGlobal("Usuarios y/o contraseña incorrectos") ?? ("Usuarios y/o contraseña incorrectos");
                         Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
                     }
                     else if (GestorUsuario.VerificarContador(txtNick.Text) >= 3)
                     {
                         lblError.Visible = true;
-                        lblError.Text = "El usuario se encuentra bloqueado.";
+                        lblError.Text = SiteMaster.TraducirGlobal("El usuario se encuentra bloqueado") ?? ("El usuario se encuentra bloqueado");
                         Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Bloqueo de usuario", "Alta", 0);
                         GestorUsuario.BloquearUsuario(txtNick.Text);
                     }
@@ -163,7 +163,7 @@ namespace _3DBag
                 else
                 {
                     lblError.Visible = true;
-                    lblError.Text = "Complete todos los campos.";
+                    lblError.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }                
             }
             else
@@ -177,9 +177,9 @@ namespace _3DBag
                             if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
                             {
 
-                                lblError.Visible = true;
-                                lblError.Text = "Ingreso correctamente. Error de integridad en la base de datos.";
-                                lblError.CssClass = "alert alert-success";
+                                //lblError.Visible = true;
+                                //lblError.Text = "Ingreso correctamente. Error de integridad en la base de datos.";
+                                //lblError.CssClass = "alert alert-success";
 
                                 GestorUsuario.LogIn(Usuario);
 
@@ -193,7 +193,7 @@ namespace _3DBag
                 else
                 {
                     lblError.Visible = true;
-                    lblError.Text = "Complete todos los campos.";
+                    lblError.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
             }
         }

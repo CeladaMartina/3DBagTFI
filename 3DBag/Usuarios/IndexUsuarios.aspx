@@ -6,7 +6,7 @@
    <asp:Label ID="lblTitulo" SkinID="Usuarios" runat="server">Usuarios</asp:Label>
         <br />          
         <br />
-    <div>        
+    <div id="divUsuarios" runat="server">        
         <asp:Button ID="btnAltaUsuario" runat="server" Text="Nuevo Usuario" SkinID="Nuevo Usuario" OnClick="btnAltaUsuario_Click" />
         <br />
         <br />
@@ -37,4 +37,5 @@
             </div>
         </div>
     </div>
+    <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
 </asp:Content>

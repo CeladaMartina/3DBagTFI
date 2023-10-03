@@ -5,6 +5,7 @@
    <asp:Label ID="lblTitulo" SkinID="Patentes" runat="server">Patentes</asp:Label>
         <br />          
         <br />
+    <div id="divPatentes" runat="server">
     <asp:GridView ID="gridPatentes" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover">
         <AlternatingRowStyle BackColor="White" />
         <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
@@ -22,4 +23,6 @@
             </asp:ButtonField>            
         </Columns>
     </asp:GridView>
+        </div>
+     <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
 </asp:Content>

@@ -25,7 +25,20 @@ namespace _3DBag
                     Traducir();
                 }
 
-                ListarUsuarios();
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Usuario)))
+                {
+                    divUsuarios.Visible = true;
+                    lblPermiso.Visible = false;
+                    ListarUsuarios();
+                }
+                else
+                {
+                    divUsuarios.Visible = false;
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
+                    lblPermiso.Visible = true;
+                }
+
+               
             }
            
         }

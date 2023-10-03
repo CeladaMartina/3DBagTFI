@@ -25,7 +25,18 @@ namespace _3DBag
                     Traducir();
                 }
 
-                ListarProductos();
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta)))
+                {
+                    divHistorialVentas.Visible = true;
+                    lblPermiso.Visible = false;
+                    ListarProductos();
+                }
+                else
+                {
+                    divHistorialVentas.Visible = false;
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
+                    lblPermiso.Visible = true;
+                }
             }
         }
 

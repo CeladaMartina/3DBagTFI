@@ -6,7 +6,7 @@
         <asp:Label ID="lblTitulo" SkinID="Historial de Ventas" runat="server">Historial de Ventas</asp:Label>
         <br />          
         <br />
-        <div class="form-group">
+        <div id="divHistorialVentas" runat="server" class="form-group">
             <div class="table-responsive">
                 <asp:GridView ID="gridVentas" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover">
                     <AlternatingRowStyle BackColor="White" />
@@ -24,5 +24,6 @@
                 </asp:GridView>
             </div>
         </div>
+        <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
     </div>
 </asp:Content>

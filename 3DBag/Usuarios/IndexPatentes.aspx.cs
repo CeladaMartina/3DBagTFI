@@ -27,7 +27,20 @@ namespace _3DBag
                     Traducir();
                 }
 
-                ListarPatentes();
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo)))
+                {
+                    divPatentes.Visible = true;
+                    lblPermiso.Visible = false;
+                    ListarPatentes();
+                }
+                else
+                {
+                    divPatentes.Visible = false;
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
+                    lblPermiso.Visible = true;
+                }
+
+                
             }
         }
 
