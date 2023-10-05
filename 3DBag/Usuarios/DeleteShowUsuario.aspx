@@ -24,7 +24,10 @@
         <asp:TreeView ID="TreeViewPermisos" runat="server"></asp:TreeView>
         <br />
         <br />
-        <asp:Button ID="btnBorrar" runat="server" Text="Borrar" SkinID="Eliminar" />
+        <asp:Button ID="btnBorrar" runat="server" Text="Borrar" SkinID="Eliminar" OnClick="btnBorrar_Click" />
+        <br />
+        <br />
+         <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>
         <br />
         <br />
         <asp:LinkButton ID="LinkRedireccion" runat="server" OnClick="LinkRedireccion_Click" SkinID="Volver atras"><< Volver atrás</asp:LinkButton>

@@ -142,7 +142,7 @@ namespace Negocio_BLL
             UsuarioTemp.Mail = Mail;
             UsuarioTemp.Estado = Estado;
             UsuarioTemp.Contador = Contador;
-            UsuarioTemp.Idioma = Idioma;
+            UsuarioTemp.Idioma = Idioma;           
             UsuarioTemp.DVH = DVH;
 
             int i = Mapper.AltaUsuario(UsuarioTemp);
@@ -153,7 +153,7 @@ namespace Negocio_BLL
             return i;
         }
 
-        public int Modificar(int IdUsuario, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
+        public int Modificar(int IdUsuario, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma,  bool Baja, int DVH)
         {
             UsuarioTemp.IdUsuario = IdUsuario;
             UsuarioTemp.Nick = Seguridad.EncriptarAES(Nick);
@@ -162,6 +162,7 @@ namespace Negocio_BLL
             UsuarioTemp.Estado = Estado;
             UsuarioTemp.Contador = Contador;
             UsuarioTemp.Idioma = Idioma;
+            UsuarioTemp.BajaLogica = Baja;
             UsuarioTemp.DVH = DVH;
 
 
@@ -173,10 +174,10 @@ namespace Negocio_BLL
             return i;
         }
 
-        public int Baja(int IdUsuario, int DVH)
+        public int Baja(int IdUsuario)
         {
             UsuarioTemp.IdUsuario = IdUsuario;
-            UsuarioTemp.DVH = DVH;
+            //UsuarioTemp.DVH = DVH;
 
             int i = Mapper.Baja(UsuarioTemp);
             long Dv = Seguridad.CalcularDVH("select * From Usuario where IdUsuario = '" + UsuarioTemp.IdUsuario + "'", "Usuario");

@@ -125,6 +125,23 @@ namespace _3DBag
             Response.Redirect("../Usuarios/IndexUsuarios.aspx");
         }
 
+        void Baja(int IdUsuario)
+        {
+            if(GestorUsuario.Baja(IdUsuario) == 0)
+            {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de baja usuario", "Alta", 0);
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "label-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
+            else
+            {
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Baja de Producto exitosamente") ?? ("Baja de Producto exitosamente");
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Baja Articulo", "Baja", 0);
+            }
+        }
+
         #region traduccion
         public void Update(ISubject Sujeto)
         {
@@ -155,5 +172,19 @@ namespace _3DBag
         }
         #endregion
 
+        protected void btnBorrar_Click(object sender, EventArgs e)
+        {
+            nick = Request.QueryString["usuario"];
+
+            try
+            {
+                Baja(GestorUsuario.SeleccionarIDNick(nick));
+            }
+            catch (Exception)
+            {
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+
+            }
+        }
     }
 }

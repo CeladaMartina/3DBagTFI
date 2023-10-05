@@ -101,25 +101,41 @@ namespace _3DBag
             }           
         }
 
-        void Modificar(int Id, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
+        void Modificar(int Id, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma, bool Baja,  int DVH)
         {
-            if (GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, DVH) == 0)
+            if (GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, Baja ,DVH) == 0)
             {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de modificacion usuario", "Alta", 0);
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "label-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
+            else
+            {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar usuario", "Alta", 0);
                 lblResultado.Visible = true;
                 lblResultado.CssClass = "label-success";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Usuario modificado correctamente") ?? ("Usuario modificado correctamente");
             }
-
-            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar usuario", "Alta", 0);           
-            //LimpiarTxt();
-            
         }
 
-        void Alta(string Nick, string Contraseña, string Nombre, string Mail, bool Estado, int Contador, string Idioma, int DVH)
+        void Alta(string Nick, string Contraseña, string Nombre, string Mail, bool Estado, int Contador, string Idioma,  int DVH)
         {
-            GestorUsuario.AltaUsuario(Nick, Contraseña, Nombre, Mail, Estado, Contador, Idioma, DVH);
-            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta usuario", "Alta", 0);
-            //LimpiarTxt();            
+            if(GestorUsuario.AltaUsuario(Nick, Contraseña, Nombre, Mail, Estado, Contador, Idioma,DVH) == 0)
+            {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta usuario", "Alta", 0);
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "label-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
+            else
+            {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta usuario", "Alta", 0);
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "label-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Usuario alta correctamente") ?? ("Usuario alta correctamente");
+            }
+
         }
 
         void LimpiarTxt()
@@ -253,6 +269,7 @@ namespace _3DBag
             TempUs = new Propiedades_BE.Usuario();            
             TempUs.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
 
+            //recorro lista patente
             foreach (ListItem item in PAsig.Items)
             {
                 c1 = new Propiedades_BE.Patente();
@@ -264,30 +281,20 @@ namespace _3DBag
 
                 TempUs.Permisos.Add(c1);
             }
-            
-            GestorUsuario.GuardarPermisos(TempUs);
-
-        }
-
-        void GuardarFamilia()
-        {
-            Propiedades_BE.Componente c1;
-
-            TempUs = new Propiedades_BE.Usuario();
-            TempUs.IdUsuario = GestorUsuario.SeleccionarIDNick(txtNick.Text);
-
+            //recorro lista familia
             foreach (ListItem item in FAsig.Items)
             {
                 c1 = new Propiedades_BE.Familia();
                 string permiso = item.Text.Replace(" ", "_");
                 c1.Nombre = item.ToString();
 
-                c1.Id = GestorPermisos.traerIDPermiso(c1.Nombre);               
+                c1.Id = GestorPermisos.traerIDPermiso(c1.Nombre);
 
                 TempUs.Permisos.Add(c1);
             }
 
             GestorUsuario.GuardarPermisos(TempUs);
+
         }
 
         bool ChequearFallaTxt()
@@ -340,7 +347,7 @@ namespace _3DBag
                 {
                     if (Request.QueryString["Funcion"] == "alta")
                     {
-                        Alta(txtNick.Text, txtContraseña.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text, 0);
+                        Alta(txtNick.Text, txtContraseña.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text,  0);                       
                     }
                     else if(Request.QueryString["Funcion"] == "editar")
                     {
@@ -358,11 +365,11 @@ namespace _3DBag
                             }
                         }
 
-                        Modificar(Convert.ToInt32(txtIdUsuario.Text), txtNick.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text, 0);
+                        Modificar(Convert.ToInt32(txtIdUsuario.Text), txtNick.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text, checkBaja.Checked, 0);                        
                     }
 
                     GuardarPatente();
-                    GuardarFamilia();
+                    //GuardarFamilia();
                 }
                 else
                 {

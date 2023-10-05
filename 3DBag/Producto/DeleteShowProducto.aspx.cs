@@ -28,7 +28,7 @@ namespace _3DBag
 
                 codProd = Convert.ToInt32(Request.QueryString["producto"]);
 
-                //pantalla EDITAR
+                //pantalla borrar
                 if (Request.QueryString["Funcion"] == "borrar")
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Eliminar") ?? ("Eliminar");

@@ -125,11 +125,13 @@ namespace Negocio_BLL
         public int Baja(int IdArticulo)
         {
             ArticuloTemp.IdArticulo = IdArticulo;
-            return Mapper.Baja(ArticuloTemp);
-
-            //tengo que agregar la tabla al dvv
-            //int i = Mapper.Baja(ArticuloTemp);
-            //Seguridad.ActualizarDVV()
+            int i = Mapper.Baja(ArticuloTemp);
+            
+            DV = Seguridad.CalcularDVH("select * from Articulo where IdArticulo= " + ArticuloTemp.IdArticulo + "", "Articulo");
+            producto.EjecutarConsulta("Update Articulo set DVH= '" + DV + "' where IdArticulo=" + ArticuloTemp.IdArticulo + "");
+            Seguridad.ActualizarDVV("Articulo", Seguridad.SumaDVV("Articulo"));
+            
+            return i;
         }
 
         #region verificacion integral 

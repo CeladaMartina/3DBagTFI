@@ -442,7 +442,7 @@ namespace Acceso_DAL
         public int Modificar(Propiedades_BE.Usuario U)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[8];
+            SqlParameter[] P = new SqlParameter[9];
             P[0] = new SqlParameter("@IdUsuario", U.IdUsuario);
             P[1] = new SqlParameter("@Nick", U.Nick);
             P[2] = new SqlParameter("@Nombre", U.Nombre);
@@ -450,7 +450,8 @@ namespace Acceso_DAL
             P[4] = new SqlParameter("@Estado", U.Estado);
             P[5] = new SqlParameter("@Contador", U.Contador);
             P[6] = new SqlParameter("@Idioma", U.Idioma);
-            P[7] = new SqlParameter("@DVH", U.DVH);
+            P[7] = new SqlParameter("@BajaLogica", U.BajaLogica);
+            P[8] = new SqlParameter("@DVH", U.DVH);
             fa = Acceso.Escribir("ModificarUsuario", P);
             return fa;
         }
@@ -458,9 +459,9 @@ namespace Acceso_DAL
         public int Baja(Propiedades_BE.Usuario U)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[2];
+            SqlParameter[] P = new SqlParameter[1];
             P[0] = new SqlParameter("@IdUsuario", U.IdUsuario);
-            P[1] = new SqlParameter("@DVH", U.DVH);
+            //P[1] = new SqlParameter("@DVH", U.DVH);
             fa = Acceso.Escribir("BajaUsuario", P);
             return fa;
         }
@@ -480,7 +481,7 @@ namespace Acceso_DAL
                 cmd.Parameters.Add(new SqlParameter("id", U.IdUsuario));
                 cmd.ExecuteNonQuery();
 
-                foreach (var item in U.Permisos)
+                foreach (var item in U.Permisos)                   
                 {
                     cmd = new SqlCommand();
                     cmd.Connection = cnn;
