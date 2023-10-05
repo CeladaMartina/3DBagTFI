@@ -116,6 +116,7 @@ namespace _3DBag
                 lblResultado.Visible = true;
                 lblResultado.CssClass = "label-success";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Usuario modificado correctamente") ?? ("Usuario modificado correctamente");
+                LimpiarTxt();
             }
         }
 
@@ -134,6 +135,7 @@ namespace _3DBag
                 lblResultado.Visible = true;
                 lblResultado.CssClass = "label-success";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Usuario alta correctamente") ?? ("Usuario alta correctamente");
+                LimpiarTxt();
             }
 
         }

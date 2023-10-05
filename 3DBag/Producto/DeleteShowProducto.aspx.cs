@@ -60,10 +60,21 @@ namespace _3DBag
 
         void Baja(int IdArticulo)
         {
-            GestorArticulo.Baja(IdArticulo);
-            lblResultado.Visible = true;
-            lblResultado.Text = SiteMaster.TraducirGlobal("Baja de Producto exitosamente") ?? ("Baja de Producto exitosamente");
-            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Baja Articulo", "Baja", 0);
+           if(GestorArticulo.Baja(IdArticulo) == 0)
+            {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "label-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de baja producto", "Alta", 0);
+            }
+            else
+            {
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Baja de Producto exitosamente") ?? ("Baja de Producto exitosamente");
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Baja Articulo", "Baja", 0);
+                
+            }
+            
 
         }
 

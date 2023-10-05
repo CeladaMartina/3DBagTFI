@@ -287,17 +287,26 @@ namespace Acceso_DAL
         public int Modificar(Propiedades_BE.Articulo A)
         {
             int fa = 0;
-            SqlParameter[] P = new SqlParameter[9];
+            SqlParameter[] P = new SqlParameter[8];
             P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);           
             P[1] = new SqlParameter("@CodProd", A.CodProd);
             P[2] = new SqlParameter("@Nombre", A.Nombre);
             P[3] = new SqlParameter("@Descripcion", A.Descripcion);
             P[4] = new SqlParameter("@Material", A.Material);
             P[5] = new SqlParameter("@Stock", A.Stock);
-            P[6] = new SqlParameter("@PUnit", A.PUnit);
-            P[7] = new SqlParameter("@Imagen", A.ImagenByte);
-            P[8] = new SqlParameter("@DVH", A.DVH);
+            P[6] = new SqlParameter("@PUnit", A.PUnit);            
+            P[7] = new SqlParameter("@DVH", A.DVH);
             fa = Acceso.Escribir("ModificarArticulo", P);
+            return fa;
+        }
+
+        public int GuardarImagenProd(Propiedades_BE.Articulo A)
+        {
+            int fa = 0;
+            SqlParameter[] P = new SqlParameter[2];
+            P[0] = new SqlParameter("@IdArticulo", A.IdArticulo);
+            P[1] = new SqlParameter("@Imagen", A.ImagenByte);
+            fa = Acceso.Escribir("GuardarImagenProd", P);
             return fa;
         }
 

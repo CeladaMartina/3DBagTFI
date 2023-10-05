@@ -37,7 +37,7 @@ namespace _3DBag
 
                     nick = Request.QueryString["usuario"];
 
-                    //pantalla EDITAR
+                    //pantalla borrar
                     if (Request.QueryString["Funcion"] == "borrar")
                     {
                         lblTitulo.Text = SiteMaster.TraducirGlobal("Eliminar") ?? ("Eliminar");

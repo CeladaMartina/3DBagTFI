@@ -72,18 +72,49 @@ namespace _3DBag
 
         void Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material,int Stock, decimal PUnit,byte[] Imagen, int DVH)
         {
-            GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, Imagen, DVH);
-            lblRespuesta.Text = SiteMaster.TraducirGlobal("Alta de Producto exitosamente") ?? ("Alta de Producto exitosamente");
-            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Articulo", "Media", 0);
+            if(GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, Imagen, DVH) == 0)
+            {
+                lblRespuesta.Visible = true;
+                lblRespuesta.CssClass = "label-success";
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta producto", "Alta", 0);
+            }
+            else
+            {
+                lblRespuesta.Visible = true;
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Alta de Producto exitosamente") ?? ("Alta de Producto exitosamente");
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Articulo", "Media", 0);
+            }           
 
         }
 
-        void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, byte[] ImagenProd, int DVH)
+        void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
         {
-            GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, ImagenProd, DVH);
-            lblRespuesta.Text = SiteMaster.TraducirGlobal("Modificación de Producto exitosamente") ?? ("Modificación de Producto exitosamente");
-            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar Articulo", "Baja", 0);
+            if(GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH)== 0)
+            {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta producto", "Alta", 0);
+                lblRespuesta.Visible = true;
+                lblRespuesta.CssClass = "label-success";
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
+            else
+            {
+                lblRespuesta.Visible = true;
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Modificación de Producto exitosamente") ?? ("Modificación de Producto exitosamente");
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar Articulo", "Baja", 0);
+            }         
 
+        }
+
+        void GuardarImagenProd(int IdArticulo, byte[] ImagenProd)
+        {
+            if(GestorProducto.GuardarImagenProd(IdArticulo, ImagenProd) == 0)
+            {
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta producto", "Alta", 0);
+                lblRespuesta.Visible = true;
+                lblRespuesta.CssClass = "label-success";
+                lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
         }
 
         //la imagen la crea en bytes para subirlo a la base de datos
@@ -110,6 +141,7 @@ namespace _3DBag
 
         protected void btnFunction_Click(object sender, EventArgs e)
         {
+            //metodo editar
             if(Request.QueryString["producto"] != null)
             {
                 if (ChequearFallaTxt() == false)
@@ -117,15 +149,14 @@ namespace _3DBag
                     try
                     {
                         string prodFileName = Path.GetFileName(FileUploadImagen.PostedFile.FileName);
-                        if (prodFileName == "")
-                        {
-                            lblRespuesta.Text = SiteMaster.TraducirGlobal("Cargue una Imagen") ?? ("Cargue una Imagen");
-                        }
-                        else
+                        if (prodFileName != "")
                         {
                             byte[] ImagenProd = ObtenerImagen();
-                            Modificar(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), ImagenProd, 0);
-                        }
+                            GuardarImagenProd(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), ImagenProd);                            
+                        }                        
+                        
+                        Modificar(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);
+
                     }
                     catch (Exception)
                     {
@@ -137,7 +168,7 @@ namespace _3DBag
                     lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
             }
-            else
+            else //metodo alta
             {
                 if (ChequearFallaTxt() == false)
                 {
