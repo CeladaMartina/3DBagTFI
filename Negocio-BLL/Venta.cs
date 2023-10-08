@@ -25,7 +25,15 @@ namespace Negocio_BLL
 
         public string CancelarVenta(int IdVenta)
         {
-            return Mapper.CancelarVenta(IdVenta);
+            //return Mapper.CancelarVenta(IdVenta);
+
+            string i = Mapper.CancelarVenta(IdVenta);
+
+            DV = Seguridad.CalcularDVH("select * from Venta where IdVenta= '"+ IdVenta + "'", "Venta");
+            Mapper.EjecutarConsulta("Update Venta set DVH= '" + DV + "' where IdVenta='" + IdVenta + "'");
+            Seguridad.ActualizarDVV("Venta", Seguridad.SumaDVV("Venta"));
+            
+            return i;
         }
 
         public int TraerIdVenta()

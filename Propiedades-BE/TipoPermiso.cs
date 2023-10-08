@@ -8,25 +8,15 @@ namespace Propiedades_BE
 {
     public enum TipoPermiso
     {
-        LogIn_LogOut,
-        Modificar_Articulo,
-        Modificar_Cliente,
-        Modificar_Idioma,
-        Modificar_Localidad,
-        Modificar_Proveedor,
-        Modificar_Traduccion,
-        Modificar_Usuario,
-        Modificar_Permisos_Usuario,
-        Modificar_Familia,
-        Modificar_Patentes,
-        Modificar_Permisos,
-        Modificar_Compra,
-        Modificar_Venta,
-        Desbloquear_Usuario,
-        Realizar_BackUp,
-        Realizar_Restore,
+        
+        Modificar_Articulo,      //ok   
+        Modificar_Usuario, //ok        
+        Modificar_Familia, //ok
+        Modificar_Patentes, //ok        
+        Modificar_Venta, //ok       
+        Realizar_BackUp, //ok
+        Realizar_Restore, //ok
         Recalcular_Digitos,
-        Ver_Bitacora,
-        Gestionar_Control_Cambio
+        Ver_Bitacora //ok        
     }
 }

@@ -141,6 +141,15 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblPUnitResp;
 
         /// <summary>
+        /// Control Imagen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Imagen;
+
+        /// <summary>
         /// Control btnBorrar.
         /// </summary>
         /// <remarks>

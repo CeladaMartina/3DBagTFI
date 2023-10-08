@@ -34,6 +34,8 @@ namespace _3DBag
                     masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
                     Traducir();
                 }
+
+                ListarProductos();
             }
             
         }
@@ -58,6 +60,21 @@ namespace _3DBag
             }
         }
 
+       void ListarProductos()
+        {
+            try
+            {
+                dataList.DataSource = null;
+                dataList.DataSource = GestorArticulo.Listar();
+                dataList.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+
+        }
         #endregion
 
 
@@ -138,5 +155,11 @@ namespace _3DBag
             VerCarrito.Text = SiteMaster.TraducirGlobal(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();         
         }
         #endregion
+
+        //protected void BtnAgregar_Click(object sender, EventArgs e)
+        //{
+        //    Response.Write("hola");
+
+        //}
     }
 }

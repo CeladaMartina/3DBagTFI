@@ -20,6 +20,9 @@
         <asp:Label ID="lblPUnit" runat="server" SkinID="Precio">Precio: </asp:Label><asp:Label ID="lblPUnitResp" runat="server"></asp:Label>
         <br />
         <br />
+        <asp:Image ID="Imagen" runat="server" ImageUrl='<%#Bind("Imagen") %>' Height="100px" Width="100px"/>
+        <br />
+        <br />
         <asp:Button ID="btnBorrar" runat="server" Text="Borrar" SkinID="Eliminar" OnClick="btnBorrar_Click" />
         <br />
         <br />

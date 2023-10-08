@@ -12,7 +12,8 @@ namespace Acceso_DAL
     {
         Acceso_BD Acceso = new Acceso_BD();
         Seguridad Seguridad = new Seguridad();
-        
+        long DV = 0;
+
         public List<Propiedades_BE.Venta> Listar()
         {
             List<Propiedades_BE.Venta> ListaVenta = new List<Propiedades_BE.Venta>();
@@ -93,7 +94,7 @@ namespace Acceso_DAL
             {
                 Acceso.EjecutarConsulta("Delete from Detalle_Venta where IdVenta= " + IdVenta + "");
                 Acceso.EjecutarConsulta("Delete from Venta where IdVenta= " + IdVenta + "");
-                Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
+                //Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
                 Mensaje = "Se ha cancelado la venta";
             }
 
@@ -127,7 +128,11 @@ namespace Acceso_DAL
             foreach (var item in ListaDV)
             {
                 Acceso.EjecutarConsulta("update Articulo set Stock = (Stock - " + item.Cant + ") where IdArticulo = " + item.IdArticulo + "");
-            }
+
+                DV = Seguridad.CalcularDVH("select * from Articulo where IdArticulo= " + item.IdArticulo + "", "Articulo");
+                Acceso.EjecutarConsulta("Update Articulo set DVH= '" + DV + "' where IdArticulo=" + item.IdArticulo + "");
+                Seguridad.ActualizarDVV("Articulo", Seguridad.SumaDVV("Articulo"));
+            }            
         }
 
         public int ExisteVenta(int IdUsuario, DateTime Fecha)

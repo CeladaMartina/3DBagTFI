@@ -47,6 +47,7 @@ namespace Negocio_BLL
             DVTemp.PUnit = PUnit;
             DVTemp.Cant = Cantidad;
             DVTemp.DVH = DVH;
+
             int i = Mapper.ModificarDV(DVTemp);
             DV = Seguridad.CalcularDVH("select * from Detalle_Venta where IdVenta = " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "", "Detalle_Venta");
             Articulo.EjecutarConsulta("Update Detalle_Venta set DVH= " + DV + " where IdVenta= " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "");
@@ -60,6 +61,9 @@ namespace Negocio_BLL
             DVTemp.IdDetalle = IdDetalle;
             DVTemp.IdArticulo = IdArticle;
             int i = Mapper.BajaDV(DVTemp);
+
+            DV = Seguridad.CalcularDVH("select * from Detalle_Venta where IdVenta = " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "", "Detalle_Venta");
+            Articulo.EjecutarConsulta("Update Detalle_Venta set DVH= " + DV + " where IdVenta= " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "");
             Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
 
             return i;

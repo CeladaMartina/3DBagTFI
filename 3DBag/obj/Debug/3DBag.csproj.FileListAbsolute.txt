@@ -1,5 +1,3 @@
-C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.csproj.AssemblyReference.cache
-C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.csproj.CoreCompileInputs.cache
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\3DBag.dll.config
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\3DBag.dll
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\3DBag.pdb
@@ -80,6 +78,8 @@ C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\Mi
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\Acceso-DAL.pdb
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\es\System.Web.Optimization.resources.dll
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.csproj.AssemblyReference.cache
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.csproj.CoreCompileInputs.cache
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.csproj.CopyComplete
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.dll
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.pdb

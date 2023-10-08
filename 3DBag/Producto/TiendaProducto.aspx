@@ -6,12 +6,14 @@
         <asp:Label ID="lblTitulo" runat="server" SkinID="Tienda">Tienda</asp:Label>
         <br />
         <br />
-        <asp:DataList ID="dataList" runat="server" RepeatColumns="4" RepeatDirection="Horizontal" Width="600px" DataSourceID="SqlDataSource1" OnItemCommand="dataList_ItemCommand" DataKeyField="IdArticulo">   
+        <asp:DataList ID="dataList" runat="server" RepeatColumns="5" RepeatDirection="Horizontal" Width="800px"  OnItemCommand="dataList_ItemCommand">   
             <ItemTemplate>
+                <asp:Label ID="IdVentaUsuario" runat="server" Text="" Visible="False" />
                 <%--Imagen:
                 <asp:Label ID="ImagenLabel" runat="server" Text='<%# Bind("Imagen") %>' />
                 <br />--%>
-                <asp:Label ID="IdVentaUsuario" runat="server" Text="" Visible="False" />
+                 <asp:Image ID="Imagen" runat="server" ImageUrl='<%#Bind("Imagen") %>' Height="150px" Width="150px"/>
+                <br />                
                 <asp:Label ID="IdArticuloLabel" runat="server" Text='<%# Eval("IdArticulo") %>'  Visible="False" />
                 <br />
                 Nombre:
@@ -22,7 +24,7 @@
                 <br />
                 Precio:
                 <asp:Label ID="PUnitLabel" runat="server" Text='<%# Eval("PUnit") %>' />
-                <br />
+                <br />               
                 Cantidad:
                  <asp:TextBox ID="TxtCantidad" runat="server"></asp:TextBox>
                 <br />
@@ -33,6 +35,6 @@
         <br />
         <asp:Label ID="lblRespuesta" runat="server" Visible="false"></asp:Label>
         <asp:LinkButton ID="VerCarrito" runat="server" OnClick="VerCarrito_Click" Visible="False" SkinID="Ver Carrito de Compras">-- Ver Carrito de Compras --</asp:LinkButton>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion %>" SelectCommand="SELECT [IdArticulo], [Nombre], [Descripcion], [PUnit] FROM [Articulo]"></asp:SqlDataSource>
+        <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion %>" SelectCommand="SELECT [IdArticulo], [Nombre], [Descripcion], [PUnit], [Imagen] FROM [Articulo]"></asp:SqlDataSource>--%>
     </div>
 </asp:Content>

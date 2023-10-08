@@ -108,13 +108,13 @@ namespace _3DBag
 
         void GuardarImagenProd(int IdArticulo, byte[] ImagenProd)
         {
-            if(GestorProducto.GuardarImagenProd(IdArticulo, ImagenProd) == 0)
+            if (GestorProducto.GuardarImagenProd(IdArticulo, ImagenProd) == 0)
             {
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta producto", "Alta", 0);
                 lblRespuesta.Visible = true;
                 lblRespuesta.CssClass = "label-success";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
-            }
+            }            
         }
 
         //la imagen la crea en bytes para subirlo a la base de datos
@@ -152,7 +152,7 @@ namespace _3DBag
                         if (prodFileName != "")
                         {
                             byte[] ImagenProd = ObtenerImagen();
-                            GuardarImagenProd(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), ImagenProd);                            
+                            GuardarImagenProd(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)),  ImagenProd);                            
                         }                        
                         
                         Modificar(GestorProducto.SeleccionarIdArticulo(Convert.ToInt32(txtCodProd.Text)), int.Parse(txtCodProd.Text), txtNombre.Text, txtDescripcion.Text, txtMaterial.Text, int.Parse(txtStock.Text), decimal.Parse(txtPUnit.Text), 0);

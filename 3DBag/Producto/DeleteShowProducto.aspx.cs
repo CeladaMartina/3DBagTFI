@@ -56,6 +56,7 @@ namespace _3DBag
             lblMaterialResp.Text = producto[0].Material;
             lblStockResp.Text = producto[0].Stock.ToString();
             lblPUnitResp.Text = producto[0].PUnit.ToString();
+            Imagen.ImageUrl = producto[0].Imagen.ToString();
         }
 
         void Baja(int IdArticulo)
