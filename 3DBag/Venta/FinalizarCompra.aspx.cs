@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,6 +18,8 @@ namespace _3DBag
         Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
 
         int IdVenta = -1;
+        private System.Threading.Timer timer;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -87,6 +90,13 @@ namespace _3DBag
             lblResultado.Text = SiteMaster.TraducirGlobal("Compra finalizada correctamente. Factura enviada por email.") ?? ("Compra finalizada correctamente. Factura enviada por email.");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Venta Realizada", "Baja", 0);
             Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
+
+            timer = new System.Threading.Timer(TimerCallback, null, 0, 15000);
+        }
+
+        private void TimerCallback(object state)
+        {
+            Response.Redirect("../Home/Home.aspx");
         }
 
         #region traduccion

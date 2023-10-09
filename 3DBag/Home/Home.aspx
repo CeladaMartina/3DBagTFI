@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <link href="../css/site.css" rel="stylesheet" />
-    <asp:Table ID="containerHome" runat="server">
+    <link href="../css/site.css" rel="stylesheet" />    
+    <asp:Table ID="containerHome" runat="server" >
         <asp:TableRow>
             <asp:TableCell>
                  <asp:Label ID="lblUsuario" runat="server" CssClass="align-self-sm-end" Visible="false"></asp:Label>  
@@ -11,7 +11,8 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Image runat="server" src="../Images/logo.png" width="170" height="170"/>              
+                <%--<asp:Image runat="server" src="../Images/logo.png" width="170" height="170"/>    --%>    
+                <h1>3D - BAG</h1>
             </asp:TableCell>           
         </asp:TableRow>        
         <asp:TableRow>
@@ -42,6 +43,7 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    </section>   
     <br />
     <asp:Table ID="containerError" runat="server" Visible="false">
         <asp:TableRow>

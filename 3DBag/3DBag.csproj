@@ -122,6 +122,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
     <Content Include="Home\OlvidoContraseña.aspx" />
+    <Content Include="Images\193307.jpg" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Venta\FinalizarCompra.aspx" />
     <Content Include="Seguridad\Restore.aspx" />
     <Content Include="Usuarios\DeleteShowUsuario.aspx" />
