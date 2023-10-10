@@ -9,8 +9,10 @@ namespace Negocio_BLL
     public class Permisos
     {
         Acceso_DAL.Permisos _permisos;
+        Acceso_DAL.Seguridad Seguridad = new Acceso_DAL.Seguridad();
+        long DV = 0;
 
-
+        
         public Permisos()
         {
             _permisos = new Acceso_DAL.Permisos();
@@ -128,6 +130,14 @@ namespace Negocio_BLL
         public string traerPermiso(int id)
         {
             return _permisos.traerPermiso(id);
+        }
+
+        public void ModificarPatente(int id, string nombre, string descripcion)
+        {
+            _permisos.ModificarPatente(id, nombre, descripcion);
+            DV = Seguridad.CalcularDVH("select * from Permiso where id= " + id + "", "Permiso");
+            _permisos.EjecutarConsulta("Update Permiso set DVH= '" + DV + "' where id=" + id + "");
+            Seguridad.ActualizarDVV("Permiso", Seguridad.SumaDVV("Permiso"));
         }
         #endregion
 

@@ -13,8 +13,12 @@ namespace Acceso_DAL
         Acceso_BD Acceso = new Acceso_BD();
         Seguridad Seguridad = new Seguridad();
 
-        #region Seguridad
+        public void EjecutarConsulta(string Consulta)
+        {
+            Seguridad.EjecutarConsulta(Consulta);
+        }
 
+        #region Seguridad
         public Array GetAllPermisos()
         {
             return Enum.GetValues(typeof(Propiedades_BE.TipoPermiso));
@@ -211,6 +215,30 @@ namespace Acceso_DAL
             }
         }
 
+        public void ModificarPatente(int id, string nombre, string permiso)
+        {
+            try
+            {
+                var cnn = new SqlConnection(Acceso.GlobalConexion);
+                cnn.Open();
+                var cmd = new SqlCommand();
+
+                cmd = new SqlCommand();
+                cmd.Connection = cnn;
+
+                var sql = "update Permiso set nombre = @nombre, permiso = @permiso where Id =" + id +" and permiso is not null";
+
+                cmd.CommandText = sql;
+                cmd.Parameters.Add(new SqlParameter("nombre", nombre));
+                cmd.Parameters.Add(new SqlParameter("permiso", permiso));
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         public IList<Propiedades_BE.Patente> GetAllPatentes()
         {
             var cnn = new SqlConnection(Acceso.GlobalConexion);

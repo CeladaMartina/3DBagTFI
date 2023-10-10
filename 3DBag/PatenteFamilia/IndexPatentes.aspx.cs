@@ -87,7 +87,7 @@ namespace _3DBag
             if (e.CommandName == "editar")
             {
                 //enviamos el nick del usuario
-                Response.Redirect("CreateEditUsuario.aspx?usuario=" + id + "&Funcion=editar");
+                Response.Redirect("CreateEditPatente.aspx?patente=" + id + "&Funcion=editar");
 
             }
             else if (e.CommandName == "select")
