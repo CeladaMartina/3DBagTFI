@@ -1,12 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IndexFamilias.aspx.cs" Inherits="_3DBag.IndexFamilias" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IndexPatentes.aspx.cs" Inherits="_3DBag.IndexPatentes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="lblTitulo" SkinID="Familias" runat="server">Familias</asp:Label>
+   <asp:Label ID="lblTitulo" SkinID="Patentes" runat="server">Patentes</asp:Label>
         <br />          
         <br />
-    <div id="divFamilias" runat="server">
-    <asp:GridView ID="gridFamilias" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnRowCommand="gridFamilias_RowCommand">
+    <asp:Button  ID="btnAltaPatente" runat="server" Text="Alta Patente" OnClick="btnAltaPatente_Click"/>
+     <br />          
+     <br />
+    <div id="divPatentes" runat="server">
+    <asp:GridView ID="gridPatentes" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnRowCommand="gridPatentes_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
         <RowStyle BackColor="#f5f5f5" />
@@ -23,6 +26,6 @@
             </asp:ButtonField>            
         </Columns>
     </asp:GridView>
-    </div>
-    <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
+        </div>
+     <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
 </asp:Content>

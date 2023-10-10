@@ -84,7 +84,7 @@ namespace _3DBag
 
         protected void LinkRedireccion_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Usuarios/IndexFamilias.aspx");
+            Response.Redirect("../PatenteFamilia/IndexFamilias.aspx");
         }
 
         #region traduccion

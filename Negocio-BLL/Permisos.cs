@@ -124,6 +124,11 @@ namespace Negocio_BLL
         {
             return _permisos.traerIDPermiso(nombre);
         }
+
+        public string traerPermiso(int id)
+        {
+            return _permisos.traerPermiso(id);
+        }
         #endregion
 
         #region Verificar Borrado

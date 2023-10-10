@@ -40,12 +40,12 @@ namespace _3DBag
 
         protected void LinkGestionFamilias_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Usuarios/IndexFamilias.aspx");
+            Response.Redirect("../PatenteFamilia/IndexFamilias.aspx");
         }
 
         protected void LinkGestionPatentes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Usuarios/IndexPatentes.aspx");
+            Response.Redirect("../PatenteFamilia/IndexPatentes.aspx");
         }
 
         public void Update(ISubject Sujeto)

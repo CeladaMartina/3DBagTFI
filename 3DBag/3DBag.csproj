@@ -121,15 +121,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="PatenteFamilia\VerPatente.aspx" />
     <Content Include="Home\OlvidoContraseña.aspx" />
     <Content Include="Images\193307.jpg" />
     <Content Include="Images\background.jpg" />
     <Content Include="Venta\FinalizarCompra.aspx" />
     <Content Include="Seguridad\Restore.aspx" />
     <Content Include="Usuarios\DeleteShowUsuario.aspx" />
-    <Content Include="Usuarios\VerFamilias.aspx" />
-    <Content Include="Usuarios\IndexPatentes.aspx" />
-    <Content Include="Usuarios\IndexFamilias.aspx" />
+    <Content Include="PatenteFamilia\VerFamilias.aspx" />
+    <Content Include="PatenteFamilia\IndexPatentes.aspx" />
+    <Content Include="PatenteFamilia\IndexFamilias.aspx" />
     <Content Include="Producto\DeleteShowProducto.aspx" />
     <Content Include="Producto\CreateEditProducto.aspx" />
     <Content Include="Producto\IndexProducto.aspx" />
@@ -203,6 +204,13 @@
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PatenteFamilia\VerPatente.aspx.cs">
+      <DependentUpon>VerPatente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PatenteFamilia\VerPatente.aspx.designer.cs">
+      <DependentUpon>VerPatente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\OlvidoContraseña.aspx.cs">
       <DependentUpon>OlvidoContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,25 +244,25 @@
     <Compile Include="PatternChain\Cliente.cs" />
     <Compile Include="PatternChain\Empleado.cs" />
     <Compile Include="PatternChain\Webmaster.cs" />
-    <Compile Include="Usuarios\VerFamilias.aspx.cs">
+    <Compile Include="PatenteFamilia\VerFamilias.aspx.cs">
       <DependentUpon>VerFamilias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuarios\VerFamilias.aspx.designer.cs">
+    <Compile Include="PatenteFamilia\VerFamilias.aspx.designer.cs">
       <DependentUpon>VerFamilias.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\IndexPatentes.aspx.cs">
+    <Compile Include="PatenteFamilia\IndexPatentes.aspx.cs">
       <DependentUpon>IndexPatentes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuarios\IndexPatentes.aspx.designer.cs">
+    <Compile Include="PatenteFamilia\IndexPatentes.aspx.designer.cs">
       <DependentUpon>IndexPatentes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\IndexFamilias.aspx.cs">
+    <Compile Include="PatenteFamilia\IndexFamilias.aspx.cs">
       <DependentUpon>IndexFamilias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Usuarios\IndexFamilias.aspx.designer.cs">
+    <Compile Include="PatenteFamilia\IndexFamilias.aspx.designer.cs">
       <DependentUpon>IndexFamilias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Producto\DeleteShowProducto.aspx.cs">

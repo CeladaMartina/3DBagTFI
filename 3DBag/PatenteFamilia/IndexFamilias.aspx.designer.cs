@@ -11,7 +11,7 @@ namespace _3DBag
 {
 
 
-    public partial class IndexPatentes
+    public partial class IndexFamilias
     {
 
         /// <summary>
@@ -24,22 +24,31 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// Control divPatentes.
+        /// Control btnAltaFamilia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPatentes;
+        protected global::System.Web.UI.WebControls.Button btnAltaFamilia;
 
         /// <summary>
-        /// Control gridPatentes.
+        /// Control divFamilias.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridPatentes;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFamilias;
+
+        /// <summary>
+        /// Control gridFamilias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridFamilias;
 
         /// <summary>
         /// Control lblPermiso.

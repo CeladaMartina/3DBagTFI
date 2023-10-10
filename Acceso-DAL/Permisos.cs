@@ -160,6 +160,7 @@ namespace Acceso_DAL
             }
         }
 
+        //creo que no lo voy a usar
         public void EliminarFamilia(string NomFam, string NomPat, bool isfam)
         {
             try
@@ -569,6 +570,31 @@ namespace Acceso_DAL
             }
             return Id;
         }
+
+        //trae permiso por medio del id
+        public string traerPermiso(int id)
+        {
+            string permiso = "";
+            using (Acceso.Conexion)
+            {
+                Acceso.AbrirConexion();
+                string Query = " select permiso from Permiso where id='" + id + "'";
+
+                using (SqlCommand Cmd = new SqlCommand(Query, Acceso.Conexion))
+                {
+                    using (SqlDataReader Lector = Cmd.ExecuteReader())
+                    {
+                        while (Lector.Read())
+                        {
+                            permiso = Lector.GetString(0);
+                        }
+                    }
+                }
+                Acceso.CerrarConexion();
+            }
+            return permiso;
+        }
+
 
         #endregion
 

@@ -71,5 +71,29 @@ namespace _3DBag
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
         }
         #endregion
+
+        protected void btnAltaPatente_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gridPatentes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int crow;
+            crow = Convert.ToInt32(e.CommandArgument.ToString());
+            string id = gridPatentes.Rows[crow].Cells[0].Text;
+            string nombre = gridPatentes.Rows[crow].Cells[1].Text;
+
+            if (e.CommandName == "editar")
+            {
+                //enviamos el nick del usuario
+                Response.Redirect("CreateEditUsuario.aspx?usuario=" + id + "&Funcion=editar");
+
+            }
+            else if (e.CommandName == "select")
+            {
+                Response.Redirect("VerPatente.aspx?patente=" + id + "&nombre=" + nombre);
+            }            
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace _3DBag
 {
 
 
-    public partial class IndexFamilias
+    public partial class VerPatente
     {
 
         /// <summary>
@@ -24,30 +24,48 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblTitulo;
 
         /// <summary>
-        /// Control divFamilias.
+        /// Control lblNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFamilias;
+        protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
-        /// Control gridFamilias.
+        /// Control lblNombreResp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridFamilias;
+        protected global::System.Web.UI.WebControls.Label lblNombreResp;
 
         /// <summary>
-        /// Control lblPermiso.
+        /// Control lblDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPermiso;
+        protected global::System.Web.UI.WebControls.Label lblDescripcion;
+
+        /// <summary>
+        /// Control lblDescripcionResp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcionResp;
+
+        /// <summary>
+        /// Control LinkRedireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkRedireccion;
     }
 }

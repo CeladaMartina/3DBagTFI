@@ -89,5 +89,10 @@ namespace _3DBag
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
         }
         #endregion
+
+        protected void btnAltaFamilia_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
