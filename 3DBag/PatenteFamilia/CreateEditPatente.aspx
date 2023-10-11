@@ -16,7 +16,7 @@
     <br />
     <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion" SkinID="Descripcion"></asp:Label>
     <br />
-    <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
+    <asp:DropDownList ID="DropDownDescrip" runat="server"></asp:DropDownList>    
     <br />
     <br />
     <asp:Button ID="btnFunction" runat="server" Text="Editar" SkinID="Editar" OnClick="btnFunction_Click" />

@@ -25,7 +25,7 @@ namespace _3DBag
                     Traducir();
                 }
 
-                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta)))
+                if ((Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Gestionar_Venta)))
                 {
                     divHistorialVentas.Visible = true;
                     lblPermiso.Visible = false;

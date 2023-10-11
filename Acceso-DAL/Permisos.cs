@@ -24,6 +24,7 @@ namespace Acceso_DAL
             return Enum.GetValues(typeof(Propiedades_BE.TipoPermiso));
         }
 
+        //alta patente y alta familia
         public Propiedades_BE.Componente GuardarComponente(Propiedades_BE.Componente p, bool esfamilia)
         {
             try
@@ -33,7 +34,7 @@ namespace Acceso_DAL
                 var cmd = new SqlCommand();
                 cmd.Connection = cnn;
 
-                var sql = "insert into Permiso (nombre,permiso) values (@nombre,@permiso);  SELECT ID AS LastID FROM Permiso WHERE ID = @@Identity;";
+                var sql = "insert into Permiso (nombre,permiso,dvh) values (@nombre,@permiso, @dvh);  SELECT ID AS LastID FROM Permiso WHERE ID = @@Identity;";
 
                 cmd.CommandText = sql;
                 cmd.Parameters.Add(new SqlParameter("nombre", p.Nombre));
@@ -46,6 +47,7 @@ namespace Acceso_DAL
                 {
                     cmd.Parameters.Add(new SqlParameter("permiso", p.Permiso.ToString()));
                 }
+                cmd.Parameters.Add(new SqlParameter("dvh", p.DVH));
 
                 var id = cmd.ExecuteScalar();
                 p.Id = (int)id;
@@ -127,6 +129,7 @@ namespace Acceso_DAL
             }
         }
 
+        //guardo la familia con sus permisos del usuario
         public void GuardarFamilia(Propiedades_BE.Familia c)
         {
             try
@@ -215,7 +218,7 @@ namespace Acceso_DAL
             }
         }
 
-        public void ModificarPatente(int id, string nombre, string permiso)
+        public void ModificarPatente(int id, string nombre, string permiso, int DVH)
         {
             try
             {
@@ -226,11 +229,12 @@ namespace Acceso_DAL
                 cmd = new SqlCommand();
                 cmd.Connection = cnn;
 
-                var sql = "update Permiso set nombre = @nombre, permiso = @permiso where Id =" + id +" and permiso is not null";
+                var sql = "update Permiso set nombre = @nombre, permiso = @permiso, DVH = @DVH where Id =" + id +" and permiso is not null";
 
                 cmd.CommandText = sql;
                 cmd.Parameters.Add(new SqlParameter("nombre", nombre));
                 cmd.Parameters.Add(new SqlParameter("permiso", permiso));
+                cmd.Parameters.Add(new SqlParameter("DVH", DVH));
 
                 cmd.ExecuteNonQuery();
             }
@@ -239,6 +243,18 @@ namespace Acceso_DAL
                 throw;
             }
         }
+
+        //public int AltaPatente(Propiedades_BE.Patente Pat)
+        //{
+        //    int fa = 0;
+        //    SqlParameter[] P = new SqlParameter[9];
+        //    P[0] = new SqlParameter("@id", Pat.Id);
+        //    P[1] = new SqlParameter("@nombre", Pat.Nombre);
+        //    P[2] = new SqlParameter("@permmiso", Pat.Permiso);
+        //    P[3] = new SqlParameter("@DVH", Pat.DVH);            
+        //    fa = Acceso.Escribir("AltaPatente", P);
+        //    return fa;
+        //}
         public IList<Propiedades_BE.Patente> GetAllPatentes()
         {
             var cnn = new SqlConnection(Acceso.GlobalConexion);

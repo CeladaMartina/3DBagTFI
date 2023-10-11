@@ -11,5 +11,5 @@
     <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion: "><asp:Label ID="lblDescripcionResp" runat="server"></asp:Label></asp:Label>
     <br />
     <br />  
-    <asp:LinkButton ID="LinkRedireccion" runat="server" SkinID="Volver atras"><< Volver atras</asp:LinkButton>
+    <asp:LinkButton ID="LinkRedireccion" runat="server" SkinID="Volver atras" OnClick="LinkRedireccion_Click"><< Volver atras</asp:LinkButton>
 </asp:Content>

@@ -11,8 +11,8 @@ namespace Negocio_BLL
         Acceso_DAL.Permisos _permisos;
         Acceso_DAL.Seguridad Seguridad = new Acceso_DAL.Seguridad();
         long DV = 0;
+        Propiedades_BE.Patente PatTemp = new Propiedades_BE.Patente();
 
-        
         public Permisos()
         {
             _permisos = new Acceso_DAL.Permisos();
@@ -132,12 +132,27 @@ namespace Negocio_BLL
             return _permisos.traerPermiso(id);
         }
 
-        public void ModificarPatente(int id, string nombre, string descripcion)
+        public void ModificarPatente(int id, string nombre, string descripcion, int DVH)
         {
-            _permisos.ModificarPatente(id, nombre, descripcion);
+            _permisos.ModificarPatente(id, nombre, descripcion, DVH);
             DV = Seguridad.CalcularDVH("select * from Permiso where id= " + id + "", "Permiso");
             _permisos.EjecutarConsulta("Update Permiso set DVH= '" + DV + "' where id=" + id + "");
             Seguridad.ActualizarDVV("Permiso", Seguridad.SumaDVV("Permiso"));
+        }
+
+        public void AltaPatente(int id, string nombre, string descripcion, int DVH)
+        {
+            PatTemp.Id = id;
+            PatTemp.Nombre = nombre;
+            PatTemp.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), descripcion);
+            PatTemp.DVH = DVH;
+
+            _permisos.GuardarComponente(PatTemp, false);
+
+            DV = Seguridad.CalcularDVH("select * from Permiso where id=(select TOP 1 id from Permiso order by id desc)", "Permiso");
+            _permisos.EjecutarConsulta("Update Permiso set DVH= '" + DV + "' where id=(select TOP 1 id from Permiso order by id desc)");
+            Seguridad.ActualizarDVV("Permiso", Seguridad.SumaDVV("Permiso"));
+           
         }
         #endregion
 

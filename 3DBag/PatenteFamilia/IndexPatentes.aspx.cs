@@ -74,7 +74,7 @@ namespace _3DBag
 
         protected void btnAltaPatente_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("CreateEditPatente.aspx?Funcion=alta");
         }
 
         protected void gridPatentes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -87,7 +87,7 @@ namespace _3DBag
             if (e.CommandName == "editar")
             {
                 //enviamos el nick del usuario
-                Response.Redirect("CreateEditPatente.aspx?patente=" + id + "&Funcion=editar");
+                Response.Redirect("CreateEditPatente.aspx?patente=" + id + "&nombre="+ nombre + "&Funcion=editar");
 
             }
             else if (e.CommandName == "select")

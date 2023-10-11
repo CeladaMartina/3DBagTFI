@@ -13,7 +13,7 @@ namespace Propiedades_BE
         Modificar_Usuario, //ok        
         Modificar_Familia, //ok
         Modificar_Patentes, //ok        
-        Modificar_Venta, //ok       
+        Gestionar_Venta, //ok       
         Realizar_BackUp, //ok
         Realizar_Restore, //ok
         Recalcular_Digitos,

@@ -11,7 +11,7 @@ namespace _3DBag.PatternChain
         public override string Procesar(Usuario usuario)
         {
             if (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo) 
-                && Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta))
+                && Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Gestionar_Venta))
             {
                 return "Empleado";
             }

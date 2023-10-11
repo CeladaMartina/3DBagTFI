@@ -12,6 +12,7 @@ namespace _3DBag
         private ContentPlaceHolder contentPlace;
         Propiedades_BE.Patente PatTemp;
         Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
+        int IdPermiso = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
@@ -41,22 +42,16 @@ namespace _3DBag
                     PatTemp = new Propiedades_BE.Patente();
                     PatTemp.Id = Convert.ToInt32(Request.QueryString["patente"]);
                     PatTemp.Nombre = Request.QueryString["nombre"];
-
-                    txtNombre.Text = PatTemp.Nombre;
-                    MostrarPatenteSelect(PatTemp.Id);
+                    txtNombre.Text = PatTemp.Nombre;                   
                 }
 
+                this.DropDownDescrip.DataSource = GestorPermisos.GetAllPermisos();
+                this.DropDownDescrip.DataBind();
             }
         }
-
-        void MostrarPatenteSelect(int id)
-        {
-            txtDescripcion.Text = GestorPermisos.traerPermiso(id);
-        }
-
         protected void LinkRedirect_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../PatenteFamilia/IndexPatentes.aspx");
+            Response.Redirect("/IndexPatentes.aspx");
         }
 
         protected void btnFunction_Click(object sender, EventArgs e)
@@ -67,11 +62,11 @@ namespace _3DBag
                 {
                     if(Request.QueryString["Funcion"] == "alta")
                     {
-                        Alta(0, txtNombre.Text, txtDescripcion.Text);
+                        Alta(IdPermiso, txtNombre.Text, DropDownDescrip.SelectedItem.Text, 0);
 
                     }else if(Request.QueryString["Funcion"] == "editar")
                     {
-                        Modificar(Convert.ToInt32(Request.QueryString["patente"]), txtNombre.Text, txtDescripcion.Text);
+                        Modificar(Convert.ToInt32(Request.QueryString["patente"]), txtNombre.Text, DropDownDescrip.SelectedItem.Text, 0);
                     }
                 }
 
@@ -81,21 +76,21 @@ namespace _3DBag
             }
         }
 
-        void Alta(int id, string nombre, string descripcion)
+        void Alta(int id, string nombre, string descripcion, int DVH)
         {
-
+            GestorPermisos.AltaPatente(id, nombre, descripcion, DVH);
         }
 
-        void Modificar(int id, string nombre, string descripcion)
+        void Modificar(int id, string nombre, string descripcion, int DVH)
         {
-            GestorPermisos.ModificarPatente(id, nombre, descripcion);
+            GestorPermisos.ModificarPatente(id, nombre, descripcion, DVH);
 
         }
 
         bool ChequearFallaTxt()
         {
             bool A = false;
-            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrEmpty(txtDescripcion.Text))
+            if (string.IsNullOrEmpty(txtNombre.Text))
             {
                 A = true;
             }

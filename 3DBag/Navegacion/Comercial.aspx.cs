@@ -38,9 +38,9 @@ namespace _3DBag
             {
                 //ocultará o mostrará las redirecciones segun dependa
                 LinkProductos.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo));
-                LinkTienda.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta));
+                LinkTienda.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Gestionar_Venta));
                 LinkVerVentas.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo));
-                LinkPedido.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta));
+                LinkPedido.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Gestionar_Venta));
             }
         }
 

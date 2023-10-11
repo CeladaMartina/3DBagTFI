@@ -58,5 +58,10 @@ namespace _3DBag
             LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
         }
         #endregion
+
+        protected void LinkRedireccion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/IndexPatentes.aspx");
+        }
     }
 }
