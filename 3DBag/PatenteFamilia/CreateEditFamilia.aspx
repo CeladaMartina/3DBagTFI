@@ -36,11 +36,11 @@
     </asp:Table>
     <br />
     <br />
-    <asp:Button ID="btnFunction" runat="server" Text="Editar" SkinID="Editar" />
+    <asp:Button ID="btnFunction" runat="server" Text="Editar" OnClick="btnFunction_Click" SkinID="Editar" />
     <br />
     <br />
     <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>
     <br />
     <br />
-    <asp:LinkButton ID="LinkRedirect" runat="server" SkinID="Volver a la lista" ><< Volver a la lista</asp:LinkButton>
+    <asp:LinkButton ID="LinkRedirect" runat="server" SkinID="Volver a la lista" OnClick="LinkRedirect_Click" ><< Volver a la lista</asp:LinkButton>
 </asp:Content>
