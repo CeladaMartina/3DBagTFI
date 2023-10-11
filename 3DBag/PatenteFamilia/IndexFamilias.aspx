@@ -5,7 +5,7 @@
     <asp:Label ID="lblTitulo" SkinID="Familias" runat="server">Familias</asp:Label>
         <br />          
         <br />
-    <asp:Button  ID="btnAltaFamilia" runat="server" OnClick="btnAltaFamilia_Click" />
+    <asp:Button  ID="btnAltaFamilia" runat="server" OnClick="btnAltaFamilia_Click" Text="Alta Familia" />
     <br />          
     <br />
     <div id="divFamilias" runat="server">

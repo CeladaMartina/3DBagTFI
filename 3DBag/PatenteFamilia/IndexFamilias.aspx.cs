@@ -66,15 +66,18 @@ namespace _3DBag
             crow = Convert.ToInt32(e.CommandArgument.ToString());
             string v = gridFamilias.Rows[crow].Cells[0].Text;
 
+            //enviamos los valores de la familia                
+            FamTemp = new Propiedades_BE.Familia();
+            FamTemp.Id = Convert.ToInt32(v);
+            FamTemp.Nombre = gridFamilias.Rows[crow].Cells[1].Text;
+
             if (e.CommandName == "select")
             {
-                //enviamos los valores de la familia                
-                FamTemp = new Propiedades_BE.Familia();
-                FamTemp.Id = Convert.ToInt32(v);
-                FamTemp.Nombre = gridFamilias.Rows[crow].Cells[1].Text;
-
                 Response.Redirect("VerFamilias.aspx?id=" + FamTemp.Id + "&nombre=" + FamTemp.Nombre);
 
+            }else if(e.CommandName == "editar")
+            {
+                Response.Redirect("CreateEditFamilia.aspx?id=" + FamTemp.Id + "&nombre=" + FamTemp.Nombre + "&Funcion=editar");
             }
         }
 
@@ -92,7 +95,7 @@ namespace _3DBag
 
         protected void btnAltaFamilia_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("CreateEditFamilia.aspx?Funcion=alta");
         }
     }
 }

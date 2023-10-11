@@ -121,6 +121,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Cliente\IndexCliente.aspx" />
+    <Content Include="PatenteFamilia\CreateEditFamilia.aspx" />
     <Content Include="PatenteFamilia\CreateEditPatente.aspx" />
     <Content Include="PatenteFamilia\VerPatente.aspx" />
     <Content Include="Home\OlvidoContraseña.aspx" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="Cliente\IndexCliente.aspx.designer.cs">
       <DependentUpon>IndexCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PatenteFamilia\CreateEditFamilia.aspx.cs">
+      <DependentUpon>CreateEditFamilia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PatenteFamilia\CreateEditFamilia.aspx.designer.cs">
+      <DependentUpon>CreateEditFamilia.aspx</DependentUpon>
     </Compile>
     <Compile Include="PatenteFamilia\CreateEditPatente.aspx.cs">
       <DependentUpon>CreateEditPatente.aspx</DependentUpon>

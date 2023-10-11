@@ -52,6 +52,12 @@ namespace Negocio_BLL
             return _permisos.FillUserComponentsListF(u);
         }
 
+        //devuelve en forma de lista las patentes de la familia, para ponerlo en  listbox
+        public IList<Propiedades_BE.Componente> TraerPatentesDeFamilia(Propiedades_BE.Familia f)
+        {
+            return _permisos.TraerPatentesDeFamilia(f);
+        }
+
         public void FillFamilyComponents(Propiedades_BE.Familia familia)
         {
             _permisos.FillFamilyComponents(familia);

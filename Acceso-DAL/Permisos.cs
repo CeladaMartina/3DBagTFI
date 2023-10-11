@@ -244,17 +244,6 @@ namespace Acceso_DAL
             }
         }
 
-        //public int AltaPatente(Propiedades_BE.Patente Pat)
-        //{
-        //    int fa = 0;
-        //    SqlParameter[] P = new SqlParameter[9];
-        //    P[0] = new SqlParameter("@id", Pat.Id);
-        //    P[1] = new SqlParameter("@nombre", Pat.Nombre);
-        //    P[2] = new SqlParameter("@permmiso", Pat.Permiso);
-        //    P[3] = new SqlParameter("@DVH", Pat.DVH);            
-        //    fa = Acceso.Escribir("AltaPatente", P);
-        //    return fa;
-        //}
         public IList<Propiedades_BE.Patente> GetAllPatentes()
         {
             var cnn = new SqlConnection(Acceso.GlobalConexion);
@@ -533,6 +522,46 @@ namespace Acceso_DAL
             reader.Close();
             return lista;
         }
+
+        //devuelve un listado de las patentes de dicha familia
+        public IList<Propiedades_BE.Componente> TraerPatentesDeFamilia(Propiedades_BE.Familia f)
+        {
+            var cnn = new SqlConnection(Acceso.GlobalConexion);
+            cnn.Open();
+
+            var cmd2 = new SqlCommand();
+            cmd2.Connection = cnn;
+            cmd2.CommandText = "select p.* from permiso_permiso up inner join Permiso p on up.id_permiso_hijo=p.id where id_permiso_padre=@id;";
+            cmd2.Parameters.AddWithValue("id", f.Id);
+
+            var reader = cmd2.ExecuteReader();
+            var lista = new List<Propiedades_BE.Componente>();
+
+            //f.Permisos.Clear();
+            while (reader.Read())
+            {
+                var idp = reader.GetInt32(reader.GetOrdinal("id"));
+                var nombrep = reader.GetString(reader.GetOrdinal("nombre"));
+
+                var permisop = String.Empty;
+                if (reader["permiso"] != DBNull.Value)
+                    permisop = reader.GetString(reader.GetOrdinal("permiso"));
+
+                Propiedades_BE.Componente c1;
+                if (!String.IsNullOrEmpty(permisop))
+                {
+                    c1 = new Propiedades_BE.Patente();
+                    c1.Id = idp;
+                    c1.Nombre = nombrep;
+                    c1.Permiso = (Propiedades_BE.TipoPermiso)Enum.Parse(typeof(Propiedades_BE.TipoPermiso), permisop);                    
+                    f.AgregarHijo(c1);
+                    lista.Add(c1);
+                }
+            }
+            reader.Close();
+            return lista;
+        }
+
 
         //devuelve en forma de lista las familias del usuario, para ponerlo en  listbox
         public IList<Propiedades_BE.Componente> FillUserComponentsListF(Propiedades_BE.Usuario u)
