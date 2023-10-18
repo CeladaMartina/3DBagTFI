@@ -21,7 +21,7 @@
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:ListBox ID="PAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
+                    <asp:ListBox ID="PAsig" runat="server" Height="315px" Width="208px" DataValueField="permiso"></asp:ListBox>
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:Button ID="btnAsignar" runat="server" Text="<-- Asignar" SkinID="Asignar" OnClick="btnAsignar_Click"/>                     
@@ -30,7 +30,7 @@
                     <asp:Button ID="btnNoAsignar" runat="server" Text="Desasignar -->"  SkinID="Desasignar" OnClick="btnNoAsignar_Click"/>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:ListBox ID="PNoAsig" runat="server" Height="315px" Width="208px"></asp:ListBox>
+                    <asp:ListBox ID="PNoAsig" runat="server" Height="315px" Width="208px" DataValueField="permiso"></asp:ListBox>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

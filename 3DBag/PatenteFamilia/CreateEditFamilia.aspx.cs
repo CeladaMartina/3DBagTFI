@@ -44,10 +44,11 @@ namespace _3DBag
             FamTemp.Nombre = Request.QueryString["nombre"];
             txtNombre.Text = FamTemp.Nombre;
 
-            PAsig.DataSource = GestorPermisos.TraerPatentesDeFamilia(FamTemp);
+            PAsig.DataSource = GestorPermisos.TraerPatentesDeFamilia(FamTemp);    
             PAsig.DataBind();
 
-            TraerTodasPatentes();
+            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
+            PNoAsig.DataBind();
 
             //elimina de patente no asignada, permisos que ya tiene la familia
             foreach (ListItem item1 in PAsig.Items)
@@ -65,12 +66,7 @@ namespace _3DBag
                 }
             }
         }
-
-        void TraerTodasPatentes()
-        {
-            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
-            PNoAsig.DataBind();
-        }
+               
 
         void AgregarPatente()
         {
@@ -117,21 +113,16 @@ namespace _3DBag
 
         }
 
-        void AltaFamilia(string nombre, int DVH)
+        void AltaFamilia(string nombre)
         {
             FamTemp = new Propiedades_BE.Familia();
-            FamTemp.Nombre = nombre;
-            FamTemp.DVH = DVH;
+            FamTemp.Nombre = nombre;            
             GestorPermisos.GuardarComponente(FamTemp, true);
-
-            DV = Seguridad.CalcularDVH("select * from Permiso where id=(select TOP 1 id from Permiso order by id desc)", "Permiso");
-            Seguridad.EjecutarConsulta("Update Permiso set DVH= '" + DV + "' where id=(select TOP 1 id from Permiso order by id desc)");
-            Seguridad.ActualizarDVV("Permiso", Seguridad.SumaDVV("Permiso"));
         }
 
-        void ModificarFamilia(int id, string nombre, int dvh)
+        void ModificarFamilia(int id, string nombre)
         {
-            GestorPermisos.ModificarFamilia(id, nombre, dvh);
+            GestorPermisos.ModificarFamilia(id, nombre);
         }
         #endregion
 
@@ -170,12 +161,14 @@ namespace _3DBag
                 {
                     if (Request.QueryString["Funcion"] == "alta")
                     {
-                        AltaFamilia(txtNombre.Text, 0);
+                        //sacar dvh xq la familia no tiene dvh
+                        AltaFamilia(txtNombre.Text);
 
                     }
                     else if (Request.QueryString["Funcion"] == "editar")
                     {
-                        ModificarFamilia(Convert.ToInt32(Request.QueryString["id"]), txtNombre.Text, 0);
+                        //sacar dvh xq la familia no tiene dvh
+                        ModificarFamilia(Convert.ToInt32(Request.QueryString["id"]), txtNombre.Text);
                     }
 
                     GuardarFamilia();

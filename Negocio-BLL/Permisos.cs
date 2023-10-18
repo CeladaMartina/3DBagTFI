@@ -75,13 +75,9 @@ namespace Negocio_BLL
             _permisos.EliminarFamilia(NomFam, NomPat, isfam);
         }
 
-        public void ModificarFamilia(int id, string nombre, int DVH)
+        public void ModificarFamilia(int id, string nombre)
         {
-            _permisos.ModificarFamilia(id, nombre, DVH);
-
-            DV = Seguridad.CalcularDVH("select * from Permiso where id= " + id + "", "Permiso");
-            _permisos.EjecutarConsulta("Update Permiso set DVH= '" + DV + "' where id=" + id + "");
-            Seguridad.ActualizarDVV("Permiso", Seguridad.SumaDVV("Permiso"));
+            _permisos.ModificarFamilia(id, nombre);
         }
 
         public IList<Propiedades_BE.Familia> GetAllFamilias()

@@ -193,7 +193,7 @@ namespace Acceso_DAL
             catch (Exception) { }
         }
 
-        public void ModificarFamilia(int id, string Nombre, int DVH)
+        public void ModificarFamilia(int id, string Nombre)
         {
             try
             {
@@ -204,12 +204,11 @@ namespace Acceso_DAL
                 cmd = new SqlCommand();
                 cmd.Connection = cnn;
 
-                var sql = "update Permiso set Nombre = @Nombre, DVH = @DVH where Id = @id and permiso is null";
+                var sql = "update Permiso set Nombre = @Nombre where Id = @id and permiso is null";
 
                 cmd.CommandText = sql;
                 cmd.Parameters.Add(new SqlParameter("id", id));
-                cmd.Parameters.Add(new SqlParameter("Nombre", Nombre));
-                cmd.Parameters.Add(new SqlParameter("DVH", DVH));
+                cmd.Parameters.Add(new SqlParameter("Nombre", Nombre));                
 
                 cmd.ExecuteNonQuery();
             }
@@ -624,7 +623,7 @@ namespace Acceso_DAL
             using (Acceso.Conexion)
             {
                 Acceso.AbrirConexion();
-                string QueryID = " select id from Permiso where nombre='" + nombre + "'";
+                string QueryID = " select id from Permiso where permiso='" + nombre + "'";
 
                 using (SqlCommand Cmd = new SqlCommand(QueryID, Acceso.Conexion))
                 {
