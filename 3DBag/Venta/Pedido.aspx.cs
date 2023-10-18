@@ -102,7 +102,7 @@ namespace _3DBag
 
         protected void btnComprarAhora_Click(object sender, EventArgs e)
         {
-            string ruta = "C:\\Users\\mcelada\\Desktop\\SAP - TFI - Auditoria 2023\\TFI\\3DBag\\3DBag\\3DBag\\Facturas\\"; //intentar arreglar esto
+            string ruta = AppDomain.CurrentDomain.BaseDirectory  + "\\Facturas\\"; 
             string lblSubtotal = GestorDV.SubTotal(int.Parse(Session["IdVenta"].ToString())).ToString();
             PDF(ruta, Convert.ToInt32(Session["IdVenta"]), GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario), DateTime.Now.ToShortDateString(), decimal.Parse(lblSubtotal));
             

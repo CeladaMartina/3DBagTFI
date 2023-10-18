@@ -71,8 +71,9 @@ namespace _3DBag
                 Negocio_BLL.Usuario GestorUsuario = new Negocio_BLL.Usuario();
                 GestorUsuario.LogOut();
 
-                //eliminamos la sesion del usuario
+                //eliminamos la sesion del usuario y el problema definitivo
                 Session["UserSession"] = null;
+                Session["ProblemaDefinitivo"] = null;
 
                 if (Request.Url.ToString() == "https://localhost:44388/Home/Home.aspx")
                 {
@@ -82,7 +83,7 @@ namespace _3DBag
                 else
                 {
                     //si no esta en la home, te lleva ahi
-                    Response.Redirect("../Home/Home.aspx");
+                    Response.Redirect("../Home/Home.aspx",false);
                 }
 
             }

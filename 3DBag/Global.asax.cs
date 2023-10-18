@@ -14,6 +14,7 @@ namespace _3DBag
         void Application_Start(object sender, EventArgs e)
         {
             // Código que se ejecuta al iniciar la aplicación
+            //RouteConfig.RegisterRoutes(Route)
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

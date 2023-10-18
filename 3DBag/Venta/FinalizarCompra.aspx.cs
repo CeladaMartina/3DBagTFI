@@ -68,7 +68,7 @@ namespace _3DBag
             mail.To.Add(new MailAddress(GestorUsuario.TraerMail(Propiedades_BE.SingletonLogin.GlobalIdUsuario)));
 
             //adjuntamos el pdf
-            string ruta = "C:\\Users\\mcelada\\Desktop\\SAP - TFI - Auditoria 2023\\TFI\\3DBag\\3DBag\\3DBag\\Facturas\\";
+            string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Facturas\\";
             mail.Attachments.Add(new Attachment(ruta + Session["NombreFactura"]));
 
             using(SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
@@ -77,8 +77,6 @@ namespace _3DBag
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }
-
-
         }
         #endregion
 
