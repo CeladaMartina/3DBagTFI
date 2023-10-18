@@ -15,26 +15,29 @@ namespace _3DBag
         Negocio_BLL.Permisos GestorPermisos = new Negocio_BLL.Permisos();
 
         long DV = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] == null)
+            if (!IsPostBack)
             {
-                lblTitulo.Text = SiteMaster.TraducirGlobal("Nueva Familia") ?? ("Nueva Familia");
-                btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");                
-            }
-            else
-            {
-                //si el id viene, mostrara pantalla Editar                
-                lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Familia") ?? ("Editar Familia");
-                btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
+                if (Request.QueryString["id"] == null)
+                {
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Nueva Familia") ?? ("Nueva Familia");
+                    btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
+                }
+                else
+                {
+                    //si el id viene, mostrara pantalla Editar                
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Familia") ?? ("Editar Familia");
+                    btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
 
-                TraerPatentes();                
+                    TraerPatentes();
+                }
             }
+            
         }
 
         #region metodos
-        
+
         void TraerPatentes()
         {
             FamTemp.Id = Convert.ToInt32(Request.QueryString["id"]);
@@ -62,35 +65,25 @@ namespace _3DBag
                 }
             }
         }
-        
-        void AgregarPatente()
+
+        void TraerTodasPatentes()
         {
-            foreach (ListItem i in PNoAsig.Items)
-            {
-                if(i.Selected == true)
-                {
-                    string ope = i.Value;
-                }
-            }
-          
-            //string ope = PNoAsig.SelectedItem.Value;
-            //PAsig.Items.Add(ope);
-            //PNoAsig.Items.Remove(ope);
+            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
+            PNoAsig.DataBind();
         }
 
+        void AgregarPatente()
+        {
+            string ope = PNoAsig.SelectedItem.Value;
+            PAsig.Items.Add(ope);
+            PNoAsig.Items.Remove(ope);
+        }
         void QuitarPatente()
         {
             string ope = PAsig.SelectedItem.Value;
             PNoAsig.Items.Add(ope);
             PAsig.Items.Remove(ope);
         }
-
-        void TraerTodasPatentes()
-        {            
-            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
-            PNoAsig.DataBind();
-        }
-
         bool ChequearFallaTxt()
         {
             bool A = false;
@@ -100,7 +93,6 @@ namespace _3DBag
             }
             return A;
         }
-
         void GuardarFamilia()
         {
             Propiedades_BE.Componente c1;
@@ -120,7 +112,7 @@ namespace _3DBag
 
                 FamTemp.AgregarHijo(c1);
             }
-            
+
             GestorPermisos.GuardarFamilia(FamTemp);
 
         }
@@ -138,8 +130,8 @@ namespace _3DBag
         }
 
         void ModificarFamilia(int id, string nombre, int dvh)
-        {            
-            ModificarFamilia(id, nombre, dvh);
+        {
+            GestorPermisos.ModificarFamilia(id, nombre, dvh);
         }
         #endregion
 
@@ -155,7 +147,6 @@ namespace _3DBag
                 lblResultado.Visible = true;
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
-
         }
 
         protected void btnNoAsignar_Click(object sender, EventArgs e)
@@ -175,13 +166,14 @@ namespace _3DBag
         {
             try
             {
-                if(ChequearFallaTxt() == false)
+                if (ChequearFallaTxt() == false)
                 {
-                    if(Request.QueryString["Funcion"] == "alta")
+                    if (Request.QueryString["Funcion"] == "alta")
                     {
                         AltaFamilia(txtNombre.Text, 0);
 
-                    }else if(Request.QueryString["Funcion"] == "editar")
+                    }
+                    else if (Request.QueryString["Funcion"] == "editar")
                     {
                         ModificarFamilia(Convert.ToInt32(Request.QueryString["id"]), txtNombre.Text, 0);
                     }
@@ -193,7 +185,8 @@ namespace _3DBag
                     lblResultado.Visible = true;
                     lblResultado.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 lblResultado.Visible = true;
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
@@ -204,6 +197,7 @@ namespace _3DBag
         {
             Response.Redirect("IndexFamilias.aspx");
         }
+
         #endregion
 
 
