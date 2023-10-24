@@ -17,6 +17,8 @@ namespace _3DBag
     public class WebService : System.Web.Services.WebService
     {
         Negocio_BLL.Producto GestorProducto = new Negocio_BLL.Producto();
+        Negocio_BLL.Venta Mapper = new Negocio_BLL.Venta();
+        Negocio_BLL.Seguridad GestorSeguridad = new Negocio_BLL.Seguridad(); 
 
         [WebMethod]
         public string TopListaProd()
@@ -25,5 +27,19 @@ namespace _3DBag
             string respuesta = "El producto " + articulo[0].Nombre + " " + articulo[0].Descripcion + " tiene un precio de $" + articulo[0].PUnit;
             return respuesta;
         }
+
+        [WebMethod]
+        public List<Propiedades_BE.Venta> ClientesMasVendido()
+        {
+            return Mapper.ClientesMasVentas();       
+        
+        }
+
+        [WebMethod]
+        public List<Propiedades_BE.Bitacora> UsuarioMasLogin()
+        {
+            return GestorSeguridad.UsuarioMasLogin();
+        }
+
     }
 }

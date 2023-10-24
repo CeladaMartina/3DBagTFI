@@ -83,9 +83,21 @@
             </PagerTemplate>
             <PagerSettings Mode="NextPrevious" Position="Bottom" />
         </asp:GridView>
-        <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>
+        <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>         
         <br />
-        <br />        
+        <br />
+        <asp:Button ID="btnWebServiceLogin" runat="server" OnClick="btnWebServiceLogin_Click" Text="Consultar" />
+        <br />
+        <br />
+        <asp:GridView ID="gridLogin" runat="server" AutoGenerateColumns="false" Visible="false">
+            <Columns>
+                <asp:BoundField DataField="Descripcion" HeaderText="Usuario" />
+                <asp:BoundField DataField="DVH" HeaderText="Cant. de Inicio Sesion" />
+            </Columns>
+        </asp:GridView>
+        <br />
+        <br />
     </div>
+
      <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>   
 </asp:Content>

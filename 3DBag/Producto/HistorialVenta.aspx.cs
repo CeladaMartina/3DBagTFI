@@ -69,5 +69,15 @@ namespace _3DBag
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
         }
         #endregion
+
+        protected void btnWebServiceCliente_Click(object sender, EventArgs e)
+        {
+            gridClientes.Visible = true;
+
+            WebService webService = new WebService();
+            gridClientes.DataSource = null;
+            gridClientes.DataSource = webService.ClientesMasVendido();
+            gridClientes.DataBind();
+        }
     }
 }

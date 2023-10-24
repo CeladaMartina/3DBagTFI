@@ -10,6 +10,8 @@
         <br />
         <br />
         <asp:Button ID="btnAlta" runat="server" Text="Nuevo Producto" SkinID="Nuevo Producto" OnClick="btnAlta_Click" />
+        <br />
+        <br />
         <asp:GridView ID="gridProducto" runat="server" AutoGenerateColumns="false" Width="100%" OnRowCommand="gridProducto_RowCommand">
             <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
             <Columns>
@@ -38,7 +40,7 @@
         </asp:GridView>
         <br />
         <br />
-        <asp:Button ID="btnWebService" runat="server" Text="Consultar Top Productos" OnClick="btnWebService_Click" />
+        <asp:Button ID="btnWebService" runat="server" Text="Producto más vendido" OnClick="btnWebService_Click" />
         <br />
         <br />
         <asp:Label ID="lblRespuesta" runat="server" Visible="false"></asp:Label>

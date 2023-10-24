@@ -378,6 +378,23 @@ namespace Acceso_DAL
                 Acceso.EjecutarConsulta("Update Bitacora set DVH = " + suma + " where IdBitacora = " + IdBitacora + "");
             }
         }
+
+        public List<Propiedades_BE.Bitacora> UsuarioMasLogin()
+        {
+            List<Propiedades_BE.Bitacora> ListaBitacora = new List<Propiedades_BE.Bitacora>();
+            DataTable Tabla = Acceso.Leer("UsuarioMasLogin", null);
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                Propiedades_BE.Bitacora B = new Propiedades_BE.Bitacora();              
+
+                B.Descripcion = R["Nombre"].ToString();
+                B.DVH = int.Parse(R["TotalLogin"].ToString());
+
+                ListaBitacora.Add(B);
+            }
+            return ListaBitacora;
+        }
         #endregion
 
         #region backuprestore

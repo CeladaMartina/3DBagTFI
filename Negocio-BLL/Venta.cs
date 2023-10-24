@@ -82,5 +82,11 @@ namespace Negocio_BLL
             Mapper.RecalcularDVH();
         }
         #endregion
+
+        //webservice
+        public List<Propiedades_BE.Venta> ClientesMasVentas()
+        {
+            return Mapper.ClientesMasVentas();
+        }
     }
 }

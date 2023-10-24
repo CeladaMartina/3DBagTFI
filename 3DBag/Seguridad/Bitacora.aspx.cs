@@ -325,5 +325,15 @@ namespace _3DBag
             btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
         }
         #endregion
+
+        protected void btnWebServiceLogin_Click(object sender, EventArgs e)
+        {
+            gridLogin.Visible = true;
+
+            WebService webService = new WebService();
+            gridLogin.DataSource = null;
+            gridLogin.DataSource = webService.UsuarioMasLogin();
+            gridLogin.DataBind();
+        }
     }
 }

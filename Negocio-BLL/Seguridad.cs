@@ -176,6 +176,11 @@ namespace Negocio_BLL
             Mapper.RecalcularDVH();
         }
 
+        //webservice
+        public List<Propiedades_BE.Bitacora> UsuarioMasLogin()
+        {
+            return Mapper.UsuarioMasLogin();
+        }
         #endregion
     }
 }

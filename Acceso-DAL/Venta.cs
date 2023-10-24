@@ -268,5 +268,24 @@ namespace Acceso_DAL
         }
 
         #endregion
+
+        //webservice
+        public List<Propiedades_BE.Venta> ClientesMasVentas()
+        {
+            List<Propiedades_BE.Venta> ListaVenta = new List<Propiedades_BE.Venta>();
+            DataTable Tabla = Acceso.Leer("ClientesMasVentas", null);
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                Propiedades_BE.Venta V = new Propiedades_BE.Venta();
+                //Propiedades_BE.Usuario U = new Propiedades_BE.Usuario();
+
+                V.Nombre = R["Nombre"].ToString();
+                V.NumVenta = int.Parse(R["TotalCompras"].ToString());
+
+                ListaVenta.Add(V);
+            }
+            return ListaVenta;
+        }
     }
 }

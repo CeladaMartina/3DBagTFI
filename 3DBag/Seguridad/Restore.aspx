@@ -8,7 +8,7 @@
     <div id="divGeneral" runat="server">        
         <asp:Label ID="lblRuta" runat="server" Text="Ruta" SkinID="Ruta"></asp:Label>     
         <br />
-        <asp:TextBox ID="txtRuta" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtRuta" runat="server" Width="433px"></asp:TextBox>
         <br />
         <br />
         <asp:Button ID="btnRestore" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" SkinID="Generar" />

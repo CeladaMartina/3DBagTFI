@@ -42,6 +42,24 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.GridView gridVentas;
 
         /// <summary>
+        /// Control btnWebServiceCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnWebServiceCliente;
+
+        /// <summary>
+        /// Control gridClientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridClientes;
+
+        /// <summary>
         /// Control lblPermiso.
         /// </summary>
         /// <remarks>

@@ -24,6 +24,19 @@
                 </asp:GridView>
             </div>
         </div>
+        <br />
+        <br />
+        <asp:Button ID="btnWebServiceCliente" runat="server" OnClick="btnWebServiceCliente_Click" Text="Consultar" />
+        <br />
+        <br />
+        <asp:GridView ID="gridClientes" runat="server" AutoGenerateColumns="false" Visible="false">
+            <Columns>
+                <asp:BoundField DataField="Nombre" HeaderText="Cliente" />
+                <asp:BoundField DataField="NumVenta" HeaderText="Total de Compras realizadas" />
+            </Columns>
+        </asp:GridView>
+        <br />
+        <br />
         <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
     </div>
 </asp:Content>
