@@ -2,6 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="lblOlvidaste" runat="server" SkinID="¿Olvidaste tu contraseña?">¿Olvidaste tu contraseña?</asp:Label>
+    <br />
+    <br />
     <asp:Label ID="lblNick" runat="server" SkinID="Nick">Nick: </asp:Label><asp:TextBox ID="txtNick" runat="server"></asp:TextBox>
     <br />
     <br />

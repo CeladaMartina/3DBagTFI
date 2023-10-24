@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <asp:Label ID="lblTitulo" SkinID="Restauracion" runat="server">Restauracion</asp:Label>
+     <asp:Label ID="lblTitulo" SkinID="Restauracion" runat="server">Restauración</asp:Label>
         <br />
         <br />
     <div id="divGeneral" runat="server">        

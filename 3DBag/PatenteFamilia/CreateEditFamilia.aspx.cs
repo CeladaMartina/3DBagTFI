@@ -23,6 +23,8 @@ namespace _3DBag
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Nueva Familia") ?? ("Nueva Familia");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
+
+                    TraerTodasPatentes();
                 }
                 else
                 {
@@ -37,7 +39,11 @@ namespace _3DBag
         }
 
         #region metodos
-
+        void TraerTodasPatentes()
+        {
+            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
+            PNoAsig.DataBind();
+        }
         void TraerPatentes()
         {
             FamTemp.Id = Convert.ToInt32(Request.QueryString["id"]);
@@ -47,8 +53,7 @@ namespace _3DBag
             PAsig.DataSource = GestorPermisos.TraerPatentesDeFamilia(FamTemp);    
             PAsig.DataBind();
 
-            PNoAsig.DataSource = GestorPermisos.GetAllPatentes();
-            PNoAsig.DataBind();
+            TraerTodasPatentes();
 
             //elimina de patente no asignada, permisos que ya tiene la familia
             foreach (ListItem item1 in PAsig.Items)

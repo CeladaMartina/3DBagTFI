@@ -370,8 +370,7 @@ namespace _3DBag
                         Modificar(Convert.ToInt32(txtIdUsuario.Text), txtNick.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text, checkBaja.Checked, 0);                        
                     }
 
-                    GuardarPatente();
-                    //GuardarFamilia();
+                    GuardarPatente();                    
                 }
                 else
                 {

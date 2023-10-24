@@ -51,7 +51,7 @@ namespace _3DBag
         }
         protected void LinkRedirect_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/IndexPatentes.aspx");
+            Response.Redirect("../PatenteFamilia/IndexPatentes.aspx");
         }
 
         protected void btnFunction_Click(object sender, EventArgs e)
