@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <NickUs>admin</NickUs>
+    <Descripcion>Login</Descripcion>
+    <Fecha>2023-10-24 4:40:27 PM</Fecha>
+    <Criticidad>Baja</Criticidad>
+  </Table1>
+  <Table1>
+    <NickUs>admin</NickUs>
+    <Descripcion>Login</Descripcion>
+    <Fecha>2023-10-24 4:55:37 PM</Fecha>
+    <Criticidad>Baja</Criticidad>
+  </Table1>
+</NewDataSet>

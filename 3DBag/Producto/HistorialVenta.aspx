@@ -5,7 +5,7 @@
     <div>
         <asp:Label ID="lblTitulo" SkinID="Historial de Ventas" runat="server">Historial de Ventas</asp:Label>
         <br />          
-        <br />
+        <br />        
         <div id="divHistorialVentas" runat="server" class="form-group">
             <div class="table-responsive">
                 <asp:GridView ID="gridVentas" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover">
@@ -24,6 +24,9 @@
                 </asp:GridView>
             </div>
         </div>
+        <br />
+        <br />
+        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" />
         <br />
         <br />
         <asp:Button ID="btnWebServiceCliente" runat="server" OnClick="btnWebServiceCliente_Click" Text="Consultar" />

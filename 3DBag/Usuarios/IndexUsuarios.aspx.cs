@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -98,5 +99,51 @@ namespace _3DBag
             btnAltaUsuario.Text = SiteMaster.TraducirGlobal(btnAltaUsuario.SkinID.ToString()) ?? btnAltaUsuario.SkinID.ToString();
         }
         #endregion
+
+        protected void btnExportar_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            //evitamos las ultimas 3 columnas porque son botones
+
+            //recorro el header de las columnas
+            int totalColumns = gridUsuarios.HeaderRow.Cells.Count;
+            int columnsToSkip = 3;
+
+            for (int i = 0; i < totalColumns - columnsToSkip; i++)
+            {                
+                TableCell cell = gridUsuarios.HeaderRow.Cells[i];
+                dt.Columns.Add(cell.Text);             
+
+            }
+
+            //recorro las filas, excepto las ultimas 3
+            int totalRows = gridUsuarios.Rows[0].Cells.Count;
+            int rowsToSkip = 3;
+
+            foreach (GridViewRow row in gridUsuarios.Rows)
+            {
+                for (int i = 0; i < totalRows - rowsToSkip; i++)
+                {
+                    dt.Rows.Add(row.Cells[i].Text);
+                }
+            }
+
+            //guardamos la tabla
+            ds.Tables.Add(dt);
+            // Specify the file path for the XML file
+            string filePath = Server.MapPath("~/GridUsuarios.xml");
+
+            // Write the DataSet to an XML file
+            ds.WriteXml(filePath);
+
+            // Provide a download link for the generated XML file
+            Response.Clear();
+            Response.ContentType = "application/xml";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=Usuarios.xml");
+            Response.TransmitFile(filePath);
+            Response.End();
+        }
     }
 }
