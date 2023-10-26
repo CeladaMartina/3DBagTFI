@@ -27,22 +27,22 @@ namespace _3DBag
                         masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
                         Traducir();                        
                     }
-                    Permisos();
+                    
                 }
             }
         }
 
-        public void Permisos()
-        {
-            if (Propiedades_BE.SingletonLogin.GetInstance.IsLoggedIn())
-            {
-                //ocultará o mostrará las redirecciones segun dependa
-                LinkProductos.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo));
-                LinkTienda.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta));
-                LinkVerVentas.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo));
-                LinkPedido.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta));
-            }
-        }
+        //public void Permisos()
+        //{
+        //    if (Propiedades_BE.SingletonLogin.GetInstance.IsLoggedIn())
+        //    {
+        //        //ocultará o mostrará las redirecciones segun dependa
+        //        LinkProductos.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo));
+        //        LinkTienda.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta));
+        //        LinkVerVentas.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Articulo));
+        //        LinkPedido.Visible = (Propiedades_BE.SingletonLogin.GetInstance.IsInRole(Propiedades_BE.TipoPermiso.Modificar_Venta));
+        //    }
+        //}
 
         #region redirecciones
         protected void LinkProductos_Click(object sender, EventArgs e)

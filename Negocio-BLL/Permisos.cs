@@ -133,6 +133,11 @@ namespace Negocio_BLL
             return _permisos.traerIDPermiso(nombre);
         }
 
+        public int traerIDFamilia(string nombre)
+        {
+            return _permisos.traerIDFamilia(nombre);
+        }
+
         public string traerPermiso(int id)
         {
             return _permisos.traerPermiso(id);

@@ -644,6 +644,33 @@ namespace Acceso_DAL
             return Id;
         }
 
+        public int traerIDFamilia(string nombre)
+        {
+            int Id = 0;
+            using (Acceso.Conexion)
+            {
+                Acceso.AbrirConexion();
+                string QueryID = " select id from Permiso where nombre='" + nombre + "'";
+
+                using (SqlCommand Cmd = new SqlCommand(QueryID, Acceso.Conexion))
+                {
+                    using (SqlDataReader Lector = Cmd.ExecuteReader())
+                    {
+                        if (Lector.Read())
+                        {
+                            Id = Lector.GetInt32(0);
+                        }
+                        else
+                        {
+                            Id = -1;
+                        }
+                    }
+                }
+                Acceso.CerrarConexion();
+            }
+            return Id;
+        }
+
         //trae permiso por medio del id
         public string traerPermiso(int id)
         {

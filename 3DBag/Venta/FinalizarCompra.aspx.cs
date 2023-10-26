@@ -87,15 +87,13 @@ namespace _3DBag
             lblResultado.Visible = true;
             lblResultado.Text = SiteMaster.TraducirGlobal("Compra finalizada correctamente. Factura enviada por email.") ?? ("Compra finalizada correctamente. Factura enviada por email.");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Venta Realizada", "Baja", 0);
-            Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
-
-            timer = new System.Threading.Timer(TimerCallback, null, 0, 15000);
+            Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));           
         }
 
-        private void TimerCallback(object state)
-        {
-            Response.Redirect("../Home/Home.aspx");
-        }
+        //private void TimerCallback(object state)
+        //{
+        //    Response.Redirect("../Home/Home.aspx");
+        //}
 
         #region traduccion
         public void Update(ISubject Sujeto)
