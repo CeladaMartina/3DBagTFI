@@ -74,16 +74,14 @@ namespace _3DBag
            
             if (ProblemaDefinitivo == "")
             {
-                lblError.Visible = true;
-                lblError.Text = "Sistema Correcto.";
-                lblError.CssClass = "alert alert-success";
+                lblError.Visible = true;              
                 Propiedades_BE.SingletonLogin.SumarIntegridadGeneral(0);
             }
             else
             {
                 lblError.Visible = true;
-                lblError.Text = "Error -> Contacte al administrador.";
-                lblError.CssClass = "alert alert-warning";
+                //lblError.Text = "Error -> Contacte al administrador.";
+                //lblError.CssClass = "alert alert-warning";
                 Propiedades_BE.SingletonLogin.SumarIntegridadGeneral(1);
             }
 
@@ -132,29 +130,34 @@ namespace _3DBag
                             catch (Exception EX)
                             {
                                 lblError.Visible = true;
+                                lblError.CssClass = "alert alert-danger";
                                 lblError.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                             }
                         }
                         else
                         {
                             lblError.Visible = true;
+                            lblError.CssClass = "alert alert-danger";
                             lblError.Text = SiteMaster.TraducirGlobal("El usuario se encuentra bloqueado") ?? ("El usuario se encuentra bloqueado");
                         }
                     }
                     else if (GestorUsuario.VerificarEstado(txtNick.Text) == true)
                     {
                         lblError.Visible = true;
+                        lblError.CssClass = "alert alert-danger";
                         lblError.Text = SiteMaster.TraducirGlobal("No se puede acceder, usuario bloqueado") ?? ("No se puede acceder, usuario bloqueado");
                     }
                     else if (GestorUsuario.VerificarContador(txtNick.Text) < 3)
                     {
                         lblError.Visible = true;
+                        lblError.CssClass = "alert alert-danger";
                         lblError.Text = SiteMaster.TraducirGlobal("Usuarios y/o contraseña incorrecto") ?? ("Usuarios y/o contraseña incorrecto");
                         Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Falla de LogIn", "Alta", 0);
                     }
                     else if (GestorUsuario.VerificarContador(txtNick.Text) >= 3)
                     {
                         lblError.Visible = true;
+                        lblError.CssClass = "alert alert-danger";
                         lblError.Text = SiteMaster.TraducirGlobal("El usuario se encuentra bloqueado") ?? ("El usuario se encuentra bloqueado");
                         Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Bloqueo de usuario", "Alta", 0);
                         GestorUsuario.BloquearUsuario(txtNick.Text);
@@ -163,6 +166,7 @@ namespace _3DBag
                 else
                 {
                     lblError.Visible = true;
+                    lblError.CssClass = "alert alert-danger";
                     lblError.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }                
             }

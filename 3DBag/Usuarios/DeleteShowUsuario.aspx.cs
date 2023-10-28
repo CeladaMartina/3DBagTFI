@@ -59,6 +59,7 @@ namespace _3DBag
                 else
                 {
                     DivUsuarios.Visible = false;
+                    lblPermiso.CssClass = "alert alert-danger";
                     lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
                     lblPermiso.Visible = true;
                 }
@@ -131,12 +132,13 @@ namespace _3DBag
             {
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de baja usuario", "Alta", 0);
                 lblResultado.Visible = true;
-                lblResultado.CssClass = "label-success";
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
             else
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-success";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Baja de Producto exitosamente") ?? ("Baja de Producto exitosamente");
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Baja Articulo", "Baja", 0);
             }
@@ -182,6 +184,8 @@ namespace _3DBag
             }
             catch (Exception)
             {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
 
             }

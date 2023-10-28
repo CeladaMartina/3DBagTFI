@@ -72,16 +72,17 @@ namespace _3DBag
 
         void Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material,int Stock, decimal PUnit,byte[] Imagen, int DVH)
         {
-            if(GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, Imagen, DVH) == 0)
+            if(GestorProducto.Alta(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, Imagen, DVH) != 1)
             {
                 lblRespuesta.Visible = true;
-                lblRespuesta.CssClass = "label-success";
+                lblRespuesta.CssClass = "alert alert-danger";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta producto", "Alta", 0);
             }
             else
             {
                 lblRespuesta.Visible = true;
+                lblRespuesta.CssClass = "alert alert-success";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Alta de Producto exitosamente") ?? ("Alta de Producto exitosamente");
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Articulo", "Media", 0);
             }           
@@ -90,16 +91,17 @@ namespace _3DBag
 
         void Modificar(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, int DVH)
         {
-            if(GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH)== 0)
+            if(GestorProducto.Modificar(IdArticulo, CodProd, Nombre, Descripcion, Material, Stock, PUnit, DVH) != 1)
             {
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta producto", "Alta", 0);
                 lblRespuesta.Visible = true;
-                lblRespuesta.CssClass = "label-success";
+                lblRespuesta.CssClass = "alert alert-danger";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
             else
             {
                 lblRespuesta.Visible = true;
+                lblRespuesta.CssClass = "alert alert-success";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Modificación de Producto exitosamente") ?? ("Modificación de Producto exitosamente");
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar Articulo", "Baja", 0);
             }         
@@ -112,7 +114,7 @@ namespace _3DBag
             {
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta producto", "Alta", 0);
                 lblRespuesta.Visible = true;
-                lblRespuesta.CssClass = "label-success";
+                lblRespuesta.CssClass = "alert alert-danger";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }            
         }
@@ -160,11 +162,15 @@ namespace _3DBag
                     }
                     catch (Exception)
                     {
+                        lblRespuesta.Visible = true;
+                        lblRespuesta.CssClass = "alert alert-danger";
                         lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");                        
                     }
                 }
                 else
                 {
+                    lblRespuesta.Visible = true;
+                    lblRespuesta.CssClass = "alert alert-danger";
                     lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
             }
@@ -188,11 +194,15 @@ namespace _3DBag
                     }
                     catch (Exception)
                     {
+                        lblRespuesta.Visible = true;
+                        lblRespuesta.CssClass = "alert alert-danger";
                         lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                     }
                 }
                 else
                 {
+                    lblRespuesta.Visible = true;
+                    lblRespuesta.CssClass = "alert alert-danger";
                     lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
             }

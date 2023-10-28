@@ -61,16 +61,17 @@ namespace _3DBag
 
         void Baja(int IdArticulo)
         {
-           if(GestorArticulo.Baja(IdArticulo) == 0)
+           if(GestorArticulo.Baja(IdArticulo) != 1)
             {
                 lblResultado.Visible = true;
-                lblResultado.CssClass = "label-success";
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de baja producto", "Alta", 0);
             }
             else
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-success";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Baja de Producto exitosamente") ?? ("Baja de Producto exitosamente");
                 Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Baja Articulo", "Baja", 0);
                 
@@ -92,6 +93,8 @@ namespace _3DBag
             }
             catch (Exception)
             {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                
             }

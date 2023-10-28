@@ -103,44 +103,39 @@ namespace _3DBag
 
         void Modificar(int Id, string Nick, string Nombre, string Mail, bool Estado, int Contador, string Idioma, bool Baja,  int DVH)
         {
-            GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, Baja, DVH);
+            try
+            {
+                GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, Baja, DVH);
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Usuario modificado correctamente") ?? ("Usuario modificado correctamente");
 
-            //if (GestorUsuario.Modificar(Id, Nick, Nombre, Mail, Estado, Contador, Idioma, Baja ,DVH) != 1)
-            //{
-            //    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de modificacion usuario", "Alta", 0);
-            //    lblResultado.Visible = true;
-            //    lblResultado.CssClass = "label-success";
-            //    lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
-            //}
-            //else
-            //{
-            //    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Modificar usuario", "Alta", 0);
-            //    lblResultado.Visible = true;
-            //    lblResultado.CssClass = "label-success";
-            //    lblResultado.Text = SiteMaster.TraducirGlobal("Usuario modificado correctamente") ?? ("Usuario modificado correctamente");
-            //    LimpiarTxt();
-            //}
+            }
+            catch (Exception ex)
+            {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+
+            }
         }
 
         void Alta(string Nick, string Contraseña, string Nombre, string Mail, bool Estado, int Contador, string Idioma,  int DVH)
         {
-            GestorUsuario.AltaUsuario(Nick, Contraseña, Nombre, Mail, Estado, Contador, Idioma, DVH);
+            try
+            {
+                GestorUsuario.AltaUsuario(Nick, Contraseña, Nombre, Mail, Estado, Contador, Idioma, DVH);
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-success";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Usuario alta correctamente") ?? ("Usuario alta correctamente");
 
-            //if(GestorUsuario.AltaUsuario(Nick, Contraseña, Nombre, Mail, Estado, Contador, Idioma,DVH) == 0)
-            //{
-            //    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Error de alta usuario", "Alta", 0);
-            //    lblResultado.Visible = true;
-            //    lblResultado.CssClass = "label-success";
-            //    lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
-            //}
-            //else
-            //{
-            //    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta usuario", "Alta", 0);
-            //    lblResultado.Visible = true;
-            //    lblResultado.CssClass = "label-success";
-            //    lblResultado.Text = SiteMaster.TraducirGlobal("Usuario alta correctamente") ?? ("Usuario alta correctamente");
-            //    LimpiarTxt();
-            //}
+            }
+            catch (Exception)
+            {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
 
         }
 
