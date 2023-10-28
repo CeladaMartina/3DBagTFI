@@ -132,12 +132,12 @@ namespace Acceso_DAL
             }
             if (DVH != Seguridad.VerificacionDVV("Idioma"))
             {
-                msj += "Se encontro un error en la tabla Idioma \n";
+                msj += "Se encontro un error en la tabla Idioma <br />";
                 Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Idioma", "Alta", 0);
 
                 if (DVH < Seguridad.VerificacionDVV("Idioma"))
                 {
-                    msj += "Posibilidad de eliminacion de 1 o mas registros de Idioma \n";
+                    msj += "Posibilidad de eliminacion de 1 o mas registros de Idioma <br />";
                     Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Idioma", "Alta", 0);
                 }
             }
@@ -148,7 +148,7 @@ namespace Acceso_DAL
             foreach (var item in CamposFallidos)
             {
 
-                msj += "Se encontro un fallo en la fila con Id Detalle: " + item + " \n";
+                msj += "Se encontro un fallo en la fila con Id Detalle: " + item + " <br />";
                 msj2 = "Error Idioma IdVejta:" + item + "";
                 Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
                 msj2 = "";

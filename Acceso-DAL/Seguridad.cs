@@ -329,12 +329,12 @@ namespace Acceso_DAL
             }
             if (DVH != VerificacionDVV("Bitacora"))
             {
-                msj += "Se encontro un error en la tabla Bitacora \n";
+                msj += "Se encontro un error en la tabla Bitacora <br />";
                 CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Bitacora", "Alta", 0);
 
                 if (DVH < VerificacionDVV("Bitacora"))
                 {
-                    msj += "Posibilidad de eliminacion de 1 o mas registros de Bitacora \n";
+                    msj += "Posibilidad de eliminacion de 1 o mas registros de Bitacora <br />";
                     CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Bitacora", "Alta", 0);
                 }
             }
@@ -345,7 +345,7 @@ namespace Acceso_DAL
             foreach (var item in CamposFallidos)
             {
 
-                msj += "Se encontro un fallo en la fila con Id Bitacora: " + item + " \n";
+                msj += "Se encontro un fallo en la fila con Id Bitacora: " + item + " <br />";
                 msj2 = "Error Bitacora IdBitacora:" + item + "";
                 CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
                 msj2 = "";

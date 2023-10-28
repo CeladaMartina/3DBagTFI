@@ -106,12 +106,12 @@ namespace Acceso_DAL
             }
             if (DVH != Seguridad.VerificacionDVV("Usuario"))
             {
-                msj += "Se encontro un error en la tabla USUARIO \n";
+                msj += "Se encontro un error en la tabla USUARIO <br />";
                 Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Usuario", "Alta", 0);
 
                 if (DVH < Seguridad.VerificacionDVV("Usuario"))
                 {
-                    msj += "Posibilidad de eliminacion de 1 o mas registros Usuario \n";
+                    msj += "Posibilidad de eliminacion de 1 o mas registros Usuario <br />";
                     Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Usuarios", "Alta", 0);
                 }
             }
@@ -121,7 +121,7 @@ namespace Acceso_DAL
             }
             foreach (var item in CamposFallidos)
             {
-                msj += "Se encontro un fallo en la fila con ID: " + item + " \n";
+                msj += "Se encontro un fallo en la fila con ID: " + item + " <br />";
                 msj2 = "Error usuario en fila " + item + " ";
                 Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
                 msj2 = "";

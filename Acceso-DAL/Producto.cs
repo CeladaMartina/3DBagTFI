@@ -408,12 +408,12 @@ namespace Acceso_DAL
             }
             if (DVH != Seguridad.VerificacionDVV("Articulo"))
             {
-                msj += "Se encontro un error en la tabla Articulo \n";
+                msj += "Se encontro un error en la tabla Articulo <br />";
                 Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Error en la tabla Articulo", "Alta", 0);
 
                 if (DVH < Seguridad.VerificacionDVV("Artciulo"))
                 {
-                    msj += "Posibilidad de eliminacion de 1 o mas registros de Articulo \n";
+                    msj += "Posibilidad de eliminacion de 1 o mas registros de Articulo <br />";
                     Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, "Eliminacion registros Articulo", "Alta", 0);
                 }
             }
@@ -424,7 +424,7 @@ namespace Acceso_DAL
             foreach (var item in CamposFallidos)
             {
 
-                msj += "Se encontro un fallo en la fila con Id Articulo: " + item + " \n";
+                msj += "Se encontro un fallo en la fila con Id Articulo: " + item + " <br />";
                 msj2 = "Error Articulo IdArticulo:" + item + "";
                 Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
                 msj2 = "";
