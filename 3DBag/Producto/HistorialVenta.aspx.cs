@@ -62,12 +62,18 @@ namespace _3DBag
         #region traduccion
         public void Update(ISubject Sujeto)
         {
-            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();   
+            LinkRedireccion.Text = Sujeto.TraducirObserver(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
+            btnExportar.Text = Sujeto.TraducirObserver(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
+            btnWebServiceCliente.Text = Sujeto.TraducirObserver(btnWebServiceCliente.SkinID.ToString()) ?? btnWebServiceCliente.SkinID.ToString();
         }
 
         public void Traducir()
         {
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
+            btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
+            btnWebServiceCliente.Text = SiteMaster.TraducirGlobal(btnWebServiceCliente.SkinID.ToString()) ?? btnWebServiceCliente.SkinID.ToString();
         }
         #endregion
 
@@ -116,6 +122,11 @@ namespace _3DBag
             Response.AppendHeader("Content-Disposition", "attachment; filename=HistorialVentas.xml");
             Response.TransmitFile(filePath);
             Response.End();
+        }
+
+        protected void LinkRedireccion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Comercial.aspx");
         }
     }
 }

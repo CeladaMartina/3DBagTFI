@@ -6,6 +6,7 @@
     <div class="text-center">
         <asp:Label ID="lblTitulo" SkinID="Modulo Comercial" runat="server">Modulo Comercial</asp:Label>
         <br />
+        <br />
         <div>
             <%-- ABML productos --%>
             <asp:LinkButton ID="LinkProductos" SkinID="Gestión de Productos" runat="server" OnClick="LinkProductos_Click">Gestión de Productos.</asp:LinkButton>

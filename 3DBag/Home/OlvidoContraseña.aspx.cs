@@ -17,14 +17,17 @@ namespace _3DBag
         public int Contador = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
-
-            if (Session["IdiomaSelect"] != null)
+            if (!Page.IsPostBack)
             {
-                DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
-                masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
-                Traducir();                
-            }
+                contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+            }            
         }
 
         #region metodos

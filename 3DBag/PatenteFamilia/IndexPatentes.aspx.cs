@@ -64,11 +64,15 @@ namespace _3DBag
         public void Update(ISubject Sujeto)
         {
             lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            btnAltaPatente.Text = Sujeto.TraducirObserver(btnAltaPatente.SkinID.ToString()) ?? btnAltaPatente.SkinID.ToString();
+            linkVolver.Text = Sujeto.TraducirObserver(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
 
         public void Traducir()
         {
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            btnAltaPatente.Text = SiteMaster.TraducirGlobal(btnAltaPatente.SkinID.ToString()) ?? btnAltaPatente.SkinID.ToString();
+            linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
         #endregion
 
@@ -94,6 +98,11 @@ namespace _3DBag
             {
                 Response.Redirect("VerPatente.aspx?patente=" + id + "&nombre=" + nombre);
             }            
+        }
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Administracion.aspx");
         }
     }
 }

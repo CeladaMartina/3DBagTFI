@@ -115,5 +115,10 @@ namespace _3DBag
             btnRestore.Text = SiteMaster.TraducirGlobal(btnRestore.SkinID.ToString()) ?? btnRestore.SkinID.ToString();            
         }
         #endregion
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Seguridad.aspx");
+        }
     }
 }

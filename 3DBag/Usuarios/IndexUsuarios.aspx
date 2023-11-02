@@ -38,7 +38,10 @@
         </div>
         <br />
         <br />
-        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" />
+        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
+        <br />
+        <br />
+        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" SkinID="Exportar" />
     </div>
     <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
 </asp:Content>

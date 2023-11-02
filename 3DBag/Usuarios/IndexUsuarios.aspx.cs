@@ -91,12 +91,14 @@ namespace _3DBag
         {
             lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             btnAltaUsuario.Text = Sujeto.TraducirObserver(btnAltaUsuario.SkinID.ToString()) ?? btnAltaUsuario.SkinID.ToString();
+            btnExportar.Text = Sujeto.TraducirObserver(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
         }
 
         public void Traducir()
         {
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             btnAltaUsuario.Text = SiteMaster.TraducirGlobal(btnAltaUsuario.SkinID.ToString()) ?? btnAltaUsuario.SkinID.ToString();
+            btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
         }
         #endregion
 
@@ -144,6 +146,11 @@ namespace _3DBag
             Response.AppendHeader("Content-Disposition", "attachment; filename=Usuarios.xml");
             Response.TransmitFile(filePath);
             Response.End();
+        }
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Administracion.aspx");
         }
     }
 }

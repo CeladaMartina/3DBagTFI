@@ -84,18 +84,27 @@ namespace _3DBag
         #region traduccion
         public void Update(ISubject Sujeto)
         {
-            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();    
+            btnAltaFamilia.Text = Sujeto.TraducirObserver(btnAltaFamilia.SkinID.ToString()) ?? btnAltaFamilia.SkinID.ToString();
+            linkVolver.Text = Sujeto.TraducirObserver(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
 
         public void Traducir()
         {
-            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString(); 
+            btnAltaFamilia.Text = SiteMaster.TraducirGlobal(btnAltaFamilia.SkinID.ToString()) ?? btnAltaFamilia.SkinID.ToString();
+            linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
         #endregion
 
         protected void btnAltaFamilia_Click(object sender, EventArgs e)
         {
             Response.Redirect("CreateEditFamilia.aspx?Funcion=alta");
+        }
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Administracion.aspx");
         }
     }
 }

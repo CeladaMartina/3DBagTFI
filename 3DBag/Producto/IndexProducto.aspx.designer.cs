@@ -69,6 +69,15 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblRespuesta;
 
         /// <summary>
+        /// Control linkVolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkVolver;
+
+        /// <summary>
         /// Control lblPermiso.
         /// </summary>
         /// <remarks>

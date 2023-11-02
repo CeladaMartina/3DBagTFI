@@ -335,5 +335,10 @@ namespace _3DBag
             gridLogin.DataSource = webService.UsuarioMasLogin();
             gridLogin.DataBind();
         }
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Seguridad.aspx");
+        }
     }
 }

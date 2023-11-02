@@ -5,7 +5,7 @@
    <asp:Label ID="lblTitulo" SkinID="Patentes" runat="server">Patentes</asp:Label>
         <br />          
         <br />
-    <asp:Button  ID="btnAltaPatente" runat="server" Text="Alta Patente" OnClick="btnAltaPatente_Click"/>
+    <asp:Button  ID="btnAltaPatente" runat="server" Text="Alta Patente" OnClick="btnAltaPatente_Click" SkinID="Agregar"/>
      <br />          
      <br />
     <div id="divPatentes" runat="server">
@@ -26,6 +26,9 @@
             </asp:ButtonField>            
         </Columns>
     </asp:GridView>
+         <br />
+        <br />
+        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
         </div>
      <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
 </asp:Content>

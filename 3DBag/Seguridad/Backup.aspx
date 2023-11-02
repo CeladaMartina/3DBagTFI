@@ -18,6 +18,9 @@
         <br />
         <br />
         <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>    
+        <br />
+        <br />
+        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
     </div>
     <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>   
 </asp:Content>

@@ -98,7 +98,8 @@ namespace _3DBag
         {
             lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             btnAlta.Text = Sujeto.TraducirObserver(btnAlta.SkinID.ToString()) ?? btnAlta.SkinID.ToString();
-            btnWebService.Text = Sujeto.TraducirObserver(btnWebService.SkinID.ToString()) ?? btnWebService.SkinID.ToString();            
+            btnWebService.Text = Sujeto.TraducirObserver(btnWebService.SkinID.ToString()) ?? btnWebService.SkinID.ToString();
+            linkVolver.Text = Sujeto.TraducirObserver(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
 
         public void Traducir()
@@ -106,7 +107,13 @@ namespace _3DBag
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             btnAlta.Text = SiteMaster.TraducirGlobal(btnAlta.SkinID.ToString()) ?? btnAlta.SkinID.ToString();
             btnWebService.Text = SiteMaster.TraducirGlobal(btnWebService.SkinID.ToString()) ?? btnWebService.SkinID.ToString();
+            linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
         #endregion
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Comercial.aspx");
+        }
     }
 }

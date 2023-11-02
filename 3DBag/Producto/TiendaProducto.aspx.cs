@@ -143,23 +143,22 @@ namespace _3DBag
         
         public void Update(ISubject Sujeto)
         {
-            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
             //BtnAgregar.Text = Sujeto.TraducirObserver(BtnAgregar.SkinID.ToString()) ?? BtnAgregar.SkinID.ToString();
             VerCarrito.Text = Sujeto.TraducirObserver(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();            
         }
 
         public void Traducir()
         {
-            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
             //BtnAgregar.Text = SiteMaster.TraducirGlobal(BtnAgregar.SkinID.ToString()) ?? BtnAgregar.SkinID.ToString();
             VerCarrito.Text = SiteMaster.TraducirGlobal(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();         
         }
+
+        protected void LinkRedireccion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Comercial.aspx");
+        }
         #endregion
-
-        //protected void BtnAgregar_Click(object sender, EventArgs e)
-        //{
-        //    Response.Write("hola");
-
-        //}
     }
 }

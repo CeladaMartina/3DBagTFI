@@ -4,10 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="../css/site.css" rel="stylesheet" />
-    <div id="containerHome" runat="server" style="display: flex;margin-top:100px;">
-        <asp:Label ID="lblUsuario" runat="server" CssClass="align-self-sm-end" Visible="false"></asp:Label>
-        <br />
-        <br />
+    <div style="text-align:center">
+        <asp:Label ID="lblUsuario" runat="server" Visible="false"></asp:Label>    
+    </div>     
+    <div id="containerHome" runat="server" style="display: flex;margin-top:60px;">      
         <div style="width: 100%">
             <asp:Label ID="lblHome" runat="server"
                 SkinID="3D- Bag es una empresa especializada en la venta y producción de bolsos impresos con la tecnologia 3D para empresas que requieren ser reconocidos mediante el uso de tecnología de última generación.">

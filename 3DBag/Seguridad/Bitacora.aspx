@@ -83,6 +83,11 @@
             </PagerTemplate>
             <PagerSettings Mode="NextPrevious" Position="Bottom" />
         </asp:GridView>
+        <br />
+        <br />
+        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
+        <br />
+        <br />
         <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>         
         <br />
         <br />
@@ -90,6 +95,9 @@
         <br />
         <br />
         <asp:GridView ID="gridLogin" runat="server" AutoGenerateColumns="false" Visible="false">
+            <AlternatingRowStyle BackColor="White" />
+            <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
+            <RowStyle BackColor="#f5f5f5" CssClass="align-text-bottom"/>
             <Columns>
                 <asp:BoundField DataField="Descripcion" HeaderText="Usuario" />
                 <asp:BoundField DataField="DVH" HeaderText="Cant. de Inicio Sesion" />
@@ -98,6 +106,5 @@
         <br />
         <br />
     </div>
-
      <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>   
 </asp:Content>

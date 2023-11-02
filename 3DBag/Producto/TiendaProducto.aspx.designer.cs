@@ -33,6 +33,15 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.DataList dataList;
 
         /// <summary>
+        /// Control LinkRedireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkRedireccion;
+
+        /// <summary>
         /// Control lblRespuesta.
         /// </summary>
         /// <remarks>

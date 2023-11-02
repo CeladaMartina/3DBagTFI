@@ -5,7 +5,7 @@
     <asp:Label ID="lblTitulo" SkinID="Familias" runat="server">Familias</asp:Label>
         <br />          
         <br />
-    <asp:Button  ID="btnAltaFamilia" runat="server" OnClick="btnAltaFamilia_Click" Text="Alta Familia" />
+    <asp:Button  ID="btnAltaFamilia" runat="server" OnClick="btnAltaFamilia_Click" Text="Alta Familia" SkinID="Agregar" />
     <br />          
     <br />
     <div id="divFamilias" runat="server">
@@ -26,6 +26,9 @@
             </asp:ButtonField>            
         </Columns>
     </asp:GridView>
+        <br />
+        <br />
+        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
     </div>
     <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
 </asp:Content>

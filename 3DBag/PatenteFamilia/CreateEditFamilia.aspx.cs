@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class CreateEditFamilia : System.Web.UI.Page
+    public partial class CreateEditFamilia : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Propiedades_BE.Familia FamTemp = new Propiedades_BE.Familia();
@@ -19,6 +19,14 @@ namespace _3DBag
         {
             if (!IsPostBack)
             {
+                //traduccion de la pagina
+                if (Session["IdiomaSelect"] != null)
+                {
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
+                }
+
                 if (Request.QueryString["id"] == null)
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Nueva Familia") ?? ("Nueva Familia");
@@ -196,6 +204,32 @@ namespace _3DBag
             Response.Redirect("IndexFamilias.aspx");
         }
 
+        #endregion
+
+        #region traduccion
+        public void Update(ISubject Sujeto)
+        {
+            lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblNombre.Text = Sujeto.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblPatente.Text = Sujeto.TraducirObserver(lblPatente.SkinID.ToString()) ?? lblPatente.SkinID.ToString();
+            patasig.Text = Sujeto.TraducirObserver(patasig.SkinID.ToString()) ?? patasig.SkinID.ToString();
+            patnoasig.Text = Sujeto.TraducirObserver(patnoasig.SkinID.ToString()) ?? patnoasig.SkinID.ToString();
+            btnAsignar.Text = Sujeto.TraducirObserver(btnAsignar.SkinID.ToString()) ?? btnAsignar.SkinID.ToString();
+            btnNoAsignar.Text = Sujeto.TraducirObserver(btnNoAsignar.SkinID.ToString()) ?? btnNoAsignar.SkinID.ToString();
+            LinkRedirect.Text = Sujeto.TraducirObserver(LinkRedirect.SkinID.ToString()) ?? LinkRedirect.SkinID.ToString();
+        }
+
+        public void Traducir()
+        {
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            lblPatente.Text = SiteMaster.TraducirGlobal(lblPatente.SkinID.ToString()) ?? lblPatente.SkinID.ToString();
+            patasig.Text = SiteMaster.TraducirGlobal(patasig.SkinID.ToString()) ?? patasig.SkinID.ToString();
+            patnoasig.Text = SiteMaster.TraducirGlobal(patnoasig.SkinID.ToString()) ?? patnoasig.SkinID.ToString();
+            btnAsignar.Text = SiteMaster.TraducirGlobal(btnAsignar.SkinID.ToString()) ?? btnAsignar.SkinID.ToString();
+            btnNoAsignar.Text = SiteMaster.TraducirGlobal(btnNoAsignar.SkinID.ToString()) ?? btnNoAsignar.SkinID.ToString();
+            LinkRedirect.Text = SiteMaster.TraducirGlobal(LinkRedirect.SkinID.ToString()) ?? LinkRedirect.SkinID.ToString();
+        }
         #endregion
 
 

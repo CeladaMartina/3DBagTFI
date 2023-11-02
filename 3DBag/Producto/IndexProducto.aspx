@@ -40,10 +40,13 @@
         </asp:GridView>
         <br />
         <br />
-        <asp:Button ID="btnWebService" runat="server" Text="Producto más vendido" OnClick="btnWebService_Click" />
+        <asp:Button ID="btnWebService" runat="server" Text="Consultar" SkinID="Consultar" OnClick="btnWebService_Click" />
         <br />
         <br />
         <asp:Label ID="lblRespuesta" runat="server" Visible="false"></asp:Label>
+        <br />
+        <br />
+        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
     </div>
      <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
 </asp:Content>

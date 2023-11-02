@@ -115,6 +115,7 @@ namespace _3DBag
             lblTitulo.Text = Subject.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             lblRuta.Text = Subject.TraducirObserver(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
             lblNombre.Text = Subject.TraducirObserver(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+            btnBackup.Text = Subject.TraducirObserver(btnBackup.SkinID.ToString()) ?? btnBackup.SkinID.ToString();
         }
 
         public void Traducir()
@@ -122,7 +123,13 @@ namespace _3DBag
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
             lblRuta.Text = SiteMaster.TraducirGlobal(lblRuta.SkinID.ToString()) ?? lblRuta.SkinID.ToString();
+            btnBackup.Text = SiteMaster.TraducirGlobal(btnBackup.SkinID.ToString()) ?? btnBackup.SkinID.ToString();
         }
         #endregion
+
+        protected void linkVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Navegacion/Seguridad.aspx");
+        }
     }
 }

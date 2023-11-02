@@ -23,16 +23,22 @@
                     </Columns>
                 </asp:GridView>
             </div>
+            <br />
+        <br />
+        <asp:LinkButton ID="LinkRedireccion" runat="server" SkinID="Volver a la lista" OnClick="LinkRedireccion_Click"><< Volver atrás</asp:LinkButton>
         </div>
         <br />
         <br />
-        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" />
+        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" SkinID="Exportar" />
         <br />
         <br />
-        <asp:Button ID="btnWebServiceCliente" runat="server" OnClick="btnWebServiceCliente_Click" Text="Consultar" />
+        <asp:Button ID="btnWebServiceCliente" runat="server" OnClick="btnWebServiceCliente_Click" Text="Consultar" SkinID="Consultar" />
         <br />
         <br />
         <asp:GridView ID="gridClientes" runat="server" AutoGenerateColumns="false" Visible="false">
+            <AlternatingRowStyle BackColor="White" />
+            <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
+            <RowStyle BackColor="#f5f5f5" />
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Cliente" />
                 <asp:BoundField DataField="NumVenta" HeaderText="Total de Compras realizadas" />
