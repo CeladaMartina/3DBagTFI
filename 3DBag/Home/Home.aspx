@@ -41,7 +41,9 @@
     <asp:Table ID="containerError" runat="server" Visible="false">
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="lblError" runat="server" CssClass="align-self-sm-end"></asp:Label>
+                <div class="alert alert-danger">
+                    <asp:Label ID="lblError" runat="server"></asp:Label>
+                </div>                
                 <br />
                 <br />
                 <asp:LinkButton ID="btnRestore" runat="server" OnClick="hrefRestaurar">Restore</asp:LinkButton>

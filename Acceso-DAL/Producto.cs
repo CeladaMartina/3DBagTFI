@@ -424,7 +424,7 @@ namespace Acceso_DAL
             foreach (var item in CamposFallidos)
             {
 
-                msj += "Se encontro un fallo en la fila con Id Articulo: " + item + " <br />";
+                msj += "Se encontro un fallo en la fila con Id Articulo: " + item + "";
                 msj2 = "Error Articulo IdArticulo:" + item + "";
                 Seguridad.CargarBitacora(GlobalIdUsuario, DateTime.Now, msj2, "Alta", 0);
                 msj2 = "";
