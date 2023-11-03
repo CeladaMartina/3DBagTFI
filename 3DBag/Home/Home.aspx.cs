@@ -32,40 +32,42 @@ namespace _3DBag
         #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
-            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             //Primero se conecta con la BD
             Conectar();
+            contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
 
-            if (Session["IdiomaSelect"] != null)
+            if (!Page.IsPostBack)
             {
-                DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
-                masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
-                Traducir();
-            }
-
-            //patron chain
-            webmaster.AgregarSiguiente(administrador);
-            administrador.AgregarSiguiente(empleado);
-            empleado.AgregarSiguiente(cliente);                    
-
-            //Si el usuario se logueo, controla que mensaje de bienvenida dar
-            if(Session["ProblemaDefinitivo"] != null)
-            {
-                containerHome.Visible = false;
-                containerError.Visible = true;
-                lblError.Text = Session["ProblemaDefinitivo"].ToString();
-            }
-            else
-            {
-                if((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
+                if (Session["IdiomaSelect"] != null)
                 {
-                    containerError.Visible = false;
-                    containerHome.Visible = true;
-                    lblUsuario.Visible = true;
-                    lblUsuario.Text = webmaster.Procesar(usuario);                    
+                    DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
+                    masterDropDownList.SelectedValue = Session["IdiomaSelect"].ToString();
+                    Traducir();
                 }
-            }
-            
+
+                //patron chain
+                webmaster.AgregarSiguiente(administrador);
+                administrador.AgregarSiguiente(empleado);
+                empleado.AgregarSiguiente(cliente);
+
+                //Si el usuario se logueo, controla que mensaje de bienvenida dar
+                if (Session["ProblemaDefinitivo"] != null)
+                {
+                    containerHome.Visible = false;
+                    containerError.Visible = true;
+                    lblError.Text = Session["ProblemaDefinitivo"].ToString();
+                }
+                else
+                {
+                    if ((Propiedades_BE.Usuario)(Session["UserSession"]) != null)
+                    {
+                        containerError.Visible = false;
+                        containerHome.Visible = true;
+                        lblUsuario.Visible = true;
+                        lblUsuario.Text = webmaster.Procesar(usuario);
+                    }
+                }
+            }            
         }
         
         public void Conectar()

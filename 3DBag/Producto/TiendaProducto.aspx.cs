@@ -145,14 +145,16 @@ namespace _3DBag
         {
             lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
             //BtnAgregar.Text = Sujeto.TraducirObserver(BtnAgregar.SkinID.ToString()) ?? BtnAgregar.SkinID.ToString();
-            VerCarrito.Text = Sujeto.TraducirObserver(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();            
+            VerCarrito.Text = Sujeto.TraducirObserver(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();
+            LinkRedireccion.Text = Sujeto.TraducirObserver(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
         }
 
         public void Traducir()
         {
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
             //BtnAgregar.Text = SiteMaster.TraducirGlobal(BtnAgregar.SkinID.ToString()) ?? BtnAgregar.SkinID.ToString();
-            VerCarrito.Text = SiteMaster.TraducirGlobal(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();         
+            VerCarrito.Text = SiteMaster.TraducirGlobal(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();  
+            LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
         }
 
         protected void LinkRedireccion_Click(object sender, EventArgs e)

@@ -3,13 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="lblPatente" SkinID="Patente" runat="server">Patente</asp:Label>
+    <%--<asp:Label ID="lblPatente" SkinID="Patente" runat="server">Patente</asp:Label>
     <br />
-    <br />
+    <br />--%>
     <asp:Label ID="lblTitulo" runat="server"></asp:Label>
     <br />
     <br />
-    <asp:Label ID="lblNombre" runat="server" Text="Nombre"></asp:Label>
+    <asp:Label ID="lblNombre" runat="server" Text="Nombre" SkinID="Nombre"></asp:Label>
     <br />
     <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
     <br />

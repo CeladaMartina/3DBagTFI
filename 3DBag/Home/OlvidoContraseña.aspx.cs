@@ -129,6 +129,7 @@ namespace _3DBag
         #region traduccion
         public void Update(ISubject Sujeto)
         {
+            lblOlvidaste.Text = Sujeto.TraducirObserver(lblOlvidaste.SkinID.ToString()) ?? lblOlvidaste.SkinID.ToString();
             lblNick.Text = Sujeto.TraducirObserver(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();
             lblMail.Text = Sujeto.TraducirObserver(lblMail.SkinID.ToString()) ?? lblMail.SkinID.ToString();
             btnActualizarContra.Text = Sujeto.TraducirObserver(btnActualizarContra.SkinID.ToString()) ?? btnActualizarContra.SkinID.ToString();
@@ -136,6 +137,7 @@ namespace _3DBag
 
         public void Traducir()
         {
+            lblOlvidaste.Text = SiteMaster.TraducirGlobal(lblOlvidaste.SkinID.ToString()) ?? lblOlvidaste.SkinID.ToString();
             lblNick.Text = SiteMaster.TraducirGlobal(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();
             lblMail.Text = SiteMaster.TraducirGlobal(lblMail.SkinID.ToString()) ?? lblMail.SkinID.ToString();
             btnActualizarContra.Text = SiteMaster.TraducirGlobal(btnActualizarContra.SkinID.ToString()) ?? btnActualizarContra.SkinID.ToString();

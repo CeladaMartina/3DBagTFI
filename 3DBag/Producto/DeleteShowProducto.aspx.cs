@@ -111,6 +111,7 @@ namespace _3DBag
             lblStock.Text = Sujeto.TraducirObserver(lblStock.SkinID.ToString()) ?? lblStock.SkinID.ToString();
             lblPUnit.Text = Sujeto.TraducirObserver(lblPUnit.SkinID.ToString()) ?? lblPUnit.SkinID.ToString();
             btnBorrar.Text = Sujeto.TraducirObserver(btnBorrar.SkinID.ToString()) ?? btnBorrar.SkinID.ToString();
+            LinkRedireccion.Text = Sujeto.TraducirObserver(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
         }
 
         public void Traducir()
@@ -123,6 +124,7 @@ namespace _3DBag
             lblStock.Text = SiteMaster.TraducirGlobal(lblStock.SkinID.ToString()) ?? lblStock.SkinID.ToString();
             lblPUnit.Text = SiteMaster.TraducirGlobal(lblPUnit.SkinID.ToString()) ?? lblPUnit.SkinID.ToString();
             btnBorrar.Text = SiteMaster.TraducirGlobal(btnBorrar.SkinID.ToString()) ?? btnBorrar.SkinID.ToString();
+            LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
         }
         #endregion
     }

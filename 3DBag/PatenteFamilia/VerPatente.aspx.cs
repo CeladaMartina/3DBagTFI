@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace _3DBag
 {
-    public partial class VerPatente : System.Web.UI.Page
+    public partial class VerPatente : System.Web.UI.Page, IObserver
     {
         private ContentPlaceHolder contentPlace;
         Propiedades_BE.Patente PatTemp;

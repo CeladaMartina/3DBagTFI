@@ -14,7 +14,7 @@
         <asp:TextBox ID="txtNombre" runat="server" Width="319px"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="btnBackup" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" SkinID="Realizar" />
+        <asp:Button ID="btnBackup" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" SkinID="Generar" />
         <br />
         <br />
         <asp:Label ID="lblResultado" runat="server" Visible="false"></asp:Label>    

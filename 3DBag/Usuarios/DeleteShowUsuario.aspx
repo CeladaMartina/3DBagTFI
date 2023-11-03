@@ -10,13 +10,13 @@
         <br />
         <asp:Label ID="lblPregunta" runat="server" Visible="false"></asp:Label>
         <br />
-        <asp:Label ID="lblNick" runat="server" SkinID="Nick">Nick: </asp:Label><asp:Label ID="lblNickResp" runat="server"></asp:Label>
+        <asp:Label ID="lblNick" runat="server" SkinID="Nick">Nick: </asp:Label><br /><asp:Label ID="lblNickResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblNombre" runat="server" SkinID="Nombre">Nombre: </asp:Label><asp:Label ID="lblNombreResp" runat="server"></asp:Label>
+        <asp:Label ID="lblNombre" runat="server" SkinID="Nombre">Nombre: </asp:Label><br /><asp:Label ID="lblNombreResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblMail" runat="server" SkinID="Email">Mail: </asp:Label><asp:Label ID="lblMailResp" runat="server"></asp:Label>
+        <asp:Label ID="lblMail" runat="server" SkinID="Email">Mail: </asp:Label><br /><asp:Label ID="lblMailResp" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblIdioma" runat="server" SkinID="Idioma">Idioma: </asp:Label><asp:Label ID="lblIdiomaResp" runat="server"></asp:Label>
+        <asp:Label ID="lblIdioma" runat="server" SkinID="Idioma">Idioma: </asp:Label><br /><asp:Label ID="lblIdiomaResp" runat="server"></asp:Label>
         <br />
         <br />
         <asp:Label ID="lblPermisos" runat="server" SkinID="Permisos Asignados">Permisos Asignados:</asp:Label>

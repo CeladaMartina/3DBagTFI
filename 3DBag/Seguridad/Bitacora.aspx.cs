@@ -312,6 +312,7 @@ namespace _3DBag
             lblUsuarios.Text = Sujeto.TraducirObserver(lblUsuarios.SkinID.ToString()) ?? lblUsuarios.SkinID.ToString();
             bntFiltrar.Text = Sujeto.TraducirObserver(bntFiltrar.SkinID.ToString()) ?? bntFiltrar.SkinID.ToString();
             btnExportar.Text = Sujeto.TraducirObserver(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();            
+            linkVolver.Text = Sujeto.TraducirObserver(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
 
         public void Traducir()
@@ -323,6 +324,7 @@ namespace _3DBag
             lblUsuarios.Text = SiteMaster.TraducirGlobal(lblUsuarios.SkinID.ToString()) ?? lblUsuarios.SkinID.ToString();
             bntFiltrar.Text = SiteMaster.TraducirGlobal(bntFiltrar.SkinID.ToString()) ?? bntFiltrar.SkinID.ToString();
             btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
+            linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
         #endregion
 
