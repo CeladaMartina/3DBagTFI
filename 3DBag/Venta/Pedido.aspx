@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <asp:Label ID="lblPedido" SkinID="Pedido" runat="server">Pedido</asp:Label>
+     <asp:Label ID="lblPedido" SkinID="Pedido" runat="server" Font-Size="30px">Pedido</asp:Label>
         <br />          
         <br />
     <div>
@@ -40,7 +40,7 @@
                 <asp:LinkButton ID="linkRedirect" runat="server" OnClick="VerTienda"><< Agregar Productos al Carrito</asp:LinkButton>
                 <br />
                 <br />
-                <asp:Button ID="btnComprarAhora" Text="Comprar" SkinID="Comprar" runat="server" OnClick="btnComprarAhora_Click" />                
+                <asp:Button ID="btnComprarAhora" Text="Comprar" SkinID="Comprar" runat="server" OnClick="btnComprarAhora_Click" CssClass="btn btn-primary" />                
             </div>
         </div>
     </div>

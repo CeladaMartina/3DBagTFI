@@ -9,7 +9,7 @@
     <div id="divProductos" runat="server"> 
         <br />
         <br />
-        <asp:Button ID="btnAlta" runat="server" Text="Nuevo Producto" SkinID="Nuevo Producto" OnClick="btnAlta_Click" />
+        <asp:Button ID="btnAlta" runat="server" Text="Nuevo Producto" SkinID="Nuevo Producto" OnClick="btnAlta_Click"  CssClass="btn btn-primary" />
         <br />
         <br />
         <asp:GridView ID="gridProducto" runat="server" AutoGenerateColumns="false" Width="100%" OnRowCommand="gridProducto_RowCommand">

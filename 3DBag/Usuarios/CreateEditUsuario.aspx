@@ -37,8 +37,8 @@
         <br />
         <br />
         <br />
-        <asp:Label ID="lblFamilia" runat="server" SkinID="Familia">Familias:</asp:Label>        
-        <asp:Table ID="Familias" runat="server">
+        <asp:Label ID="lblFamilia" runat="server" SkinID="Familias">Familias:</asp:Label>        
+        <asp:Table ID="tituloFam" runat="server">
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell ID="tituloFamAsig" SkinID="Familias Asignadas">Familias Asignadas</asp:TableHeaderCell>
                 <asp:TableHeaderCell>-</asp:TableHeaderCell>
@@ -65,10 +65,10 @@
         <asp:Label ID="lblPatente" runat="server" SkinID="Patentes">Patentes:</asp:Label>      
         <asp:Table ID="Permisos" runat="server">
             <asp:TableHeaderRow>
-                <asp:TableHeaderCell SkinID="Patentes Asignadas">Patentes Asignadas</asp:TableHeaderCell>
+                <asp:TableHeaderCell ID="tituloPatAsig" SkinID="Patentes Asignadas">Patentes Asignadas</asp:TableHeaderCell>
                 <asp:TableHeaderCell>-</asp:TableHeaderCell>
                 <asp:TableHeaderCell>-</asp:TableHeaderCell>
-                <asp:TableHeaderCell SkinID="Patentes No Asignadas">Patentes No Asignadas</asp:TableHeaderCell>
+                <asp:TableHeaderCell ID="tituloPatNoAsig" SkinID="Patentes No Asignadas">Patentes No Asignadas</asp:TableHeaderCell>
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>

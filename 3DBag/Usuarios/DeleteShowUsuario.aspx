@@ -6,7 +6,7 @@
         <br />          
         <br />
     <div id="DivUsuarios" runat="server">
-        <asp:Label ID="lblTitulo" runat="server"></asp:Label>
+        <asp:Label ID="lblTitulo" runat="server" CssClass="font-weight: bold"></asp:Label>
         <br />
         <asp:Label ID="lblPregunta" runat="server" Visible="false"></asp:Label>
         <br />

@@ -53,7 +53,10 @@ namespace _3DBag
         //llenar el iframe con ese pdf
         void TraerPDF()
         {
-            viewPDF.Src = "https://localhost:44388/Facturas/" + Session["NombreFactura"];
+            //string pdfPath = AppDomain.CurrentDomain.BaseDirectory + "Facturas\\" + Session["NombreFactura"];
+            string pdfPath = "https://localhost:44388/" + "\\Facturas\\" + Session["NombreFactura"]; 
+            viewPDF.Attributes["src"] = pdfPath;
+            
         }
 
         void EnviarMail()
@@ -77,23 +80,26 @@ namespace _3DBag
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }
+
+            //se descarga el pdf
+            //string filePath = Server.MapPath("~/" + Session["NombreFactura"]);
+            //Response.Clear();
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("content-disposition", "inline; filename=" + Session["NombreFactura"]);
+            //Response.TransmitFile(filePath);
+            //Response.End();            
         }
         #endregion
 
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
             GestorVenta.Vender(Convert.ToInt32(Session["IdVenta"]));
-            EnviarMail();
+            EnviarMail();           
             lblResultado.Visible = true;
             lblResultado.Text = SiteMaster.TraducirGlobal("Compra finalizada correctamente. Factura enviada por email.") ?? ("Compra finalizada correctamente. Factura enviada por email.");
             Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Venta Realizada", "Baja", 0);
             Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));           
         }
-
-        //private void TimerCallback(object state)
-        //{
-        //    Response.Redirect("../Home/Home.aspx");
-        //}
 
         #region traduccion
         public void Update(ISubject Sujeto)

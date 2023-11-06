@@ -420,6 +420,10 @@ namespace _3DBag
         #region traduccion
         public void Update(ISubject Sujeto)
         {
+            tituloFamAsig.Text = Sujeto.TraducirObserver(tituloFamAsig.SkinID.ToString()) ?? tituloFamAsig.SkinID.ToString();
+            tituloNoFamAsig.Text = Sujeto.TraducirObserver(tituloNoFamAsig.SkinID.ToString()) ?? tituloNoFamAsig.SkinID.ToString();
+            tituloPatAsig.Text = Sujeto.TraducirObserver(tituloPatAsig.SkinID.ToString()) ?? tituloPatAsig.SkinID.ToString();
+            tituloPatNoAsig.Text = Sujeto.TraducirObserver(tituloPatNoAsig.SkinID.ToString()) ?? tituloPatNoAsig.SkinID.ToString();
             lblTitulo.Text = Sujeto.TraducirObserver(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             lblUsuario.Text = Sujeto.TraducirObserver(lblUsuario.SkinID.ToString()) ?? lblUsuario.SkinID.ToString();
             lblNick.Text = Sujeto.TraducirObserver(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();
@@ -440,6 +444,10 @@ namespace _3DBag
 
         public void Traducir()
         {
+            tituloFamAsig.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
+            tituloNoFamAsig.Text = SiteMaster.TraducirGlobal(tituloNoFamAsig.SkinID.ToString()) ?? tituloNoFamAsig.SkinID.ToString();
+            tituloPatAsig.Text = SiteMaster.TraducirGlobal(tituloPatAsig.SkinID.ToString()) ?? tituloPatAsig.SkinID.ToString();
+            tituloPatNoAsig.Text = SiteMaster.TraducirGlobal(tituloPatNoAsig.SkinID.ToString()) ?? tituloPatNoAsig.SkinID.ToString();
             lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();
             lblUsuario.Text = SiteMaster.TraducirGlobal(lblUsuario.SkinID.ToString()) ?? lblUsuario.SkinID.ToString();
             lblNick.Text = SiteMaster.TraducirGlobal(lblNick.SkinID.ToString()) ?? lblNick.SkinID.ToString();

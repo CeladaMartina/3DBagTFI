@@ -85,13 +85,13 @@
         </asp:GridView>
         <br />
         <br />
-        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
+        <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>  
         <br />
         <br />
-        <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>         
+        <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>        
         <br />
         <br />
-        <asp:Button ID="btnWebServiceLogin" runat="server" OnClick="btnWebServiceLogin_Click" Text="Consultar" />
+        <asp:Button ID="btnWebServiceLogin" runat="server" OnClick="btnWebServiceLogin_Click" Text="Consultar" SkinID="Consultar" />
         <br />
         <br />
         <asp:GridView ID="gridLogin" runat="server" AutoGenerateColumns="false" Visible="false">

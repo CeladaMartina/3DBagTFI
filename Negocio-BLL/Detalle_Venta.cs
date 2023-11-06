@@ -57,13 +57,13 @@ namespace Negocio_BLL
         }
 
         public int BajaDV(int IdDetalle, int IdArticle)
-        {
+        {            
             DVTemp.IdDetalle = IdDetalle;
             DVTemp.IdArticulo = IdArticle;
             int i = Mapper.BajaDV(DVTemp);
 
-            DV = Seguridad.CalcularDVH("select * from Detalle_Venta where IdVenta = " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "", "Detalle_Venta");
-            Articulo.EjecutarConsulta("Update Detalle_Venta set DVH= " + DV + " where IdVenta= " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "");
+            //DV = Seguridad.CalcularDVH("select * from Detalle_Venta where IdVenta = " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "", "Detalle_Venta");
+            //Articulo.EjecutarConsulta("Update Detalle_Venta set DVH= " + DV + " where IdVenta= " + DVTemp.IdVenta + " and IdDetalle= " + DVTemp.IdDetalle + "");
             Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
 
             return i;

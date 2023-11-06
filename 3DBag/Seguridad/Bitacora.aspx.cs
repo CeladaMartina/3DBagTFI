@@ -84,6 +84,21 @@ namespace _3DBag
             return A;
         }
 
+        private string ChangeDateFormat(string inputDate)
+        {
+            if (DateTime.TryParseExact(inputDate, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+            {
+                // Successfully parsed the date, now format it in the desired format
+                string modifiedDateString = date.ToString("yyyy-MM-dd");
+                return modifiedDateString;
+            }
+            else
+            {
+                // Handle invalid date input if needed
+                return "Invalid date";
+            }
+        }
+
         void Filtrar()
         {
             try
@@ -93,12 +108,12 @@ namespace _3DBag
                 string strDateDesde = txtDesde.Text;
                 string strDateHasta = txtHasta.Text;
 
-                DateTime dtDesde = DateTime.ParseExact(strDateDesde, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                dtDesde.ToString("yyyy-MM-dd");
+                //cambia el orden de la fecha
+                strDateDesde = ChangeDateFormat(strDateDesde);
+                DateTime dtDesde = DateTime.ParseExact(strDateDesde, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-                DateTime dtHasta = DateTime.ParseExact(strDateHasta, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                dtHasta.ToString("yyyy-MM-dd");
-                dtHasta.AddHours(23).AddMinutes(59).AddSeconds(59);
+                strDateHasta = ChangeDateFormat(strDateHasta);
+                DateTime dtHasta = DateTime.ParseExact(strDateHasta, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                 string criticidad = ListCriticidiad.SelectedValue;
                 string usuario = ListUsuarios.SelectedValue;
@@ -126,15 +141,14 @@ namespace _3DBag
                 }
 
                 //fixear la consulta a la base de datos
-                GridBitacora.DataSource = Seguridad.ConsultarBitacora(dtDesde, dtHasta, consultaCriticidad, consultaUsuario);
-                GridBitacora.DataBind();
+                GridBitacora.DataSource = Seguridad.ConsultarBitacora(dtDesde, dtHasta, consultaCriticidad, consultaUsuario);                
 
-                if (GridBitacora.DataSource == null)
-                {                    
-                    lblError.Visible = true;
-                    lblError.Text = SiteMaster.TraducirGlobal("No hay valores para mostrar en la grilla.") ?? ("No hay valores para mostrar en la grilla.");
-                }               
-                else if (GridBitacora.Rows.Count == 0)
+                if(GridBitacora.DataSource != null)
+                {
+                    GridBitacora.DataBind();
+                    lblError.Visible = false;
+                }                            
+                else if (GridBitacora.Rows.Count == 0 || GridBitacora.DataSource == null)
                 {
                     GridBitacora.DataSource = null;
                     lblError.Visible = true;
@@ -179,7 +193,7 @@ namespace _3DBag
             //esto hace que funcione los botones de "Anterior" y "Siguiente"
             GridView gv = (GridView)sender;
             gv.PageIndex = e.NewPageIndex;
-            ListarBitacora(); 
+            Filtrar();            
         }
         #endregion
         #region botones calendario
@@ -311,7 +325,8 @@ namespace _3DBag
             lblCriticidad.Text = Sujeto.TraducirObserver(lblCriticidad.SkinID.ToString()) ?? lblCriticidad.SkinID.ToString();
             lblUsuarios.Text = Sujeto.TraducirObserver(lblUsuarios.SkinID.ToString()) ?? lblUsuarios.SkinID.ToString();
             bntFiltrar.Text = Sujeto.TraducirObserver(bntFiltrar.SkinID.ToString()) ?? bntFiltrar.SkinID.ToString();
-            btnExportar.Text = Sujeto.TraducirObserver(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();            
+            btnExportar.Text = Sujeto.TraducirObserver(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();   
+            btnWebServiceLogin.Text = Sujeto.TraducirObserver(btnWebServiceLogin.SkinID.ToString()) ?? btnWebServiceLogin.SkinID.ToString();
             linkVolver.Text = Sujeto.TraducirObserver(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
         }
 
@@ -325,6 +340,7 @@ namespace _3DBag
             bntFiltrar.Text = SiteMaster.TraducirGlobal(bntFiltrar.SkinID.ToString()) ?? bntFiltrar.SkinID.ToString();
             btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
             linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
+            btnWebServiceLogin.Text = SiteMaster.TraducirGlobal(btnWebServiceLogin.SkinID.ToString()) ?? btnWebServiceLogin.SkinID.ToString();
         }
         #endregion
 

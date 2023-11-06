@@ -77,6 +77,7 @@ namespace _3DBag
         public void BajaDV(int IdDetalle, int IdArticulo)
         {
             GestorDV.BajaDV(IdDetalle, IdArticulo);
+            //lista nuevamente la tabla con los valores de la venta
             TraerDetalleVenta(Convert.ToInt32(Session["IdVenta"]));            
         }
         #endregion
@@ -102,7 +103,8 @@ namespace _3DBag
 
         protected void btnComprarAhora_Click(object sender, EventArgs e)
         {
-            string ruta = AppDomain.CurrentDomain.BaseDirectory  + "\\Facturas\\"; 
+            string ruta = AppDomain.CurrentDomain.BaseDirectory  + "\\Facturas\\";             
+            //string ruta = Server.MapPath("~/");
             string lblSubtotal = GestorDV.SubTotal(int.Parse(Session["IdVenta"].ToString())).ToString();
             PDF(ruta, Convert.ToInt32(Session["IdVenta"]), GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario), DateTime.Now.ToShortDateString(), decimal.Parse(lblSubtotal));
             

@@ -186,13 +186,13 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblFamilia;
 
         /// <summary>
-        /// Control Familias.
+        /// Control tituloFam.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Familias;
+        protected global::System.Web.UI.WebControls.Table tituloFam;
 
         /// <summary>
         /// Control tituloFamAsig.
@@ -265,6 +265,24 @@ namespace _3DBag
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table Permisos;
+
+        /// <summary>
+        /// Control tituloPatAsig.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell tituloPatAsig;
+
+        /// <summary>
+        /// Control tituloPatNoAsig.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableHeaderCell tituloPatNoAsig;
 
         /// <summary>
         /// Control PAsig.

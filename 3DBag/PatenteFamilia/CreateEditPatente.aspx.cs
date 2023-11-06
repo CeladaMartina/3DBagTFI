@@ -36,7 +36,7 @@ namespace _3DBag
                 else
                 {
                     //si el cod viene, mostrara pantalla Editar                    
-                    lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Patente") ?? ("Editar Patente");
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Editar patente") ?? ("Editar patente");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
 
                     PatTemp = new Propiedades_BE.Patente();

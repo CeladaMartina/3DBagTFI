@@ -31,7 +31,7 @@ namespace _3DBag
                 //si el cod viene null, mostrara pantalla Alta
                 if (Request.QueryString["producto"] == null)
                 {
-                    lblTitulo.Text = SiteMaster.TraducirGlobal("Nuevo Producto") ?? ("Nuevo Producto");
+                    lblTitulo.Text = SiteMaster.TraducirGlobal("Nuevo producto") ?? ("Nuevo producto");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
                     Imagen.Visible = false;
                 }
