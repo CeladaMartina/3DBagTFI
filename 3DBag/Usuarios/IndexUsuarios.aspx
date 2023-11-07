@@ -7,7 +7,7 @@
         <br />          
         <br />
     <div id="divUsuarios" runat="server">        
-        <asp:Button ID="btnAltaUsuario" runat="server" Text="Nuevo Usuario" SkinID="Nuevo Usuario" OnClick="btnAltaUsuario_Click" />
+        <asp:Button ID="btnAltaUsuario" runat="server" Text="Nuevo Usuario" SkinID="Nuevo Usuario" OnClick="btnAltaUsuario_Click" CssClass="btn btn-primary" />
         <br />
         <br />
         <div class="form-group">
@@ -41,7 +41,7 @@
         <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
         <br />
         <br />
-        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" SkinID="Exportar" />
+        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" SkinID="Exportar" CssClass="btn btn-secondary" />
     </div>
-    <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
+    <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>  
 </asp:Content>

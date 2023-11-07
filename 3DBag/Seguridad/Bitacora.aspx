@@ -50,10 +50,10 @@
             </asp:DropDownList>
             <br />
             <br />
-            <asp:Button ID="bntFiltrar" runat="server" Text="Filtar" SkinID="Filtrar" OnClick="bntFiltrar_Click" />
+            <asp:Button ID="bntFiltrar" runat="server" Text="Filtar" SkinID="Filtrar" OnClick="bntFiltrar_Click" CssClass="btn btn-primary" />
             <br />
             <br />
-            <asp:Button ID="btnExportar" runat="server" Text="Exportar" SkinID="Exportar" OnClick="btnExportar_Click" />
+            <asp:Button ID="btnExportar" runat="server" Text="Exportar" SkinID="Exportar" OnClick="btnExportar_Click" CssClass="btn btn-secondary" />
         </div>
         <asp:GridView ID="GridBitacora" PageSize="10" runat="server" AllowPaging="true" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnDataBound="GridBitacora_DataBound" OnPageIndexChanging="GridBitacora_PageIndexChanging">
             <AlternatingRowStyle BackColor="White" />
@@ -91,7 +91,7 @@
         <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>        
         <br />
         <br />
-        <asp:Button ID="btnWebServiceLogin" runat="server" OnClick="btnWebServiceLogin_Click" Text="Consultar" SkinID="Consultar" />
+        <asp:Button ID="btnWebServiceLogin" runat="server" OnClick="btnWebServiceLogin_Click" Text="Consultar" SkinID="Consultar" CssClass="btn btn-info"/>
         <br />
         <br />
         <asp:GridView ID="gridLogin" runat="server" AutoGenerateColumns="false" Visible="false">
@@ -106,5 +106,5 @@
         <br />
         <br />
     </div>
-     <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>   
+     <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>   
 </asp:Content>

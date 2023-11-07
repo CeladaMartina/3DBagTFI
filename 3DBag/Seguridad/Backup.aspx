@@ -22,5 +22,5 @@
         <br />
         <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
     </div>
-    <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>   
+    <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>   
 </asp:Content>

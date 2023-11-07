@@ -31,13 +31,15 @@ namespace _3DBag
                 if (Request.QueryString["patente"] == null)
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Nueva Patente") ?? ("Nueva Patente");
-                    btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");                    
+                    btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
+                    btnFunction.CssClass = "btn btn-success";
                 }
                 else
                 {
                     //si el cod viene, mostrara pantalla Editar                    
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Editar patente") ?? ("Editar patente");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
+                    btnFunction.CssClass = "btn btn-primary";
 
                     PatTemp = new Propiedades_BE.Patente();
                     PatTemp.Id = Convert.ToInt32(Request.QueryString["patente"]);

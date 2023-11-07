@@ -4,11 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="lblTitulo" SkinID="Familias" runat="server">Familias</asp:Label>
         <br />          
-        <br />
-    <asp:Button  ID="btnAltaFamilia" runat="server" OnClick="btnAltaFamilia_Click" Text="Alta Familia" SkinID="Agregar" />
+        <br />    
+    <div id="divFamilias" runat="server">
+        <asp:Button  ID="btnAltaFamilia" runat="server" OnClick="btnAltaFamilia_Click" Text="Alta Familia" SkinID="Agregar" CssClass="btn btn-primary" />
     <br />          
     <br />
-    <div id="divFamilias" runat="server">
     <asp:GridView ID="gridFamilias" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnRowCommand="gridFamilias_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
@@ -30,5 +30,5 @@
         <br />
         <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
     </div>
-    <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
+    <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>  
 </asp:Content>

@@ -252,7 +252,7 @@ namespace Acceso_DAL
             Acceso.AbrirConexion();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select Us.Nick,B.Fecha,B.Descripcion,B.Criticidad  from Usuario Us inner join Bitacora B  on Us.IdUsuario = B.IdUsuario where Fecha BETWEEN '" + _FechaDesde.Ticks + "' and '" + _FechaHasta.Ticks + "' and Criticidad IN(" + consultaCriticidad + ") and B.IdUsuario IN (" + consultaUsuario + ")";
+            cmd.CommandText = "select Us.Nick,B.Fecha,B.Descripcion,B.Criticidad  from Usuario Us inner join Bitacora B  on Us.IdUsuario = B.IdUsuario where Fecha BETWEEN '" + _FechaDesde.Ticks + "' and '" + _FechaHasta.Ticks + "' and Criticidad IN(" + consultaCriticidad + ") and B.IdUsuario IN (" + consultaUsuario + ") order by Fecha desc";
             cmd.Connection = Acceso.Conexion;
 
             SqlDataReader lector = cmd.ExecuteReader();

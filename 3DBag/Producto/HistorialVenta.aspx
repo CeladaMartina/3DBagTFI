@@ -26,13 +26,12 @@
             <br />
         <br />
         <asp:LinkButton ID="LinkRedireccion" runat="server" SkinID="Volver a la lista" OnClick="LinkRedireccion_Click"><< Volver atrás</asp:LinkButton>
-        </div>
         <br />
         <br />
-        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" SkinID="Exportar" />
+        <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" SkinID="Exportar" CssClass="btn btn-secondary" />
         <br />
         <br />
-        <asp:Button ID="btnWebServiceCliente" runat="server" OnClick="btnWebServiceCliente_Click" Text="Consultar" SkinID="Consultar" />
+        <asp:Button ID="btnWebServiceCliente" runat="server" OnClick="btnWebServiceCliente_Click" Text="Consultar" SkinID="Consultar" CssClass="btn btn-info" />
         <br />
         <br />
         <asp:GridView ID="gridClientes" runat="server" AutoGenerateColumns="false" Visible="false">
@@ -46,6 +45,7 @@
         </asp:GridView>
         <br />
         <br />
-        <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
+        </div>        
+        <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>  
     </div>
 </asp:Content>

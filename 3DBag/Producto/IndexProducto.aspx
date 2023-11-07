@@ -6,10 +6,8 @@
     <asp:Label ID="lblTitulo" SkinID="Productos" runat="server">Productos</asp:Label>
     <br />
     <br />
-    <div id="divProductos" runat="server"> 
-        <br />
-        <br />
-        <asp:Button ID="btnAlta" runat="server" Text="Nuevo Producto" SkinID="Nuevo Producto" OnClick="btnAlta_Click"  CssClass="btn btn-primary" />
+    <div id="divProductos" runat="server">         
+        <asp:Button ID="btnAlta" runat="server" Text="Nuevo Producto" SkinID="Agregar" OnClick="btnAlta_Click"  CssClass="btn btn-primary" />
         <br />
         <br />
         <asp:GridView ID="gridProducto" runat="server" AutoGenerateColumns="false" Width="100%" OnRowCommand="gridProducto_RowCommand">
@@ -40,7 +38,7 @@
         </asp:GridView>
         <br />
         <br />
-        <asp:Button ID="btnWebService" runat="server" Text="Consultar" SkinID="Consultar" OnClick="btnWebService_Click" />
+        <asp:Button ID="btnWebService" runat="server" Text="Consultar" SkinID="Consultar" OnClick="btnWebService_Click" CssClass="btn btn-secondary" />
         <br />
         <br />
         <asp:Label ID="lblRespuesta" runat="server" Visible="false"></asp:Label>
@@ -48,5 +46,5 @@
         <br />
         <asp:LinkButton ID="linkVolver" SkinID="Volver atras" runat="server" OnClick="linkVolver_Click"><< Volver atras</asp:LinkButton>
     </div>
-     <asp:Label ID="lblPermiso" runat="server" Visible="false"></asp:Label>  
+     <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>  
 </asp:Content>

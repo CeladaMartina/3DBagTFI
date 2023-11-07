@@ -18,5 +18,5 @@
     <asp:Label ID="lblRespuesta" runat="server"></asp:Label>
     <br />
     <br />
-    <asp:Button ID="btnActualizarContra" SkinID="Enviar Contraseña" runat="server" Text="Enviar Contraseña" OnClick="btnActualizarContra_Click"/>
+    <asp:Button ID="btnActualizarContra" SkinID="Enviar Contraseña" runat="server" Text="Enviar Contraseña" OnClick="btnActualizarContra_Click" CssClass="btn btn-primary"/>
 </asp:Content>

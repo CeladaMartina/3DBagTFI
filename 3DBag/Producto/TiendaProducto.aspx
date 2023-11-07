@@ -28,7 +28,7 @@
                 <asp:Label runat="server" ID="lblCantidad" SkinID="Cantidad">Cantidad: </asp:Label>  
                  <asp:TextBox ID="TxtCantidad" runat="server"></asp:TextBox>
                 <br />
-                <asp:Button ID="BtnAgregar" runat="server" Text="Agregar" SkinID="Agregar" CommandName="AgregarCarrito" />
+                <asp:Button ID="BtnAgregar" runat="server" Text="Agregar" SkinID="Agregar" CommandName="AgregarCarrito" CssClass="btn btn-primary" />
                 <br />
             </ItemTemplate>
         </asp:DataList>   

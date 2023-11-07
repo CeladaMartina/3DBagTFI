@@ -33,7 +33,8 @@ namespace _3DBag
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Eliminar") ?? ("Eliminar");
                     lblPregunta.Visible = true;
-                    lblPregunta.Text = SiteMaster.TraducirGlobal("¿Estás seguro de que quieres eliminar esto?") ?? ("¿Estás seguro de que quieres eliminar esto?");                   
+                    lblPregunta.Text = SiteMaster.TraducirGlobal("¿Estás seguro de que quieres eliminar esto?") ?? ("¿Estás seguro de que quieres eliminar esto?");
+                    btnBorrar.CssClass = "btn btn-danger";
                 }
                 else
                 {

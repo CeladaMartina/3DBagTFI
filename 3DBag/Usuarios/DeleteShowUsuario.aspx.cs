@@ -41,6 +41,7 @@ namespace _3DBag
                     if (Request.QueryString["Funcion"] == "borrar")
                     {
                         lblTitulo.Text = SiteMaster.TraducirGlobal("Eliminar") ?? ("Eliminar");
+                        btnBorrar.CssClass = "btn btn-danger";
                         lblPregunta.Visible = true;
                         lblPregunta.Text = SiteMaster.TraducirGlobal("¿Estás seguro de que quieres eliminar esto?") ?? ("¿Estás seguro de que quieres eliminar esto?");
                     }

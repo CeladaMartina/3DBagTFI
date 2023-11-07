@@ -33,6 +33,7 @@ namespace _3DBag
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Nuevo producto") ?? ("Nuevo producto");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
+                    btnFunction.CssClass = "btn btn-success";
                     Imagen.Visible = false;
                 }
                 else
@@ -41,6 +42,7 @@ namespace _3DBag
                     codProd = Convert.ToInt32(Request.QueryString["producto"]);
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Producto") ?? ("Editar Producto");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
+                    btnFunction.CssClass = "btn btn-primary";
                     TraerProducto(codProd);                    
                 }
             }

@@ -31,6 +31,7 @@ namespace _3DBag
                 {
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Nueva Familia") ?? ("Nueva Familia");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
+                    btnFunction.CssClass = "btn btn-success";
 
                     TraerTodasPatentes();
                 }
@@ -39,6 +40,7 @@ namespace _3DBag
                     //si el id viene, mostrara pantalla Editar                
                     lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Familia") ?? ("Editar Familia");
                     btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
+                    btnFunction.CssClass = "btn btn-primary";
 
                     TraerPatentes();
                 }

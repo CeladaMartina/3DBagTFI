@@ -41,8 +41,10 @@ namespace _3DBag
                     {
                         lblTitulo.Text = SiteMaster.TraducirGlobal("Nuevo Usuario") ?? ("Nuevo Usuario");
                         btnFunction.Text = SiteMaster.TraducirGlobal("Agregar") ?? ("Agregar");
+                        btnFunction.CssClass = "btn btn-success";
                         TraerPatentes();
                         TrearFamilias();
+
                     }
                     else
                     {
@@ -50,6 +52,7 @@ namespace _3DBag
                         nick = Request.QueryString["usuario"];
                         lblTitulo.Text = SiteMaster.TraducirGlobal("Editar Usuario") ?? ("Editar Usuario");
                         btnFunction.Text = SiteMaster.TraducirGlobal("Editar") ?? ("Editar");
+                        btnFunction.CssClass = "btn btn-primary";
                         TraerUsuario();
                         TraerPermisos();
                     }
