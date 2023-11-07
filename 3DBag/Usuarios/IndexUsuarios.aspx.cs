@@ -101,6 +101,7 @@ namespace _3DBag
             btnAltaUsuario.Text = SiteMaster.TraducirGlobal(btnAltaUsuario.SkinID.ToString()) ?? btnAltaUsuario.SkinID.ToString();
             btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
             linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
+            TraducirGridview();
         }
         #endregion
 
@@ -153,6 +154,86 @@ namespace _3DBag
         protected void linkVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Navegacion/Administracion.aspx");
+        }
+
+        void TraducirGridview()
+        {
+            foreach (DataControlField column in gridUsuarios.Columns)
+            {
+                //buttons
+                if (column is ButtonField buttonField)
+                {
+                    string headerText = buttonField.Text;
+
+                    if (Session["IdiomaSelect"].ToString() == "Ingles")
+                    {
+                        switch (headerText)
+                        {
+                            case "Editar":
+                                buttonField.Text = "Edit";
+                                break;
+                            case "Ver":
+                                buttonField.Text = "Show";
+                                break;
+                            case "Borrar":
+                                buttonField.Text = "Delete";
+                                break;
+                        }
+                    }
+                    else if (Session["IdiomaSelect"].ToString() == "Español")
+                    {
+                        switch (headerText)
+                        {
+                            case "Editar":
+                                buttonField.Text = "Editar";
+                                break;
+                            case "Ver":
+                                buttonField.Text = "Ver";
+                                break;
+                            case "Borrar":
+                                buttonField.Text = "Borrar";
+                                break;
+                        }
+                    }
+                }
+
+                //columna header
+                if (column is BoundField boundField)
+                {
+                    string dataField = boundField.HeaderText;
+
+                    if (Session["IdiomaSelect"].ToString() == "Ingles")
+                    {
+                        switch (dataField)
+                        {                            
+                            case "Nombre":
+                                boundField.HeaderText = "Name";
+                                break;
+                            case "Mail":
+                                boundField.HeaderText = "Email";
+                                break;
+                            case "Idioma":
+                                boundField.HeaderText = "Language";
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (dataField)
+                        {
+                            case "Nombre":
+                                boundField.HeaderText = "Nombre";
+                                break;
+                            case "Mail":
+                                boundField.HeaderText = "Correo";
+                                break;
+                            case "Idioma":
+                                boundField.HeaderText = "Idioma";
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

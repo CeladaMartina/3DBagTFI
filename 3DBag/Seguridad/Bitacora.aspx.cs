@@ -341,6 +341,7 @@ namespace _3DBag
             btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
             linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
             btnWebServiceLogin.Text = SiteMaster.TraducirGlobal(btnWebServiceLogin.SkinID.ToString()) ?? btnWebServiceLogin.SkinID.ToString();
+            TraducirGridview();
         }
         #endregion
 
@@ -357,6 +358,55 @@ namespace _3DBag
         protected void linkVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Navegacion/Seguridad.aspx");
+        }
+
+        void TraducirGridview()
+        {
+            foreach (DataControlField column in GridBitacora.Columns)
+            {
+                //columna header
+                if (column is BoundField boundField)
+                {
+                    string dataField = boundField.HeaderText;
+
+                    if (Session["IdiomaSelect"].ToString() == "Ingles")
+                    {
+                        switch (dataField)
+                        {
+                            case "NickUs":
+                                boundField.HeaderText = "Nick";
+                                break;
+                            case "Descripcion":
+                                boundField.HeaderText = "Description";
+                                break;
+                            case "Fecha":
+                                boundField.HeaderText = "Date";
+                                break;
+                            case "Criticidad":
+                                boundField.HeaderText = "Criticality";
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (dataField)
+                        {
+                            case "NickUs":
+                                boundField.HeaderText = "Nick";
+                                break;
+                            case "Descripcion":
+                                boundField.HeaderText = "Descripcion";
+                                break;
+                            case "Fecha":
+                                boundField.HeaderText = "Fecha";
+                                break;
+                            case "Criticidad":
+                                boundField.HeaderText = "Criticidad";
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -74,6 +74,7 @@ namespace _3DBag
             LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
             btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
             btnWebServiceCliente.Text = SiteMaster.TraducirGlobal(btnWebServiceCliente.SkinID.ToString()) ?? btnWebServiceCliente.SkinID.ToString();
+            TraducirGridview();
         }
         #endregion
 
@@ -127,6 +128,67 @@ namespace _3DBag
         protected void LinkRedireccion_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Navegacion/Comercial.aspx");
+        }
+
+        void TraducirGridview()
+        {
+            foreach (DataControlField column in gridVentas.Columns)
+            {                
+                //columna header
+                if (column is BoundField boundField)
+                {
+                    string dataField = boundField.HeaderText;
+
+                    if (Session["IdiomaSelect"].ToString() == "Ingles")
+                    {
+                        switch (dataField)
+                        {
+                            case "NumVenta":
+                                boundField.HeaderText = "Sale Number";
+                                break;
+                            case "Nombre":
+                                boundField.HeaderText = "Name";
+                                break;
+                            case "Descripcion":
+                                boundField.HeaderText = "Description";
+                                break;
+                            case "Cantidad":
+                                boundField.HeaderText = "Amount";
+                                break;
+                            case "Monto":
+                                boundField.HeaderText = "Price";
+                                break;
+                            case "Fecha":
+                                boundField.HeaderText = "Date";
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (dataField)
+                        {
+                            case "NumVenta":
+                                boundField.HeaderText = "Nro Venta";
+                                break;
+                            case "Nombre":
+                                boundField.HeaderText = "Nombre";
+                                break;
+                            case "Descripcion":
+                                boundField.HeaderText = "Descripcion";
+                                break;
+                            case "Cantidad":
+                                boundField.HeaderText = "Cantidad";
+                                break;
+                            case "Monto":
+                                boundField.HeaderText = "Monto";
+                                break;
+                            case "Fecha":
+                                boundField.HeaderText = "Fecha";
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

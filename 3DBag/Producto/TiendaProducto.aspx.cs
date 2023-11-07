@@ -151,16 +151,36 @@ namespace _3DBag
 
         public void Traducir()
         {
-            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();            
-            //BtnAgregar.Text = SiteMaster.TraducirGlobal(BtnAgregar.SkinID.ToString()) ?? BtnAgregar.SkinID.ToString();
+            lblTitulo.Text = SiteMaster.TraducirGlobal(lblTitulo.SkinID.ToString()) ?? lblTitulo.SkinID.ToString();          
             VerCarrito.Text = SiteMaster.TraducirGlobal(VerCarrito.SkinID.ToString()) ?? VerCarrito.SkinID.ToString();  
-            LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString();
+            LinkRedireccion.Text = SiteMaster.TraducirGlobal(LinkRedireccion.SkinID.ToString()) ?? LinkRedireccion.SkinID.ToString(); 
         }
 
         protected void LinkRedireccion_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Navegacion/Comercial.aspx");
         }
+                
         #endregion
+
+        protected void dataList_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            Label lblNombre = (Label)e.Item.FindControl("lblNombre");
+            Label lblDesc = (Label)e.Item.FindControl("lblDescripcion");
+            Label lblPrecio = (Label)e.Item.FindControl("lblPrecio");
+            Label lblCantidad = (Label)e.Item.FindControl("lblCantidad");
+            Button bntAgregar = (Button)e.Item.FindControl("BtnAgregar");
+
+            //terminar viendo si el if funca bien
+            if (Session["IdiomaSelect"].ToString() == "Ingles" || Session["IdiomaSelect"].ToString() == "Español" || Session["IdiomaSelect"].ToString() == "")
+            {               
+                lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();                
+                lblDesc.Text = SiteMaster.TraducirGlobal(lblDesc.SkinID.ToString()) ?? lblDesc.SkinID.ToString();                
+                lblPrecio.Text = SiteMaster.TraducirGlobal(lblPrecio.SkinID.ToString()) ?? lblPrecio.SkinID.ToString();                
+                lblCantidad.Text = SiteMaster.TraducirGlobal(lblCantidad.SkinID.ToString()) ?? lblCantidad.SkinID.ToString();               
+                bntAgregar.Text = SiteMaster.TraducirGlobal(bntAgregar.SkinID.ToString()) ?? bntAgregar.SkinID.ToString();
+            }
+
+        }
     }
 }

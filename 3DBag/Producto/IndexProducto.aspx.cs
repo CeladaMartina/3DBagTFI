@@ -108,12 +108,99 @@ namespace _3DBag
             btnAlta.Text = SiteMaster.TraducirGlobal(btnAlta.SkinID.ToString()) ?? btnAlta.SkinID.ToString();
             btnWebService.Text = SiteMaster.TraducirGlobal(btnWebService.SkinID.ToString()) ?? btnWebService.SkinID.ToString();
             linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
+            TraducirGridview();
         }
         #endregion
 
         protected void linkVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Navegacion/Comercial.aspx");
+        }
+
+        void TraducirGridview()
+        {
+            foreach (DataControlField column in gridProducto.Columns)
+            {
+                //buttons
+                if (column is ButtonField buttonField)
+                {
+                    string headerText = buttonField.Text;
+
+                    if (Session["IdiomaSelect"].ToString() == "Ingles")
+                    {
+                        switch (headerText)
+                        {
+                            case "Editar":
+                                buttonField.Text = "Edit";
+                                break;
+                            case "Ver":
+                                buttonField.Text = "Show";
+                                break;
+                            case "Borrar":
+                                buttonField.Text = "Delete";
+                                break;
+                        }
+                    }
+                    else if (Session["IdiomaSelect"].ToString() == "Español")
+                    {
+                        switch (headerText)
+                        {
+                            case "Editar":
+                                buttonField.Text = "Editar";
+                                break;
+                            case "Ver":
+                                buttonField.Text = "Ver";
+                                break;
+                            case "Borrar":
+                                buttonField.Text = "Borrar";
+                                break;
+                        }
+                    }
+                }
+
+                //columna header
+                if (column is BoundField boundField)
+                {
+                    string dataField = boundField.HeaderText;
+
+                    if (Session["IdiomaSelect"].ToString() == "Ingles")
+                    {
+                        switch (dataField)
+                        {
+                            case "CodProd":
+                                boundField.HeaderText = "Code";
+                                break;
+                            case "Nombre":
+                                boundField.HeaderText = "Name";
+                                break;
+                            case "Descripcion":
+                                boundField.HeaderText = "Description";
+                                break;
+                            case "PUnit":
+                                boundField.HeaderText = "Price";
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (dataField)
+                        {
+                            case "CodProd":
+                                boundField.HeaderText = "Codigo";
+                                break;
+                            case "Nombre":
+                                boundField.HeaderText = "Nombre";
+                                break;
+                            case "Descripcion":
+                                boundField.HeaderText = "Descripcion";
+                                break;
+                            case "PUnit":
+                                boundField.HeaderText = "Precio";
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 }
