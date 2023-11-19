@@ -254,7 +254,10 @@ namespace Acceso_DAL
                 A.Descripcion = (R["Descripcion"].ToString());
                 A.Material = (R["Material"].ToString());               
                 A.Stock = int.Parse(R["Stock"].ToString());
-                A.PUnit = decimal.Parse(R["PUnit"].ToString());
+                //eliminamos los ultimos 2 digitos
+                string precio = R["PUnit"].ToString();
+                precio = precio.Remove(precio.Length - 2);
+                A.PUnit = decimal.Parse(precio);
                 //se convierte la imagen  de byte a base64 y despues a img
                 byte[] bytes = (byte[])R["Imagen"];
                 string str = Convert.ToBase64String(bytes);
