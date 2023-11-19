@@ -34,7 +34,17 @@ namespace _3DBag
                     Traducir();
                 }
 
-                ListarProductos();
+                if(Session["TipoUsuario"].ToString() == "Cliente")
+                {
+                    ListarProductos();
+                }
+                else
+                {
+                    divTienda.Visible = false;
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
+                    lblPermiso.Visible = true;
+                }
+                
             }
             
         }

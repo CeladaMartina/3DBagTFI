@@ -34,19 +34,29 @@ namespace _3DBag
                     Traducir();
                 }
 
-                IdVenta = Convert.ToInt32(Session["IdVenta"]);
-
-                if (IdVenta == 0)
+                if (Session["TipoUsuario"].ToString() == "Cliente")
                 {
-                    gridDetalleVenta.Visible = false;
-                    btnComprarAhora.Visible = false;                                             
+                    IdVenta = Convert.ToInt32(Session["IdVenta"]);
+
+                    if (IdVenta == 0)
+                    {
+                        gridDetalleVenta.Visible = false;
+                        btnComprarAhora.Visible = false;
+                    }
+                    else
+                    {
+                        //lblMensaje.Visible = false;
+                        gridDetalleVenta.Visible = true;
+                        TraerDetalleVenta(IdVenta);
+                    }
                 }
                 else
                 {
-                    //lblMensaje.Visible = false;
-                    gridDetalleVenta.Visible = true;
-                    TraerDetalleVenta(IdVenta);                    
-                }                
+                    divPedido.Visible = false;
+                    lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
+                    lblPermiso.Visible = true;
+                }              
+                           
             }
         }
 

@@ -352,6 +352,7 @@ namespace _3DBag
                     if (Request.QueryString["Funcion"] == "alta")
                     {
                         Alta(txtNick.Text, txtContraseña.Text, txtNombre.Text, txtMail.Text, checkBloqueado.Checked, 0, txtIdioma.Text,  0);                       
+                        
                     }
                     else if(Request.QueryString["Funcion"] == "editar")
                     {

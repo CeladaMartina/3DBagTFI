@@ -65,6 +65,7 @@ namespace _3DBag
                         containerHome.Visible = true;
                         lblUsuario.Visible = true;
                         lblUsuario.Text = webmaster.Procesar(usuario);
+                        Session["TipoUsuario"] = lblUsuario.Text;
                     }
                 }
             }            

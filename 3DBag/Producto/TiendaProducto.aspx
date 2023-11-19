@@ -2,10 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-        <asp:Label ID="lblTitulo" runat="server" SkinID="Tienda">Tienda</asp:Label>
+    <asp:Label ID="lblTitulo" runat="server" SkinID="Tienda">Tienda</asp:Label>
         <br />
         <br />
+    <div id="divTienda" runat="server">        
         <asp:DataList ID="dataList" runat="server" RepeatColumns="5" RepeatDirection="Horizontal" Width="800px"  OnItemCommand="dataList_ItemCommand" OnItemDataBound="dataList_ItemDataBound" >   
             <ItemTemplate>
                 <asp:Label ID="IdVentaUsuario" runat="server" Text="" Visible="False" />
@@ -43,4 +43,5 @@
         <asp:LinkButton ID="VerCarrito" runat="server" OnClick="VerCarrito_Click" Visible="False" SkinID="Ver Carrito de Compras">-- Ver Carrito de Compras --</asp:LinkButton>
         <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion %>" SelectCommand="SELECT [IdArticulo], [Nombre], [Descripcion], [PUnit], [Imagen] FROM [Articulo]"></asp:SqlDataSource>--%>
     </div>
+     <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>
 </asp:Content>
