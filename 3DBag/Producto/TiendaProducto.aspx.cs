@@ -26,8 +26,7 @@ namespace _3DBag
             contentPlace = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             if (!IsPostBack)
             {
-                //traduccion de la pagina
-                
+                //traduccion de la pagina                
                 if (Session["IdiomaSelect"] != null)
                 {
                     DropDownList masterDropDownList = (DropDownList)Master.FindControl("DropDownListIdioma");
@@ -160,7 +159,7 @@ namespace _3DBag
         {
             Response.Redirect("../Navegacion/Comercial.aspx");
         }
-                
+
         #endregion
 
         protected void dataList_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -171,13 +170,20 @@ namespace _3DBag
             Label lblCantidad = (Label)e.Item.FindControl("lblCantidad");
             Button bntAgregar = (Button)e.Item.FindControl("BtnAgregar");
 
-            //terminar viendo si el if funca bien
-            if (Session["IdiomaSelect"].ToString() == "Ingles" || Session["IdiomaSelect"].ToString() == "Español" || Session["IdiomaSelect"].ToString() == "")
-            {               
-                lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();                
-                lblDesc.Text = SiteMaster.TraducirGlobal(lblDesc.SkinID.ToString()) ?? lblDesc.SkinID.ToString();                
-                lblPrecio.Text = SiteMaster.TraducirGlobal(lblPrecio.SkinID.ToString()) ?? lblPrecio.SkinID.ToString();                
-                lblCantidad.Text = SiteMaster.TraducirGlobal(lblCantidad.SkinID.ToString()) ?? lblCantidad.SkinID.ToString();               
+            //idioma null = espanol, asi hace la traduccion.
+            if(Session["IdiomaSelect"] == null)
+            {
+                string idioma;
+                idioma = "Español";
+                Session["IdiomaSelect"] = idioma;
+            }
+
+            if (Session["IdiomaSelect"].ToString() == "Ingles" || Session["IdiomaSelect"].ToString() == "Español")
+            {
+                lblNombre.Text = SiteMaster.TraducirGlobal(lblNombre.SkinID.ToString()) ?? lblNombre.SkinID.ToString();
+                lblDesc.Text = SiteMaster.TraducirGlobal(lblDesc.SkinID.ToString()) ?? lblDesc.SkinID.ToString();
+                lblPrecio.Text = SiteMaster.TraducirGlobal(lblPrecio.SkinID.ToString()) ?? lblPrecio.SkinID.ToString();
+                lblCantidad.Text = SiteMaster.TraducirGlobal(lblCantidad.SkinID.ToString()) ?? lblCantidad.SkinID.ToString();
                 bntAgregar.Text = SiteMaster.TraducirGlobal(bntAgregar.SkinID.ToString()) ?? bntAgregar.SkinID.ToString();
             }
 

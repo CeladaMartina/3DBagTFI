@@ -6,7 +6,7 @@
         <asp:Label ID="lblTitulo" runat="server" SkinID="Tienda">Tienda</asp:Label>
         <br />
         <br />
-        <asp:DataList ID="dataList" runat="server" RepeatColumns="5" RepeatDirection="Horizontal" Width="800px"  OnItemCommand="dataList_ItemCommand" OnItemDataBound="dataList_ItemDataBound">   
+        <asp:DataList ID="dataList" runat="server" RepeatColumns="5" RepeatDirection="Horizontal" Width="800px"  OnItemCommand="dataList_ItemCommand" OnItemDataBound="dataList_ItemDataBound" >   
             <ItemTemplate>
                 <asp:Label ID="IdVentaUsuario" runat="server" Text="" Visible="False" />
                 <%--Imagen:
