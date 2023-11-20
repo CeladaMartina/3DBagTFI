@@ -153,20 +153,23 @@ namespace _3DBag
             BaseFont Fuente3 = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, true);
             iTextSharp.text.Font TablasTexto = new iTextSharp.text.Font(Fuente3, 12f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
+            //logo de la empresa
             iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(AppDomain.CurrentDomain.BaseDirectory + "\\Images\\logo.png");
-            logo.ScalePercent(30);
-            logo.Alignment = Element.ALIGN_CENTER;
-            
-            doc.Add(logo);
+            logo.ScalePercent(20);
+            logo.Alignment = Element.ALIGN_LEFT;            
 
-            Paragraph Venta = new Paragraph("Remito de Venta", Titulo);
-            Venta.Alignment = Element.ALIGN_CENTER;
+            Paragraph Venta = new Paragraph("Remito", Titulo);
+            Venta.Alignment = Element.ALIGN_LEFT;
             doc.Add(Venta);
             doc.Add(new Chunk("\n"));
 
-            Paragraph NVenta = new Paragraph("Numero de venta: " + NumVenta + "", Titulo2);
-            NVenta.Alignment = Element.ALIGN_CENTER;
-            doc.Add(NVenta);
+            PdfPTable tableHeader = new PdfPTable(2);
+            PdfPCell imageCell = new PdfPCell(logo);
+            imageCell.HorizontalAlignment = Element.ALIGN_LEFT;
+            imageCell.Border = 0;
+            tableHeader.AddCell(new PdfPCell(imageCell));
+            tableHeader.AddCell(new PdfPCell(new Phrase("Nro. venta: " + NumVenta + "", Titulo2)) { HorizontalAlignment = Element.ALIGN_RIGHT, Border = 0 });
+            doc.Add(tableHeader);
             doc.Add(new Chunk("\n"));
 
             PdfPTable tableU = new PdfPTable(2);

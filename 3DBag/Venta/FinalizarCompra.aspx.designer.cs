@@ -15,24 +15,6 @@ namespace _3DBag
     {
 
         /// <summary>
-        /// Control lblCliente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCliente;
-
-        /// <summary>
-        /// Control lblClienteResp.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblClienteResp;
-
-        /// <summary>
         /// Control lblIdVenta.
         /// </summary>
         /// <remarks>
@@ -51,13 +33,22 @@ namespace _3DBag
         protected global::System.Web.UI.WebControls.Label lblIdVentaResp;
 
         /// <summary>
-        /// Control lblTipoFactura.
+        /// Control lblCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoFactura;
+        protected global::System.Web.UI.WebControls.Label lblCliente;
+
+        /// <summary>
+        /// Control lblClienteResp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClienteResp;
 
         /// <summary>
         /// Control viewPDF.
