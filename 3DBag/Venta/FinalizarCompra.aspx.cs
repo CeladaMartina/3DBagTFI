@@ -80,14 +80,7 @@ namespace _3DBag
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }
-
-            //se descarga el pdf
-            //string filePath = Server.MapPath("~/" + Session["NombreFactura"]);
-            //Response.Clear();
-            //Response.ContentType = "application/pdf";
-            //Response.AddHeader("content-disposition", "inline; filename=" + Session["NombreFactura"]);
-            //Response.TransmitFile(filePath);
-            //Response.End();            
+     
         }
         #endregion
 

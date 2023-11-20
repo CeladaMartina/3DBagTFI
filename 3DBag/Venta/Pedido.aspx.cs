@@ -135,7 +135,7 @@ namespace _3DBag
             string rutaViewPDF= "Venta" + NumVenta + "__" + fecha_final + ".pdf";
 
             System.IO.FileStream fs = new FileStream(ruta_final, FileMode.Create);
-            Document doc = new Document(PageSize.A4);
+            Document doc = new Document(PageSize.A4);            
             doc.SetMargins(40f, 40f, 40f, 40f);
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
@@ -153,28 +153,33 @@ namespace _3DBag
             BaseFont Fuente3 = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, true);
             iTextSharp.text.Font TablasTexto = new iTextSharp.text.Font(Fuente3, 12f, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
-            Paragraph Venta = new Paragraph("Venta", Titulo);
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(AppDomain.CurrentDomain.BaseDirectory + "\\Images\\logo.png");
+            logo.ScalePercent(30);
+            logo.Alignment = Element.ALIGN_CENTER;
+            
+            doc.Add(logo);
+
+            Paragraph Venta = new Paragraph("Remito de Venta", Titulo);
             Venta.Alignment = Element.ALIGN_CENTER;
             doc.Add(Venta);
             doc.Add(new Chunk("\n"));
 
             Paragraph NVenta = new Paragraph("Numero de venta: " + NumVenta + "", Titulo2);
-            NVenta.Alignment = Element.ALIGN_LEFT;
+            NVenta.Alignment = Element.ALIGN_CENTER;
             doc.Add(NVenta);
             doc.Add(new Chunk("\n"));
 
-            Paragraph ClienteN = new Paragraph("Cliente: " + Cliente + "", Titulo2);
-            ClienteN.Alignment = Element.ALIGN_LEFT;
-            doc.Add(ClienteN);
+            PdfPTable tableU = new PdfPTable(2);
+            tableU.AddCell(new PdfPCell(new Phrase("Cliente: " + Cliente + "")) { HorizontalAlignment = Element.ALIGN_LEFT, Border=0 });
+            tableU.AddCell(new PdfPCell(new Phrase("Fecha: " + Fecha + "")) { HorizontalAlignment = Element.ALIGN_RIGHT,Border=0 });
+            tableU.AddCell(new PdfPCell(new Phrase("Direccion: Lavalle 1625")) { HorizontalAlignment = Element.ALIGN_LEFT, Border = 0 });
+            tableU.AddCell(new PdfPCell(new Phrase("Telefono: 1137801717")) { HorizontalAlignment = Element.ALIGN_RIGHT, Border = 0 });
+            tableU.AddCell(new PdfPCell(new Phrase("Ciudad: Buenos Aires")) { HorizontalAlignment = Element.ALIGN_LEFT, Border = 0 });
+            tableU.AddCell(new PdfPCell(new Phrase("Codigo Postal: 1836")) { HorizontalAlignment = Element.ALIGN_RIGHT, Border = 0 });
+            doc.Add(tableU);
             doc.Add(new Chunk("\n"));
-
-            Paragraph FechaP = new Paragraph("Fecha: " + Fecha + "", Titulo2);
-            FechaP.Alignment = Element.ALIGN_LEFT;
-            doc.Add(FechaP);
-            doc.Add(new Chunk("\n"));
-
+            
             PdfPTable table = new PdfPTable(3);
-            //table.AddCell(new PdfPCell(new Phrase("Codigo Producto", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
             table.AddCell(new PdfPCell(new Phrase("Descripcion", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
             table.AddCell(new PdfPCell(new Phrase("Precio", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
             table.AddCell(new PdfPCell(new Phrase("Cantidad", TablasTitulo)) { HorizontalAlignment = Element.ALIGN_CENTER });
