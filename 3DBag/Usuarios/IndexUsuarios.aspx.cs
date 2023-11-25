@@ -93,6 +93,7 @@ namespace _3DBag
             btnAltaUsuario.Text = Sujeto.TraducirObserver(btnAltaUsuario.SkinID.ToString()) ?? btnAltaUsuario.SkinID.ToString();
             btnExportar.Text = Sujeto.TraducirObserver(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
             linkVolver.Text = Sujeto.TraducirObserver(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
+            btnWebServiceLogin.Text = Sujeto.TraducirObserver(btnWebServiceLogin.SkinID.ToString()) ?? btnWebServiceLogin.SkinID.ToString();
         }
 
         public void Traducir()
@@ -101,6 +102,7 @@ namespace _3DBag
             btnAltaUsuario.Text = SiteMaster.TraducirGlobal(btnAltaUsuario.SkinID.ToString()) ?? btnAltaUsuario.SkinID.ToString();
             btnExportar.Text = SiteMaster.TraducirGlobal(btnExportar.SkinID.ToString()) ?? btnExportar.SkinID.ToString();
             linkVolver.Text = SiteMaster.TraducirGlobal(linkVolver.SkinID.ToString()) ?? linkVolver.SkinID.ToString();
+            btnWebServiceLogin.Text = SiteMaster.TraducirGlobal(btnWebServiceLogin.SkinID.ToString()) ?? btnWebServiceLogin.SkinID.ToString();
             TraducirGridview();
         }
         #endregion
@@ -154,6 +156,16 @@ namespace _3DBag
         protected void linkVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Navegacion/Administracion.aspx");
+        }
+
+        protected void btnWebServiceLogin_Click(object sender, EventArgs e)
+        {
+            gridLogin.Visible = true;
+
+            WebService webService = new WebService();
+            gridLogin.DataSource = null;
+            gridLogin.DataSource = webService.UsuarioMasLogin();
+            gridLogin.DataBind();
         }
 
         void TraducirGridview()

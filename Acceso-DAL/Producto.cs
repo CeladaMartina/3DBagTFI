@@ -339,6 +339,23 @@ namespace Acceso_DAL
             return ListarTopProductos;
         }
 
+        public List<Propiedades_BE.Articulo> ProdMasBarato()
+        {
+            List<Propiedades_BE.Articulo> ProductoBarato = new List<Propiedades_BE.Articulo>();
+            DataTable Tabla = Acceso.Leer("ProdMasBarato", null);
+
+            foreach (DataRow R in Tabla.Rows)
+            {
+                Propiedades_BE.Articulo A = new Propiedades_BE.Articulo();
+                A.CodProd = int.Parse(R["CodProd"].ToString());
+                A.Nombre = R["Nombre"].ToString();
+                A.Descripcion = R["Descripcion"].ToString();
+                A.PUnit = decimal.Parse(R["Precio"].ToString());
+                ProductoBarato.Add(A);
+            }
+            return ProductoBarato;
+        }
+
 
         #endregion
 

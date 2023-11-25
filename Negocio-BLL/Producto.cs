@@ -83,6 +83,11 @@ namespace Negocio_BLL
             return Mapper.ListarTopProductos();
         }
 
+        public List<Propiedades_BE.Articulo> ProdMasBarato()
+        {
+            return Mapper.ProdMasBarato();
+        }
+
         public int Alta(int IdArticulo, int CodProd, string Nombre, string Descripcion, string Material, int Stock, decimal PUnit, byte[] Imagen, int DVH)
         {
             ArticuloTemp.IdArticulo = IdArticulo;

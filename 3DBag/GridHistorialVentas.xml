@@ -40,4 +40,132 @@
     <Monto>94110.0000</Monto>
     <Fecha>2023-10-23 12:00:00 AM</Fecha>
   </Table1>
+  <Table1>
+    <NumVenta>8</NumVenta>
+    <Nombre>Norma Umbert</Nombre>
+    <Descripcion>Gretel</Descripcion>
+    <Cantidad>5</Cantidad>
+    <Monto>601350.0000</Monto>
+    <Fecha>2023-10-26 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>8</NumVenta>
+    <Nombre>Norma Umbert</Nombre>
+    <Descripcion>Monkey</Descripcion>
+    <Cantidad>10</Cantidad>
+    <Monto>601350.0000</Monto>
+    <Fecha>2023-10-26 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>9</NumVenta>
+    <Nombre>Martina Admin</Nombre>
+    <Descripcion>Gretel</Descripcion>
+    <Cantidad>5</Cantidad>
+    <Monto>191450.0000</Monto>
+    <Fecha>2023-11-03 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>10</NumVenta>
+    <Nombre>Norma Umbert</Nombre>
+    <Descripcion>Monkey</Descripcion>
+    <Cantidad>2</Cantidad>
+    <Monto>158560.0000</Monto>
+    <Fecha>2023-11-06 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>11</NumVenta>
+    <Nombre>Martina Admin</Nombre>
+    <Descripcion>Gretel</Descripcion>
+    <Cantidad>4</Cantidad>
+    <Monto>153160.0000</Monto>
+    <Fecha>2023-11-06 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>12</NumVenta>
+    <Nombre>Nicolas Wrobel</Nombre>
+    <Descripcion>Gretel</Descripcion>
+    <Cantidad>2</Cantidad>
+    <Monto>76580.0000</Monto>
+    <Fecha>2023-11-06 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>10</NumVenta>
+    <Nombre>Norma Umbert</Nombre>
+    <Descripcion>Gretel</Descripcion>
+    <Cantidad>2</Cantidad>
+    <Monto>158560.0000</Monto>
+    <Fecha>2023-11-06 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>13</NumVenta>
+    <Nombre>Martina Admin</Nombre>
+    <Descripcion>Dada</Descripcion>
+    <Cantidad>1</Cantidad>
+    <Monto>33420.0000</Monto>
+    <Fecha>2023-11-07 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>14</NumVenta>
+    <Nombre>MAngelica</Nombre>
+    <Descripcion>Monkey</Descripcion>
+    <Cantidad>3</Cantidad>
+    <Monto>229550.0000</Monto>
+    <Fecha>2023-11-15 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>14</NumVenta>
+    <Nombre>MAngelica</Nombre>
+    <Descripcion>Gretel</Descripcion>
+    <Cantidad>2</Cantidad>
+    <Monto>229550.0000</Monto>
+    <Fecha>2023-11-15 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>14</NumVenta>
+    <Nombre>MAngelica</Nombre>
+    <Descripcion>3DOld</Descripcion>
+    <Cantidad>1</Cantidad>
+    <Monto>229550.0000</Monto>
+    <Fecha>2023-11-15 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>15</NumVenta>
+    <Nombre>Pepito</Nombre>
+    <Descripcion>Dada</Descripcion>
+    <Cantidad>2</Cantidad>
+    <Monto>173080.0000</Monto>
+    <Fecha>2023-11-15 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>15</NumVenta>
+    <Nombre>Pepito</Nombre>
+    <Descripcion>Personalizada</Descripcion>
+    <Cantidad>2</Cantidad>
+    <Monto>173080.0000</Monto>
+    <Fecha>2023-11-15 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>1014</NumVenta>
+    <Nombre>Pepito</Nombre>
+    <Descripcion>Personalizada</Descripcion>
+    <Cantidad>2</Cantidad>
+    <Monto>144530.0000</Monto>
+    <Fecha>2023-11-19 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>1014</NumVenta>
+    <Nombre>Pepito</Nombre>
+    <Descripcion>Gretel</Descripcion>
+    <Cantidad>1</Cantidad>
+    <Monto>144530.0000</Monto>
+    <Fecha>2023-11-19 12:00:00 AM</Fecha>
+  </Table1>
+  <Table1>
+    <NumVenta>1015</NumVenta>
+    <Nombre>Pepito</Nombre>
+    <Descripcion>Personalizada</Descripcion>
+    <Cantidad>1</Cantidad>
+    <Monto>53120.0000</Monto>
+    <Fecha>2023-11-20 12:00:00 AM</Fecha>
+  </Table1>
 </NewDataSet>

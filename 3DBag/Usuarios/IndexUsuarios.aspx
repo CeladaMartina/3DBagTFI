@@ -42,6 +42,8 @@
         <br />
         <br />
         <asp:Button ID="btnExportar" runat="server" OnClick="btnExportar_Click" Text="Exportar" SkinID="Exportar" CssClass="btn btn-secondary" />
+        <br />
+        <br />        
     </div>
     <asp:Label ID="lblPermiso" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>  
 </asp:Content>

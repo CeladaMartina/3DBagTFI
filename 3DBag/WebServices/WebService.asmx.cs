@@ -24,7 +24,15 @@ namespace _3DBag
         public string TopListaProd()
         {
             List<Propiedades_BE.Articulo> articulo = GestorProducto.TopListaProd();
-            string respuesta = "El producto " + articulo[0].Nombre + " " + articulo[0].Descripcion + " tiene un precio de $" + articulo[0].PUnit;
+            string respuesta = "El producto más caro " + articulo[0].Descripcion + " " + articulo[0].Nombre + " tiene un precio de $" + articulo[0].PUnit;
+            return respuesta;
+        }
+
+        [WebMethod]
+        public string ProdMasBarato()
+        {
+            List<Propiedades_BE.Articulo> articulo = GestorProducto.ProdMasBarato();
+            string respuesta = "El producto más barato " + articulo[0].Descripcion + " " + articulo[0].Nombre + " tiene un precio de $" + articulo[0].PUnit;
             return respuesta;
         }
 

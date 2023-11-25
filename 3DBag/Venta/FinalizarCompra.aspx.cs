@@ -99,7 +99,7 @@ namespace _3DBag
         {
             lblCliente.Text = Sujeto.TraducirObserver(lblCliente.SkinID.ToString()) ?? lblCliente.SkinID.ToString();
             lblIdVenta.Text = Sujeto.TraducirObserver(lblIdVenta.SkinID.ToString()) ?? lblIdVenta.SkinID.ToString();
-            lblTipoFactura.Text = Sujeto.TraducirObserver(lblTipoFactura.SkinID.ToString()) ?? lblTipoFactura.SkinID.ToString();
+            //lblTipoFactura.Text = Sujeto.TraducirObserver(lblTipoFactura.SkinID.ToString()) ?? lblTipoFactura.SkinID.ToString();
             btnFinalizarCompra.Text = Sujeto.TraducirObserver(btnFinalizarCompra.SkinID.ToString()) ?? btnFinalizarCompra.SkinID.ToString();
         }
 
@@ -107,7 +107,7 @@ namespace _3DBag
         {
             lblCliente.Text = SiteMaster.TraducirGlobal(lblCliente.SkinID.ToString()) ?? lblCliente.SkinID.ToString();
             lblIdVenta.Text = SiteMaster.TraducirGlobal(lblIdVenta.SkinID.ToString()) ?? lblIdVenta.SkinID.ToString();
-            lblTipoFactura.Text = SiteMaster.TraducirGlobal(lblTipoFactura.SkinID.ToString()) ?? lblTipoFactura.SkinID.ToString();
+            //lblTipoFactura.Text = SiteMaster.TraducirGlobal(lblTipoFactura.SkinID.ToString()) ?? lblTipoFactura.SkinID.ToString();
             btnFinalizarCompra.Text = SiteMaster.TraducirGlobal(btnFinalizarCompra.SkinID.ToString()) ?? btnFinalizarCompra.SkinID.ToString();
         }
         #endregion

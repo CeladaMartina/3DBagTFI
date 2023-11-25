@@ -38,7 +38,10 @@
         </asp:GridView>
         <br />
         <br />
-        <asp:Button ID="btnWebService" runat="server" Text="Consultar" SkinID="Consultar" OnClick="btnWebService_Click" CssClass="btn btn-secondary" />
+        <div id="divWebServiceProd" style="margin: 0 10px 0 auto;">
+            <asp:Button ID="btnWebService" runat="server" Text="Consultar" SkinID="Consultar" OnClick="btnWebService_Click" CssClass="btn btn-secondary"/>            
+            <asp:Button ID="Button1" runat="server" Text="Consultar" SkinID="Consultar" OnClick="btnWebService2_Click" CssClass="btn btn-secondary" />
+        </div>        
         <br />
         <br />
         <asp:Label ID="lblRespuesta" runat="server" Visible="false"></asp:Label>

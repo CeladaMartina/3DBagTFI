@@ -93,6 +93,13 @@ namespace _3DBag
             lblRespuesta.Text = webService.TopListaProd();          
         }
 
+        protected void btnWebService2_Click(object sender, EventArgs e)
+        {
+            WebService webService = new WebService();
+            lblRespuesta.Visible = true;
+            lblRespuesta.Text = webService.ProdMasBarato();
+        }
+
         #region traduccion
         public void Update(ISubject Sujeto)
         {
