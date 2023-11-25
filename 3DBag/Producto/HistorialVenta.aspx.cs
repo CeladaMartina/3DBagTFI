@@ -80,12 +80,19 @@ namespace _3DBag
 
         protected void btnWebServiceCliente_Click(object sender, EventArgs e)
         {
-            gridClientes.Visible = true;
-
-            WebService webService = new WebService();
-            gridClientes.DataSource = null;
-            gridClientes.DataSource = webService.ClientesMasVendido();
-            gridClientes.DataBind();
+            if(gridClientes.Visible == true)
+            {
+                gridClientes.Visible = false;
+            }
+            else
+            {
+                gridClientes.Visible = true;
+                WebService webService = new WebService();
+                gridClientes.DataSource = null;
+                gridClientes.DataSource = webService.ClientesMasVendido();
+                gridClientes.DataBind();
+            }
+            
         }
 
         protected void btnExportar_Click(object sender, EventArgs e)
@@ -191,6 +198,7 @@ namespace _3DBag
             }
         }
 
+        #region paginacion
         protected void gridVentas_DataBound(object sender, EventArgs e)
         {
             GridViewRow pagerow = gridVentas.BottomPagerRow;
@@ -215,5 +223,6 @@ namespace _3DBag
             gv.PageIndex = e.NewPageIndex;
             ListarProductos();
         }
+        #endregion
     }
 }

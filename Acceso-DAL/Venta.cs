@@ -26,8 +26,11 @@ namespace Acceso_DAL
                 V.Cantidad = int.Parse(R["Cant"].ToString());
                 V.NumVenta = int.Parse(R["NumVenta"].ToString());
                 V.Nombre = R["Cliente"].ToString();
-                V.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));
-                V.Monto = decimal.Parse(R["Monto"].ToString());
+                V.Fecha = new DateTime(long.Parse(R["Fecha"].ToString()));                     
+                //eliminamos los ultimos 2 digitos
+                string precio = R["Monto"].ToString();
+                precio = precio.Remove(precio.Length - 2);
+                V.Monto = decimal.Parse(precio);
                 ListaVenta.Add(V);
             }
             return ListaVenta;

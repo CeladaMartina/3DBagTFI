@@ -88,16 +88,31 @@ namespace _3DBag
 
         protected void btnWebService_Click(object sender, EventArgs e)
         {
-            WebService webService = new WebService();
-            lblRespuesta.Visible = true;
-            lblRespuesta.Text = webService.TopListaProd();          
+            if(lblRespuesta.Visible == true)
+            {
+                lblRespuesta.Visible = false;
+            }
+            else
+            {
+                lblRespuesta.Visible = true;
+                WebService webService = new WebService();                
+                lblRespuesta.Text = webService.TopListaProd();
+            }
+                 
         }
 
         protected void btnWebService2_Click(object sender, EventArgs e)
         {
-            WebService webService = new WebService();
-            lblRespuesta.Visible = true;
-            lblRespuesta.Text = webService.ProdMasBarato();
+            if (lblRespuesta.Visible == true)
+            {
+                lblRespuesta.Visible = false;
+            }
+            else
+            {
+                WebService webService = new WebService();
+                lblRespuesta.Visible = true;
+                lblRespuesta.Text = webService.ProdMasBarato();
+            }            
         }
 
         #region traduccion
