@@ -190,5 +190,30 @@ namespace _3DBag
                 }
             }
         }
+
+        protected void gridVentas_DataBound(object sender, EventArgs e)
+        {
+            GridViewRow pagerow = gridVentas.BottomPagerRow;
+            Label pagenro = (Label)pagerow.Cells[0].FindControl("Label1");
+            Label totalPageNro = (Label)pagerow.Cells[0].FindControl("Label2");
+
+            if ((pagenro != null) && (totalPageNro != null))
+            {
+                int pagen = gridVentas.PageIndex + 1;
+                int tot = gridVentas.PageCount;
+
+                pagenro.Text = pagen.ToString();
+                totalPageNro.Text = tot.ToString();
+            }
+        }
+
+        protected void gridVentas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+            //esto hace que funcione los botones de "Anterior" y "Siguiente"
+            GridView gv = (GridView)sender;
+            gv.PageIndex = e.NewPageIndex;
+            ListarProductos();
+        }
     }
 }

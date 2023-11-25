@@ -8,7 +8,7 @@
         <br />        
         <div id="divHistorialVentas" runat="server" class="form-group">
             <div class="table-responsive">
-                <asp:GridView ID="gridVentas" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover">
+                <asp:GridView ID="gridVentas" PageSize="5"  AllowPaging="true" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="table table-bordered table-condensed table-responsive table-hover" OnDataBound="gridVentas_DataBound" OnPageIndexChanging="gridVentas_PageIndexChanging">
                     <AlternatingRowStyle BackColor="White" />
                     <HeaderStyle BackColor="#6B696B" Font-Bold="true" Font-Size="Larger" ForeColor="White" />
                     <RowStyle BackColor="#f5f5f5" />
@@ -21,6 +21,22 @@
                         <asp:BoundField DataField="Monto" HeaderText="Monto" />  
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" />                                                            
                     </Columns>
+                    <PagerTemplate>
+                        <table>
+                            <tr>
+                                <td>
+                                    <asp:LinkButton ID="LinkAnterior" runat="server" Text="Anterior" SkinID="Anterior" CommandName="Page" CommandArgument="Prev" />
+                                    <asp:LinkButton ID="LinkSiguiente" runat="server" Text="Siguiente" SkinID="Siguiente" CommandName="Page" CommandArgument="Next" />
+                                </td>
+                                <td>Pag N°
+                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                                    Total Pag.
+                        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                                </td>
+                            </tr>
+                        </table>
+                    </PagerTemplate>
+                    <PagerSettings Mode="NextPrevious" Position="Bottom" />
                 </asp:GridView>
             </div>
             <br />
