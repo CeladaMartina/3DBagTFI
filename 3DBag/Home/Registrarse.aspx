@@ -42,19 +42,19 @@
                              <div class="col-md-6">
                                  <asp:Label ID="Nombre" runat="server" SkinID="Nombre">Nombre</asp:Label>                                 
                                  <div class="form-group">
-                                     <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" placeholder="Nombre" ></asp:TextBox>
+                                     <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server" placeholder="Nombre" TextMode="SingleLine" ></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
                                  <asp:Label ID="Apellido" runat="server" SkinID="Apellido">Apellido</asp:Label>
                                  <div class="form-group">
-                                     <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server" placeholder="Apellido" ></asp:TextBox>
+                                     <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server" placeholder="Apellido" TextMode="SingleLine" ></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
                                  <asp:Label ID="DNI" runat="server" SkinID="DNI">DNI</asp:Label>
                                  <div class="form-group">
-                                     <asp:TextBox ID="txtDNI" CssClass="form-control" runat="server" placeholder="DNI" TextMode="Number"></asp:TextBox>
+                                     <asp:TextBox ID="txtDNI" CssClass="form-control" runat="server" placeholder="DNI" TextMode="Number" MaxLength="8"></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
@@ -66,7 +66,7 @@
                              <div class="col-md-6">
                                  <asp:Label ID="Telefono" runat="server" SkinID="Telefono">Telefono</asp:Label>
                                  <div class="form-group">
-                                     <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server" placeholder="Telefono" TextMode="Phone"></asp:TextBox>
+                                     <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server" placeholder="Telefono" TextMode="Phone" MaxLength="10"></asp:TextBox>
                                  </div>
                              </div>
                              <div class="col-md-6">
