@@ -12,23 +12,23 @@
         <br />
         <asp:Label ID="lblNick" runat="server" Text="Nick" SkinID="Nick"></asp:Label>
         <br />
-        <asp:TextBox ID="txtNick" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtNick" runat="server" CssClass="form-control" TextMode="SingleLine"></asp:TextBox>
         <br />
         <asp:Label ID="lblContraseña" runat="server" Text="Contraseña" SkinID="Contraseña"></asp:Label>
         <br />
-        <asp:TextBox ID="txtContraseña" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
         <br />
         <asp:Label ID="lblNombre" runat="server" Text="Nombre" SkinID="Nombre"></asp:Label>
         <br />
-        <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" TextMode="SingleLine"></asp:TextBox>
         <br />
         <asp:Label ID="lblMail" runat="server" Text="Mail" SkinID="Email"></asp:Label>
         <br />
-        <asp:TextBox ID="txtMail" runat="server" Width="225px"></asp:TextBox>        
+        <asp:TextBox ID="txtMail" runat="server" Width="225px" CssClass="form-control" TextMode="Email"></asp:TextBox>        
         <br />
         <asp:Label ID="lblIdioma" runat="server" Text="Idioma" SkinID="Idioma"></asp:Label>
         <br />        
-        <asp:TextBox ID="txtIdioma" runat="server" Width="170px"></asp:TextBox>  
+        <asp:TextBox ID="txtIdioma" runat="server" Width="170px" CssClass="form-control" TextMode="SingleLine"></asp:TextBox>  
         <br />
         <asp:Label ID="lblBloqueado" runat="server" Text="Bloqueado" SkinID="Bloqueado"></asp:Label><asp:CheckBox ID="checkBloqueado" runat="server" />
         <br />

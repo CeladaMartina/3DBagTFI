@@ -7,12 +7,12 @@
     <br />
     <asp:Label ID="lblNick" runat="server" SkinID="Nick">Nick: </asp:Label>
     <br />
-    <asp:TextBox ID="txtNick" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtNick" runat="server" CssClass="form-control" TextMode="SingleLine"></asp:TextBox>
     <br />
     <br />
-    <asp:Label ID="lblMail" runat="server" SkinID="Email"> Mail: </asp:Label>
+    <asp:Label ID="lblMail" runat="server" SkinID="Email" > Mail: </asp:Label>
      <br />
-    <asp:TextBox ID="txtMail" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtMail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
     <br />
     <br />
     <asp:Label ID="lblRespuesta" runat="server"></asp:Label>

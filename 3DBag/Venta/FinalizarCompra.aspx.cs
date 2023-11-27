@@ -40,8 +40,6 @@ namespace _3DBag
         }
 
         #region metodos
-
-
         void TraerDetalleVenta()
         {
             lblClienteResp.Text = GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario);
@@ -86,12 +84,22 @@ namespace _3DBag
 
         protected void btnFinalizarCompra_Click(object sender, EventArgs e)
         {
-            GestorVenta.Vender(Convert.ToInt32(Session["IdVenta"]));
-            EnviarMail();           
-            lblResultado.Visible = true;
-            lblResultado.Text = SiteMaster.TraducirGlobal("Compra finalizada correctamente. Factura enviada por email.") ?? ("Compra finalizada correctamente. Factura enviada por email.");
-            Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Venta Realizada", "Baja", 0);
-            Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));           
+            try
+            {
+                GestorVenta.Vender(Convert.ToInt32(Session["IdVenta"]));
+                EnviarMail();
+                lblResultado.Visible = true;
+                lblResultado.Text = SiteMaster.TraducirGlobal("Compra finalizada correctamente. Factura enviada por email.") ?? ("Compra finalizada correctamente. Factura enviada por email.");
+                Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Venta Realizada", "Baja", 0);
+                Seguridad.ActualizarDVV("Detalle_Venta", Seguridad.SumaDVV("Detalle_Venta"));
+            }
+            catch(Exception ex)
+            {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
+                   
         }
 
         #region traduccion

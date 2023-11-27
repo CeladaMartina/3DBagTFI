@@ -43,7 +43,6 @@ namespace _3DBag
                     if (Seguridad.ValidarClave(txtPassword.Text) == true)
                     {
                         AltaUsuario(txtNick.Text, txtPassword.Text, txtNombre.Text, txtEmail.Text, false, 0, DropDownList1.SelectedValue, 0);
-                        //AltaCliente(IdUsuario, txtNombre.Text, txtApellido.Text, Seguridad.EncriptarAES(txtDNI.Text), txtEmail.Text, int.Parse(txtTelefono.Text), DateTime.Parse(txtFecha.Text));
                         LimpiarTxt();
                         IdUsuario = -1;
                         lblError.Visible = true;
@@ -84,13 +83,6 @@ namespace _3DBag
             return A;
         }
 
-        //void AltaCliente(int IdCliente, string nombre, string apellido, string dni, string email, int telefono, DateTime fechaNac)
-        //{
-        //    GestorCliente.Alta(IdCliente, nombre, apellido, dni, email, telefono, fechaNac);
-        //    Seguridad.CargarBitacora(Propiedades_BE.SingletonLogin.GlobalIdUsuario, DateTime.Now, "Alta Cliente", "Media", 0);
-        //    //LimpiarTxt();
-        //    //IdUsuario = -1;
-        //}
         void AltaUsuario(string nick, string contraseña, string nombre, string email, bool Estado, int contador, string idioma, int dvh)
         {
             GestorUsuario.AltaUsuario(nick, contraseña, nombre, email, Estado, contador, idioma, dvh);

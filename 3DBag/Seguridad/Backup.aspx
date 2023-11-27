@@ -11,7 +11,7 @@
         <br />
         <br />
         <asp:Label ID="lblNombre" runat="server" Text="Nombre" SkinID="Nombre"></asp:Label> 
-        <asp:TextBox ID="txtNombre" runat="server" Width="319px"></asp:TextBox>
+        <asp:TextBox ID="txtNombre" runat="server" Width="319px" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
         <br />
         <br />
         <asp:Button ID="btnBackup" runat="server" Text="Generar" CssClass="btn btn-success btn-block btn-lg" OnClick="Generar" SkinID="Generar" />

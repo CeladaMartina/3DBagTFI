@@ -41,6 +41,7 @@ namespace _3DBag
                 else
                 {
                     divGeneral.Visible = false;
+                    lblPermiso.CssClass = "alert alert-danger";
                     lblPermiso.Text = SiteMaster.TraducirGlobal("No tiene los permisos necesarios para realizar esta accion") ?? ("No tiene los permisos necesarios para realizar esta accion");
                     lblPermiso.Visible = true;
                 }
@@ -152,6 +153,7 @@ namespace _3DBag
                 {
                     GridBitacora.DataSource = null;
                     lblError.Visible = true;
+                    lblError.CssClass = "alert alert-danger";
                     lblError.Text = SiteMaster.TraducirGlobal("No hay valores para mostrar en la grilla.") ?? ("No hay valores para mostrar en la grilla.");
                 }
                 else
@@ -164,6 +166,7 @@ namespace _3DBag
             catch(Exception ex)
             {
                 lblError.Visible = true;
+                lblError.CssClass = "alert alert-danger";
                 lblError.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 ListarBitacora();
             }
@@ -257,6 +260,7 @@ namespace _3DBag
                     if (dtDesde >= dtHasta)
                     {
                         lblError.Visible = true;
+                        lblError.CssClass = "alert alert-danger";
                         lblError.Text = SiteMaster.TraducirGlobal("La fecha Hasta no puede ser menor que Desde.") ?? ("La fecha Hasta no puede ser menor que Desde.");
                     }
                     else
@@ -268,6 +272,7 @@ namespace _3DBag
             catch (Exception ex)
             {
                 lblError.Visible = true;
+                lblError.CssClass = "alert alert-danger";
                 lblError.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 ListarBitacora();
             }

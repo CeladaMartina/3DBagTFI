@@ -172,6 +172,7 @@ namespace _3DBag
 
         #endregion
 
+        //traduccion tabla
         protected void dataList_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             Label lblNombre = (Label)e.Item.FindControl("lblNombre");

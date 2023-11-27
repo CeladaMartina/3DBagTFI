@@ -64,17 +64,45 @@ namespace _3DBag
                 {
                     if(Request.QueryString["Funcion"] == "alta")
                     {
-                        Alta(IdPermiso, txtNombre.Text, DropDownDescrip.SelectedItem.Text, 0);
+                        try
+                        {
+                            Alta(IdPermiso, txtNombre.Text, DropDownDescrip.SelectedItem.Text, 0);
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-success";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Alta Patente correctamente") ?? ("Alta Patente correctamente");
+                        }
+                        catch(Exception ex)
+                        {
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-danger";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+                        }
+                       
 
                     }else if(Request.QueryString["Funcion"] == "editar")
                     {
-                        Modificar(Convert.ToInt32(Request.QueryString["patente"]), txtNombre.Text, DropDownDescrip.SelectedItem.Text, 0);
+                        try 
+                        {
+                            Modificar(Convert.ToInt32(Request.QueryString["patente"]), txtNombre.Text, DropDownDescrip.SelectedItem.Text, 0);
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-success";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Modificación Patente correctamente") ?? ("Alta Patente correctamente");
+                        }
+                        catch(Exception ex)
+                        {
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-danger";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+                        }
+                            
                     }
                 }
 
             }catch(Exception ex)
             {
-
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
             }
         }
 

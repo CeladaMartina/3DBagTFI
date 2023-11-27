@@ -11,7 +11,7 @@
     <br />
     <asp:Label ID="lblNombre" runat="server" Text="Nombre" SkinID="Nombre"></asp:Label>
     <br />
-    <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" TextMode="SingleLine"></asp:TextBox>
     <br />
     <br />
     <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion" SkinID="Descripcion"></asp:Label>

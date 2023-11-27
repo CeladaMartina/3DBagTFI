@@ -113,12 +113,21 @@ namespace _3DBag
 
         protected void btnComprarAhora_Click(object sender, EventArgs e)
         {
-            string ruta = AppDomain.CurrentDomain.BaseDirectory  + "\\Facturas\\";             
-            //string ruta = Server.MapPath("~/");
-            string lblSubtotal = GestorDV.SubTotal(int.Parse(Session["IdVenta"].ToString())).ToString();
-            PDF(ruta, Convert.ToInt32(Session["IdVenta"]), GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario), DateTime.Now.ToShortDateString(), decimal.Parse(lblSubtotal));
+            try
+            {
+                string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Facturas\\";
+                //string ruta = Server.MapPath("~/");
+                string lblSubtotal = GestorDV.SubTotal(int.Parse(Session["IdVenta"].ToString())).ToString();
+                PDF(ruta, Convert.ToInt32(Session["IdVenta"]), GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario), DateTime.Now.ToShortDateString(), decimal.Parse(lblSubtotal));
+                Response.Redirect("../Venta/FinalizarCompra.aspx?IdVenta=" + Session["IdVenta"] + "&Factura=" + Session["NombreFactura"]);
+            }
+            catch(Exception ex)
+            {
+                lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
+                lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+            }
             
-            Response.Redirect("../Venta/FinalizarCompra.aspx?IdVenta=" + Session["IdVenta"] + "&Factura=" + Session["NombreFactura"]);
         }
 
         void PDF(string ruta, int NumVenta, string Cliente, string Fecha, decimal Total)

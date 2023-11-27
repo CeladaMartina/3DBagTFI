@@ -41,6 +41,9 @@
                 <br />
                 <br />
                 <asp:Button ID="btnComprarAhora" Text="Comprar" SkinID="Comprar" runat="server" OnClick="btnComprarAhora_Click" CssClass="btn btn-primary" />                
+                <br />
+                <br />
+                <asp:Label ID="lblResultado" runat="server" Visible="false" CssClass="alert alert-danger"></asp:Label>
             </div>
         </div>
     </div>

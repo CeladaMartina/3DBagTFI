@@ -26,7 +26,7 @@
                 <asp:Label ID="PUnitLabel" runat="server" Text='<%# Eval("PUnit") %>' />
                 <br />  
                 <asp:Label runat="server" ID="lblCantidad" SkinID="Cantidad">Cantidad: </asp:Label>  
-                 <asp:TextBox ID="TxtCantidad" runat="server"></asp:TextBox>
+                 <asp:TextBox ID="TxtCantidad" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 <br />
                 <asp:Button ID="BtnAgregar" runat="server" Text="Agregar" SkinID="Agregar" CommandName="AgregarCarrito" CssClass="btn btn-primary" />
                 <br />

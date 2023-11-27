@@ -185,6 +185,7 @@ namespace _3DBag
                         string prodFileName = Path.GetFileName(FileUploadImagen.PostedFile.FileName);
                         if(prodFileName == "")
                         {
+                            lblRespuesta.CssClass = "alert alert-danger";
                             lblRespuesta.Text = SiteMaster.TraducirGlobal("Cargue una Imagen") ?? ("Cargue una Imagen");
                         }
                         else

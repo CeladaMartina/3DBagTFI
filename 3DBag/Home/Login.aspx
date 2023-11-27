@@ -33,7 +33,7 @@
                             <div class="col">
                                 <asp:Label ID="nickId" runat="server" SkinID="Nick">Nick</asp:Label>
                                 <div class="form-group">
-                                    <asp:TextBox ID="txtNick" CssClass="form-control" runat="server" placeholder="Nick" SkinID="Nick"></asp:TextBox>
+                                    <asp:TextBox ID="txtNick" CssClass="form-control" runat="server" placeholder="Nick" SkinID="Nick" TextMode="SingleLine"></asp:TextBox>
                                 </div>
                                 <br />
                                 <asp:Label ID="contraseñaId" runat="server" SkinID="Contraseña">Contraseña</asp:Label>

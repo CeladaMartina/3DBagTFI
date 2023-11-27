@@ -73,15 +73,18 @@ namespace _3DBag
                     GestorUsuario.ConfirmarCambioContraseña(txtNick.Text, contraseñaNueva, txtMail.Text);
                     Seguridad.CargarBitacora(GestorUsuario.SeleccionarIDNick(txtNick.Text), DateTime.Now, "Contraseña cambiada", "Alta", 0);
                     EnviarMail(contraseñaNueva, txtMail.Text);
+                    lblRespuesta.CssClass = "alert alert-success";
                     lblRespuesta.Text = SiteMaster.TraducirGlobal("Contraseña cambiada con exito") ?? ("Contraseña cambiada con exito");                    
                 }
                 else
                 {
+                    lblRespuesta.CssClass = "alert alert-danger";
                     lblRespuesta.Text = SiteMaster.TraducirGlobal("Ingrese otra contraseña") ?? ("Ingrese otra contraseña");                    
                 }
             }
             catch (Exception)
             {
+                lblRespuesta.CssClass = "alert alert-danger";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Error cambiando contraseña, intente nuevamente") ?? ("Error cambiando contraseña, intente nuevamente");               
             }
 
@@ -117,11 +120,13 @@ namespace _3DBag
                 }
                 catch (Exception ex)
                 {
+                    lblRespuesta.CssClass = "alert alert-danger";
                     lblRespuesta.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
                 }
             }
             else
             {
+                lblRespuesta.CssClass = "alert alert-danger";
                 lblRespuesta.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");               
             }
         }

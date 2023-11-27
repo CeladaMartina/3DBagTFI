@@ -151,6 +151,7 @@ namespace _3DBag
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
@@ -164,6 +165,7 @@ namespace _3DBag
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
@@ -176,14 +178,40 @@ namespace _3DBag
                 {
                     if (Request.QueryString["Funcion"] == "alta")
                     {
-                        //sacar dvh xq la familia no tiene dvh
-                        AltaFamilia(txtNombre.Text);
+                        try
+                        {
+                            //sacar dvh xq la familia no tiene dvh
+                            AltaFamilia(txtNombre.Text);
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-success";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Alta Familia correctamente") ?? ("Alta Familia correctamente");
+
+                        }
+                        catch(Exception ex)
+                        {
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-danger";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+                        }
 
                     }
                     else if (Request.QueryString["Funcion"] == "editar")
                     {
-                        //sacar dvh xq la familia no tiene dvh
-                        ModificarFamilia(Convert.ToInt32(Request.QueryString["id"]), txtNombre.Text);
+                        try
+                        {
+                            //sacar dvh xq la familia no tiene dvh
+                            ModificarFamilia(Convert.ToInt32(Request.QueryString["id"]), txtNombre.Text);
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-success";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Modificación Familia correctamente") ?? ("Modificación Familia correctamente");
+                        }
+                        catch(Exception ex)
+                        {
+                            lblResultado.Visible = true;
+                            lblResultado.CssClass = "alert alert-danger";
+                            lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
+                        }
+                        
                     }
 
                     GuardarFamilia();
@@ -191,12 +219,14 @@ namespace _3DBag
                 else
                 {
                     lblResultado.Visible = true;
+                    lblResultado.CssClass = "alert alert-danger";
                     lblResultado.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
             }
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }

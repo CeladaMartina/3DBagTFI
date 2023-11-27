@@ -325,6 +325,7 @@ namespace _3DBag
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
 
@@ -339,6 +340,7 @@ namespace _3DBag
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
@@ -366,6 +368,7 @@ namespace _3DBag
                             else
                             {
                                 lblResultado.Visible = true;
+                                lblResultado.CssClass = "alert alert-danger";
                                 lblResultado.Text = SiteMaster.TraducirGlobal("Ingrese otra contraseña") ?? ("Ingrese otra contraseña");
                             }
                         }
@@ -378,6 +381,7 @@ namespace _3DBag
                 else
                 {
                     lblResultado.Visible = true;
+                    lblResultado.CssClass = "alert alert-danger";
                     lblResultado.Text = SiteMaster.TraducirGlobal("Complete todos los campos") ?? ("Complete todos los campos");
                 }
 
@@ -385,6 +389,7 @@ namespace _3DBag
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
@@ -403,6 +408,7 @@ namespace _3DBag
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
@@ -416,6 +422,7 @@ namespace _3DBag
             catch (Exception)
             {
                 lblResultado.Visible = true;
+                lblResultado.CssClass = "alert alert-danger";
                 lblResultado.Text = SiteMaster.TraducirGlobal("Error de Servicio") ?? ("Error de Servicio");
             }
         }
