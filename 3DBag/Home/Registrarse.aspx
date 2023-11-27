@@ -66,7 +66,8 @@
                              <div class="col-md-6">
                                  <asp:Label ID="Telefono" runat="server" SkinID="Telefono">Telefono</asp:Label>
                                  <div class="form-group">
-                                     <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server" placeholder="Telefono" TextMode="Phone" MaxLength="10"></asp:TextBox>
+                                     <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server" placeholder="Telefono" TextMode="Number" MaxLength="10"></asp:TextBox>
+                                    <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="txtTelefono" ValidationExpression="^[\s\S]{10,11}$" runat="server" ErrorMessage="Minimum 8 characters required." ></asp:RegularExpressionValidator>
                                  </div>
                              </div>
                              <div class="col-md-6">

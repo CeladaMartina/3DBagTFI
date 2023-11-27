@@ -7,7 +7,7 @@
         <br />
     <div id="divBackup" class="container" runat="server">        
         <asp:Label ID="lblRuta" runat="server" Text="Ruta" SkinID="Ruta"></asp:Label>        
-        <asp:TextBox ID="txtRuta" runat="server" Width="350px"></asp:TextBox>
+        <asp:TextBox ID="txtRuta" runat="server" Width="350px" CssClass="form-control"></asp:TextBox>
         <br />
         <br />
         <asp:Label ID="lblNombre" runat="server" Text="Nombre" SkinID="Nombre"></asp:Label> 
