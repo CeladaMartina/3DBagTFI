@@ -1,0 +1,56 @@
+﻿.wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding:20px;
+}
+
+#formContent {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+#footer1{
+    background: #762b00;
+}
+
+#ContentPlaceHolder1_containerHome {
+    text-align: center;
+}
+
+#ContentPlaceHolder1_lblUsuario{
+    font-size: 30px;
+}
+
+#ContentPlaceHolder1_lblTitulo {
+    font-size: 30px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+body{
+    position:relative;
+    margin:0;
+    min-height:100%;
+    padding-bottom:6.74rem;
+}
+
+.form-control {
+  width: 50%;
+}

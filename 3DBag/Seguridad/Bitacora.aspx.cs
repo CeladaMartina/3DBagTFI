@@ -106,15 +106,17 @@ namespace _3DBag
             {
                 GridBitacora.DataSource = null;
 
-                string strDateDesde = txtDesde.Text;
+                string strDateDesde =  txtDesde.Text;
                 string strDateHasta = txtHasta.Text;
 
+               
                 //cambia el orden de la fecha
                 strDateDesde = ChangeDateFormat(strDateDesde);
                 DateTime dtDesde = DateTime.ParseExact(strDateDesde, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                 strDateHasta = ChangeDateFormat(strDateHasta);
                 DateTime dtHasta = DateTime.ParseExact(strDateHasta, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
 
                 string criticidad = ListCriticidiad.SelectedValue;
                 string usuario = ListUsuarios.SelectedValue;
@@ -140,8 +142,7 @@ namespace _3DBag
                         consultaCriticidad = "select criticidad from Bitacora where criticidad = '" + criticidad + "'";
                         break;
                 }
-
-                //fixear la consulta a la base de datos
+                                
                 GridBitacora.DataSource = Seguridad.ConsultarBitacora(dtDesde, dtHasta, consultaCriticidad, consultaUsuario);                
 
                 if(GridBitacora.DataSource != null)
@@ -228,13 +229,17 @@ namespace _3DBag
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
-            txtDesde.Text = Calendar1.SelectedDate.ToString("dd/MM/yyyy");
+            txtDesde.Text = Calendar1.SelectedDate.ToString("dd-MM-yyyy");
+            //txtDesde.Text = Calendar1.SelectedDate.ToShortDateString();
+            //txtDesde.Text = ChangeDateFormat(txtDesde.Text);
             Calendar1.Visible = false;
         }
 
         protected void Calendar2_SelectionChanged(object sender, EventArgs e)
         {
-            txtHasta.Text = Calendar2.SelectedDate.ToString("dd/MM/yyyy");
+            txtHasta.Text = Calendar2.SelectedDate.ToString("dd-MM-yyyy");
+            //txtHasta.Text = Calendar2.SelectedDate.ToShortDateString();
+            //txtHasta.Text = ChangeDateFormat(txtHasta.Text);
             Calendar2.Visible = false;
         }
 
@@ -246,12 +251,9 @@ namespace _3DBag
             string strDateDesde = txtDesde.Text;
             string strDateHasta = txtHasta.Text;
 
-            DateTime dtDesde = DateTime.ParseExact(strDateDesde, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            dtDesde.ToString("yyyy-MM-dd");
-
-            DateTime dtHasta = DateTime.ParseExact(strDateHasta, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            dtHasta.ToString("yyyy-MM-dd");
-            dtHasta.AddHours(23).AddMinutes(59).AddSeconds(59);
+            DateTime dtDesde = DateTime.ParseExact(strDateDesde, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+           
+            DateTime dtHasta = DateTime.ParseExact(strDateHasta, "MM/dd/yyyy", CultureInfo.InvariantCulture);            
 
             try
             {

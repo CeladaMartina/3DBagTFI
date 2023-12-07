@@ -21,7 +21,7 @@ namespace Negocio_BLL
             string DataSourceRaw2 = "";
             DataSourceRaw = usuario;
             DataSourceRaw2 = basedatos;           
-            Conexion = @"Data Source=" + DataSourceRaw + ";Initial Catalog=" + DataSourceRaw2 + ";Integrated Security=True; MultipleActiveResultSets=true";
+            Conexion = @"Data Source=" + DataSourceRaw + ";Initial Catalog=" + DataSourceRaw2 + ";MultipleActiveResultSets=true; Integrated Security=SSPI;persist security info=True;";
             Mapper.GenerarConexion(Conexion);
         }
 

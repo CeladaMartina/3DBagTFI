@@ -1,0 +1,9 @@
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\bin\Release\Acceso-DAL.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\bin\Release\Acceso-DAL.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\bin\Release\Propiedades-BE.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\bin\Release\Propiedades-BE.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Release\Acceso-DAL.csproj.AssemblyReference.cache
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Release\Acceso-DAL.csproj.CoreCompileInputs.cache
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Release\Acceso-DAL.csproj.CopyComplete
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Release\Acceso-DAL.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Acceso-DAL\obj\Release\Acceso-DAL.pdb

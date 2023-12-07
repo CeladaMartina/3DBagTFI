@@ -51,10 +51,9 @@ namespace _3DBag
         //llenar el iframe con ese pdf
         void TraerPDF()
         {
-            //string pdfPath = AppDomain.CurrentDomain.BaseDirectory + "Facturas\\" + Session["NombreFactura"];
-            string pdfPath = "https://localhost:44388/" + "\\Facturas\\" + Session["NombreFactura"]; 
-            viewPDF.Attributes["src"] = pdfPath;
-            
+            string origin = Request.Url.GetLeftPart(UriPartial.Authority);
+            string pdfPath = origin + "\\Facturas\\" + Session["NombreFactura"]; 
+            viewPDF.Attributes["src"] = pdfPath;            
         }
 
         void EnviarMail()
@@ -74,7 +73,7 @@ namespace _3DBag
 
             using(SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
             {
-                smtp.Credentials = new System.Net.NetworkCredential("martina.celada@gmail.com", "ljrshyhsmelygaed");
+                smtp.Credentials = new System.Net.NetworkCredential("martina.celada@gmail.com", "icyjgyhatmgjbnun");
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }

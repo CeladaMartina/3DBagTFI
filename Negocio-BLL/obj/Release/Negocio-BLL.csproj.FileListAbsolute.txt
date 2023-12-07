@@ -1,0 +1,11 @@
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\bin\Release\Negocio-BLL.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\bin\Release\Negocio-BLL.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\bin\Release\Acceso-DAL.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\bin\Release\Propiedades-BE.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\bin\Release\Acceso-DAL.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\bin\Release\Propiedades-BE.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\obj\Release\Negocio-BLL.csproj.AssemblyReference.cache
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\obj\Release\Negocio-BLL.csproj.CoreCompileInputs.cache
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\obj\Release\Negocio-BLL.csproj.CopyComplete
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\obj\Release\Negocio-BLL.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\Negocio-BLL\obj\Release\Negocio-BLL.pdb

@@ -114,10 +114,10 @@ namespace _3DBag
         protected void btnComprarAhora_Click(object sender, EventArgs e)
         {
             try
-            {
-                string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Facturas\\";
-                //string ruta = Server.MapPath("~/");
+            {               
+                string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Facturas\\";                
                 string lblSubtotal = GestorDV.SubTotal(int.Parse(Session["IdVenta"].ToString())).ToString();
+                lblSubtotal = lblSubtotal.Substring(0, lblSubtotal.Length - 2);
                 PDF(ruta, Convert.ToInt32(Session["IdVenta"]), GestorDV.SeleccionarNick(Propiedades_BE.SingletonLogin.GlobalIdUsuario), DateTime.Now.ToShortDateString(), decimal.Parse(lblSubtotal));
                 Response.Redirect("../Venta/FinalizarCompra.aspx?IdVenta=" + Session["IdVenta"] + "&Factura=" + Session["NombreFactura"]);
             }

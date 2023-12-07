@@ -83,3 +83,11 @@ C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\es
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.csproj.CopyComplete
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.dll
 C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\obj\Debug\3DBag.pdb
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\EntityFramework.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\EntityFramework.SqlServer.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\EntityFramework.xml
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\EntityFramework.SqlServer.xml
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
+C:\Users\mcelada\Desktop\SAP - TFI - Auditoria 2023\TFI\3DBag\3DBag\3DBag\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml

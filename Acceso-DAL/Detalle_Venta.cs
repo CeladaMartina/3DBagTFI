@@ -28,7 +28,10 @@ namespace Acceso_DAL
                 DV.IdDetalle = int.Parse(R["IdDetalle"].ToString());
                 DV.CodProd = int.Parse(R["CodProd"].ToString());
                 DV.Descrip = R["Nombre"].ToString();
-                DV.PUnit = decimal.Parse(R["PUnit"].ToString());
+                //eliminamos los ultimos 2 digitos
+                string precio = R["PUnit"].ToString();
+                precio = precio.Remove(precio.Length - 2);                
+                DV.PUnit = decimal.Parse(precio);
                 DV.Cant = int.Parse(R["Cant"].ToString());
                 ListarDetalle.Add(DV);
             }
